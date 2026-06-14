@@ -127,6 +127,7 @@ Once installed, the game works fully offline.
 |`engine.test.js`  |Node unit tests for the engine                       |
 |`manifest.json`   |PWA manifest — name, icons, display settings         |
 |`sw.js`           |Service worker — caches the game for offline play    |
+|`apple-touch-icon.png`|iOS home screen icon (180×180)                        |
 |`icon-192.png`    |App icon (home screen, Android)                      |
 |`icon-512.png`    |App icon (splash screen, high-res displays)          |
 |`index.html`      |Redirect to `gangwars.html`                          |
