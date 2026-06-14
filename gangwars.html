@@ -76,7 +76,8 @@
   .market-scroll th{position:sticky;top:0;z-index:1;}
   td.r,th.r{text-align:right;}
   tr.dead{opacity:.4;}
-  td button{padding:4px 9px;font-size:.74rem;margin-left:3px;border-radius:5px;}
+  .market-actions{display:flex;justify-content:flex-end;align-items:center;gap:4px;white-space:nowrap;}
+  .market-actions button,.market td button{padding:4px 8px;font-size:.72rem;margin:0;border-radius:5px;}
   .price{color:var(--amber);} .have{color:var(--green);} .na{color:var(--dim);}
   .title-sub{flex:0 0 auto;text-align:center;font-family:'Copperplate','Copperplate Gothic Light',Futura,'Trebuchet MS',sans-serif;color:var(--dim);font-size:1rem;letter-spacing:4px;margin:6px 0 10px;}
   .hero{flex:0 0 auto;border:2px solid var(--amber);border-radius:9px;
@@ -296,12 +297,14 @@ if (typeof document !== "undefined") {
     const rows = DRUGS.map(d=>{
       const p = S.prices[d.id]; const have = S.inventory[d.id]||0;
       const dead = p==null;
+      const btns = [];
+      if (have) btns.push(`<button class="amber" data-sell="${d.id}">SELL</button>`);
+      if (p!=null) btns.push(`<button data-buy="${d.id}">BUY</button>`);
       return `<tr class="${dead?'dead':''}">
         <td>${d.name}</td>
-        <td class="r ${dead?'na':'price'}">${dead?'—':`${money(p)}<br><span class="range">${money(d.low)}–${money(d.high)}</span>`}</td>
+        <td class="r ${dead?'na':'price'}">${dead?'—':money(p)}</td>
         <td class="r ${have?'have':'na'}">${have||'·'}</td>
-        <td class="r">${p!=null?`<button data-buy="${d.id}">BUY</button>`:''}
-          ${have?`<button class="amber" data-sell="${d.id}">SELL</button>`:''}</td>
+        <td class="r market-actions">${btns.join('')}</td>
       </tr>`;
     }).join("");
     app.innerHTML = `<div class="play play-screen">
