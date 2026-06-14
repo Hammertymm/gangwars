@@ -1,187 +1,153 @@
-GangWars
+# Gang Wars — Prohibition 1929
 
-🎩 Play Now
+A browser-based trading game set in 1920s Prohibition-era New York. Inspired by the classic 1984 DOS game *Drug Wars* by John E. Dell — same mechanics, same pressure, different era.
 
-https://hammertymm.github.io/GangWars/
+Buy low. Sell high. Pay the Don before the clock runs out.
 
-A retro DOS-style trading game set in the dangerous world of Prohibition-era America.
+Runs as a Progressive Web App — installs on your phone, plays fully offline, no app store required.
 
-⸻
+-----
 
-Gang Wars — Prohibition 1929
+## Gameplay
 
-Buy low. Sell high. Pay the Don.
-
-Build a criminal empire across six territories while dodging federal agents, managing crushing debt, and exploiting volatile black-market prices.
-
-Built as a Progressive Web App (PWA) — installable on mobile and desktop, playable offline, no app store required.
-
-⸻
-
-Gameplay
-
-You have 30 days and $2,000 to make your fortune running contraband across the city.
-
-The Don has fronted you the cash to get started, but he expects repayment with interest. Every day matters. Every move has consequences.
+You have **30 days** and **$10,000** to make your fortune running contraband across six territories. The Don lent you **$25,000** to get started and he charges **10% interest per day**, compounding. Pay him back before day 30 or the debt will swallow everything you’ve made.
 
 Each day you can:
 
-* Buy and sell contraband goods
-* Travel between territories
-* Repay debt or borrow more
-* Deposit money safely in the bank
-* Hunt for market opportunities
-* Survive encounters with gangs and federal agents
+- **Buy and sell** contraband goods at whatever the market is paying that day
+- **Move** to another territory — prices reset every time you travel
+- **Visit the Don** (Little Italy only) to repay debt, borrow more, or deposit cash in the bank at 6% daily interest
 
-The goal is simple:
+The market is volatile. Shortages send prices through the roof. Flooded supply crashes them. Events — from police raids to celebrity appearances — can reshape the market for a day. Learn the ranges, read the city, move fast.
 
-Finish Day 30 with the highest net worth possible.
+**Your score** is your net worth on day 30: cash + bank − debt. A perfect 100 requires roughly $1.575M net.
 
-Net Worth = Cash + Bank Balance − Debt
+-----
 
-⸻
+## Territories
 
-Territories
+|Territory         |Character                                                   |
+|------------------|------------------------------------------------------------|
+|Little Italy      |Home base — the Don and the bank are here                   |
+|Dock #13          |Where everything enters the city. High volume, unpredictable|
+|Kitty Kat Club    |Jazz, nightlife, and deals made over drinks                 |
+|Uptown            |Wealthy clientele. Premium prices for premium goods         |
+|Warehouse District|No questions asked. The city’s logistical underworld        |
+|City Hall         |The law is for sale. The price changes daily                |
 
-Territory	Description
-Little Italy	Home turf of the old crime families. The Don and bank operate here.
-Dock #13	Rum-runners, smugglers, and incoming shipments. Highly volatile prices.
-Kitty Kat Club	Jazz, liquor, nightlife, and easy money.
-Uptown	Wealthy clientele willing to pay premium prices.
-Warehouse District	Storage, fencing operations, and black-market logistics.
-City Hall	Corruption, influence, and political opportunity.
+-----
 
-⸻
+## Goods
 
-Contraband
+Prices fluctuate daily within their ranges. Market events can push them well above or below normal.
 
-Market prices fluctuate daily.
+|Good        |Low    |High    |Family  |
+|------------|-------|--------|--------|
+|Bathtub Gin |$50    |$250    |Alcohol |
+|Cuban Cigars|$200   |$700    |Luxury  |
+|Moonshine   |$600   |$2,000  |Alcohol |
+|Forged Art  |$1,500 |$5,500  |Criminal|
+|Aged Scotch |$4,500 |$16,000 |Alcohol |
+|Counterfeits|$13,000|$35,000 |Criminal|
+|Fine Cognac |$28,000|$65,000 |Alcohol |
+|Fur Coats   |$52,000|$100,000|Luxury  |
+|Champagne   |$78,000|$115,000|Alcohol |
+|Diamonds    |$96,000|$140,000|Luxury  |
 
-Certain events can cause massive shortages, market crashes, raids, or demand surges.
+-----
 
-* Bathtub Gin
-* Cigarettes
-* Moonshine Barrels
-* Exotic Spices
-* Bourbon
-* Forged Artwork
-* Aged Scotch
-* Stolen Jewellery
-* Fine Cognac
-* Slot Machines
-* French Champagne
-* Diamonds
+## Market Events
 
-⸻
+Each time you travel, the city may have something waiting:
 
-Random Events
+**Daily:**
 
-Every trip across the city carries risk.
+- **Price spike** — a police raid or dry spell sends one good through the roof
+- **Buying frenzy** — demand surge, prices climb hard
+- **Flooded market** — a rival’s shipment dumped cheap, prices collapse
+- **Lucky haul** — free stock if you have the stash space
+- **Hidden compartments** — a mechanic offers to rig your vehicle for extra carry capacity
+- **A piece for sale** — a contact offers you a gun (useful when the Feds show up)
+- **The Feds** — Agent Hayes and his men. Fight, run, or pay them off
 
-Possible encounters include:
+**Rare events (~1 in 25 runs):**
+Historical figures — Capone, Luciano, Rothstein, Armstrong and others — trigger a forced price surge on their associated commodity in a specific district. You have to already be there to benefit.
 
-* Federal raids
-* Supply shortages
-* Flooded markets
-* Lucky hauls
-* Hidden compartments
-* Black-market contacts
-* Gang trouble
-* Corrupt officials
-* Surprise inspections
-* The Feds
+**Super Rare (~1 in 100 runs):**
+A major city event drives all prices in one district to 3× normal for a single day. Babe Ruth. Lindbergh. The Prince of Wales.
 
-No two runs are exactly alike.
+**Godlike (~1 in 500 runs):**
+Big Daddy J comes to town. One district. One day. Ten times normal prices. The stuff of legend.
 
-⸻
+-----
 
-The Feds
+## The Feds
 
-Agent Hayes and his men are always watching.
+Getting caught means choosing fast:
 
-When caught, you’ll need to decide quickly:
+- **Fight** — only if you’re armed. Win and you walk away with their cash. Ten hits and it’s over.
+- **Run** — decent odds, no cost. Take a hit if they stay on you.
+- **Pay off** — costs cash, always works. Gets more expensive with more agents.
 
-* Fight
-* Run
-* Pay Them Off
+-----
 
-The longer your empire survives, the tougher federal encounters become.
+## Install as an App (PWA)
 
-⸻
+No app store. No account. No tracking.
 
-Market Screen
+**iPhone / iPad (Safari):**
 
-The Var column compares the current market price against your average purchase price.
+1. Open the game URL in Safari
+1. Tap the **Share** button
+1. Tap **Add to Home Screen**
+1. Tap **Add**
 
-* Green = Profit
-* Red = Loss
-* • = No inventory owned
+**Android (Chrome):**
 
-Average cost is automatically calculated across all purchases.
+1. Open the game URL in Chrome
+1. Tap **⋮** → **Add to Home Screen**
 
-⸻
+**Desktop (Chrome / Edge):**
 
-Install as an App (PWA)
+1. Look for the install icon in the address bar
+1. Click **Install**
 
-iPhone / iPad
+Once installed, the game works fully offline.
 
-1. Open: https://hammertymm.github.io/GangWars/
-2. Tap Share
-3. Tap Add to Home Screen
-4. Tap Add
+-----
 
-Android
+## Files
 
-1. Open: https://hammertymm.github.io/GangWars/
-2. Tap the menu button
-3. Select Add to Home Screen
+|File           |Purpose                                                 |
+|---------------|--------------------------------------------------------|
+|`gangwars.html`|The entire game — engine, UI, and all assets in one file|
+|`manifest.json`|PWA manifest — name, icons, display settings            |
+|`sw.js`        |Service worker — caches the game for offline play       |
+|`icon-192.png` |App icon (home screen, Android)                         |
+|`icon-512.png` |App icon (splash screen, high-res displays)             |
+|`index.html`   |Redirect to `gangwars.html`                             |
 
-Windows / Mac
+-----
 
-1. Open in Chrome or Edge
-2. Click the install icon in the address bar
-3. Select Install
+## Technical Notes
 
-Once installed, Gang Wars works fully offline.
+- **No dependencies** — vanilla JavaScript, no frameworks, no build step
+- **No backend** — all game state lives in `localStorage`; nothing is sent anywhere
+- **No accounts** — no login, no data collection, no tracking
+- **Single file** — the entire game engine and UI is self-contained in `gangwars.html`
+- **Offline** — service worker caches all files on first load; works with no connection thereafter
+- **Save state** — current run and high scores save automatically to browser local storage
 
-⸻
+-----
 
-Files
+## Design Notes
 
-File	Purpose
-gangwars.html	Main game engine and UI
-manifest.json	PWA configuration
-sw.js	Offline caching
-icon-192.png	Application icon
-icon-512.png	High-resolution application icon
+Gang Wars is a faithful Prohibition-era reskin of *Drug Wars* (John E. Dell, 1984). The core loop — volatile prices, compounding debt, territory movement, combat with law enforcement — is reproduced from the original. All names, locations, flavor text, historical references, and artwork are original.
 
-⸻
+Price ranges are scaled ×5 from the original documented values across 10 distinct trading tiers, giving the same risk/reward structure at a scale that feels right on modern screens.
 
-Technical Notes
+The event system layers historical atmosphere over the mechanical core: 10 rare events tied to real Prohibition-era figures, 10 super-rare events drawn from 1929 headlines, and the Godlike tier — Big Daddy J — for runs that will be talked about.
 
-* Vanilla JavaScript
-* No frameworks
-* No backend
-* No accounts
-* No tracking
-* Local save data only
-* Fully offline capable
-* Automatic game saves
+-----
 
-All data remains on the player’s device.
-
-⸻
-
-Game Design
-
-Gang Wars is inspired by the classic DOS-era trading games of the 1980s and reimagined within the criminal underworld of Prohibition America.
-
-Build wealth through market manipulation, strategic trading, risk management, and calculated decisions while balancing debt, opportunity, and survival.
-
-Some players will end as street hustlers.
-
-Others will leave town as millionaires.
-
-⸻
-
-Run the rackets. Pay the Don. Thirty days.
+*The Don wants his money. The Feds want your neck. Thirty days.*
