@@ -203,14 +203,6 @@ if (typeof document !== "undefined") {
     ],
   };
 
-
-  /* ═══════════════════════════════════════════════════════════════════════
-     HEADLINE ENGINE — Phases 3-8
-     All 10 category pools, per-run events, daily generation, ticker wiring
-     Golden Rule: ticker reports only — never creates/modifies gameplay
-     ═══════════════════════════════════════════════════════════════════════ */
-
-
   function maybeTutorial(){
     if(localStorage.getItem(TUTORIAL_KEY)) return;
     const steps = [

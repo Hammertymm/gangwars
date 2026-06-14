@@ -1,9 +1,7 @@
 /* Gang Wars — service worker
-   Cache-first: serves from cache instantly; falls back to network.
-   All game assets are inline in gangwars.html so this one file
-   is enough for full offline play after the first load. */
+   Cache-first: serves from cache instantly; falls back to network. */
 
-const CACHE = 'gangwars-v3';
+const CACHE = 'gangwars-v4';
 const ASSETS = [
   './gangwars.html',
   './engine.js',

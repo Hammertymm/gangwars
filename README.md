@@ -120,14 +120,16 @@ Once installed, the game works fully offline.
 
 ## Files
 
-|File           |Purpose                                                 |
-|---------------|--------------------------------------------------------|
-|`gangwars.html`|The entire game — engine, UI, and all assets in one file|
-|`manifest.json`|PWA manifest — name, icons, display settings            |
-|`sw.js`        |Service worker — caches the game for offline play       |
-|`icon-192.png` |App icon (home screen, Android)                         |
-|`icon-512.png` |App icon (splash screen, high-res displays)             |
-|`index.html`   |Redirect to `gangwars.html`                             |
+|File              |Purpose                                              |
+|------------------|-----------------------------------------------------|
+|`gangwars.html`   |Game UI, styles, and event copy                      |
+|`engine.js`       |Pure game logic — prices, travel, bank, save migration|
+|`engine.test.js`  |Node unit tests for the engine                       |
+|`manifest.json`   |PWA manifest — name, icons, display settings         |
+|`sw.js`           |Service worker — caches the game for offline play    |
+|`icon-192.png`    |App icon (home screen, Android)                      |
+|`icon-512.png`    |App icon (splash screen, high-res displays)          |
+|`index.html`      |Redirect to `gangwars.html`                          |
 
 -----
 
@@ -136,7 +138,7 @@ Once installed, the game works fully offline.
 - **No dependencies** — vanilla JavaScript, no frameworks, no build step
 - **No backend** — all game state lives in `localStorage`; nothing is sent anywhere
 - **No accounts** — no login, no data collection, no tracking
-- **Single file** — the entire game engine and UI is self-contained in `gangwars.html`
+- **Engine/UI split** — testable logic in `engine.js`; UI and themed copy in `gangwars.html`
 - **Offline** — service worker caches all files on first load; works with no connection thereafter
 - **Save state** — current run and high scores save automatically to browser local storage
 
