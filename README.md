@@ -1,153 +1,187 @@
-# GangWars
+GangWars
 
-# Gang Wars — Prohibition 1929
+🎩 Play Now
 
-A browser-based trading game set in 1920s Prohibition-era New York. Buy low, sell high, pay the Don before the clock runs out.
+https://hammertymm.github.io/GangWars/
 
-Built as a Progressive Web App — installs on your phone, plays offline, no app store required.
+A retro DOS-style trading game set in the dangerous world of Prohibition-era America.
 
------
+⸻
 
-## Gameplay
+Gang Wars — Prohibition 1929
 
-You have **30 days** and **$2,000** to make your fortune running contraband across six territories. The Don lent you $5,500 to get started and he charges **10% interest per day**, compounding. Pay him back before day 30 or the debt will swallow everything you’ve made.
+Buy low. Sell high. Pay the Don.
+
+Build a criminal empire across six territories while dodging federal agents, managing crushing debt, and exploiting volatile black-market prices.
+
+Built as a Progressive Web App (PWA) — installable on mobile and desktop, playable offline, no app store required.
+
+⸻
+
+Gameplay
+
+You have 30 days and $2,000 to make your fortune running contraband across the city.
+
+The Don has fronted you the cash to get started, but he expects repayment with interest. Every day matters. Every move has consequences.
 
 Each day you can:
 
-- **Buy and sell** eight contraband goods at whatever the market is paying
-- **Move** to another territory — prices vary by location and reset every day
-- **Visit the Don** (in Little Italy) to repay debt, borrow more, or stash cash safely in the bank
+* Buy and sell contraband goods
+* Travel between territories
+* Repay debt or borrow more
+* Deposit money safely in the bank
+* Hunt for market opportunities
+* Survive encounters with gangs and federal agents
 
-The market is volatile. Shortages send prices through the roof. Flooded supply crashes them. Learn the ranges, move fast, and get out before the Feds catch up with you.
+The goal is simple:
 
-**Your score** is your net worth on day 30: cash + bank − debt. $50M is a perfect 100.
+Finish Day 30 with the highest net worth possible.
 
------
+Net Worth = Cash + Bank Balance − Debt
 
-## Territories
+⸻
 
-|Territory     |Notes                                 |
-|--------------|--------------------------------------|
-|Little Italy  |Home base — Don & bank are here       |
-|The Docks     |High traffic, unpredictable prices    |
-|Downtown      |Established market, reliable mid-range|
-|Speakeasy Row |Premium goods, premium prices         |
-|Uptown        |Wealthy clientele, expensive tastes   |
-|The Rail Yards|Rough area, volatile market           |
+Territories
 
------
+Territory	Description
+Little Italy	Home turf of the old crime families. The Don and bank operate here.
+Dock #13	Rum-runners, smugglers, and incoming shipments. Highly volatile prices.
+Kitty Kat Club	Jazz, liquor, nightlife, and easy money.
+Uptown	Wealthy clientele willing to pay premium prices.
+Warehouse District	Storage, fencing operations, and black-market logistics.
+City Hall	Corruption, influence, and political opportunity.
 
-## Goods
+⸻
 
-Prices fluctuate daily within their ranges. Events can push them well above or below.
+Contraband
 
-|Goods      |Low    |High   |
-|-----------|-------|-------|
-|Beer       |$10    |$59    |
-|Bathtub Gin|$70    |$249   |
-|Moonshine  |$300   |$899   |
-|Rum        |$600   |$1,349 |
-|Bourbon    |$1,000 |$3,499 |
-|Scotch     |$1,000 |$4,499 |
-|Cognac     |$5,000 |$13,999|
-|Champagne  |$15,000|$29,999|
+Market prices fluctuate daily.
 
------
+Certain events can cause massive shortages, market crashes, raids, or demand surges.
 
-## Random Events
+* Bathtub Gin
+* Cigarettes
+* Moonshine Barrels
+* Exotic Spices
+* Bourbon
+* Forged Artwork
+* Aged Scotch
+* Stolen Jewellery
+* Fine Cognac
+* Slot Machines
+* French Champagne
+* Diamonds
 
-Each time you move, the streets may have something waiting for you:
+⸻
 
-- **Price spike** — a police raid or dry spell sends one good through the roof
-- **Flooded market** — a rival’s shipment dumped cheap, prices collapse
-- **Lucky haul** — a ditched crate, free stock if you have the stash space
-- **Rival crew** — you get jumped and lose some cash
-- **Hidden compartments** — a mechanic offers to rig your car for extra carry capacity
-- **A piece for sale** — a contact offers you a gun (useful if the Feds find you)
-- **The Feds** — Agent Hayes and his men. Fight, run, or pay them off
+Random Events
 
------
+Every trip across the city carries risk.
 
-## The Feds
+Possible encounters include:
 
-Getting caught means choosing fast:
+* Federal raids
+* Supply shortages
+* Flooded markets
+* Lucky hauls
+* Hidden compartments
+* Black-market contacts
+* Gang trouble
+* Corrupt officials
+* Surprise inspections
+* The Feds
 
-- **Fight** — only if you’re armed. Win and you walk away with their cash. Lose a round and you take a hit. Ten hits and it’s over.
-- **Run** — decent odds of escape. Take a hit and drop some goods if they stay on you.
-- **Pay off** — costs cash, always works. Gets more expensive with more agents.
+No two runs are exactly alike.
 
-Encounters get harder as the days go on.
+⸻
 
------
+The Feds
 
-## Market Screen — Var Column
+Agent Hayes and his men are always watching.
 
-The **Var** column shows the difference between the current market price and what you paid (your average cost per unit):
+When caught, you’ll need to decide quickly:
 
-- **Green** — market is above your cost. Profit if you sell now.
-- **Red** — market is below your cost. Selling means a loss.
-- **Dot** — you’re not holding any of that good.
+* Fight
+* Run
+* Pay Them Off
 
-Uses a weighted average if you’ve bought at multiple prices.
+The longer your empire survives, the tougher federal encounters become.
 
------
+⸻
 
-## Install as an App (PWA)
+Market Screen
 
-This game is a Progressive Web App. No app store, no account.
+The Var column compares the current market price against your average purchase price.
 
-**iPhone / iPad (Safari):**
+* Green = Profit
+* Red = Loss
+* • = No inventory owned
 
-1. Open the game URL in Safari
-1. Tap the **Share** button
-1. Tap **Add to Home Screen**
-1. Tap **Add**
+Average cost is automatically calculated across all purchases.
 
-**Android (Chrome):**
+⸻
 
-1. Open the game URL in Chrome
-1. Tap the **⋮** menu
-1. Tap **Add to Home Screen**
+Install as an App (PWA)
 
-**Windows / Mac:**
+iPhone / iPad
+
+1. Open: https://hammertymm.github.io/GangWars/
+2. Tap Share
+3. Tap Add to Home Screen
+4. Tap Add
+
+Android
+
+1. Open: https://hammertymm.github.io/GangWars/
+2. Tap the menu button
+3. Select Add to Home Screen
+
+Windows / Mac
 
 1. Open in Chrome or Edge
-1. Look for the install icon in the address bar
-1. Click **Install**
+2. Click the install icon in the address bar
+3. Select Install
 
-Once installed, the game works fully offline.
+Once installed, Gang Wars works fully offline.
 
------
+⸻
 
-## Files
+Files
 
-|File           |Purpose                                                 |
-|---------------|--------------------------------------------------------|
-|`gangwars.html`|The entire game — engine, UI, and all assets in one file|
-|`manifest.json`|PWA manifest — name, icon, display settings             |
-|`sw.js`        |Service worker — caches the game for offline play       |
-|`icon-192.png` |App icon (home screen, Android)                         |
-|`icon-512.png` |App icon (splash screen, high-res displays)             |
+File	Purpose
+gangwars.html	Main game engine and UI
+manifest.json	PWA configuration
+sw.js	Offline caching
+icon-192.png	Application icon
+icon-512.png	High-resolution application icon
 
------
+⸻
 
-## Technical Notes
+Technical Notes
 
-- **No dependencies** — vanilla JavaScript, no frameworks, no build step
-- **No backend** — all game state lives in `localStorage`; nothing is sent anywhere
-- **No accounts** — no login, no data collection, no tracking
-- **Single file** — the entire game engine and UI is self-contained in `gangwars.html`; the other four files exist only to enable PWA installation and offline caching
-- **Offline** — service worker caches all files on first load; works with no connection after that
-- **Save state** — your current run, high scores, and settings are saved automatically in your browser’s local storage
+* Vanilla JavaScript
+* No frameworks
+* No backend
+* No accounts
+* No tracking
+* Local save data only
+* Fully offline capable
+* Automatic game saves
 
------
+All data remains on the player’s device.
 
-## Game Design
+⸻
 
-Gang Wars is a faithful recreation of the classic 1984 DOS trading game *Drug Wars* by John E. Dell, reskinned to a Prohibition-era setting. The core mechanics — prices, ranges, event odds, debt interest, combat — are reproduced from the original documented ruleset. All names, locations, flavor text, and artwork are original.
+Game Design
 
-The gameplay loop is unchanged: the same risk/reward decisions, the same compounding pressure of the loan shark’s interest, the same rush of finding a flooded market two stops from where you just bought at full price.
+Gang Wars is inspired by the classic DOS-era trading games of the 1980s and reimagined within the criminal underworld of Prohibition America.
 
------
+Build wealth through market manipulation, strategic trading, risk management, and calculated decisions while balancing debt, opportunity, and survival.
 
-*Run the rackets. Pay the Don. Thirty days.*
+Some players will end as street hustlers.
+
+Others will leave town as millionaires.
+
+⸻
+
+Run the rackets. Pay the Don. Thirty days.
