@@ -540,23 +540,26 @@ if (typeof document !== "undefined") {
 
     let marketEvent=null;
     if(gk && S.day===gk.day){
+      const gkImg=gk.img||'bigdaddy';
       if(dest===gk.district){
-        marketEvent=(next)=>showEvent('bigdaddy', `<b>${gk.lines[0]}</b><br><br>${gk.lines[1]}`, 'BIG DADDY J', next);
+        marketEvent=(next)=>showEvent(gkImg, `<b>${gk.lines[0]}</b><br><br>${gk.lines[1]}`, 'BIG DADDY J', next);
       } else {
-        marketEvent=(next)=>showEvent('bigdaddy', `<b>BIG DADDY J IS ACROSS TOWN</b><br><br>He's making moves in ${gk.district}. Every price there is climbing.`, 'NOTED', next);
+        marketEvent=(next)=>showEvent(gkImg, `<b>BIG DADDY J IS ACROSS TOWN</b><br><br>He's making moves in ${gk.district}. Every price there is climbing.`, 'NOTED', next);
       }
     } else if(sr && S.day===sr.day){
+      const srImg=sr.img||'celeb';
       if(dest===sr.district){
-        marketEvent=(next)=>showEvent('celeb', `<b>${sr.lines[0]}</b><br><br>${sr.lines[1]} Every price in the district is climbing.`, "LET'S GO", next);
+        marketEvent=(next)=>showEvent(srImg, `<b>${sr.lines[0]}</b><br><br>${sr.lines[1]} Every price in the district is climbing.`, "LET'S GO", next);
       } else {
-        marketEvent=(next)=>showEvent('celeb', `<b>${sr.lines[0]}</b><br><br>${sr.lines[1]} Head to ${sr.district} for the action.`, 'NOTED', next);
+        marketEvent=(next)=>showEvent(srImg, `<b>${sr.lines[0]}</b><br><br>${sr.lines[1]} Head to ${sr.district} for the action.`, 'NOTED', next);
       }
     } else if(re && S.day===re.day){
       const reDrug=DRUG[re.commodity];
+      const reImg=re.img||'intel';
       if(dest===re.district){
-        marketEvent=(next)=>showEvent('intel', `<b>${re.lines[0]}</b><br><br>${re.lines[1]}`, 'INTERESTING', next);
+        marketEvent=(next)=>showEvent(reImg, `<b>${re.lines[0]}</b><br><br>${re.lines[1]}`, 'INTERESTING', next);
       } else if(reDrug){
-        marketEvent=(next)=>showEvent('intel', `<b>${re.lines[0]}</b><br><br>${re.lines[1]} ${reDrug.name} surging in ${re.district}.`, 'NOTED', next);
+        marketEvent=(next)=>showEvent(reImg, `<b>${re.lines[0]}</b><br><br>${re.lines[1]} ${reDrug.name} surging in ${re.district}.`, 'NOTED', next);
       }
     } else if(anomaly){
       const anomalyImg={spike:'shortage',surge:'frenzy',flood:'flood'};
@@ -591,11 +594,16 @@ if (typeof document !== "undefined") {
     bigdaddy: 'cards/big-daddy-j.png',
   };
 
+  function eventImgSrc(imgKeyOrPath){
+    if (typeof imgKeyOrPath === 'string' && imgKeyOrPath.includes('/')) return imgKeyOrPath;
+    return EV_IMG[imgKeyOrPath] || EV_IMG.intel;
+  }
+
   /* Single-button event popup with split image/text layout */
   function showEvent(imgKey, body, btn, cb){
     modal=function(){
       app.innerHTML=`<div class="modal"><div class="ev-popup" role="dialog" aria-modal="true">
-        <div class="ev-left"><img src="${EV_IMG[imgKey]||EV_IMG.intel}" alt=""></div>
+        <div class="ev-left"><img src="${eventImgSrc(imgKey)}" alt=""></div>
         <div class="ev-right">
           <div class="ev-body"><div>${body}</div></div>
           <div class="ev-acts"><button class="amber full" id="ok">${btn||'OK'}</button></div>
@@ -610,7 +618,7 @@ if (typeof document !== "undefined") {
   function showEventAsk(imgKey, body, yesLabel, noLabel, onYes, onNo){
     modal=function(){
       app.innerHTML=`<div class="modal"><div class="ev-popup" role="dialog" aria-modal="true">
-        <div class="ev-left"><img src="${EV_IMG[imgKey]||EV_IMG.intel}" alt=""></div>
+        <div class="ev-left"><img src="${eventImgSrc(imgKey)}" alt=""></div>
         <div class="ev-right">
           <div class="ev-body"><div>${body}</div></div>
           <div class="ev-acts">

@@ -1,7 +1,7 @@
 /* Gang Wars — service worker
    Cache-first for app shell; network-first for icons so home-screen art updates. */
 
-const CACHE = 'gangwars-v16';
+const CACHE = 'gangwars-v19';
 const ASSETS = [
   './gangwars.html',
   './engine.js',
@@ -30,6 +30,31 @@ const ASSETS = [
   './events/flooded_market.png',
   './events/super_rare_event.png',
   './events/rare_event_intel.png',
+  './events/rare_capone.png',
+  './events/rare_luciano.png',
+  './events/rare_schultz.png',
+  './events/rare_madden.png',
+  './events/rare_rothstein.png',
+  './events/rare_lansky.png',
+  './events/rare_ellington.png',
+  './events/rare_armstrong.png',
+  './events/rare_rumrow.png',
+  './events/rare_midnight.png',
+  './events/super_ruth.png',
+  './events/super_lindbergh.png',
+  './events/super_dempsey.png',
+  './events/super_wales.png',
+  './events/super_kkrevue.png',
+  './events/super_mauretania.png',
+  './events/super_ziegfeld.png',
+  './events/super_wallst.png',
+  './events/super_walker.png',
+  './events/super_hollywood.png',
+  './events/godlike_in_town.png',
+  './events/godlike_interest.png',
+  './events/godlike_move.png',
+  './events/godlike_celebration.png',
+  './events/godlike_history.png',
 ];
 
 const ICON_PATTERN = /(?:apple-touch-icon|icon-(?:180|192|512))\.png$/;

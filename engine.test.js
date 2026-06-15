@@ -1,7 +1,7 @@
 const { describe, it } = require('node:test');
 const assert = require('node:assert/strict');
 const {
-  CONFIG, DRUG, DRUGS, HOME, LOCATIONS, RARE_EVENTS, SUPER_RARE_EVENTS,
+  CONFIG, DRUG, DRUGS, HOME, LOCATIONS, RARE_EVENTS, SUPER_RARE_EVENTS, GODLIKE_EVENTS,
   rollMarket, buy, sell, newGame, migrateSave, resolveTravelMarket,
   bankBorrow, bankRepay, avgCost, profitPct, applyTerritoryPrice,
   TERRITORY_MODIFIERS, FAM_LUXURY, getRank, RANKS,
@@ -69,6 +69,26 @@ describe('RARE_EVENTS', () => {
       assert.ok(re.district, `${re.id} missing district`);
       assert.ok(LOCATIONS.includes(re.district), `${re.id} invalid district`);
       assert.ok(re.commodity && DRUG[re.commodity], `${re.id} invalid commodity`);
+      assert.ok(re.img && re.img.startsWith('events/rare_'), `${re.id} missing img`);
+    }
+  });
+});
+
+describe('SUPER_RARE_EVENTS', () => {
+  it('every entry has a district and img', () => {
+    for (const sr of SUPER_RARE_EVENTS) {
+      assert.ok(sr.district, `${sr.id} missing district`);
+      assert.ok(LOCATIONS.includes(sr.district), `${sr.id} invalid district`);
+      assert.ok(sr.img && sr.img.startsWith('events/super_'), `${sr.id} missing img`);
+    }
+  });
+});
+
+describe('GODLIKE_EVENTS', () => {
+  it('every entry has lines and img', () => {
+    for (const gl of GODLIKE_EVENTS) {
+      assert.ok(gl.lines && gl.lines.length === 2, `${gl.id} missing lines`);
+      assert.ok(gl.img && gl.img.startsWith('events/godlike_'), `${gl.id} missing img`);
     }
   });
 });

@@ -53,37 +53,37 @@ const FAM_LUXURY   = new Set(['cigars','furcoats','diamonds']);
 const FAM_CRIMINAL = new Set(['art','counterfeits']);
 
 const RARE_EVENTS = [
-  {id:'capone',    commodity:'counterfeits', district:'Warehouse District', lines:['AL CAPONE SEEN MEETING ASSOCIATES','RIVALS KEEP A LOW PROFILE TONIGHT']},
-  {id:'luciano',   commodity:'cigars',       district:'Little Italy',       lines:['LUCKY LUCIANO CALLS A MEETING','RUMORS OF A NEW ORDER SPREAD']},
-  {id:'schultz',   commodity:'furcoats',     district:'Uptown',               lines:['DUTCH SCHULTZ EYES NEW TERRITORY','ESTABLISHED INTERESTS GROW UNEASY']},
-  {id:'madden',    commodity:'champagne',    district:'Kitty Kat Club',       lines:['OWNEY MADDEN BACKS ANOTHER BIG NIGHT','KITTY KAT CLUB EXPECTS RECORD CROWDS']},
-  {id:'rothstein', commodity:'art',          district:'City Hall',            lines:['ARNOLD ROTHSTEIN TAKES AN INTEREST','SPECULATION SWEEPS THE DISTRICT']},
-  {id:'lansky',    commodity:'diamonds',     district:'Uptown',               lines:['MEYER LANSKY ENTERS THE PICTURE','MONEY CHANGES HANDS RAPIDLY']},
-  {id:'ellington', commodity:'diamonds',     district:'Kitty Kat Club',       lines:['DUKE ELLINGTON HEADLINES TONIGHT','KITTY KAT CLUB EXPECTS RECORD CROWDS']},
-  {id:'armstrong', commodity:'champagne',    district:'Kitty Kat Club',       lines:['LOUIS ARMSTRONG PLAYS TONIGHT','THE DISTRICT SWINGS INTO THE SMALL HOURS']},
-  {id:'rumrow',    commodity:'moonshine',    district:'Dock #13',             lines:['THE SILENT FLEET RETURNS TO HARBOR','RUM ROW SAID TO BE BUSIER THAN EVER']},
-  {id:'midnight',  commodity:'moonshine',    district:'Dock #13',             lines:['THE MIDNIGHT RUN REACHES THE CITY','RUM RUNNERS EVADE PATROL BOATS']},
+  {id:'capone',    commodity:'counterfeits', district:'Warehouse District', img:'events/rare_capone.png',    lines:['AL CAPONE SEEN MEETING ASSOCIATES','RIVALS KEEP A LOW PROFILE TONIGHT']},
+  {id:'luciano',   commodity:'cigars',       district:'Little Italy',       img:'events/rare_luciano.png',   lines:['LUCKY LUCIANO CALLS A MEETING','RUMORS OF A NEW ORDER SPREAD']},
+  {id:'schultz',   commodity:'furcoats',     district:'Uptown',               img:'events/rare_schultz.png',   lines:['DUTCH SCHULTZ EYES NEW TERRITORY','ESTABLISHED INTERESTS GROW UNEASY']},
+  {id:'madden',    commodity:'champagne',    district:'Kitty Kat Club',       img:'events/rare_madden.png',    lines:['OWNEY MADDEN BACKS ANOTHER BIG NIGHT','KITTY KAT CLUB EXPECTS RECORD CROWDS']},
+  {id:'rothstein', commodity:'art',          district:'City Hall',            img:'events/rare_rothstein.png', lines:['ARNOLD ROTHSTEIN TAKES AN INTEREST','SPECULATION SWEEPS THE DISTRICT']},
+  {id:'lansky',    commodity:'diamonds',     district:'Uptown',               img:'events/rare_lansky.png',    lines:['MEYER LANSKY ENTERS THE PICTURE','MONEY CHANGES HANDS RAPIDLY']},
+  {id:'ellington', commodity:'diamonds',     district:'Kitty Kat Club',       img:'events/rare_ellington.png', lines:['DUKE ELLINGTON HEADLINES TONIGHT','KITTY KAT CLUB EXPECTS RECORD CROWDS']},
+  {id:'armstrong', commodity:'champagne',    district:'Kitty Kat Club',       img:'events/rare_armstrong.png', lines:['LOUIS ARMSTRONG PLAYS TONIGHT','THE DISTRICT SWINGS INTO THE SMALL HOURS']},
+  {id:'rumrow',    commodity:'moonshine',    district:'Dock #13',             img:'events/rare_rumrow.png',    lines:['THE SILENT FLEET RETURNS TO HARBOR','RUM ROW SAID TO BE BUSIER THAN EVER']},
+  {id:'midnight',  commodity:'moonshine',    district:'Dock #13',             img:'events/rare_midnight.png',  lines:['THE MIDNIGHT RUN REACHES THE CITY','RUM RUNNERS EVADE PATROL BOATS']},
 ];
 
 const SUPER_RARE_EVENTS = [
-  {id:'ruth',       district:'Kitty Kat Club',     lines:['BABE RUTH FEVER SWEEPS THE CITY','VISITORS POUR IN FROM EVERYWHERE']},
-  {id:'lindbergh',  district:'Dock #13',           lines:['LINDBERGH ARRIVES TO GREAT FANFARE','THE CITY STOPS TO WATCH']},
-  {id:'dempsey',    district:'Kitty Kat Club',     lines:['A BIG FIGHT DRAWS NEAR','DEMPSEY MANIA GRIPS THE DISTRICT']},
-  {id:'wales',      district:'Uptown',             lines:['THE PRINCE OF WALES IS IN TOWN','NO EXPENSE IS BEING SPARED']},
-  {id:'kkrevue',    district:'Kitty Kat Club',     lines:['THE KITTY KAT CLUB DEBUTS A NEW REVUE',"THE CITY'S ELITE FLOCK TO THE DISTRICT"]},
-  {id:'mauretania', district:'Dock #13',           lines:['MAURETANIA DOCKS TO HUGE CROWDS','THE WATERFRONT HAS NEVER BEEN BUSIER']},
-  {id:'ziegfeld',   district:'Kitty Kat Club',     lines:['ZIEGFELD FEVER SWEEPS THE CITY','EVERYBODY WANTS THE BEST SEAT']},
-  {id:'wallst',     district:'Uptown',             lines:['STOCK MARKET FORTUNES GROW AGAIN','UPSCALE DISTRICTS REPORT RECORD TRADE']},
-  {id:'walker',     district:'City Hall',          lines:['MAYOR WALKER VISITS THE DISTRICT','EVERY TABLE IN TOWN IS RESERVED']},
-  {id:'hollywood',  district:'Kitty Kat Club',     lines:['THE TALKIES ARE ALL THE RAGE','THEATRES SELL OUT ACROSS THE DISTRICT']},
+  {id:'ruth',       district:'Kitty Kat Club', img:'events/super_ruth.png',       lines:['BABE RUTH FEVER SWEEPS THE CITY','VISITORS POUR IN FROM EVERYWHERE']},
+  {id:'lindbergh',  district:'Dock #13',       img:'events/super_lindbergh.png',  lines:['LINDBERGH ARRIVES TO GREAT FANFARE','THE CITY STOPS TO WATCH']},
+  {id:'dempsey',    district:'Kitty Kat Club', img:'events/super_dempsey.png',    lines:['A BIG FIGHT DRAWS NEAR','DEMPSEY MANIA GRIPS THE DISTRICT']},
+  {id:'wales',      district:'Uptown',         img:'events/super_wales.png',      lines:['THE PRINCE OF WALES IS IN TOWN','NO EXPENSE IS BEING SPARED']},
+  {id:'kkrevue',    district:'Kitty Kat Club', img:'events/super_kkrevue.png',    lines:['THE KITTY KAT CLUB DEBUTS A NEW REVUE',"THE CITY'S ELITE FLOCK TO THE DISTRICT"]},
+  {id:'mauretania', district:'Dock #13',       img:'events/super_mauretania.png', lines:['MAURETANIA DOCKS TO HUGE CROWDS','THE WATERFRONT HAS NEVER BEEN BUSIER']},
+  {id:'ziegfeld',   district:'Kitty Kat Club', img:'events/super_ziegfeld.png',   lines:['ZIEGFELD FEVER SWEEPS THE CITY','EVERYBODY WANTS THE BEST SEAT']},
+  {id:'wallst',     district:'Uptown',         img:'events/super_wallst.png',     lines:['STOCK MARKET FORTUNES GROW AGAIN','UPSCALE DISTRICTS REPORT RECORD TRADE']},
+  {id:'walker',     district:'City Hall',      img:'events/super_walker.png',     lines:['MAYOR WALKER VISITS THE DISTRICT','EVERY TABLE IN TOWN IS RESERVED']},
+  {id:'hollywood',  district:'Kitty Kat Club', img:'events/super_hollywood.png',  lines:['THE TALKIES ARE ALL THE RAGE','THEATRES SELL OUT ACROSS THE DISTRICT']},
 ];
 
-const GODLIKE_LINES = [
-  ['BIG DADDY J IS IN TOWN','EVERYBODY WANTS A PIECE OF THE ACTION'],
-  ['BIG DADDY J TAKES AN INTEREST','MONEY CHANGES HANDS RAPIDLY'],
-  ['BIG DADDY J MAKES A MOVE','THE DISTRICT WILL BE TALKING ABOUT IT FOR YEARS'],
-  ['BIG DADDY J THROWS A CELEBRATION','NO EXPENSE IS BEING SPARED'],
-  ['BIG DADDY J MAKES HISTORY','THE CITY WILL REMEMBER THIS DAY'],
+const GODLIKE_EVENTS = [
+  {id:'in_town',     img:'events/godlike_in_town.png',     lines:['BIG DADDY J IS IN TOWN','EVERYBODY WANTS A PIECE OF THE ACTION']},
+  {id:'interest',    img:'events/godlike_interest.png',    lines:['BIG DADDY J TAKES AN INTEREST','MONEY CHANGES HANDS RAPIDLY']},
+  {id:'move',        img:'events/godlike_move.png',        lines:['BIG DADDY J MAKES A MOVE','THE DISTRICT WILL BE TALKING ABOUT IT FOR YEARS']},
+  {id:'celebration', img:'events/godlike_celebration.png', lines:['BIG DADDY J THROWS A CELEBRATION','NO EXPENSE IS BEING SPARED']},
+  {id:'history',     img:'events/godlike_history.png',     lines:['BIG DADDY J MAKES HISTORY','THE CITY WILL REMEMBER THIS DAY']},
 ];
 
 function randInt(min,max){ return Math.floor(Math.random()*(max-min+1))+min; }
@@ -221,8 +221,8 @@ function newGame(){
     if (sr) events.superRare = {...sr, day: randInt(5, 25)};
   }
   if (chance(0.002)){
-    const gl = pick(GODLIKE_LINES);
-    if (gl) events.godlike = {lines: gl, day: randInt(5, 25), district: pick(LOCATIONS)};
+    const gl = pick(GODLIKE_EVENTS);
+    if (gl) events.godlike = {...gl, day: randInt(5, 25), district: pick(LOCATIONS)};
   }
   return {
     day: 1, location: HOME, cash: CONFIG.startCash, bank: 0, debt: CONFIG.startDebt,
@@ -290,7 +290,7 @@ function resolveTravelMarket(state, dest){
 if (typeof module !== "undefined") {
   module.exports = {
     CONFIG, DRUGS, DRUG, LOCATIONS, HOME, LOCATION_FLAVOR, TERRITORY_MODIFIERS,
-    FAM_ALCOHOL, FAM_LUXURY, FAM_CRIMINAL, RARE_EVENTS, SUPER_RARE_EVENTS, GODLIKE_LINES,
+    FAM_ALCOHOL, FAM_LUXURY, FAM_CRIMINAL, RARE_EVENTS, SUPER_RARE_EVENTS, GODLIKE_EVENTS,
     rollMarket, applyTerritoryPrice, spaceUsed, spaceLeft, netWorth, classicScore, getRank, RANKS,
     applyDailyInterest, buy, sell, bankRepay, bankBorrow, bankDeposit, bankWithdraw,
     avgCost, profitPct, newGame, migrateSave, resolveTravelMarket,
