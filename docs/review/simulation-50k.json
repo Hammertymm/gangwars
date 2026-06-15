@@ -1,86 +1,86 @@
 {
-  "generatedAt": "2026-06-15T11:30:48.059Z",
+  "generatedAt": "2026-06-15T11:40:52.045Z",
   "totalRuns": 60000,
-  "durationSeconds": 10,
+  "durationSeconds": 12,
   "archetypes": {
     "conservative": {
       "archetype": "Conservative Trader",
       "key": "conservative",
       "runs": 10000,
-      "winRate": "65.4",
-      "lossRate": "34.6",
-      "avgEndingWealth": 9776456,
-      "medianEndingWealth": 6182704,
-      "p10Wealth": -56408,
-      "p90Wealth": 23565794,
-      "maxWealth": 145290679,
-      "minWealth": -75000,
-      "avgDebtRemaining": 26093,
-      "avgStashUtilization": "0.615",
-      "avgDaysSurvived": "26.2",
-      "avgTrades": "52.9",
-      "avgScore": "53.0",
-      "negativeNetWorthPct": "12.7",
-      "score90PlusPct": "20.4",
-      "bigDaddyJPct": "14.4",
-      "avgFedsEncounters": "3.37",
+      "winRate": "81.2",
+      "lossRate": "18.8",
+      "avgEndingWealth": 11722302,
+      "medianEndingWealth": 8474913,
+      "p10Wealth": 796316,
+      "p90Wealth": 25331951,
+      "maxWealth": 175975863,
+      "minWealth": -100000,
+      "avgDebtRemaining": 19178,
+      "avgStashUtilization": "0.619",
+      "avgDaysSurvived": "29.1",
+      "avgTrades": "60.2",
+      "avgScore": "62.8",
+      "negativeNetWorthPct": "5.5",
+      "score90PlusPct": "24.9",
+      "bigDaddyJPct": "17.3",
+      "avgFedsEncounters": "3.79",
       "avgStallInterestHits": "0.00",
-      "avgDebtCapHits": "0.35",
+      "avgDebtCapHits": "0.19",
       "avgEventsPerTrip": "0.58",
       "districtUsage": {
-        "Uptown": 42602,
-        "Warehouse District": 42027,
-        "Dock #13": 42030,
-        "Little Italy": 40487,
-        "City Hall": 42356,
-        "Kitty Kat Club": 42234
+        "Uptown": 47105,
+        "City Hall": 47138,
+        "Warehouse District": 47075,
+        "Little Italy": 45589,
+        "Kitty Kat Club": 47324,
+        "Dock #13": 47183
       },
       "goodsBuyFrequency": {
-        "cigars": 2027946,
-        "bathgin": 1793587,
-        "art": 1749888,
-        "cognac": 540500,
-        "moonshine": 2584078,
-        "furcoats": 281372,
-        "scotch": 1466302,
-        "counterfeits": 827395,
-        "champagne": 150910,
-        "diamonds": 138944
+        "bathgin": 2067969,
+        "cigars": 2291916,
+        "moonshine": 2897346,
+        "counterfeits": 986334,
+        "art": 2034659,
+        "scotch": 1733306,
+        "furcoats": 342918,
+        "cognac": 644860,
+        "champagne": 177902,
+        "diamonds": 163686
       },
       "goodsSellFrequency": {
-        "cigars": 1908675,
-        "bathgin": 1676290,
-        "art": 1617815,
-        "moonshine": 2437567,
-        "cognac": 487136,
-        "scotch": 1340842,
-        "furcoats": 252319,
-        "counterfeits": 749388,
-        "champagne": 138051,
-        "diamonds": 127846
+        "bathgin": 1942471,
+        "cigars": 2170572,
+        "moonshine": 2743841,
+        "counterfeits": 903930,
+        "art": 1904130,
+        "scotch": 1599594,
+        "furcoats": 309207,
+        "cognac": 584205,
+        "champagne": 164949,
+        "diamonds": 150641
       },
       "bankruptcyCauses": {
-        "feds": 3459,
-        "survived": 6541
+        "feds": 1879,
+        "survived": 8121
       },
       "rankDistribution": {
-        "Hustler": 692,
-        "Rum Runner": 744,
-        "Godfather": 602,
-        "Wise Guy": 917,
-        "Pickpocket": 707,
-        "Racketeer": 828,
-        "Big Daddy J": 1440,
-        "Nobody": 1572,
-        "Underboss": 841,
-        "Bootlegger": 792,
-        "Crew Boss": 865
+        "Underboss": 941,
+        "Crew Boss": 1058,
+        "Godfather": 762,
+        "Wise Guy": 1191,
+        "Nobody": 649,
+        "Big Daddy J": 1730,
+        "Bootlegger": 985,
+        "Rum Runner": 720,
+        "Pickpocket": 329,
+        "Hustler": 520,
+        "Racketeer": 1115
       },
       "scheduledEventRates": {
-        "rare": "4.0",
-        "superRare": "1.0",
-        "godlike": "0.6",
-        "golden": "0.1"
+        "rare": "4.3",
+        "superRare": "0.9",
+        "godlike": "0.5",
+        "golden": "0.0"
       }
     },
     "aggressive": {
@@ -89,77 +89,77 @@
       "runs": 10000,
       "winRate": "0.0",
       "lossRate": "100.0",
-      "avgEndingWealth": 2280250,
-      "medianEndingWealth": 883200,
-      "p10Wealth": -74165,
-      "p90Wealth": 6025300,
-      "maxWealth": 98908501,
-      "minWealth": -75000,
-      "avgDebtRemaining": 74976,
-      "avgStashUtilization": "0.889",
-      "avgDaysSurvived": "16.0",
-      "avgTrades": "32.2",
-      "avgScore": "24.0",
-      "negativeNetWorthPct": "29.0",
-      "score90PlusPct": "1.3",
-      "bigDaddyJPct": "0.7",
-      "avgFedsEncounters": "1.95",
+      "avgEndingWealth": 4956187,
+      "medianEndingWealth": 2796255,
+      "p10Wealth": -93106,
+      "p90Wealth": 12115834,
+      "maxWealth": 114699169,
+      "minWealth": -100000,
+      "avgDebtRemaining": 99926,
+      "avgStashUtilization": "0.943",
+      "avgDaysSurvived": "20.0",
+      "avgTrades": "42.9",
+      "avgScore": "38.7",
+      "negativeNetWorthPct": "17.5",
+      "score90PlusPct": "5.3",
+      "bigDaddyJPct": "3.2",
+      "avgFedsEncounters": "2.50",
       "avgStallInterestHits": "0.00",
       "avgDebtCapHits": "1.00",
       "avgEventsPerTrip": "0.58",
       "districtUsage": {
-        "Kitty Kat Club": 16112,
-        "Dock #13": 70171,
-        "Warehouse District": 16225,
-        "City Hall": 16246,
-        "Little Italy": 14969,
-        "Uptown": 16218
+        "Dock #13": 88266,
+        "Kitty Kat Club": 20586,
+        "City Hall": 20589,
+        "Little Italy": 19283,
+        "Uptown": 20543,
+        "Warehouse District": 20579
       },
       "goodsBuyFrequency": {
-        "art": 1134035,
-        "cigars": 1632893,
-        "scotch": 849702,
-        "bathgin": 1306813,
-        "cognac": 262562,
-        "moonshine": 2235563,
-        "counterfeits": 445129,
-        "champagne": 79310,
-        "furcoats": 140719,
-        "diamonds": 62110
+        "scotch": 1327855,
+        "counterfeits": 765141,
+        "moonshine": 2838720,
+        "cigars": 2153764,
+        "art": 1644972,
+        "diamonds": 142444,
+        "cognac": 510608,
+        "champagne": 175229,
+        "bathgin": 1795739,
+        "furcoats": 291255
       },
       "goodsSellFrequency": {
-        "cigars": 1459802,
-        "art": 972062,
-        "bathgin": 1157175,
-        "scotch": 698953,
-        "moonshine": 2024046,
-        "cognac": 200777,
-        "counterfeits": 348255,
-        "champagne": 56857,
-        "furcoats": 104704,
-        "diamonds": 45672
+        "scotch": 1155608,
+        "moonshine": 2625322,
+        "counterfeits": 653533,
+        "cigars": 1979527,
+        "art": 1460738,
+        "diamonds": 113210,
+        "cognac": 421420,
+        "champagne": 141107,
+        "bathgin": 1623507,
+        "furcoats": 237466
       },
       "bankruptcyCauses": {
         "feds": 10000,
         "survived": 0
       },
       "rankDistribution": {
-        "Pickpocket": 1374,
-        "Nobody": 3377,
-        "Hustler": 1630,
-        "Rum Runner": 1348,
-        "Wise Guy": 324,
-        "Racketeer": 561,
-        "Bootlegger": 925,
-        "Crew Boss": 212,
-        "Underboss": 115,
-        "Godfather": 62,
-        "Big Daddy J": 72
+        "Rum Runner": 1408,
+        "Bootlegger": 1359,
+        "Hustler": 1224,
+        "Underboss": 381,
+        "Racketeer": 1079,
+        "Pickpocket": 704,
+        "Nobody": 1946,
+        "Crew Boss": 606,
+        "Wise Guy": 764,
+        "Godfather": 209,
+        "Big Daddy J": 320
       },
       "scheduledEventRates": {
-        "rare": "4.2",
-        "superRare": "1.0",
-        "godlike": "0.5",
+        "rare": "3.7",
+        "superRare": "1.1",
+        "godlike": "0.6",
         "golden": "0.1"
       }
     },
@@ -169,73 +169,73 @@
       "runs": 10000,
       "winRate": "0.0",
       "lossRate": "100.0",
-      "avgEndingWealth": 2226573,
-      "medianEndingWealth": 815288,
-      "p10Wealth": -74249,
-      "p90Wealth": 6305874,
-      "maxWealth": 71409757,
-      "minWealth": -75000,
-      "avgDebtRemaining": 75000,
-      "avgStashUtilization": "0.869",
-      "avgDaysSurvived": "16.0",
-      "avgTrades": "38.5",
-      "avgScore": "23.5",
-      "negativeNetWorthPct": "31.4",
-      "score90PlusPct": "1.4",
-      "bigDaddyJPct": "0.9",
-      "avgFedsEncounters": "1.94",
+      "avgEndingWealth": 4820937,
+      "medianEndingWealth": 2907477,
+      "p10Wealth": -92924,
+      "p90Wealth": 11474494,
+      "maxWealth": 106898243,
+      "minWealth": -100000,
+      "avgDebtRemaining": 100000,
+      "avgStashUtilization": "0.924",
+      "avgDaysSurvived": "20.0",
+      "avgTrades": "50.6",
+      "avgScore": "38.6",
+      "negativeNetWorthPct": "17.2",
+      "score90PlusPct": "4.8",
+      "bigDaddyJPct": "3.1",
+      "avgFedsEncounters": "2.52",
       "avgStallInterestHits": "0.00",
       "avgDebtCapHits": "1.00",
       "avgEventsPerTrip": "0.58",
       "districtUsage": {
-        "Uptown": 51449,
-        "Kitty Kat Club": 67050,
-        "Warehouse District": 31501
+        "Uptown": 64670,
+        "Kitty Kat Club": 84049,
+        "Warehouse District": 41281
       },
       "goodsBuyFrequency": {
-        "cigars": 1432027,
-        "scotch": 764068,
-        "bathgin": 1199024,
-        "moonshine": 1940516,
-        "art": 1020055,
-        "furcoats": 141422,
-        "counterfeits": 459295,
-        "champagne": 77722,
-        "cognac": 281670,
-        "diamonds": 60278
+        "cigars": 1855780,
+        "counterfeits": 776921,
+        "art": 1489308,
+        "cognac": 533638,
+        "bathgin": 1616317,
+        "moonshine": 2476663,
+        "scotch": 1187546,
+        "champagne": 155284,
+        "diamonds": 123632,
+        "furcoats": 288782
       },
       "goodsSellFrequency": {
-        "cigars": 1288932,
-        "bathgin": 1036286,
-        "scotch": 623225,
-        "moonshine": 1754771,
-        "art": 873372,
-        "furcoats": 106629,
-        "counterfeits": 361680,
-        "cognac": 211356,
-        "diamonds": 46109,
-        "champagne": 59039
+        "cigars": 1702497,
+        "counterfeits": 655085,
+        "art": 1322376,
+        "bathgin": 1449603,
+        "cognac": 434599,
+        "moonshine": 2285933,
+        "scotch": 1025447,
+        "champagne": 126860,
+        "diamonds": 102855,
+        "furcoats": 238245
       },
       "bankruptcyCauses": {
         "feds": 10000,
         "survived": 0
       },
       "rankDistribution": {
-        "Nobody": 3585,
-        "Racketeer": 605,
-        "Pickpocket": 1307,
-        "Rum Runner": 1275,
-        "Hustler": 1570,
-        "Bootlegger": 847,
-        "Wise Guy": 372,
-        "Crew Boss": 221,
-        "Big Daddy J": 87,
-        "Godfather": 53,
-        "Underboss": 78
+        "Crew Boss": 558,
+        "Bootlegger": 1397,
+        "Nobody": 1897,
+        "Rum Runner": 1462,
+        "Big Daddy J": 309,
+        "Wise Guy": 845,
+        "Hustler": 1188,
+        "Racketeer": 1151,
+        "Underboss": 321,
+        "Pickpocket": 700,
+        "Godfather": 172
       },
       "scheduledEventRates": {
         "rare": "4.2",
-        "superRare": "0.9",
+        "superRare": "1.1",
         "godlike": "0.6",
         "golden": "0.1"
       }
@@ -246,76 +246,77 @@
       "runs": 10000,
       "winRate": "0.0",
       "lossRate": "100.0",
-      "avgEndingWealth": 109685,
-      "medianEndingWealth": -38616,
-      "p10Wealth": -53137,
-      "p90Wealth": 241288,
-      "maxWealth": 46529112,
-      "minWealth": -61842,
-      "avgDebtRemaining": 75000,
-      "avgStashUtilization": "0.525",
-      "avgDaysSurvived": "7.5",
-      "avgTrades": "9.9",
-      "avgScore": "3.2",
-      "negativeNetWorthPct": "71.4",
-      "score90PlusPct": "0.0",
-      "bigDaddyJPct": "0.0",
-      "avgFedsEncounters": "0.77",
+      "avgEndingWealth": 466196,
+      "medianEndingWealth": -22061,
+      "p10Wealth": -65241,
+      "p90Wealth": 1239198,
+      "maxWealth": 55593887,
+      "minWealth": -82098,
+      "avgDebtRemaining": 100000,
+      "avgStashUtilization": "0.628",
+      "avgDaysSurvived": "10.3",
+      "avgTrades": "15.4",
+      "avgScore": "8.0",
+      "negativeNetWorthPct": "54.6",
+      "score90PlusPct": "0.1",
+      "bigDaddyJPct": "0.1",
+      "avgFedsEncounters": "1.15",
       "avgStallInterestHits": "0.00",
       "avgDebtCapHits": "1.00",
       "avgEventsPerTrip": "0.58",
       "districtUsage": {
-        "City Hall": 11178,
-        "Kitty Kat Club": 11211,
-        "Little Italy": 9406,
-        "Dock #13": 11208,
-        "Warehouse District": 11179,
-        "Uptown": 10900
+        "Kitty Kat Club": 15666,
+        "Dock #13": 15705,
+        "Little Italy": 13986,
+        "City Hall": 15702,
+        "Warehouse District": 15673,
+        "Uptown": 15801
       },
       "goodsBuyFrequency": {
-        "scotch": 112810,
-        "cognac": 17201,
-        "art": 236539,
-        "moonshine": 794757,
-        "bathgin": 364515,
-        "cigars": 526249,
-        "furcoats": 7319,
-        "counterfeits": 35922,
-        "diamonds": 2995,
-        "champagne": 3886
+        "art": 462266,
+        "cigars": 815786,
+        "scotch": 270422,
+        "cognac": 52080,
+        "bathgin": 601996,
+        "counterfeits": 107496,
+        "diamonds": 10987,
+        "champagne": 13728,
+        "moonshine": 1112335,
+        "furcoats": 22301
       },
       "goodsSellFrequency": {
-        "scotch": 66677,
-        "cognac": 9991,
-        "art": 152478,
-        "moonshine": 661017,
-        "bathgin": 258310,
-        "cigars": 413491,
-        "counterfeits": 21624,
-        "diamonds": 1900,
-        "furcoats": 4322,
-        "champagne": 2329
+        "art": 349247,
+        "cigars": 705875,
+        "scotch": 190893,
+        "bathgin": 492974,
+        "counterfeits": 72948,
+        "diamonds": 8089,
+        "moonshine": 980812,
+        "cognac": 34237,
+        "champagne": 9816,
+        "furcoats": 15907
       },
       "bankruptcyCauses": {
         "feds": 10000,
         "survived": 0
       },
       "rankDistribution": {
-        "Pickpocket": 797,
-        "Nobody": 8807,
-        "Rum Runner": 84,
-        "Hustler": 231,
-        "Racketeer": 13,
-        "Bootlegger": 41,
-        "Wise Guy": 17,
-        "Crew Boss": 5,
-        "Underboss": 3,
-        "Big Daddy J": 2
+        "Nobody": 6973,
+        "Pickpocket": 1555,
+        "Hustler": 759,
+        "Rum Runner": 350,
+        "Bootlegger": 174,
+        "Wise Guy": 41,
+        "Racketeer": 89,
+        "Underboss": 20,
+        "Big Daddy J": 11,
+        "Crew Boss": 24,
+        "Godfather": 4
       },
       "scheduledEventRates": {
-        "rare": "4.3",
-        "superRare": "1.1",
-        "godlike": "0.6",
+        "rare": "3.8",
+        "superRare": "1.0",
+        "godlike": "0.5",
         "golden": "0.1"
       }
     },
@@ -323,79 +324,79 @@
       "archetype": "Balanced Player",
       "key": "balanced",
       "runs": 10000,
-      "winRate": "59.7",
-      "lossRate": "40.3",
-      "avgEndingWealth": 9987592,
-      "medianEndingWealth": 5499661,
-      "p10Wealth": -62958,
-      "p90Wealth": 25506043,
-      "maxWealth": 228433526,
-      "minWealth": -75000,
-      "avgDebtRemaining": 30448,
-      "avgStashUtilization": "0.700",
-      "avgDaysSurvived": "25.4",
-      "avgTrades": "49.9",
-      "avgScore": "51.1",
-      "negativeNetWorthPct": "15.9",
-      "score90PlusPct": "21.6",
-      "bigDaddyJPct": "15.7",
-      "avgFedsEncounters": "3.28",
+      "winRate": "76.9",
+      "lossRate": "23.1",
+      "avgEndingWealth": 12622753,
+      "medianEndingWealth": 8765184,
+      "p10Wealth": 410789,
+      "p90Wealth": 28229372,
+      "maxWealth": 191234469,
+      "minWealth": -100000,
+      "avgDebtRemaining": 23498,
+      "avgStashUtilization": "0.713",
+      "avgDaysSurvived": "28.7",
+      "avgTrades": "57.7",
+      "avgScore": "62.6",
+      "negativeNetWorthPct": "7.5",
+      "score90PlusPct": "27.8",
+      "bigDaddyJPct": "20.2",
+      "avgFedsEncounters": "3.73",
       "avgStallInterestHits": "0.00",
-      "avgDebtCapHits": "0.40",
+      "avgDebtCapHits": "0.23",
       "avgEventsPerTrip": "0.58",
       "districtUsage": {
-        "Uptown": 40918,
-        "Kitty Kat Club": 40961,
-        "City Hall": 40696,
-        "Warehouse District": 41040,
-        "Dock #13": 40883,
-        "Little Italy": 39557
+        "Kitty Kat Club": 46555,
+        "Uptown": 46279,
+        "Dock #13": 46491,
+        "City Hall": 46343,
+        "Little Italy": 44756,
+        "Warehouse District": 46490
       },
       "goodsBuyFrequency": {
-        "bathgin": 2029644,
-        "cigars": 2311413,
-        "counterfeits": 914309,
-        "art": 1944953,
-        "scotch": 1603669,
-        "moonshine": 2974174,
-        "furcoats": 319916,
-        "cognac": 596413,
-        "champagne": 172619,
-        "diamonds": 153275
+        "art": 2311504,
+        "moonshine": 3325973,
+        "counterfeits": 1133463,
+        "champagne": 213578,
+        "bathgin": 2400766,
+        "furcoats": 398176,
+        "cigars": 2654277,
+        "scotch": 1950889,
+        "cognac": 754012,
+        "diamonds": 193173
       },
       "goodsSellFrequency": {
-        "bathgin": 1889426,
-        "cigars": 2172830,
-        "counterfeits": 826059,
-        "art": 1801980,
-        "scotch": 1464326,
-        "moonshine": 2796834,
-        "furcoats": 284556,
-        "cognac": 535220,
-        "champagne": 157043,
-        "diamonds": 136676
+        "moonshine": 3159289,
+        "art": 2153524,
+        "counterfeits": 1034181,
+        "champagne": 192345,
+        "bathgin": 2262675,
+        "cigars": 2507109,
+        "scotch": 1795070,
+        "cognac": 677579,
+        "diamonds": 178549,
+        "furcoats": 360007
       },
       "bankruptcyCauses": {
-        "feds": 4031,
-        "survived": 5969
+        "feds": 2306,
+        "survived": 7694
       },
       "rankDistribution": {
-        "Nobody": 1901,
-        "Crew Boss": 787,
-        "Underboss": 707,
-        "Hustler": 740,
-        "Big Daddy J": 1571,
-        "Pickpocket": 709,
-        "Racketeer": 789,
-        "Rum Runner": 701,
-        "Wise Guy": 767,
-        "Godfather": 590,
-        "Bootlegger": 738
+        "Nobody": 852,
+        "Crew Boss": 983,
+        "Hustler": 519,
+        "Underboss": 869,
+        "Wise Guy": 1041,
+        "Bootlegger": 876,
+        "Big Daddy J": 2022,
+        "Rum Runner": 717,
+        "Racketeer": 1007,
+        "Godfather": 761,
+        "Pickpocket": 353
       },
       "scheduledEventRates": {
-        "rare": "4.1",
+        "rare": "3.9",
         "superRare": "0.9",
-        "godlike": "0.4",
+        "godlike": "0.5",
         "golden": "0.1"
       }
     },
@@ -405,40 +406,41 @@
       "runs": 10000,
       "winRate": "0.0",
       "lossRate": "100.0",
-      "avgEndingWealth": -33964,
-      "medianEndingWealth": -39438,
-      "p10Wealth": -51745,
-      "p90Wealth": -9935,
-      "maxWealth": -9935,
-      "minWealth": -52528,
-      "avgDebtRemaining": 75000,
-      "avgStashUtilization": "0.417",
+      "avgEndingWealth": -40222,
+      "medianEndingWealth": -43521,
+      "p10Wealth": -65273,
+      "p90Wealth": -9162,
+      "maxWealth": -9162,
+      "minWealth": -66292,
+      "avgDebtRemaining": 100000,
+      "avgStashUtilization": "0.461",
       "avgDaysSurvived": "2.0",
-      "avgTrades": "2.2",
+      "avgTrades": "2.7",
       "avgScore": "0.0",
       "negativeNetWorthPct": "100.0",
       "score90PlusPct": "0.0",
       "bigDaddyJPct": "0.0",
       "avgFedsEncounters": "0.00",
-      "avgStallInterestHits": "0.00",
+      "avgStallInterestHits": "0.34",
       "avgDebtCapHits": "2.00",
       "avgEventsPerTrip": "0",
       "districtUsage": {
-        "Dock #13": 2023,
-        "Warehouse District": 1992,
-        "Uptown": 1923,
-        "Kitty Kat Club": 2047,
-        "City Hall": 2015
+        "Warehouse District": 2035,
+        "Kitty Kat Club": 2058,
+        "City Hall": 1920,
+        "Uptown": 2000,
+        "Dock #13": 1987
       },
       "goodsBuyFrequency": {
-        "cigars": 136500,
-        "moonshine": 157200,
-        "scotch": 10472,
-        "art": 35465,
-        "bathgin": 74329,
-        "counterfeits": 2430,
-        "cognac": 467,
-        "furcoats": 146
+        "cigars": 140800,
+        "scotch": 14917,
+        "bathgin": 100404,
+        "cognac": 659,
+        "art": 48079,
+        "moonshine": 152400,
+        "counterfeits": 3526,
+        "furcoats": 193,
+        "champagne": 2
       },
       "goodsSellFrequency": {},
       "bankruptcyCauses": {
@@ -449,9 +451,9 @@
         "Nobody": 10000
       },
       "scheduledEventRates": {
-        "rare": "4.0",
+        "rare": "3.9",
         "superRare": "0.9",
-        "godlike": "0.5",
+        "godlike": "0.4",
         "golden": "0.1"
       }
     }
@@ -460,21 +462,21 @@
     "mostProfitableStrategies": [
       {
         "strategy": "Balanced Player",
-        "avgWealth": 9987592
+        "avgWealth": 12622753
       },
       {
         "strategy": "Conservative Trader",
-        "avgWealth": 9776456
+        "avgWealth": 11722302
       }
     ],
     "leastProfitableStrategies": [
       {
         "strategy": "Day 1 Staller",
-        "avgWealth": -33964
+        "avgWealth": -40222
       },
       {
         "strategy": "Debt Exploiter",
-        "avgWealth": 109685
+        "avgWealth": 466196
       }
     ],
     "dominantStrategy": "balanced",
@@ -488,7 +490,7 @@
       "champagne",
       "diamonds"
     ],
-    "interestOnlyDebt30Days": 75000,
+    "interestOnlyDebt30Days": 100000,
     "exploits": [
       {
         "id": "day1_stall",
@@ -498,7 +500,7 @@
       {
         "id": "debt_stack",
         "severity": "Medium",
-        "note": "Debt capped at $75k including compounded interest — game over at ceiling"
+        "note": "Debt capped at $100k including compounded interest — game over at ceiling"
       },
       {
         "id": "gun_stack",
@@ -513,40 +515,40 @@
     ]
   },
   "globalDistrictUsage": {
-    "Uptown": 164010,
-    "Warehouse District": 143964,
-    "Dock #13": 166315,
-    "Little Italy": 104419,
-    "City Hall": 112491,
-    "Kitty Kat Club": 179615
+    "Uptown": 196398,
+    "City Hall": 131692,
+    "Warehouse District": 173133,
+    "Little Italy": 123614,
+    "Kitty Kat Club": 216238,
+    "Dock #13": 199632
   },
   "globalGoodsBuyFrequency": {
-    "cigars": 8067028,
-    "bathgin": 6767912,
-    "art": 6120935,
-    "cognac": 1698813,
-    "moonshine": 10686288,
-    "furcoats": 890894,
-    "scotch": 4807023,
-    "counterfeits": 2684480,
-    "champagne": 484447,
-    "diamonds": 417602
+    "bathgin": 8583191,
+    "cigars": 9912323,
+    "moonshine": 12803437,
+    "counterfeits": 3772881,
+    "art": 7990788,
+    "scotch": 6484935,
+    "furcoats": 1343625,
+    "cognac": 2495857,
+    "champagne": 735723,
+    "diamonds": 633922
   },
   "balanceFindings": {
     "dominantStrategies": [
       {
         "strategy": "Balanced Player",
-        "avgWealth": 9987592
+        "avgWealth": 12622753
       },
       {
         "strategy": "Conservative Trader",
-        "avgWealth": 9776456
+        "avgWealth": 11722302
       }
     ],
     "brokenStrategies": [
       {
         "strategy": "Day 1 Staller",
-        "avgWealth": -33964
+        "avgWealth": -40222
       }
     ],
     "unusedMechanics": [
@@ -555,7 +557,7 @@
     ],
     "difficultySpikes": [
       "Day 20+ extra Feds agent and +5% counter-hit",
-      "8% daily compound debt; hard cap at $75k"
+      "8% daily compound debt; hard cap at $100k"
     ],
     "softLockPossibilities": [
       "Day 1 stall (player choice)",
@@ -573,7 +575,7 @@
       {
         "id": "debt_stack",
         "severity": "Medium",
-        "note": "Debt capped at $75k including compounded interest — game over at ceiling"
+        "note": "Debt capped at $100k including compounded interest — game over at ceiling"
       },
       {
         "id": "gun_stack",
@@ -588,8 +590,8 @@
     ]
   },
   "debtExploiterDetail": {
-    "avgBorrows": "1.2",
-    "avgEndingDebt": 75000,
-    "avgBank": 62790
+    "avgBorrows": "1.4",
+    "avgEndingDebt": 100000,
+    "avgBank": 186981
   }
 }
