@@ -4,7 +4,8 @@ const {
   CONFIG, DRUG, DRUGS, HOME, LOCATIONS, RARE_EVENTS, SUPER_RARE_EVENTS, GODLIKE_EVENTS, GOLDEN_GODLIKE,
   GODLIKE_CHANCE, GOLDEN_GODLIKE_CHANCE,
   rollMarket, buy, sell, newGame, migrateSave, resolveTravelMarket,
-  bankBorrow, bankRepay, avgCost, profitPct, applyTerritoryPrice,
+  bankBorrow, bankRepay, bankDeposit, bankWithdraw, applyDailyInterest,
+  avgCost, profitPct, applyTerritoryPrice, netWorth, classicScore, PERFECT_SCORE_NET_WORTH,
   TERRITORY_MODIFIERS, FAM_LUXURY, getRank, RANKS,
 } = require('./engine.js');
 
@@ -52,6 +53,66 @@ describe('bank', () => {
     assert.match(bankBorrow(s, CONFIG.maxBorrow + 1), /won't lend/);
     assert.equal(bankBorrow(s, 1000), null);
     assert.equal(s.cash, CONFIG.startCash + 1000);
+  });
+
+  it('repays debt from cash', () => {
+    const s = newGame();
+    s.cash = 5000;
+    s.debt = 3000;
+    assert.equal(bankRepay(s, 2000), null);
+    assert.equal(s.cash, 3000);
+    assert.equal(s.debt, 1000);
+  });
+
+  it('rejects repay over debt or cash', () => {
+    const s = newGame();
+    s.cash = 1000;
+    s.debt = 500;
+    assert.match(bankRepay(s, 600), /more than you owe/);
+    assert.match(bankRepay(s, 1500), /don't have/);
+  });
+
+  it('deposits and withdraws bank balance', () => {
+    const s = newGame();
+    s.cash = 4000;
+    assert.equal(bankDeposit(s, 1500), null);
+    assert.equal(s.cash, 2500);
+    assert.equal(s.bank, 1500);
+    assert.equal(bankWithdraw(s, 500), null);
+    assert.equal(s.cash, 3000);
+    assert.equal(s.bank, 1000);
+  });
+
+  it('rejects invalid bank amounts', () => {
+    const s = newGame();
+    assert.match(bankDeposit(s, 0), /Enter an amount/);
+    assert.match(bankWithdraw(s, 1), /more than you have/);
+  });
+});
+
+describe('applyDailyInterest', () => {
+  it('compounds debt and bank balances', () => {
+    const s = newGame();
+    s.debt = 10000;
+    s.bank = 10000;
+    applyDailyInterest(s);
+    assert.equal(s.debt, Math.round(10000 * 1.1));
+    assert.equal(s.bank, Math.round(10000 * 1.06));
+  });
+});
+
+describe('classicScore', () => {
+  it('derives score from net worth', () => {
+    const s = newGame();
+    s.cash = 0;
+    s.bank = 0;
+    s.debt = 0;
+    assert.equal(classicScore(s), 0);
+    assert.equal(netWorth(s), 0);
+    s.cash = 8100000;
+    assert.equal(classicScore(s), 90);
+    s.cash = PERFECT_SCORE_NET_WORTH;
+    assert.equal(classicScore(s), 100);
   });
 });
 
@@ -101,7 +162,8 @@ describe('GOLDEN_GODLIKE', () => {
   });
 
   it('is five times rarer than a standard godlike roll', () => {
-    assert.equal(GOLDEN_GODLIKE_CHANCE, GODLIKE_CHANCE / 5);
+    assert.equal(GOLDEN_GODLIKE_CHANCE, 0.001);
+    assert.equal(GODLIKE_CHANCE, 0.005);
   });
 });
 

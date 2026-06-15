@@ -4,6 +4,8 @@
   "private": true,
   "description": "Gang Wars — Prohibition 1929 PWA",
   "scripts": {
-    "test": "node --test engine.test.js"
+    "test": "node --test engine.test.js",
+    "simulate": "node scripts/monte-carlo.js",
+    "sweep": "node scripts/sweep.js"
   }
 }

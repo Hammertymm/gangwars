@@ -22,7 +22,7 @@ Each day you can:
 
 The market is volatile. Shortages send prices through the roof. Flooded supply crashes them. Events — from police raids to celebrity appearances — can reshape the market for a day. Learn the ranges, read the city, move fast.
 
-**Your score** is your net worth on day 30: cash + bank − debt. A perfect 100 requires roughly $1.575M net.
+**Your score** is your net worth on day 30: cash + bank − debt. Score scales smoothly from 0 to **100**; a perfect **100** requires **$10M** net (Big Daddy J).
 
 -----
 
@@ -45,9 +45,9 @@ Prices fluctuate daily within their ranges. Market events can push them well abo
 
 |Good        |Low    |High    |Family  |
 |------------|-------|--------|--------|
-|Bathtub Gin |$50    |$250    |Alcohol |
+|Moonshine   |$50    |$250    |Alcohol |
 |Cuban Cigars|$200   |$700    |Luxury  |
-|Moonshine   |$600   |$2,000  |Alcohol |
+|Bathtub Gin |$600   |$2,000  |Alcohol |
 |Forged Art  |$1,500 |$5,500  |Criminal|
 |Aged Scotch |$4,500 |$16,000 |Alcohol |
 |Counterfeits|$13,000|$35,000 |Criminal|
@@ -78,8 +78,11 @@ Historical figures — Capone, Luciano, Rothstein, Armstrong and others — trig
 **Super Rare (~1 in 100 runs):**
 A major city event drives all prices in one district to 3× normal for a single day. Babe Ruth. Lindbergh. The Prince of Wales.
 
-**Godlike (~1 in 500 runs):**
+**Godlike (~1 in 200 runs):**
 Big Daddy J comes to town. One district. One day. Ten times normal prices. The stuff of legend.
+
+**Golden Godlike (~1 in 1,000 runs):**
+The rarest roll in the game. Every district. One day. Ten times normal prices everywhere. If you see it, move.
 
 -----
 
@@ -125,6 +128,7 @@ Once installed, the game works fully offline.
 |`gangwars.html`   |Game UI, styles, and event copy                      |
 |`engine.js`       |Pure game logic — prices, travel, bank, save migration|
 |`engine.test.js`  |Node unit tests for the engine                       |
+|`hero.jpg`        |Title screen hero image                              |
 |`manifest.json`   |PWA manifest — name, icons, display settings         |
 |`sw.js`           |Service worker — caches the game for offline play    |
 |`apple-touch-icon.png`|iOS home screen icon (180×180)                        |

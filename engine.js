@@ -92,8 +92,8 @@ const GOLDEN_GODLIKE = {
   lines:['GOLDEN SHOWER!!!','EVERYWHERE!!!'],
 };
 
-const GODLIKE_CHANCE = 0.002;
-const GOLDEN_GODLIKE_CHANCE = GODLIKE_CHANCE / 5;
+const GODLIKE_CHANCE = 0.005;
+const GOLDEN_GODLIKE_CHANCE = 0.001;
 
 function randInt(min,max){ return Math.floor(Math.random()*(max-min+1))+min; }
 function chance(p){ return Math.random() < p; }
@@ -146,7 +146,11 @@ function rollMarket(location){
 function spaceUsed(inv){ return Object.values(inv).reduce((a,b)=>a+b,0); }
 function spaceLeft(s){ return s.space - spaceUsed(s.inventory); }
 function netWorth(s){ return s.cash + s.bank - s.debt; }
-function classicScore(s){ return Math.max(0, Math.min(100, Math.round(Math.sqrt(Math.max(0,netWorth(s))/157.5)))); }
+const PERFECT_SCORE_NET_WORTH = 10000000;
+function classicScore(s){
+  const nw = Math.max(0, netWorth(s));
+  return Math.max(0, Math.min(100, Math.round(100 * Math.sqrt(nw / PERFECT_SCORE_NET_WORTH))));
+}
 
 const RANKS = [
   'Nobody','Pickpocket','Hustler','Rum Runner','Bootlegger',
@@ -306,7 +310,7 @@ if (typeof module !== "undefined") {
     CONFIG, DRUGS, DRUG, LOCATIONS, HOME, LOCATION_FLAVOR, TERRITORY_MODIFIERS,
     FAM_ALCOHOL, FAM_LUXURY, FAM_CRIMINAL, RARE_EVENTS, SUPER_RARE_EVENTS, GODLIKE_EVENTS, GOLDEN_GODLIKE,
     GODLIKE_CHANCE, GOLDEN_GODLIKE_CHANCE,
-    rollMarket, applyTerritoryPrice, spaceUsed, spaceLeft, netWorth, classicScore, getRank, RANKS,
+    rollMarket, applyTerritoryPrice, spaceUsed, spaceLeft, netWorth, classicScore, PERFECT_SCORE_NET_WORTH, getRank, RANKS,
     applyDailyInterest, buy, sell, bankRepay, bankBorrow, bankDeposit, bankWithdraw,
     avgCost, profitPct, newGame, migrateSave, resolveTravelMarket,
     randInt, chance, pick,
