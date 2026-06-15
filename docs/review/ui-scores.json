@@ -1,0 +1,182 @@
+{
+  "generatedAt": "2026-06-15",
+  "specReference": "C Style — 8-bit DOS aesthetic, sepia/gold monochrome, static non-scrolling layouts",
+  "averageScores": {
+    "ui": 7.8,
+    "ux": 8.1,
+    "visualConsistency": 6.9,
+    "accessibility": 6.5
+  },
+  "screens": [
+    {
+      "id": "title",
+      "name": "Title / New Game",
+      "screenshot": "screenshots/title-540.png",
+      "scores": { "ui": 8, "ux": 8, "visualConsistency": 7, "accessibility": 7 },
+      "recommendations": [
+        "Title art is full-color illustration, not 8-bit sepia — strongest C Style deviation on entry",
+        "Invisible hit-target buttons work but offer no visual affordance; consider subtle outline in debug/audit mode",
+        "Continue disabled state is correct when no save exists"
+      ]
+    },
+    {
+      "id": "market",
+      "name": "Market Screen",
+      "screenshot": "screenshots/market-540.png",
+      "scores": { "ui": 9, "ux": 9, "visualConsistency": 7, "accessibility": 6 },
+      "recommendations": [
+        "Excellent fixed three-zone layout — no scroll, full height utilization",
+        "Serif district headings and rounded borders diverge from pure DOS monospace spec",
+        "Goods icons are pixel-art gold — good C Style alignment",
+        "Market row BUY/SELL buttons are small (~24px height) — below 44px touch target guideline",
+        "Empty alt on goods icons hurts screen reader experience"
+      ]
+    },
+    {
+      "id": "market-holdings",
+      "name": "Market (with holdings)",
+      "screenshot": "screenshots/market-holdings-540.png",
+      "scores": { "ui": 9, "ux": 9, "visualConsistency": 7, "accessibility": 6 },
+      "recommendations": [
+        "Hold column and green highlight communicate inventory clearly",
+        "SELL enabled/disabled states are intuitive"
+      ]
+    },
+    {
+      "id": "travel",
+      "name": "Travel Screen",
+      "screenshot": "screenshots/travel-540.png",
+      "scores": { "ui": 8, "ux": 8, "visualConsistency": 7, "accessibility": 7 },
+      "recommendations": [
+        "Six equal-height district rows fit without scroll — meets spec",
+        "District thumbnails consistent size with market header",
+        "Current location grayscale/disabled treatment is clear",
+        "Travel car header image adds character; aspect differs from square district thumbs"
+      ]
+    },
+    {
+      "id": "trade-buy",
+      "name": "Trade Modal (Buy)",
+      "screenshot": "screenshots/trade-buy-540.png",
+      "scores": { "ui": 8, "ux": 8, "visualConsistency": 7, "accessibility": 7 },
+      "recommendations": [
+        "Quantity presets (+1/+10/½/MAX) reduce friction",
+        "Inline error display (#terr) is good UX — bank modal should match",
+        "Modal scrolls on very small viewports (max-height 92dvh) — minor spec deviation"
+      ]
+    },
+    {
+      "id": "trade-sell",
+      "name": "Trade Modal (Sell)",
+      "screenshot": "screenshots/trade-sell-540.png",
+      "scores": { "ui": 8, "ux": 9, "visualConsistency": 7, "accessibility": 7 },
+      "recommendations": [
+        "Avg cost and profit % display supports strategic decisions",
+        "Color-coded profit up/down aids readability"
+      ]
+    },
+    {
+      "id": "bank",
+      "name": "Bank / Don",
+      "screenshot": "screenshots/bank-540.png",
+      "scores": { "ui": 8, "ux": 7, "visualConsistency": 7, "accessibility": 6 },
+      "recommendations": [
+        "Four-action grid is clear; debt interest warning prominent",
+        "Bank only at Little Italy is correct but not explained on this screen",
+        "Uses alert() for errors — inconsistent with trade modal",
+        "Borrow max shows per-transaction cap, not total debt picture"
+      ]
+    },
+    {
+      "id": "event-feds",
+      "name": "Feds Encounter",
+      "screenshot": "screenshots/event-feds-540.png",
+      "scores": { "ui": 9, "ux": 8, "visualConsistency": 9, "accessibility": 7 },
+      "recommendations": [
+        "Split ev-popup layout with 8-bit art is strongest C Style execution in the app",
+        "Three combat options clearly labeled; disabled fight when unarmed",
+        "Consider aria-labels on action buttons for combat state"
+      ]
+    },
+    {
+      "id": "event-mugging",
+      "name": "Event Popup (Mugging)",
+      "screenshot": "screenshots/event-mugging-540.png",
+      "scores": { "ui": 8, "ux": 8, "visualConsistency": 9, "accessibility": 7 },
+      "recommendations": [
+        "Event card art matches rare/super-rare visual language",
+        "Single amber CTA keeps flow fast"
+      ]
+    },
+    {
+      "id": "event-dead-drop",
+      "name": "Event Popup (Dead Drop)",
+      "screenshot": "screenshots/event-dead-drop-540.png",
+      "scores": { "ui": 8, "ux": 8, "visualConsistency": 9, "accessibility": 7 },
+      "recommendations": [
+        "Consistent split-panel event pattern across all travel events"
+      ]
+    },
+    {
+      "id": "event-rare",
+      "name": "Event Popup (Rare Intel)",
+      "screenshot": "screenshots/event-rare-540.png",
+      "scores": { "ui": 9, "ux": 8, "visualConsistency": 9, "accessibility": 7 },
+      "recommendations": [
+        "Per-event artwork elevates rare tier above generic fallback",
+        "Headline/body hierarchy readable at mobile sizes"
+      ]
+    },
+    {
+      "id": "event-anomaly",
+      "name": "Market Anomaly Toast",
+      "screenshot": "screenshots/event-anomaly-540.png",
+      "scores": { "ui": 8, "ux": 8, "visualConsistency": 9, "accessibility": 7 },
+      "recommendations": [
+        "Shortage/frenzy/flood art distinguishes anomaly types well"
+      ]
+    },
+    {
+      "id": "tutorial",
+      "name": "Tutorial Overlay",
+      "screenshot": "screenshots/tutorial-540.png",
+      "scores": { "ui": 7, "ux": 8, "visualConsistency": 6, "accessibility": 6 },
+      "recommendations": [
+        "Four-step onboarding covers debt, bank, guns, muggings — good coverage",
+        "Card-style tutorial differs from ev-popup event aesthetic",
+        "No skip button — Escape does not dismiss tutorial",
+        "Tip counter (1/4) helps orientation"
+      ]
+    },
+    {
+      "id": "high-scores",
+      "name": "High Scores",
+      "screenshot": "screenshots/high-scores-540.png",
+      "scores": { "ui": 6, "ux": 7, "visualConsistency": 5, "accessibility": 6 },
+      "recommendations": [
+        "Scrollable table breaks static-layout spec",
+        "Visual treatment differs from end-game split-screen leaderboard",
+        "Consider reusing eos-row styling for consistency"
+      ]
+    },
+    {
+      "id": "end-game",
+      "name": "End Game",
+      "screenshot": "screenshots/end-game-540.png",
+      "scores": { "ui": 8, "ux": 9, "visualConsistency": 8, "accessibility": 6 },
+      "recommendations": [
+        "Rank card + score split layout is distinctive and on-brand",
+        "Leaderboard section scrolls when entries exceed viewport — minor spec violation",
+        "Play Again / Main Menu actions clearly placed"
+      ]
+    }
+  ],
+  "globalRecommendations": [
+    "Unify typography: choose either full monospace DOS or document serif as accent-only",
+    "Reduce border-radius on panels (8px → 2–4px) for sharper DOS box aesthetic",
+    "Increase market row button touch targets to minimum 44px height",
+    "Replace alert() in bank flow with inline errors",
+    "Add meaningful alt text to all commodity and district images",
+    "Align High Scores screen with End Game leaderboard component"
+  ]
+}

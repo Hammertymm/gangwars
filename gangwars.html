@@ -49,12 +49,14 @@
 
   /* MARKET SCREEN — fixed single-screen layout (no scroll) */
   .market-play{gap:5px;overflow:hidden;}
-  .market-play .loc-header{flex:0 0 14%;min-height:68px;max-height:96px;
-    display:flex;gap:8px;align-items:center;padding:6px 8px;
+  .market-play .loc-header{flex:0 0 16%;min-height:76px;max-height:112px;
+    display:flex;gap:6px;align-items:stretch;padding:4px 8px 4px 4px;
     background:var(--panel);border:1px solid var(--border);border-radius:8px;}
-  .market-play .loc-header img{width:clamp(48px, 12vw, 64px);height:clamp(48px, 12vw, 64px);
-    flex:0 0 clamp(48px, 12vw, 64px);display:block;object-fit:cover;
-    image-rendering:pixelated;image-rendering:crisp-edges;border-radius:4px;}
+  .market-play .loc-header img{flex:0 0 auto;width:auto;height:100%;
+    min-width:clamp(76px, 24vw, 120px);max-width:42%;aspect-ratio:1;
+    display:block;object-fit:cover;object-position:center;
+    image-rendering:pixelated;image-rendering:crisp-edges;border-radius:4px;
+    border:1px solid var(--btnborder);}
   .market-play .loc-header-body{flex:1 1 auto;min-width:0;overflow:hidden;}
   .market-play .loc-header-title{font-family:"Didot","Bodoni MT","Playfair Display",Georgia,serif;
     font-size:clamp(.82rem, 3.8vw, 1rem);font-weight:700;color:var(--amber);letter-spacing:1px;
@@ -65,11 +67,9 @@
 
   .market-mid{flex:1 1 0;min-height:0;overflow:hidden;display:flex;flex-direction:column;
     background:var(--bg);border:1px solid var(--border);border-radius:8px;}
-  .market-head{flex:0 0 auto;display:flex;justify-content:space-between;align-items:baseline;
-    padding:5px 10px 3px;border-bottom:1px solid var(--border);}
+  .market-head{flex:0 0 auto;padding:5px 10px 3px;border-bottom:1px solid var(--border);}
   .market-head-title{font-family:"Didot","Bodoni MT","Playfair Display",Georgia,serif;
     font-size:clamp(.76rem, 3.4vw, .88rem);color:var(--amber);letter-spacing:1px;text-transform:uppercase;}
-  .market-head-stash{font-size:clamp(.54rem, 2.4vw, .62rem);color:var(--dim);letter-spacing:0;}
   .market-cols{flex:0 0 auto;display:grid;grid-template-columns:1fr minmax(4.2rem,5.4rem) 1.8rem auto;gap:3px;
     padding:2px 8px 3px;font-size:clamp(.52rem, 2.3vw, .6rem);color:var(--dim);letter-spacing:.5px;
     border-bottom:1px solid var(--rowline);}
@@ -90,8 +90,8 @@
   .hold-cell{text-align:right;color:var(--dim);white-space:nowrap;}
   .hold-cell.have{color:var(--green);}
   .market-play .market-actions{display:flex;justify-content:flex-end;align-items:center;gap:3px;white-space:nowrap;}
-  .market-play .market-actions button{padding:2px 6px;font-size:clamp(.54rem, 2.3vw, .64rem);margin:0;border-radius:4px;
-    min-height:0;line-height:1.2;}
+  .market-play .market-actions button{padding:6px 10px;font-size:clamp(.54rem, 2.3vw, .64rem);margin:0;border-radius:4px;
+    min-height:44px;min-width:44px;line-height:1.2;}
   .market-mid .actlog{flex:0 0 auto;font-size:clamp(.56rem, 2.4vw, .64rem);color:var(--dim);
     padding:4px 10px 5px;line-height:1.25;border-top:1px solid var(--border);}
 
@@ -99,12 +99,13 @@
   .travel-play{overflow:hidden;}
   .travel-screen{flex:1 1 auto;min-height:0;overflow:hidden;display:flex;flex-direction:column;
     border:1px solid var(--amber);border-radius:8px;background:var(--bg);}
-  .travel-head{flex:0 0 13%;min-height:68px;max-height:92px;display:flex;gap:10px;align-items:stretch;
-    padding:8px 10px;border-bottom:1px solid var(--amber);background:var(--panel);}
-  .travel-head img{width:clamp(56px, 15vw, 78px);height:auto;flex:0 0 clamp(56px, 15vw, 78px);
-    align-self:center;display:block;object-fit:contain;object-position:left center;
+  .travel-head{flex:0 0 14%;min-height:76px;max-height:108px;display:flex;gap:8px;align-items:stretch;
+    padding:4px 8px 4px 4px;border-bottom:1px solid var(--amber);background:var(--panel);}
+  .travel-head img{flex:0 0 auto;height:100%;width:auto;
+    min-width:clamp(88px, 28vw, 140px);max-width:46%;
+    display:block;object-fit:contain;object-position:center;
     image-rendering:pixelated;image-rendering:crisp-edges;
-    border:1px solid var(--btnborder);border-radius:4px;background:rgba(0,0,0,.4);padding:2px;}
+    border:1px solid var(--btnborder);border-radius:4px;background:rgba(0,0,0,.4);}
   .travel-head-body{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;justify-content:center;gap:4px;}
   .travel-head-title{font-family:"Didot","Bodoni MT","Playfair Display",Georgia,serif;
     font-size:clamp(1.15rem, 5.8vw, 1.55rem);font-weight:900;color:var(--amber);letter-spacing:2px;
@@ -114,15 +115,17 @@
   .travel-head-sub{font-size:clamp(.6rem, 2.6vw, .72rem);color:var(--dim);line-height:1.3;padding:0 2px;}
   .travel-list{flex:1 1 0;min-height:0;overflow:hidden;display:flex;flex-direction:column;
     gap:5px;padding:6px 8px;}
-  .travel-row{flex:1 1 0;min-height:0;display:flex;align-items:center;gap:8px;
-    padding:4px 8px;border:1px solid var(--btnborder);border-radius:6px;
+  .travel-row{flex:1 1 0;min-height:0;display:flex;align-items:stretch;gap:6px;
+    padding:3px 8px 3px 3px;border:1px solid var(--btnborder);border-radius:6px;
     background:var(--panel);color:var(--text);text-align:left;cursor:pointer;width:100%;
     font-family:inherit;}
-  .travel-row img{width:clamp(48px, 13vw, 68px);height:clamp(48px, 13vw, 68px);flex:0 0 clamp(48px, 13vw, 68px);
-    display:block;object-fit:cover;border-radius:4px;
+  .travel-row img{flex:0 0 auto;height:100%;width:auto;
+    min-width:clamp(52px, 15vw, 84px);max-width:40%;aspect-ratio:1;
+    display:block;object-fit:cover;object-position:center;border-radius:4px;
     border:1px solid var(--btnborder);
     image-rendering:pixelated;image-rendering:crisp-edges;}
-  .travel-row-body{flex:1 1 auto;min-width:0;overflow:hidden;padding-right:2px;}
+  .travel-row-body{flex:1 1 auto;min-width:0;overflow:hidden;padding-right:2px;
+    display:flex;flex-direction:column;justify-content:center;}
   .travel-row-name{display:block;font-family:"Didot","Bodoni MT","Playfair Display",Georgia,serif;
     font-size:clamp(.72rem, 3.2vw, .84rem);font-weight:700;color:var(--amber);letter-spacing:.6px;
     text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
@@ -228,7 +231,15 @@
   .profit.down{color:var(--red);}
   .tutorial{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.82);display:flex;align-items:center;justify-content:center;
     padding:calc(env(safe-area-inset-top, 0px) + 16px) 16px calc(env(safe-area-inset-bottom, 0px) + 16px) 16px;}
+  .scores-play{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;overflow:hidden;gap:8px;}
+  .scores-head{flex:0 0 auto;text-align:center;font-size:clamp(.76rem, 3.4vw, .88rem);color:var(--amber);
+    letter-spacing:2px;padding:6px 0;border-bottom:1px solid var(--border);}
+  .scores-list{flex:1 1 auto;min-height:0;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-start;gap:1px;
+    border:1px solid var(--border);border-radius:8px;padding:6px 8px;background:var(--panel);}
+  .scores-empty{flex:1 1 auto;display:flex;align-items:center;justify-content:center;color:var(--dim);font-size:.82rem;text-align:center;padding:16px;}
+  .scores-foot{flex:0 0 auto;}
   .tutorial .card{border-color:var(--green);max-width:420px;width:100%;}
+  .tutorial .card-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px;}
   .save-err{text-align:center;color:var(--red);font-size:.72rem;padding:2px 0;}
 
   /* === END-OF-GAME SPLIT SCREEN === */
@@ -242,8 +253,7 @@
   .eos-amount{font-size:clamp(1.1rem,4.5vw,1.55rem);color:var(--amber);font-weight:900;
     text-align:center;letter-spacing:1px;line-height:1.15;margin-bottom:5px;}
   .eos-hs-header{font-size:.56rem;color:var(--dim);letter-spacing:2px;text-align:center;margin-bottom:3px;}
-  .eos-rows{flex:1 1 auto;overflow-y:auto;overflow-x:hidden;min-height:0;
-    -webkit-overflow-scrolling:touch;}
+  .eos-rows{flex:1 1 auto;overflow:hidden;min-height:0;display:flex;flex-direction:column;justify-content:flex-start;gap:1px;}
   .eos-row{display:flex;align-items:baseline;gap:2px;padding:1.5px 0;font-size:.68rem;line-height:1.3;}
   .eos-pos{flex:0 0 2em;text-align:right;color:var(--dim);padding-right:3px;}
   .eos-name{flex:0 0 auto;color:var(--amber);letter-spacing:.3px;white-space:nowrap;}
@@ -338,6 +348,21 @@ if (typeof document !== "undefined") {
   }
   function rankCard(r){ return r.toLowerCase().replace(/ /g,'-'); }
   function logMsg(t){ S.log.unshift(`Day ${S.day}: ${t}`); S.log = S.log.slice(0,12); }
+  function afterMarketAction(msg){
+    const stall = tickStallPressure(S);
+    if (stall) logMsg(stall);
+    if (msg) logMsg(msg);
+    save();
+  }
+
+  function mkScoreRow(h, i, isYou){
+    const tag = isYou ? `<span class="eos-tag">← YOU</span>` : '';
+    return `<div class="eos-row${isYou ? ' you' : ''}">
+      <span class="eos-pos">${i + 1}.</span>
+      <span class="eos-name">${getRank(h.score).toUpperCase()}</span>
+      <span class="eos-fill"></span>
+      <span class="eos-val">${money(h.worth)}</span>${tag}</div>`;
+  }
 
   function bindModalCard(card){
     if(!card) return;
@@ -395,13 +420,16 @@ if (typeof document !== "undefined") {
     function hideTutorial(){
       document.getElementById("tutorial-overlay")?.remove();
     }
+    function finishTutorial(){
+      localStorage.setItem(TUTORIAL_KEY, "1");
+      hideTutorial();
+      modal = null;
+      modalEscape = null;
+      render();
+    }
     function showStep(){
       if(step >= steps.length){
-        localStorage.setItem(TUTORIAL_KEY, "1");
-        hideTutorial();
-        modal = null;
-        modalEscape = null;
-        render();
+        finishTutorial();
         return;
       }
       const s = steps[step];
@@ -417,11 +445,15 @@ if (typeof document !== "undefined") {
       el.innerHTML = `<div class="card">
           <p class="na">Tip ${step+1}/${steps.length}</p>
           <h2 id="modal-title">${s.title}</h2><p>${s.body}</p>
-          <button class="full amber" id="tnext">${step===steps.length-1?"PLAY":"NEXT"}</button>
+          <div class="card-actions">
+            <button type="button" id="tskip">SKIP</button>
+            <button type="button" class="amber" id="tnext">${step===steps.length-1?"PLAY":"NEXT"}</button>
+          </div>
         </div>`;
       el.querySelector("#tnext").onclick = ()=>{ step++; showStep(); };
+      el.querySelector("#tskip").onclick = finishTutorial;
       modal = ()=>{};
-      modalEscape = ()=>{};
+      modalEscape = finishTutorial;
     }
     showStep();
   }
@@ -452,18 +484,15 @@ if (typeof document !== "undefined") {
 
   function renderScores(){
     document.getElementById("crt").classList.remove("title-mode");
-    document.getElementById("crt").classList.remove("game-mode");
-    const hs = highscores();
-    app.innerHTML = `<div class="play">
-      <div class="loc">TOP EARNERS</div>
-      <div class="market" style="overflow:auto">
-        <table><tr><th>#</th><th class="r">Take</th><th class="r">Score</th><th>Rank</th><th class="r">Date</th></tr>
-        ${hs.length?hs.map((h,i)=>`<tr><td>${i+1}</td><td class="r price">${money(h.worth)}</td>
-          <td class="r">${h.score}/100</td><td class="amber" style="font-size:.78rem;padding-left:10px">${getRank(h.score)}</td><td class="r na">${h.date}</td></tr>`).join("")
-          :`<tr><td colspan="5" class="na">No finished runs yet. The streets are waiting.</td></tr>`}
-        </table>
-      </div>
-      <button class="full" id="back" style="margin-top:10px">BACK</button>
+    document.getElementById("crt").classList.add("game-mode");
+    const hs = highscores().slice(0, 10);
+    const rows = hs.length
+      ? hs.map((h, i) => mkScoreRow(h, i, false)).join("")
+      : `<div class="scores-empty">No finished runs yet. The streets are waiting.</div>`;
+    app.innerHTML = `<div class="play scores-play">
+      <div class="scores-head">— TOP EARNERS —</div>
+      <div class="scores-list">${rows}</div>
+      <div class="scores-foot"><button class="full" id="back">BACK</button></div>
     </div>`;
     document.getElementById("back").onclick = render;
   }
@@ -475,7 +504,7 @@ if (typeof document !== "undefined") {
       const dead = p==null;
       return `<div class="market-row${dead?' dead':''}">
         <div class="goods-cell">
-          <img class="goods-icon" src="${GOODS_IMG[d.id]}" alt="">
+          <img class="goods-icon" src="${GOODS_IMG[d.id]}" alt="${d.name}">
           <span class="goods-name">${d.name}</span>
         </div>
         <span class="price-cell${dead?' na':''}">${dead?'—':money(p)}</span>
@@ -488,7 +517,7 @@ if (typeof document !== "undefined") {
     }).join("");
     app.innerHTML = `<div class="play market-play">
       <div class="loc-header">
-        <img src="${DISTRICT_IMG[S.location]||DISTRICT_IMG[HOME]}" alt="">
+        <img src="${DISTRICT_IMG[S.location]||DISTRICT_IMG[HOME]}" alt="${S.location}">
         <div class="loc-header-body">
           <div class="loc-header-title">${S.location}</div>
           <div class="loc-header-day">Day ${S.day} / ${CONFIG.days}</div>
@@ -498,7 +527,6 @@ if (typeof document !== "undefined") {
       <div class="market-mid">
         <div class="market-head">
           <span class="market-head-title">MARKET</span>
-          <span class="market-head-stash">stash ${used}/${S.space}</span>
         </div>
         <div class="market-cols">
           <span>Goods</span><span>Price</span><span>Hold</span><span></span>
@@ -571,7 +599,7 @@ if (typeof document !== "undefined") {
       conf.onclick=()=>{
         const err = mode==="buy"?buy(S,id,qty):sell(S,id,qty);
         if(err){ document.getElementById("terr").textContent=err; return; }
-        logMsg(`${mode==="buy"?"Bought":"Sold"} ${qty} ${d.name}.`); modal=null; render();
+        afterMarketAction(`${mode==="buy"?"Bought":"Sold"} ${qty} ${d.name}.`); modal=null; render();
       };
     };
     render();
@@ -583,7 +611,7 @@ if (typeof document !== "undefined") {
     modal = function(){
       const A = {
         repay:    {label:"Pay the Don", max:Math.min(S.cash,S.debt), fn:v=>bankRepay(S,v), msg:v=>`Paid the Don ${money(v)}.`},
-        borrow:   {label:"Borrow",      max:CONFIG.maxBorrow,        fn:v=>bankBorrow(S,v), msg:v=>`Borrowed ${money(v)} from the Don.`},
+        borrow:   {label:"Borrow",      max:maxBorrowAmount(S),      fn:v=>bankBorrow(S,v), msg:v=>`Borrowed ${money(v)} from the Don.`},
         deposit:  {label:"Deposit",     max:S.cash,                  fn:v=>bankDeposit(S,v), msg:v=>`Banked ${money(v)}.`},
         withdraw: {label:"Withdraw",    max:S.bank,                  fn:v=>bankWithdraw(S,v), msg:v=>`Withdrew ${money(v)}.`},
       };
@@ -592,9 +620,10 @@ if (typeof document !== "undefined") {
           <h2 id="modal-title">THE FAMILY VAULT</h2>
           <p>Your debt to the Don stands at <b class="red">${money(S.debt)}</b> — and it's climbing ${Math.round(CONFIG.loanInterest*100)}%/day.</p>
           <p>Bank <b>${money(S.bank)}</b> <span class="na">(+${Math.round(CONFIG.bankInterest*100)}%/day)</span> · Cash <b>${money(S.cash)}</b></p>
+          <p class="na">The Don caps total debt at ${money(CONFIG.maxTotalDebt)}.</p>
           <div class="btns">
             <button class="amber" data-a="repay" ${S.debt>0&&S.cash>0?'':'disabled'}>SETTLE UP</button>
-            <button data-a="borrow">BORROW</button>
+            <button data-a="borrow" ${maxBorrowAmount(S)>0?'':'disabled'}>BORROW</button>
             <button data-a="deposit" ${S.cash>0?'':'disabled'}>DEPOSIT</button>
             <button data-a="withdraw" ${S.bank>0?'':'disabled'}>WITHDRAW</button>
           </div>
@@ -615,19 +644,20 @@ if (typeof document !== "undefined") {
             <button data-q="half">½</button><button data-q="max">MAX</button>
           </div>
           <div class="btns"><button class="amber" id="ok">CONFIRM</button><button id="back">BACK</button></div>
+          <p class="err" id="berr"></p>
         </div></div>`;
         const input=document.getElementById("amt");
-        const setQ=v=>{ qty=Math.max(0,Math.min(a.max,Math.floor(v||0))); input.value=qty; };
+        const setQ=v=>{ qty=Math.max(0,Math.min(a.max,Math.floor(v||0))); input.value=qty; document.getElementById("berr").textContent=""; };
         input.oninput=()=>setQ(+input.value);
         app.querySelectorAll("[data-q]").forEach(b=> b.onclick=()=>{ const q=b.dataset.q;
           setQ(q==="max"?a.max:q==="half"?Math.floor(a.max/2):qty+(+q)); });
         bindModalCard(app.querySelector(".card"));
         document.getElementById("back").onclick=()=>{ action=null; render(); };
         document.getElementById("ok").onclick=()=>{
-          if(qty<=0) return;
+          if(qty<=0){ document.getElementById("berr").textContent="Enter an amount."; return; }
           const err = a.fn(qty);
-          if(err){ alert(err); return; }
-          logMsg(a.msg(qty));
+          if(err){ document.getElementById("berr").textContent=err; return; }
+          afterMarketAction(a.msg(qty));
           action=null; render();
         };
       }
@@ -641,7 +671,7 @@ if (typeof document !== "undefined") {
       app.innerHTML = `<div class="play travel-play">
         <div class="travel-screen" role="dialog" aria-modal="true" aria-labelledby="travel-title">
         <div class="travel-head">
-          <img src="assets/travel-car.png" alt="">
+          <img src="assets/travel-car.png" alt="On the move">
           <div class="travel-head-body">
             <div class="travel-head-title" id="travel-title">ON THE MOVE</div>
             <div class="travel-head-sub">Pick your next territory. Moving costs you day.</div>
@@ -651,7 +681,7 @@ if (typeof document !== "undefined") {
         ${LOCATIONS.map(l=>{
           const here = l === S.location;
           return `<button type="button" class="travel-row${here?' here':''}" data-go="${l}" ${here?'disabled aria-disabled="true"':''} aria-label="${here?'Current location: ':'Travel to '}${l}">
-            <img src="${DISTRICT_IMG[l]}" alt="">
+            <img src="${DISTRICT_IMG[l]}" alt="${l}">
             <span class="travel-row-body">
               <span class="travel-row-name">${l}</span>
               <span class="travel-row-desc">${TRAVEL_FLAVOR[l]||""}</span>
@@ -713,11 +743,17 @@ if (typeof document !== "undefined") {
   function runTravelEvents(done, firstEvent){
     const queue=[];
     if(firstEvent) queue.push(firstEvent);
-    if (chance(1/12)) queue.push(eventMugging);
-    if (chance(1/12)) queue.push(eventFind);
-    if (chance(1/7))  queue.push(eventStash);
-    if (chance(1/7))  queue.push(eventGun);
-    if (chance(1/7))  queue.push(eventFeds);
+    const candidates=[];
+    if (chance(1/12)) candidates.push(eventMugging);
+    if (chance(1/12)) candidates.push(eventFind);
+    if (chance(1/7))  candidates.push(eventStash);
+    if (chance(1/7))  candidates.push(eventGun);
+    if (chance(1/7))  candidates.push(eventFeds);
+    for (let i = candidates.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [candidates[i], candidates[j]] = [candidates[j], candidates[i]];
+    }
+    queue.push(...candidates.slice(0, CONFIG.maxTravelEvents));
     let i=0; const next=()=>{ if(S.over)return; if(i>=queue.length){ save(); done(); return; } queue[i++](next); };
     next();
   }
@@ -877,7 +913,7 @@ if (typeof document !== "undefined") {
     };
     const hit=()=>{ S.health-=1; if(S.health<=0){ endGame("The city has a short memory. By morning nobody will remember your name."); return true; } return false; };
     const doFight=()=>{
-      if (chance(0.45+0.12*S.guns)) cops-=1;
+      if (chance(fightKillChance(S.guns))) cops-=1;
       if (cops<=0){ const reward=randInt(3750,10000); S.cash+=reward;
         logMsg(`Beat the Feds, grabbed ${money(reward)}.`); modal=null;
         const winV=pick([
@@ -932,14 +968,7 @@ if (typeof document !== "undefined") {
     const placement=S.placement||1;
     const inTop10=placement<=10 && hs.length>0;
 
-    const mkRow=(h,i,isYou)=>{
-      const tag=isYou?`<span class="eos-tag">← YOU</span>`:'';
-      return `<div class="eos-row${isYou?' you':''}">
-        <span class="eos-pos">${i+1}.</span>
-        <span class="eos-name">${getRank(h.score).toUpperCase()}</span>
-        <span class="eos-fill"></span>
-        <span class="eos-val">${money(h.worth)}</span>${tag}</div>`;
-    };
+    const mkRow=(h,i,isYou)=>mkScoreRow(h,i,isYou);
 
     const rows=hs.map((h,i)=>mkRow(h,i,inTop10&&i===placement-1)).join('');
     const playerRow=inTop10?'':

@@ -1,0 +1,81 @@
+{
+  "generatedAt": "2026-06-15",
+  "gameDesign": {
+    "funFactor": { "score": 8, "note": "Classic buy-travel-sell loop with flavorful Prohibition events delivers satisfying tension." },
+    "replayability": { "score": 8, "note": "Random markets, scheduled rare events, and rank chase support multiple runs; 44.5–59.5% Big Daddy J rates in sim show high ceiling." },
+    "progression": { "score": 6, "note": "Single 30-day arc with rank/score only — no meta unlocks or persistent upgrades beyond high scores." },
+    "strategicDepth": { "score": 7, "note": "Territory modifiers, debt/bank arbitrage, and event chasing add layers; gun/debt exploits reduce depth for optimizers." },
+    "sessionLength": { "score": 9, "note": "15–25 minute full runs ideal for mobile; PWA offline supports commute sessions." },
+    "decisionQuality": { "score": 8, "note": "Meaningful daily choices: where to travel, what to hold, when to bank, fight vs bribe." },
+    "riskRewardBalance": { "score": 6, "note": "Aggressive strategy dominates sim (+32% avg wealth vs conservative); debt is punishing but exploitable via bank spread." },
+    "learningCurve": { "score": 7, "note": "Tutorial covers basics; territory modifiers and event calendar require discovery." },
+    "themeExecution": { "score": 9, "note": "Prohibition NYC flavor, historical event names, and deadpan copy strongly differentiate from Drug Wars." },
+    "marketDifferentiation": { "score": 8, "note": "PWA + period theme + 8-bit event art vs app-store clones; no accounts/tracking is a selling point." },
+    "viralPotential": { "score": 5, "note": "No share hooks, screenshots, or async competition; high-score table is local only." },
+    "retentionPotential": { "score": 7, "note": "One-more-run appeal from rank chase and rare event stories; limited meta may cap D30." },
+    "averageScore": 7.3
+  },
+  "monetisation": {
+    "assumptionsLabel": "All figures below are estimates — no analytics or ad SDK integrated.",
+    "freeVersion": {
+      "adPlacements": [
+        { "placement": "Interstitial after End Game", "priority": "High", "impact": "Natural break; minimal gameplay disruption" },
+        { "placement": "Rewarded video — reveal next scheduled event district", "priority": "Medium", "impact": "Adds strategy value without paywalling core loop" },
+        { "placement": "Banner on Title screen footer only", "priority": "Low", "impact": "Avoid during market/travel to preserve C Style static layout" }
+      ],
+      "frequencyRecommendation": "Max 1 interstitial per session, 3 per day; rewarded opt-in only",
+      "retentionImpactEstimate": "5–10% D7 drop if interstitials exceed 1/session (industry baseline for casual)"
+    },
+    "premiumVersion": {
+      "priceUSD": 2.99,
+      "valueProposition": [
+        "Ad-free experience",
+        "Intel Brief — event calendar showing scheduled rare/super/godlike days",
+        "Run statistics history (local)",
+        "Optional cosmetic rank card frames"
+      ],
+      "conversionLikelihood": "Moderate — niche retro audience tolerates ads; premium appeals to completionists",
+      "recommendedPricing": "$2.99 one-time is appropriate; bundle at $4.99 with cosmetic pack if IAP added later"
+    },
+    "retentionEstimates": {
+      "d1": { "range": "35–45%", "basis": "Short-session PWA, instant play, no account friction" },
+      "d7": { "range": "12–18%", "basis": "High-score chase; limited daily hooks" },
+      "d30": { "range": "5–8%", "basis": "No meta progression or social features" }
+    },
+    "conversionEstimates": {
+      "freeToPaid": { "range": "1.5–2.5%", "basis": "Niche theme, low price, ad fatigue on repeat runs" },
+      "revenuePer1000Installs": { "range": "$15–40", "basis": "Blended ads ($2–5 RPM) + 2% × $2.99 conversion" }
+    }
+  },
+  "popularity": {
+    "willPlayersEnjoyIt": true,
+    "coreLoopAddictive": true,
+    "oneMoreTurnAppeal": true,
+    "themeCompelling": true,
+    "audiences": {
+      "mostLikelyInstall": ["Retro gaming nostalgia (25–45)", "Drug Wars / Dope Wars alumni", "PWA-first mobile users", "Strategy casuals seeking short sessions"],
+      "mostLikelyRetain": ["High-score chasers", "Players who discover rare event stories", "Offline commuters"],
+      "mostLikelyPay": ["Ad-averse repeat players", "Theme enthusiasts wanting Intel Brief", "Collectors of rank cosmetics"]
+    },
+    "comparisons": {
+      "drugWars": "Same mechanical skeleton with safer theme and richer event layer — favorable for modern audiences",
+      "dopeWars": "Comparable loop; Gang Wars wins on presentation and PWA delivery",
+      "retroTradingGames": "Above average production value; hybrid UI slightly breaks pure retro fantasy",
+      "idleStrategy": "More active/decision-dense; shorter sessions than idle titles",
+      "mobileManagementSims": "Simpler economy but tighter pacing; less grind"
+    },
+    "forecast": "Moderate niche success — strong for Prohibition/retro subculture and PWA distribution; unlikely to break mass casual top charts without social/viral hooks."
+  },
+  "scores": {
+    "overallGame": 74,
+    "launchReadiness": 72
+  },
+  "scoreBreakdown": {
+    "technicalHealth": { "weight": 0.25, "score": 78, "note": "0 critical, 4 high issues; all tests pass" },
+    "uiUx": { "weight": 0.25, "score": 73, "note": "Average UI/UX/visual/a11y = 7.3/10 scaled" },
+    "balance": { "weight": 0.20, "score": 68, "note": "Aggressive dominates; gun/debt exploits; 97–100% survival" },
+    "gameDesign": { "weight": 0.15, "score": 73, "note": "7.3/10 average design categories" },
+    "assets": { "weight": 0.10, "score": 92, "note": "69 images, 0 missing refs, 1 orphan (hero.jpg)" },
+    "launchBlockers": { "weight": 0.05, "score": 85, "note": "No monetization integrated; PWA functional" }
+  }
+}

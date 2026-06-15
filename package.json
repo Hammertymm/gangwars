@@ -6,6 +6,13 @@
   "scripts": {
     "test": "node --test engine.test.js",
     "simulate": "node scripts/monte-carlo.js",
-    "sweep": "node scripts/sweep.js"
+    "sweep": "node scripts/sweep.js",
+    "audit:assets": "node scripts/audit-assets.js",
+    "audit:simulate": "node scripts/simulation-50k.js",
+    "audit:screens": "node scripts/capture-screens.js",
+    "audit:all": "node --test engine.test.js && node scripts/audit-assets.js && node scripts/simulation-50k.js"
+  },
+  "devDependencies": {
+    "playwright": "^1.60.0"
   }
 }

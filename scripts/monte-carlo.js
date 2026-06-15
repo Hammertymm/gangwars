@@ -6,7 +6,7 @@ const {
   newGame, resolveTravelMarket, applyDailyInterest,
   buy, sell, bankRepay, bankBorrow, bankDeposit, bankWithdraw,
   spaceLeft, netWorth, classicScore, getRank, profitPct, avgCost,
-  randInt, chance, pick,
+  randInt, chance, pick, fightKillChance, maxBorrowAmount, CONFIG,
 } = require('../engine.js');
 
 const RUNS = parseInt(process.argv[2] || '10000', 10);
@@ -27,8 +27,13 @@ function runTravelEvents(s, opts) {
   if (chance(1 / 7)) events.push('stash');
   if (chance(1 / 7)) events.push('gun');
   if (chance(1 / 7)) events.push('feds');
+  for (let i = events.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [events[i], events[j]] = [events[j], events[i]];
+  }
+  const queue = events.slice(0, CONFIG.maxTravelEvents);
 
-  for (const ev of events) {
+  for (const ev of queue) {
     if (s.over) break;
     switch (ev) {
       case 'mugging': {
@@ -58,7 +63,7 @@ function runTravelEvents(s, opts) {
       }
       case 'gun': {
         const cost = randInt(1500, 2500);
-        if (s.cash >= cost && s.guns === 0 && opts.buyGun) {
+        if (s.cash >= cost && opts.buyGun) {
           s.cash -= cost;
           s.guns += 1;
           s.stats.gunsBought++;
@@ -85,7 +90,7 @@ function resolveFeds(s, opts) {
       return;
     }
     if (s.guns > 0 && opts.fedsFight && cops <= 2) {
-      if (chance(0.45 + 0.12 * s.guns)) {
+      if (chance(fightKillChance(s.guns))) {
         cops -= 1;
         if (cops <= 0) {
           s.cash += randInt(3750, 10000);

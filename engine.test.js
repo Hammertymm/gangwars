@@ -5,8 +5,8 @@ const {
   GODLIKE_CHANCE, GOLDEN_GODLIKE_CHANCE,
   rollMarket, buy, sell, newGame, migrateSave, resolveTravelMarket,
   bankBorrow, bankRepay, bankDeposit, bankWithdraw, applyDailyInterest,
-  avgCost, profitPct, applyTerritoryPrice, netWorth, classicScore, PERFECT_SCORE_NET_WORTH,
-  TERRITORY_MODIFIERS, FAM_LUXURY, getRank, RANKS,
+  avgCost, profitPct, applyTerritoryPrice, marketPriceBounds, netWorth, classicScore, PERFECT_SCORE_NET_WORTH,
+  TERRITORY_MODIFIERS, FAM_LUXURY, getRank, RANKS, maxBorrowAmount, fightKillChance, tickStallPressure,
 } = require('./engine.js');
 
 describe('rollMarket', () => {
@@ -24,12 +24,17 @@ describe('rollMarket', () => {
     assert.equal(uptown, Math.round(base * (1 + TERRITORY_MODIFIERS.Uptown.luxuryBonus)));
   });
 
-  it('widens variance at Dock #13', () => {
-    const samples = Array.from({ length: 40 }, () => rollMarket('Dock #13').prices.bathgin).filter(Boolean);
-    const homeSamples = Array.from({ length: 40 }, () => rollMarket(HOME).prices.bathgin).filter(Boolean);
-    const dockSpread = Math.max(...samples) - Math.min(...samples);
-    const homeSpread = Math.max(...homeSamples) - Math.min(...homeSamples);
-    assert.ok(dockSpread >= homeSpread);
+  it('widens roll bounds at Dock #13', () => {
+    const d = DRUG.bathgin;
+    const dock = marketPriceBounds(d, 'Dock #13');
+    const home = marketPriceBounds(d, HOME);
+    assert.ok(dock.low < home.low);
+    assert.ok(dock.high > home.high);
+    assert.ok(dock.high - dock.low > home.high - home.low);
+    // variance 1.35 → extend each end by 17.5% of catalog spread
+    const extra = Math.round((d.high - d.low) * 0.35 / 2);
+    assert.equal(dock.low, Math.max(1, d.low - extra));
+    assert.equal(dock.high, d.high + extra);
   });
 });
 
@@ -87,6 +92,42 @@ describe('bank', () => {
     const s = newGame();
     assert.match(bankDeposit(s, 0), /Enter an amount/);
     assert.match(bankWithdraw(s, 1), /more than you have/);
+  });
+
+  it('enforces total debt cap', () => {
+    const s = newGame();
+    s.debt = CONFIG.maxTotalDebt - 5000;
+    assert.match(bankBorrow(s, 10000), /won't let you owe/);
+    assert.equal(bankBorrow(s, 5000), null);
+    assert.equal(s.debt, CONFIG.maxTotalDebt);
+  });
+
+  it('maxBorrowAmount respects total debt room', () => {
+    const s = newGame();
+    assert.equal(maxBorrowAmount(s), CONFIG.maxBorrow);
+    s.debt = CONFIG.maxTotalDebt - 3000;
+    assert.equal(maxBorrowAmount(s), 3000);
+    s.debt = CONFIG.maxTotalDebt;
+    assert.equal(maxBorrowAmount(s), 0);
+  });
+});
+
+describe('fightKillChance', () => {
+  it('caps kill chance at 85%', () => {
+    assert.equal(fightKillChance(0), 0.45);
+    assert.equal(fightKillChance(4), 0.85);
+    assert.equal(fightKillChance(10), 0.85);
+  });
+});
+
+describe('tickStallPressure', () => {
+  it('applies interest every N actions on day 1', () => {
+    const s = newGame();
+    s.debt = 10000;
+    for (let i = 0; i < CONFIG.day1StallActions - 1; i++) assert.equal(tickStallPressure(s), null);
+    const msg = tickStallPressure(s);
+    assert.match(msg, /patience ran out/);
+    assert.equal(s.debt, Math.round(10000 * 1.1));
   });
 });
 

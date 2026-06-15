@@ -1,0 +1,525 @@
+{
+  "generatedAt": "2026-06-15T09:50:49.572Z",
+  "totalRuns": 50000,
+  "durationSeconds": 17,
+  "archetypes": {
+    "conservative": {
+      "archetype": "Conservative Trader",
+      "key": "conservative",
+      "runs": 10000,
+      "winRate": "100.0",
+      "lossRate": "0.0",
+      "avgEndingWealth": 11498568,
+      "medianEndingWealth": 8772714,
+      "p10Wealth": 1986361,
+      "p90Wealth": 23030935,
+      "maxWealth": 142775725,
+      "minWealth": -436240,
+      "avgDebtRemaining": 17239,
+      "avgStashUtilization": "0.614",
+      "avgDaysSurvived": "31.0",
+      "avgTrades": "64.6",
+      "avgScore": "80.8",
+      "negativeNetWorthPct": "1.9",
+      "score90PlusPct": "54.0",
+      "bigDaddyJPct": "44.5",
+      "avgFedsEncounters": "4.15",
+      "avgEventsPerTrip": "0.60",
+      "districtUsage": {
+        "Kitty Kat Club": 50243,
+        "Little Italy": 48909,
+        "Dock #13": 50465,
+        "Warehouse District": 50326,
+        "Uptown": 49930,
+        "City Hall": 50119
+      },
+      "goodsBuyFrequency": {
+        "counterfeits": 1048975,
+        "moonshine": 3446974,
+        "scotch": 1816339,
+        "cognac": 676019,
+        "cigars": 2481053,
+        "art": 2137244,
+        "bathgin": 2143208,
+        "furcoats": 375692,
+        "diamonds": 175178,
+        "champagne": 185580
+      },
+      "goodsSellFrequency": {
+        "counterfeits": 964340,
+        "moonshine": 3269787,
+        "scotch": 1688502,
+        "cigars": 2351859,
+        "art": 2008153,
+        "cognac": 615916,
+        "bathgin": 2021873,
+        "furcoats": 342521,
+        "diamonds": 162139,
+        "champagne": 173020
+      },
+      "bankruptcyCauses": {
+        "feds": 1,
+        "survived": 9999
+      },
+      "rankDistribution": {
+        "Racketeer": 705,
+        "Big Daddy J": 4449,
+        "Underboss": 926,
+        "Bootlegger": 531,
+        "Nobody": 207,
+        "Crew Boss": 889,
+        "Pickpocket": 80,
+        "Godfather": 948,
+        "Wise Guy": 791,
+        "Rum Runner": 286,
+        "Hustler": 188
+      },
+      "scheduledEventRates": {
+        "rare": "4.0",
+        "superRare": "1.0",
+        "godlike": "0.4",
+        "golden": "0.1"
+      }
+    },
+    "aggressive": {
+      "archetype": "Aggressive Risk Taker",
+      "key": "aggressive",
+      "runs": 10000,
+      "winRate": "97.3",
+      "lossRate": "2.7",
+      "avgEndingWealth": 15158109,
+      "medianEndingWealth": 12057457,
+      "p10Wealth": 2427889,
+      "p90Wealth": 29507262,
+      "maxWealth": 154630766,
+      "minWealth": -436240,
+      "avgDebtRemaining": 431982,
+      "avgStashUtilization": "0.988",
+      "avgDaysSurvived": "30.9",
+      "avgTrades": "73.0",
+      "avgScore": "85.4",
+      "negativeNetWorthPct": "4.4",
+      "score90PlusPct": "67.9",
+      "bigDaddyJPct": "59.5",
+      "avgFedsEncounters": "4.11",
+      "avgEventsPerTrip": "0.59",
+      "districtUsage": {
+        "Warehouse District": 32045,
+        "Dock #13": 138952,
+        "Kitty Kat Club": 32128,
+        "City Hall": 32167,
+        "Little Italy": 31051,
+        "Uptown": 32200
+      },
+      "goodsBuyFrequency": {
+        "cigars": 3632156,
+        "scotch": 2767708,
+        "art": 3142543,
+        "moonshine": 4954036,
+        "bathgin": 3155475,
+        "counterfeits": 1865402,
+        "furcoats": 945919,
+        "diamonds": 510054,
+        "cognac": 1408149,
+        "champagne": 545110
+      },
+      "goodsSellFrequency": {
+        "cigars": 3421345,
+        "art": 2940999,
+        "scotch": 2562401,
+        "moonshine": 4695791,
+        "bathgin": 2953260,
+        "counterfeits": 1707879,
+        "furcoats": 847831,
+        "diamonds": 449175,
+        "cognac": 1278845,
+        "champagne": 486808
+      },
+      "bankruptcyCauses": {
+        "feds": 266,
+        "survived": 9734
+      },
+      "rankDistribution": {
+        "Nobody": 455,
+        "Big Daddy J": 5950,
+        "Underboss": 716,
+        "Racketeer": 340,
+        "Godfather": 839,
+        "Bootlegger": 265,
+        "Crew Boss": 643,
+        "Wise Guy": 504,
+        "Hustler": 98,
+        "Rum Runner": 149,
+        "Pickpocket": 41
+      },
+      "scheduledEventRates": {
+        "rare": "3.7",
+        "superRare": "1.0",
+        "godlike": "0.5",
+        "golden": "0.1"
+      }
+    },
+    "smuggler": {
+      "archetype": "Smuggler / Arbitrage Specialist",
+      "key": "smuggler",
+      "runs": 10000,
+      "winRate": "100.0",
+      "lossRate": "0.0",
+      "avgEndingWealth": 14834892,
+      "medianEndingWealth": 12004273,
+      "p10Wealth": 3379580,
+      "p90Wealth": 28845694,
+      "maxWealth": 142054915,
+      "minWealth": -436240,
+      "avgDebtRemaining": 436240,
+      "avgStashUtilization": "0.961",
+      "avgDaysSurvived": "31.0",
+      "avgTrades": "87.3",
+      "avgScore": "87.8",
+      "negativeNetWorthPct": "3.0",
+      "score90PlusPct": "70.3",
+      "bigDaddyJPct": "61.1",
+      "avgFedsEncounters": "4.07",
+      "avgEventsPerTrip": "0.59",
+      "districtUsage": {
+        "Kitty Kat Club": 131734,
+        "Uptown": 100721,
+        "Warehouse District": 67545
+      },
+      "goodsBuyFrequency": {
+        "scotch": 2528414,
+        "moonshine": 4269979,
+        "counterfeits": 1924181,
+        "bathgin": 2921894,
+        "furcoats": 959273,
+        "champagne": 469069,
+        "cognac": 1413620,
+        "art": 2948190,
+        "cigars": 3341150,
+        "diamonds": 442249
+      },
+      "goodsSellFrequency": {
+        "scotch": 2338621,
+        "moonshine": 4037879,
+        "counterfeits": 1756886,
+        "bathgin": 2737169,
+        "furcoats": 868725,
+        "cognac": 1278137,
+        "champagne": 421845,
+        "art": 2744330,
+        "cigars": 3146144,
+        "diamonds": 398392
+      },
+      "bankruptcyCauses": {
+        "feds": 0,
+        "survived": 10000
+      },
+      "rankDistribution": {
+        "Big Daddy J": 6115,
+        "Underboss": 828,
+        "Nobody": 307,
+        "Wise Guy": 464,
+        "Crew Boss": 619,
+        "Bootlegger": 205,
+        "Godfather": 918,
+        "Rum Runner": 119,
+        "Racketeer": 323,
+        "Hustler": 69,
+        "Pickpocket": 33
+      },
+      "scheduledEventRates": {
+        "rare": "3.9",
+        "superRare": "1.0",
+        "godlike": "0.6",
+        "golden": "0.1"
+      }
+    },
+    "debtExploiter": {
+      "archetype": "Debt Exploiter",
+      "key": "debtExploiter",
+      "runs": 10000,
+      "winRate": "100.0",
+      "lossRate": "0.0",
+      "avgEndingWealth": 12607789,
+      "medianEndingWealth": 8714337,
+      "p10Wealth": 1665997,
+      "p90Wealth": 26489720,
+      "maxWealth": 1020057572,
+      "minWealth": -1376232,
+      "avgDebtRemaining": 988127,
+      "avgStashUtilization": "0.947",
+      "avgDaysSurvived": "31.0",
+      "avgTrades": "58.4",
+      "avgScore": "79.9",
+      "negativeNetWorthPct": "2.0",
+      "score90PlusPct": "53.2",
+      "bigDaddyJPct": "45.2",
+      "avgFedsEncounters": "4.17",
+      "avgEventsPerTrip": "0.60",
+      "districtUsage": {
+        "Uptown": 50345,
+        "Dock #13": 50386,
+        "City Hall": 50150,
+        "Little Italy": 48656,
+        "Warehouse District": 50084,
+        "Kitty Kat Club": 50379
+      },
+      "goodsBuyFrequency": {
+        "bathgin": 2454610,
+        "cognac": 749597,
+        "art": 2442343,
+        "champagne": 241887,
+        "cigars": 2773694,
+        "moonshine": 3867120,
+        "scotch": 2027059,
+        "counterfeits": 1176081,
+        "furcoats": 418096,
+        "diamonds": 206532
+      },
+      "goodsSellFrequency": {
+        "bathgin": 2333679,
+        "art": 2312987,
+        "cognac": 686256,
+        "champagne": 224582,
+        "cigars": 2646730,
+        "moonshine": 3692006,
+        "scotch": 1893152,
+        "counterfeits": 1088728,
+        "furcoats": 380380,
+        "diamonds": 188421
+      },
+      "bankruptcyCauses": {
+        "feds": 0,
+        "survived": 10000
+      },
+      "rankDistribution": {
+        "Godfather": 792,
+        "Big Daddy J": 4524,
+        "Underboss": 887,
+        "Nobody": 230,
+        "Hustler": 215,
+        "Wise Guy": 809,
+        "Crew Boss": 821,
+        "Racketeer": 705,
+        "Rum Runner": 384,
+        "Pickpocket": 98,
+        "Bootlegger": 535
+      },
+      "scheduledEventRates": {
+        "rare": "4.3",
+        "superRare": "1.0",
+        "godlike": "0.5",
+        "golden": "0.1"
+      }
+    },
+    "balanced": {
+      "archetype": "Balanced Player",
+      "key": "balanced",
+      "runs": 10000,
+      "winRate": "100.0",
+      "lossRate": "0.0",
+      "avgEndingWealth": 12816331,
+      "medianEndingWealth": 9573848,
+      "p10Wealth": 2064695,
+      "p90Wealth": 26088452,
+      "maxWealth": 215530827,
+      "minWealth": -436240,
+      "avgDebtRemaining": 22762,
+      "avgStashUtilization": "0.711",
+      "avgDaysSurvived": "31.0",
+      "avgTrades": "63.3",
+      "avgScore": "82.3",
+      "negativeNetWorthPct": "1.9",
+      "score90PlusPct": "57.5",
+      "bigDaddyJPct": "48.4",
+      "avgFedsEncounters": "4.14",
+      "avgEventsPerTrip": "0.59",
+      "districtUsage": {
+        "Warehouse District": 50160,
+        "City Hall": 50063,
+        "Dock #13": 50409,
+        "Kitty Kat Club": 50255,
+        "Little Italy": 48494,
+        "Uptown": 50609
+      },
+      "goodsBuyFrequency": {
+        "cigars": 2857729,
+        "moonshine": 4089502,
+        "bathgin": 2519034,
+        "cognac": 811228,
+        "furcoats": 471997,
+        "scotch": 2123956,
+        "counterfeits": 1242550,
+        "diamonds": 217964,
+        "art": 2523640,
+        "champagne": 241098
+      },
+      "goodsSellFrequency": {
+        "cigars": 2713095,
+        "moonshine": 3886079,
+        "bathgin": 2370965,
+        "cognac": 738270,
+        "furcoats": 428578,
+        "scotch": 1971872,
+        "counterfeits": 1140536,
+        "diamonds": 198342,
+        "art": 2368227,
+        "champagne": 223735
+      },
+      "bankruptcyCauses": {
+        "feds": 2,
+        "survived": 9998
+      },
+      "rankDistribution": {
+        "Wise Guy": 748,
+        "Crew Boss": 804,
+        "Racketeer": 607,
+        "Big Daddy J": 4844,
+        "Godfather": 903,
+        "Rum Runner": 308,
+        "Bootlegger": 420,
+        "Nobody": 207,
+        "Underboss": 903,
+        "Pickpocket": 75,
+        "Hustler": 181
+      },
+      "scheduledEventRates": {
+        "rare": "3.7",
+        "superRare": "1.1",
+        "godlike": "0.6",
+        "golden": "0.1"
+      }
+    }
+  },
+  "economy": {
+    "mostProfitableStrategies": [
+      {
+        "strategy": "Aggressive Risk Taker",
+        "avgWealth": 15158109
+      },
+      {
+        "strategy": "Smuggler / Arbitrage Specialist",
+        "avgWealth": 14834892
+      }
+    ],
+    "leastProfitableStrategies": [
+      {
+        "strategy": "Conservative Trader",
+        "avgWealth": 11498568
+      },
+      {
+        "strategy": "Debt Exploiter",
+        "avgWealth": 12607789
+      }
+    ],
+    "dominantStrategy": "aggressive",
+    "overpoweredGoods": [
+      "moonshine",
+      "cigars",
+      "bathgin"
+    ],
+    "underpoweredGoods": [
+      "furcoats",
+      "champagne",
+      "diamonds"
+    ],
+    "interestOnlyDebt30Days": 436240,
+    "exploits": [
+      {
+        "id": "day1_stall",
+        "severity": "High",
+        "note": "No interest until first travel — not modeled in sim (all archetypes travel immediately)"
+      },
+      {
+        "id": "debt_stack",
+        "severity": "High",
+        "note": "Debt exploiter avg borrows per run measurable via stats.borrows"
+      },
+      {
+        "id": "gun_stack",
+        "severity": "High",
+        "note": "Aggressive archetype accumulates multiple guns; Feds death rate should be near 0"
+      },
+      {
+        "id": "event_pileup",
+        "severity": "Medium",
+        "note": "Avg events per trip: 0.59"
+      }
+    ]
+  },
+  "globalDistrictUsage": {
+    "Kitty Kat Club": 314739,
+    "Little Italy": 177110,
+    "Dock #13": 290212,
+    "Warehouse District": 250160,
+    "Uptown": 283805,
+    "City Hall": 182499
+  },
+  "globalGoodsBuyFrequency": {
+    "counterfeits": 7257189,
+    "moonshine": 20627611,
+    "scotch": 11263476,
+    "cognac": 5058613,
+    "cigars": 15085782,
+    "art": 13193960,
+    "bathgin": 13194221,
+    "furcoats": 3170977,
+    "diamonds": 1551977,
+    "champagne": 1682744
+  },
+  "balanceFindings": {
+    "dominantStrategies": [
+      {
+        "strategy": "Aggressive Risk Taker",
+        "avgWealth": 15158109
+      },
+      {
+        "strategy": "Smuggler / Arbitrage Specialist",
+        "avgWealth": 14834892
+      }
+    ],
+    "brokenStrategies": [],
+    "unusedMechanics": [
+      "Golden Godlike chase (0.1% roll)",
+      "Full debt payoff win condition"
+    ],
+    "difficultySpikes": [
+      "Day 20+ Feds bribe scale 1.5×",
+      "10% daily compound debt over 30 travels"
+    ],
+    "softLockPossibilities": [
+      "Day 1 stall (player choice)",
+      "Zero cash + zero bank + high debt + no goods"
+    ],
+    "unwinnableScenarios": [
+      "None forced — negative NW allowed at end"
+    ],
+    "exploitableLoops": [
+      {
+        "id": "day1_stall",
+        "severity": "High",
+        "note": "No interest until first travel — not modeled in sim (all archetypes travel immediately)"
+      },
+      {
+        "id": "debt_stack",
+        "severity": "High",
+        "note": "Debt exploiter avg borrows per run measurable via stats.borrows"
+      },
+      {
+        "id": "gun_stack",
+        "severity": "High",
+        "note": "Aggressive archetype accumulates multiple guns; Feds death rate should be near 0"
+      },
+      {
+        "id": "event_pileup",
+        "severity": "Medium",
+        "note": "Avg events per trip: 0.59"
+      }
+    ]
+  },
+  "debtExploiterDetail": {
+    "avgBorrows": "1.8",
+    "avgEndingDebt": 988127,
+    "avgBank": 8856257
+  }
+}

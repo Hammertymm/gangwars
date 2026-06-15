@@ -11,6 +11,9 @@ const CONFIG = {
   bankInterest: 0.06,
   unavailableChance: 1/8,
   maxBorrow: 25000,
+  maxTotalDebt: 75000,
+  maxTravelEvents: 2,
+  day1StallActions: 5,
 };
 
 const LOCATIONS = ["Little Italy","Dock #13","Kitty Kat Club","Uptown","Warehouse District","City Hall"];
@@ -109,18 +112,24 @@ function applyTerritoryPrice(d, location, basePrice){
   return Math.max(1, price);
 }
 
-function rollMarket(location){
+/** Roll bounds for a good at a location (territory variance widens low/high before randInt). */
+function marketPriceBounds(d, location){
   const mod = TERRITORY_MODIFIERS[location] || {};
+  let low = d.low, high = d.high;
+  if (mod.variance && mod.variance > 1) {
+    const spread = high - low;
+    const extra = spread * (mod.variance - 1) / 2;
+    low = Math.max(1, Math.round(low - extra));
+    high = Math.round(high + extra);
+  }
+  return { low, high };
+}
+
+function rollMarket(location){
   const prices = {};
   DRUGS.forEach(d=>{
     if (chance(CONFIG.unavailableChance)) { prices[d.id] = null; return; }
-    let low = d.low, high = d.high;
-    if (mod.variance && mod.variance > 1) {
-      const spread = high - low;
-      const extra = spread * (mod.variance - 1) / 2;
-      low = Math.max(1, Math.round(low - extra));
-      high = Math.round(high + extra);
-    }
+    const { low, high } = marketPriceBounds(d, location);
     prices[d.id] = applyTerritoryPrice(d, location, randInt(low, high));
   });
   let anomaly = null;
@@ -157,6 +166,26 @@ const RANKS = [
   'Racketeer','Wise Guy','Crew Boss','Underboss','Godfather','Big Daddy J',
 ];
 function getRank(score){ return RANKS[Math.min(10, Math.floor(Math.max(0, score) / 10))]; }
+
+/** Feds fight kill chance — capped so gun stacking cannot trivialize encounters. */
+function fightKillChance(guns){
+  return Math.min(0.85, 0.45 + 0.12 * Math.max(0, guns));
+}
+
+function maxBorrowAmount(s){
+  const room = CONFIG.maxTotalDebt - s.debt;
+  return Math.max(0, Math.min(CONFIG.maxBorrow, room));
+}
+
+function tickStallPressure(s){
+  if (s.day !== 1 || s.over) return null;
+  s.stallActions = (s.stallActions || 0) + 1;
+  if (s.stallActions > 0 && s.stallActions % CONFIG.day1StallActions === 0) {
+    applyDailyInterest(s);
+    return "The Don's patience ran out — interest hits while you linger.";
+  }
+  return null;
+}
 
 function applyDailyInterest(s){
   s.debt = Math.round(s.debt * (1 + CONFIG.loanInterest));
@@ -196,6 +225,7 @@ function bankBorrow(s, amount){
   amount = Math.floor(amount);
   if (amount <= 0) return "Enter an amount.";
   if (amount > CONFIG.maxBorrow) return `The Don won't lend more than $${CONFIG.maxBorrow.toLocaleString()} at once.`;
+  if (s.debt + amount > CONFIG.maxTotalDebt) return `The Don won't let you owe more than $${CONFIG.maxTotalDebt.toLocaleString()}.`;
   s.cash += amount; s.debt += amount; return null;
 }
 
@@ -243,7 +273,7 @@ function newGame(){
     day: 1, location: HOME, cash: CONFIG.startCash, bank: 0, debt: CONFIG.startDebt,
     space: CONFIG.startSpace, health: CONFIG.startHealth, guns: 0,
     inventory: {}, costBasis: {}, events,
-    prices: rollMarket(HOME).prices, log: [], over: false,
+    prices: rollMarket(HOME).prices, log: [], over: false, stallActions: 0,
   };
 }
 
@@ -274,6 +304,7 @@ function migrateSave(state){
   });
   if (!state.events) state.events = {};
   if (!state.costBasis) state.costBasis = {};
+  if (state.stallActions == null) state.stallActions = 0;
   return state;
 }
 
@@ -310,9 +341,10 @@ if (typeof module !== "undefined") {
     CONFIG, DRUGS, DRUG, LOCATIONS, HOME, LOCATION_FLAVOR, TERRITORY_MODIFIERS,
     FAM_ALCOHOL, FAM_LUXURY, FAM_CRIMINAL, RARE_EVENTS, SUPER_RARE_EVENTS, GODLIKE_EVENTS, GOLDEN_GODLIKE,
     GODLIKE_CHANCE, GOLDEN_GODLIKE_CHANCE,
-    rollMarket, applyTerritoryPrice, spaceUsed, spaceLeft, netWorth, classicScore, PERFECT_SCORE_NET_WORTH, getRank, RANKS,
+    rollMarket, applyTerritoryPrice, marketPriceBounds, spaceUsed, spaceLeft, netWorth, classicScore, PERFECT_SCORE_NET_WORTH, getRank, RANKS,
     applyDailyInterest, buy, sell, bankRepay, bankBorrow, bankDeposit, bankWithdraw,
     avgCost, profitPct, newGame, migrateSave, resolveTravelMarket,
+    fightKillChance, maxBorrowAmount, tickStallPressure,
     randInt, chance, pick,
   };
 }

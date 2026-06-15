@@ -1,0 +1,549 @@
+{
+  "generatedAt": "2026-06-15",
+  "totalImagesOnDisk": 69,
+  "totalReferences": 69,
+  "missing": [],
+  "orphans": [
+    "hero.jpg"
+  ],
+  "duplicates": [],
+  "dimensions": {
+    "apple-touch-icon.png": {
+      "width": 180,
+      "height": 180
+    },
+    "assets/city-hall.png": {
+      "width": 342,
+      "height": 341
+    },
+    "assets/dock-13.png": {
+      "width": 341,
+      "height": 341
+    },
+    "assets/goods/art.png": {
+      "width": 48,
+      "height": 48
+    },
+    "assets/goods/bathgin.png": {
+      "width": 48,
+      "height": 48
+    },
+    "assets/goods/champagne.png": {
+      "width": 48,
+      "height": 48
+    },
+    "assets/goods/cigars.png": {
+      "width": 48,
+      "height": 48
+    },
+    "assets/goods/cognac.png": {
+      "width": 48,
+      "height": 48
+    },
+    "assets/goods/counterfeits.png": {
+      "width": 48,
+      "height": 48
+    },
+    "assets/goods/diamonds.png": {
+      "width": 48,
+      "height": 48
+    },
+    "assets/goods/furcoats.png": {
+      "width": 48,
+      "height": 48
+    },
+    "assets/goods/moonshine.png": {
+      "width": 48,
+      "height": 48
+    },
+    "assets/goods/scotch.png": {
+      "width": 48,
+      "height": 48
+    },
+    "assets/kitty-kat-club.png": {
+      "width": 342,
+      "height": 341
+    },
+    "assets/little-italy.png": {
+      "width": 341,
+      "height": 341
+    },
+    "assets/travel-car.png": {
+      "width": 100,
+      "height": 60
+    },
+    "assets/uptown.png": {
+      "width": 341,
+      "height": 341
+    },
+    "assets/warehouse-district.png": {
+      "width": 341,
+      "height": 341
+    },
+    "cards/big-daddy-j.png": {
+      "width": 768,
+      "height": 1024
+    },
+    "cards/bootlegger.png": {
+      "width": 207,
+      "height": 315
+    },
+    "cards/crew-boss.png": {
+      "width": 184,
+      "height": 318
+    },
+    "cards/godfather.png": {
+      "width": 207,
+      "height": 318
+    },
+    "cards/hustler.png": {
+      "width": 184,
+      "height": 315
+    },
+    "cards/nobody.png": {
+      "width": 186,
+      "height": 315
+    },
+    "cards/pickpocket.png": {
+      "width": 187,
+      "height": 315
+    },
+    "cards/racketeer.png": {
+      "width": 186,
+      "height": 318
+    },
+    "cards/rum-runner.png": {
+      "width": 185,
+      "height": 315
+    },
+    "cards/underboss.png": {
+      "width": 185,
+      "height": 318
+    },
+    "cards/wise-guy.png": {
+      "width": 187,
+      "height": 318
+    },
+    "events/ambushed_rolled.png": {
+      "width": 200,
+      "height": 324
+    },
+    "events/buying_frenzy.png": {
+      "width": 200,
+      "height": 329
+    },
+    "events/dead_drop.png": {
+      "width": 194,
+      "height": 324
+    },
+    "events/flooded_market.png": {
+      "width": 194,
+      "height": 329
+    },
+    "events/godlike_celebration.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/godlike_golden.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/godlike_history.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/godlike_in_town.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/godlike_interest.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/godlike_move.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/packing_iron.png": {
+      "width": 200,
+      "height": 324
+    },
+    "events/rare_armstrong.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/rare_capone.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/rare_ellington.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/rare_event_intel.png": {
+      "width": 199,
+      "height": 329
+    },
+    "events/rare_lansky.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/rare_luciano.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/rare_madden.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/rare_midnight.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/rare_rothstein.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/rare_rumrow.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/rare_schultz.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/shortage.png": {
+      "width": 199,
+      "height": 329
+    },
+    "events/super_dempsey.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/super_hollywood.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/super_kkrevue.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/super_lindbergh.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/super_mauretania.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/super_rare_event.png": {
+      "width": 200,
+      "height": 329
+    },
+    "events/super_ruth.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/super_wales.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/super_walker.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/super_wallst.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/super_ziegfeld.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/the_feds.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/upgrade_available.png": {
+      "width": 199,
+      "height": 324
+    },
+    "hero.jpg": {
+      "width": 760,
+      "height": 769
+    },
+    "icon-192.png": {
+      "width": 192,
+      "height": 192
+    },
+    "icon-512.png": {
+      "width": 512,
+      "height": 512
+    },
+    "title-screen.png": {
+      "width": 65536,
+      "height": 4293001688
+    }
+  },
+  "districtMatrix": {
+    "Little Italy": {
+      "image": "assets/little-italy.png",
+      "exists": true,
+      "dimensions": {
+        "width": 341,
+        "height": 341
+      },
+      "marketHeader": true,
+      "travelScreen": true,
+      "inSwPrecache": true
+    },
+    "Dock #13": {
+      "image": "assets/dock-13.png",
+      "exists": true,
+      "dimensions": {
+        "width": 341,
+        "height": 341
+      },
+      "marketHeader": true,
+      "travelScreen": true,
+      "inSwPrecache": true
+    },
+    "Kitty Kat Club": {
+      "image": "assets/kitty-kat-club.png",
+      "exists": true,
+      "dimensions": {
+        "width": 342,
+        "height": 341
+      },
+      "marketHeader": true,
+      "travelScreen": true,
+      "inSwPrecache": true
+    },
+    "Uptown": {
+      "image": "assets/uptown.png",
+      "exists": true,
+      "dimensions": {
+        "width": 341,
+        "height": 341
+      },
+      "marketHeader": true,
+      "travelScreen": true,
+      "inSwPrecache": true
+    },
+    "Warehouse District": {
+      "image": "assets/warehouse-district.png",
+      "exists": true,
+      "dimensions": {
+        "width": 341,
+        "height": 341
+      },
+      "marketHeader": true,
+      "travelScreen": true,
+      "inSwPrecache": true
+    },
+    "City Hall": {
+      "image": "assets/city-hall.png",
+      "exists": true,
+      "dimensions": {
+        "width": 342,
+        "height": 341
+      },
+      "marketHeader": true,
+      "travelScreen": true,
+      "inSwPrecache": true
+    }
+  },
+  "goodsIcons": [
+    {
+      "id": "moonshine",
+      "path": "assets/goods/moonshine.png",
+      "exists": true,
+      "dimensions": {
+        "width": 48,
+        "height": 48
+      },
+      "expected": "40x40"
+    },
+    {
+      "id": "cigars",
+      "path": "assets/goods/cigars.png",
+      "exists": true,
+      "dimensions": {
+        "width": 48,
+        "height": 48
+      },
+      "expected": "40x40"
+    },
+    {
+      "id": "bathgin",
+      "path": "assets/goods/bathgin.png",
+      "exists": true,
+      "dimensions": {
+        "width": 48,
+        "height": 48
+      },
+      "expected": "40x40"
+    },
+    {
+      "id": "art",
+      "path": "assets/goods/art.png",
+      "exists": true,
+      "dimensions": {
+        "width": 48,
+        "height": 48
+      },
+      "expected": "40x40"
+    },
+    {
+      "id": "scotch",
+      "path": "assets/goods/scotch.png",
+      "exists": true,
+      "dimensions": {
+        "width": 48,
+        "height": 48
+      },
+      "expected": "40x40"
+    },
+    {
+      "id": "counterfeits",
+      "path": "assets/goods/counterfeits.png",
+      "exists": true,
+      "dimensions": {
+        "width": 48,
+        "height": 48
+      },
+      "expected": "40x40"
+    },
+    {
+      "id": "cognac",
+      "path": "assets/goods/cognac.png",
+      "exists": true,
+      "dimensions": {
+        "width": 48,
+        "height": 48
+      },
+      "expected": "40x40"
+    },
+    {
+      "id": "furcoats",
+      "path": "assets/goods/furcoats.png",
+      "exists": true,
+      "dimensions": {
+        "width": 48,
+        "height": 48
+      },
+      "expected": "40x40"
+    },
+    {
+      "id": "champagne",
+      "path": "assets/goods/champagne.png",
+      "exists": true,
+      "dimensions": {
+        "width": 48,
+        "height": 48
+      },
+      "expected": "40x40"
+    },
+    {
+      "id": "diamonds",
+      "path": "assets/goods/diamonds.png",
+      "exists": true,
+      "dimensions": {
+        "width": 48,
+        "height": 48
+      },
+      "expected": "40x40"
+    }
+  ],
+  "categories": {
+    "districts": [
+      "assets/city-hall.png",
+      "assets/dock-13.png",
+      "assets/kitty-kat-club.png",
+      "assets/little-italy.png",
+      "assets/travel-car.png",
+      "assets/uptown.png",
+      "assets/warehouse-district.png"
+    ],
+    "goods": [
+      "assets/goods/art.png",
+      "assets/goods/bathgin.png",
+      "assets/goods/champagne.png",
+      "assets/goods/cigars.png",
+      "assets/goods/cognac.png",
+      "assets/goods/counterfeits.png",
+      "assets/goods/diamonds.png",
+      "assets/goods/furcoats.png",
+      "assets/goods/moonshine.png",
+      "assets/goods/scotch.png"
+    ],
+    "events": [
+      "events/ambushed_rolled.png",
+      "events/buying_frenzy.png",
+      "events/dead_drop.png",
+      "events/flooded_market.png",
+      "events/godlike_celebration.png",
+      "events/godlike_golden.png",
+      "events/godlike_history.png",
+      "events/godlike_in_town.png",
+      "events/godlike_interest.png",
+      "events/godlike_move.png",
+      "events/packing_iron.png",
+      "events/rare_armstrong.png",
+      "events/rare_capone.png",
+      "events/rare_ellington.png",
+      "events/rare_event_intel.png",
+      "events/rare_lansky.png",
+      "events/rare_luciano.png",
+      "events/rare_madden.png",
+      "events/rare_midnight.png",
+      "events/rare_rothstein.png",
+      "events/rare_rumrow.png",
+      "events/rare_schultz.png",
+      "events/shortage.png",
+      "events/super_dempsey.png",
+      "events/super_hollywood.png",
+      "events/super_kkrevue.png",
+      "events/super_lindbergh.png",
+      "events/super_mauretania.png",
+      "events/super_rare_event.png",
+      "events/super_ruth.png",
+      "events/super_wales.png",
+      "events/super_walker.png",
+      "events/super_wallst.png",
+      "events/super_ziegfeld.png",
+      "events/the_feds.png",
+      "events/upgrade_available.png"
+    ],
+    "cards": [
+      "cards/big-daddy-j.png",
+      "cards/bootlegger.png",
+      "cards/crew-boss.png",
+      "cards/godfather.png",
+      "cards/hustler.png",
+      "cards/nobody.png",
+      "cards/pickpocket.png",
+      "cards/racketeer.png",
+      "cards/rum-runner.png",
+      "cards/underboss.png",
+      "cards/wise-guy.png"
+    ],
+    "root": [
+      "apple-touch-icon.png",
+      "hero.jpg",
+      "icon-192.png",
+      "icon-512.png",
+      "title-screen.png"
+    ]
+  },
+  "summary": {
+    "missingCount": 0,
+    "orphanCount": 1,
+    "docOnlyOrphans": [
+      "hero.jpg"
+    ],
+    "duplicateGroups": 0,
+    "allDistrictsPresent": true,
+    "allGoodsPresent": true
+  }
+}
