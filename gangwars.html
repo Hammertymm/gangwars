@@ -55,7 +55,7 @@
   /* MIDDLE — scrolls if content overflows */
   .mid{flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;
     background:var(--bg);}
-  .flavor{font-size:.74rem;color:var(--dim);padding:5px 10px 3px;line-height:1.35;
+  .flavor{font-size:.74rem;color:var(--dim);padding:5px 10px 10px;line-height:1.45;
     border-left:1px solid var(--border);border-right:1px solid var(--border);}
   .loc{font-size:.78rem;color:var(--amber);letter-spacing:1px;
     padding:4px 10px 3px;display:flex;justify-content:space-between;align-items:baseline;
@@ -131,8 +131,7 @@
   .err{color:var(--red);min-height:1em;font-size:.78rem;margin:.2rem 0;text-align:center;}
   .scr{font-size:.82rem;}
   .ticker{font-size:.72rem;color:var(--dim);letter-spacing:.5px;margin-top:8px;}
-  .flavor{font-size:.74rem;color:var(--dim);margin:4px 0 1px;line-height:1.35;
-    display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;}
+  .flavor{font-size:.74rem;color:var(--dim);margin:4px 0 1px;line-height:1.45;overflow:visible;}
   .range{font-size:.6rem;color:var(--dim);line-height:1;display:block;margin-top:1px;}
   .profit{font-size:.78rem;}
   .profit.up{color:var(--green);}
@@ -340,7 +339,7 @@ if (typeof document !== "undefined") {
         <div class="market-wrap">
           <table><thead><tr><th scope="col">Goods</th><th scope="col" class="r">Price</th><th scope="col" class="r">Hold</th><th scope="col"></th></tr></thead><tbody>${rows}</tbody></table>
         </div>
-        <div class="actlog" aria-live="polite">${S.log[0]||'The streets are quiet… for now.'}${S.log[1]?`<br><span style='opacity:.65'>${S.log[1]}</span>`:''}${S.log[2]?`<br><span style='opacity:.4'>${S.log[2]}</span>`:''}</div>
+        <div class="actlog" aria-live="polite">${S.log[0]||'The streets are quiet… for now.'}${S.log[1]?`<br><span style='opacity:.6'>${S.log[1]}</span>`:''}</div>
       </div>
       <div class="bot-bar">
         <div class="bot-stats">

@@ -35,9 +35,9 @@ const TERRITORY_MODIFIERS = {
 };
 
 const DRUGS = [
-  {id:"bathgin",      name:"Bathtub Gin",   low:50,    high:250},
+  {id:"moonshine",    name:"Moonshine",     low:50,    high:250},
   {id:"cigars",       name:"Cuban Cigars",  low:200,   high:700},
-  {id:"moonshine",    name:"Moonshine",     low:600,   high:2000},
+  {id:"bathgin",      name:"Bathtub Gin",   low:600,   high:2000},
   {id:"art",          name:"Forged Art",    low:1500,  high:5500},
   {id:"scotch",       name:"Aged Scotch",   low:4500,  high:16000},
   {id:"counterfeits", name:"Counterfeits",  low:13000, high:35000},
