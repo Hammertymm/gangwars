@@ -1,12 +1,18 @@
 /* Gang Wars — service worker
    Cache-first for app shell; network-first for icons so home-screen art updates. */
 
-const CACHE = 'gangwars-v22';
+const CACHE = 'gangwars-v24';
 const ASSETS = [
   './gangwars.html',
   './engine.js',
   './manifest.json',
-  './hero.jpg',
+  './title-screen.png',
+  './assets/little-italy.png',
+  './assets/dock-13.png',
+  './assets/kitty-kat-club.png',
+  './assets/uptown.png',
+  './assets/warehouse-district.png',
+  './assets/city-hall.png',
   './apple-touch-icon.png',
   './icon-192.png',
   './icon-512.png',

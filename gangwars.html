@@ -44,19 +44,28 @@
   /* ── three-zone permanent frame ── */
   .play{flex:1 1 auto;display:flex;flex-direction:column;min-height:0;}
 
-  /* TOP BAR — day + district, always visible */
-  .top-bar{flex:0 0 auto;display:flex;justify-content:space-between;align-items:baseline;
-    padding:6px 10px 5px;background:var(--panel);border:1px solid var(--border);border-radius:8px 8px 0 0;
-    border-bottom:none;}
-  .top-bar-day{font-size:.82rem;color:var(--dim);}
-  .top-bar-day b{font-size:1.05rem;color:var(--text);}
-  .top-bar-loc{font-size:1rem;font-weight:700;color:var(--amber);letter-spacing:.3px;text-align:right;}
+  /* LOCATION HEADER — district art + title + day + flavor */
+  .loc-header{flex:0 0 auto;display:flex;gap:10px;align-items:center;
+    padding:8px 10px;background:var(--panel);border:1px solid var(--border);
+    border-radius:8px 8px 0 0;border-bottom:none;}
+  .loc-header img{width:56px;height:56px;flex:0 0 56px;display:block;
+    object-fit:contain;image-rendering:pixelated;image-rendering:crisp-edges;}
+  .loc-header-body{flex:1 1 auto;min-width:0;}
+  .loc-header-title{font-family:"Didot","Bodoni MT","Playfair Display",Georgia,serif;
+    font-size:1.08rem;font-weight:700;color:var(--amber);letter-spacing:1px;line-height:1.15;
+    text-transform:uppercase;}
+  .loc-header-day{font-size:.76rem;color:var(--dim);margin:2px 0 3px;}
+  .loc-header-desc{font-size:.71rem;color:var(--dim);line-height:1.35;}
 
-  /* MIDDLE — scrolls if content overflows */
-  .mid{flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;
-    background:var(--bg);}
-  .flavor{font-size:.74rem;color:var(--dim);padding:5px 10px 10px;line-height:1.45;
-    border-left:1px solid var(--border);border-right:1px solid var(--border);}
+  /* MARKET — static single-screen layout (no scroll) */
+  .market-mid{flex:1 1 auto;min-height:0;overflow:hidden;display:flex;flex-direction:column;
+    background:var(--bg);border-left:1px solid var(--border);border-right:1px solid var(--border);}
+  .market-mid .market-wrap{flex:1 1 auto;min-height:0;overflow:hidden;}
+  .market-mid table{font-size:.76rem;}
+  .market-mid th,.market-mid td{padding:2px 8px;}
+  .market-mid th{font-size:.6rem;position:static;}
+  .market-mid .market-actions button{padding:3px 8px;font-size:.66rem;}
+  .market-mid .actlog{flex:0 0 auto;border-bottom:1px solid var(--border);}
   .loc{font-size:.78rem;color:var(--amber);letter-spacing:1px;
     padding:4px 10px 3px;display:flex;justify-content:space-between;align-items:baseline;
     border-left:1px solid var(--border);border-right:1px solid var(--border);}
@@ -93,12 +102,20 @@
   .hud{flex:0 0 auto;border:1px solid var(--border);border-radius:8px;padding:8px 10px;
     background:var(--panel);font-size:.82rem;line-height:1.4;}
   .hud b{color:var(--amber);} .hud .red{color:var(--red);}
-  .title-sub{flex:0 0 auto;text-align:center;font-family:'Copperplate','Copperplate Gothic Light',Futura,'Trebuchet MS',sans-serif;color:var(--dim);font-size:1rem;letter-spacing:4px;margin:6px 0 10px;}
-  .hero{flex:0 0 auto;border:2px solid var(--amber);border-radius:9px;
-    background:linear-gradient(180deg,#0f0c07,#16120b);display:flex;align-items:center;
-    justify-content:center;padding:5px;box-shadow:inset 0 0 0 1px var(--border);}
-  .hero img{width:100%;height:100%;max-height:none;object-fit:contain;
-    display:block;border-radius:5px;}
+  #crt.title-mode .masthead{display:none;}
+  #crt.title-mode{padding-top:calc(env(safe-area-inset-top, 0px) + 4px);}
+  .title-screen{position:relative;flex:1 1 auto;min-height:0;width:100%;max-height:100%;
+    aspect-ratio:682/1024;margin:0 auto;}
+  .title-screen img{position:absolute;inset:0;width:100%;height:100%;display:block;
+    object-fit:contain;user-select:none;-webkit-user-drag:none;pointer-events:none;}
+  .title-hit{position:absolute;border:0;background:transparent;cursor:pointer;padding:0;margin:0;
+    border-radius:0;min-height:0;min-width:0;}
+  .title-hit:focus-visible{outline:2px solid var(--amber);outline-offset:-2px;}
+  .title-hit:active:not(:disabled){background:rgba(231,200,121,.14);}
+  .title-hit:disabled{cursor:default;pointer-events:none;}
+  .title-hit-new{left:5%;right:5%;top:81.5%;height:7.2%;}
+  .title-hit-cont{left:5%;width:43%;top:90.8%;height:5.6%;}
+  .title-hit-scores{left:52%;width:43%;top:90.8%;height:5.6%;}
   .save-err{text-align:center;color:var(--red);font-size:.72rem;padding:1px 0;}
 
   button{font-family:inherit;background:var(--btnbg);color:var(--text);border:1px solid var(--btnborder);
@@ -200,7 +217,15 @@ if (typeof document !== "undefined") {
   const SAVE_KEY = "gw:save", HS_KEY = "gw:highscores";
   let S = null, modal = null;
   const money = n => "$"+Math.round(n).toLocaleString("en-US");
-  const GANGSTER = "hero.jpg";
+  const TITLE_SCREEN = "title-screen.png";
+  const DISTRICT_IMG = {
+    "Little Italy":       "assets/little-italy.png",
+    "Dock #13":           "assets/dock-13.png",
+    "Kitty Kat Club":     "assets/kitty-kat-club.png",
+    "Uptown":             "assets/uptown.png",
+    "Warehouse District": "assets/warehouse-district.png",
+    "City Hall":          "assets/city-hall.png",
+  };
 
 
 
@@ -320,29 +345,23 @@ if (typeof document !== "undefined") {
   }
 
   function render(){
-    if (modal){ modal(); return; }
-    if (!S){ renderTitle(); return; }
+    const crt = document.getElementById("crt");
+    if (modal){ crt.classList.remove("title-mode"); modal(); return; }
+    if (!S){ crt.classList.add("title-mode"); renderTitle(); return; }
+    crt.classList.remove("title-mode");
     if (S.over){ renderGameOver(); return; }
     renderMarket();
   }
 
   function renderTitle(){
-    const hs = highscores(), saved = load();
-    app.innerHTML = `<div class="play" style="justify-content:flex-start">
-      <div class="title-sub">Prohibition · 1929</div>
-      <div class="hero" style="flex:1 1 auto;margin-bottom:8px"><img src="${GANGSTER}" alt="gangster" /></div>
-      <div class="hud center" style="padding:16px;margin-top:8px">
-        <p style="font-family:'Copperplate','Copperplate Gothic Light',Futura,'Trebuchet MS',sans-serif;font-size:1.1rem;color:var(--amber);letter-spacing:1px;margin:.2rem 0 .6rem">
-          The Don wants his money. The Feds want your neck. Get to work.</p>
-        <p class="na" style="font-size:.78rem">Start ${money(CONFIG.startCash)} · owe the Don ${money(CONFIG.startDebt)}
-          at ${Math.round(CONFIG.loanInterest*100)}%/day · ${CONFIG.startSpace} crates of stash</p>
+    const saved = load();
+    app.innerHTML = `<div class="play" style="justify-content:center;align-items:center">
+      <div class="title-screen">
+        <img src="${TITLE_SCREEN}" alt="Gang Wars — Prohibition 1929">
+        <button type="button" class="title-hit title-hit-new" id="new" aria-label="New Game"></button>
+        <button type="button" class="title-hit title-hit-cont" id="cont" aria-label="Continue" ${saved?"":"disabled"}></button>
+        <button type="button" class="title-hit title-hit-scores" id="scores" aria-label="High Scores"></button>
       </div>
-      <button class="full amber" id="new" style="margin-top:12px">NEW GAME</button>
-      <div class="btns">
-        <button id="cont" ${saved?"":"disabled"}>CONTINUE</button>
-        <button id="scores">HIGH SCORES</button>
-      </div>
-      ${hs.length?`<p class="ticker center">Best take: ${money(hs[0].worth)} (${hs[0].date})</p>`:""}
     </div>`;
     document.getElementById("new").onclick = ()=>{ S=newGame(); save(); render(); maybeTutorial(); };
     document.getElementById("cont").onclick = ()=>{ const v=load(); if(v){ S=v; render(); maybeTutorial(); } };
@@ -350,6 +369,7 @@ if (typeof document !== "undefined") {
   }
 
   function renderScores(){
+    document.getElementById("crt").classList.remove("title-mode");
     const hs = highscores();
     app.innerHTML = `<div class="play">
       <div class="loc">TOP EARNERS</div>
@@ -381,26 +401,30 @@ if (typeof document !== "undefined") {
       </tr>`;
     }).join("");
     app.innerHTML = `<div class="play">
-      <div class="top-bar">
-        <span class="top-bar-day">Day <b>${S.day}</b>/${CONFIG.days}</span>
-        <span class="top-bar-loc">${S.location}</span>
+      <div class="loc-header">
+        <img src="${DISTRICT_IMG[S.location]||DISTRICT_IMG[HOME]}" alt="">
+        <div class="loc-header-body">
+          <div class="loc-header-title">${S.location}</div>
+          <div class="loc-header-day">Day ${S.day} / ${CONFIG.days}</div>
+          <div class="loc-header-desc">${LOCATION_FLAVOR[S.location]||""}</div>
+        </div>
       </div>
-      <div class="mid">
-        <p class="flavor">${LOCATION_FLAVOR[S.location]||""}</p>
-        <div class="loc">THE MARKET <small>stash ${used}/${S.space}</small></div>
+      <div class="mid market-mid">
+        <div class="loc">MARKET <small>stash ${used}/${S.space}</small></div>
         <div class="market-wrap">
           <table><thead><tr><th scope="col">Goods</th><th scope="col" class="r">Price</th><th scope="col" class="r">Hold</th><th scope="col"></th></tr></thead><tbody>${rows}</tbody></table>
         </div>
-        <div class="actlog" aria-live="polite">${S.log[0]||'The streets are quiet… for now.'}${S.log[1]?`<br><span style='opacity:.6'>${S.log[1]}</span>`:''}</div>
+        <div class="actlog" aria-live="polite">▸ ${S.log[0]||'The streets are quiet… for now.'}${S.log[1]?`<br><span style='opacity:.6'>▸ ${S.log[1]}</span>`:''}</div>
       </div>
       <div class="bot-bar">
         <div class="bot-stats">
           <div class="bot-stat"><span class="bot-label">CASH</span><span class="bot-val">${money(S.cash)}</span></div>
-          <div class="bot-stat right"><span class="bot-label">OWE DON</span><span class="bot-val red">${money(S.debt)}</span></div>
+          <div class="bot-stat right"><span class="bot-label">DON DEBT</span><span class="bot-val red">${money(S.debt)}</span></div>
           <div class="bot-stat"><span class="bot-label">BANK</span><span class="bot-val dim">${money(S.bank)}</span></div>
-          <div class="bot-stat right"><span class="bot-label">GUNS · HP</span><span class="bot-val dim">${S.guns} · ${S.health}/${CONFIG.startHealth}</span></div>
+          <div class="bot-stat right"><span class="bot-label">GUNS</span><span class="bot-val dim">${S.guns}</span></div>
+          <div class="bot-stat"><span class="bot-label">STASH</span><span class="bot-val dim">${used}/${S.space}</span></div>
+          <div class="bot-stat right"><span class="bot-label">HP</span><span class="bot-val dim">${S.health}/${CONFIG.startHealth}</span></div>
         </div>
-        <div class="bar"><i style="width:${used/S.space*100}%"></i></div>
         <p class="save-err" id="save-err" role="alert"></p>
         <div class="actions">
           <button class="amber" id="travel">MOVE ▸</button>
