@@ -33,51 +33,49 @@
     height:100vh;height:100svh;height:100dvh;}
   .serif{font-family:"Didot","Bodoni MT","Playfair Display",Georgia,"Times New Roman",serif;}
   #crt{width:100%;max-width:540px;display:flex;flex-direction:column;
-    min-height:0;height:100vh;height:100svh;height:100dvh;overflow:hidden;
-    padding:max(6px,env(safe-area-inset-top)) 12px max(6px,env(safe-area-inset-bottom)) 12px;background:var(--bg);}
+    min-height:0;height:100vh;height:100svh;height:100dvh;max-height:100dvh;overflow:hidden;
+    padding:calc(env(safe-area-inset-top, 0px) + 10px) 10px calc(env(safe-area-inset-bottom, 0px) + 12px) 10px;background:var(--bg);}
   .masthead{flex:0 0 auto;text-align:center;
-    border-top:4px double var(--amber);border-bottom:4px double var(--amber);
-    padding:4px 0;margin:2px 0 4px;}
-  h1{font-size:clamp(1.5rem, 8.5vw, 2.75rem);letter-spacing:3px;margin:0;line-height:1.05;
+    border-top:3px double var(--amber);border-bottom:3px double var(--amber);
+    padding:3px 0;margin:0 0 3px;}
+  h1{font-size:clamp(1.35rem, 7.5vw, 2.4rem);letter-spacing:2px;margin:0;line-height:1.05;
     color:var(--amber);text-shadow:var(--glow);font-weight:900;white-space:nowrap;}
   #app{flex:1 1 auto;display:flex;flex-direction:column;min-height:0;overflow:hidden;}
   .play{flex:1 1 auto;display:flex;flex-direction:column;min-height:0;}
-  .play-screen{flex:1 1 auto;min-height:0;justify-content:flex-start;}
+  .play-screen{flex:1 1 auto;min-height:0;justify-content:flex-start;overflow:hidden;}
 
-  .hud{flex:0 0 auto;border:1px solid var(--border);border-radius:8px;padding:10px 12px 9px;
-    background:var(--panel);font-size:.82rem;line-height:1.45;}
+  .hud{flex:0 0 auto;border:1px solid var(--border);border-radius:8px;padding:8px 10px 7px;
+    background:var(--panel);font-size:.82rem;line-height:1.4;}
   .hud b{color:var(--amber);} .hud .red{color:var(--red);}
-  .hud-top{font-size:.95rem;margin-bottom:2px;}
-  .hud-day b{font-size:1.05rem;color:var(--text);}
-  .hud-day-total{color:var(--dim);font-size:.88rem;}
-  .hud-loc{font-size:1.02rem;font-weight:700;color:var(--amber);letter-spacing:.5px;text-align:right;}
-  .hud-money{margin:8px 0 5px;}
-  .hud-stat{display:flex;flex-direction:column;gap:1px;min-width:0;}
-  .row .hud-stat:last-child{align-items:flex-end;text-align:right;}
-  .hud-stat-label{font-size:.72rem;color:var(--dim);letter-spacing:.5px;text-transform:uppercase;}
-  .hud-cash b,.hud-debt b{font-size:1.18rem;line-height:1.1;letter-spacing:.3px;}
-  .hud-debt b{font-size:1.18rem;}
-  .hud-meta{font-size:.82rem;color:var(--dim);}
-  .hud-meta b{color:var(--text);font-size:.92rem;font-weight:600;}
+  .hud-top{font-size:.9rem;margin-bottom:1px;}
+  .hud-day b{font-size:1rem;color:var(--text);}
+  .hud-day-total{color:var(--dim);font-size:.82rem;}
+  .hud-loc{font-size:.95rem;font-weight:700;color:var(--amber);letter-spacing:.3px;text-align:right;flex:1;min-width:0;}
+  .hud-stats{display:grid;grid-template-columns:1fr 1fr;gap:4px 8px;margin:5px 0 3px;}
+  .hud-stat{display:flex;flex-direction:column;gap:0;min-width:0;}
+  .hud-stat.hud-debt,.hud-stat.hud-gear{align-items:flex-end;text-align:right;}
+  .hud-stat-label{font-size:.64rem;color:var(--dim);letter-spacing:0;line-height:1.2;}
+  .hud-cash b,.hud-debt b{font-size:1.05rem;line-height:1.15;letter-spacing:0;}
+  .hud-bank b,.hud-gear b{color:var(--text);font-size:.86rem;font-weight:600;line-height:1.15;}
   .row{display:flex;justify-content:space-between;gap:10px;align-items:flex-end;}
   .bar{height:5px;background:var(--bartrack);border-radius:4px;margin-top:4px;overflow:hidden;}
   .bar > i{display:block;height:100%;background:var(--green);}
 
-  .loc{flex:0 0 auto;color:var(--amber);font-size:.84rem;letter-spacing:2px;margin:4px 2px 3px;
-    display:flex;justify-content:space-between;align-items:baseline;}
-  .loc small{color:var(--dim);font-size:.6rem;letter-spacing:1px;}
+  .loc{flex:0 0 auto;color:var(--amber);font-size:.82rem;letter-spacing:1px;margin:3px 0 2px;
+    display:flex;justify-content:space-between;align-items:baseline;gap:8px;min-width:0;}
+  .loc small{color:var(--dim);font-size:.58rem;letter-spacing:0;flex-shrink:0;white-space:nowrap;}
 
   .market{flex:0 0 auto;overflow:visible;
     border:1px solid var(--border);border-radius:7px;background:var(--bg);}
   .market.market-scroll{flex:1 1 0%;min-height:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;}
-  table{width:100%;border-collapse:collapse;font-size:.86rem;}
-  th,td{text-align:left;padding:3px 8px;border-bottom:1px solid var(--rowline);vertical-align:middle;}
+  table{width:100%;border-collapse:collapse;font-size:.82rem;}
+  th,td{text-align:left;padding:2px 6px;border-bottom:1px solid var(--rowline);vertical-align:middle;}
   th{color:var(--dim);font-weight:normal;font-size:.65rem;letter-spacing:1px;background:var(--bg);}
   .market-scroll th{position:sticky;top:0;z-index:1;}
   td.r,th.r{text-align:right;}
   tr.dead{opacity:.4;}
   .market-actions{display:flex;justify-content:flex-end;align-items:center;gap:4px;white-space:nowrap;}
-  .market-actions button,.market td button{padding:4px 8px;font-size:.72rem;margin:0;border-radius:5px;}
+  .market-actions button,.market td button{padding:3px 7px;font-size:.7rem;margin:0;border-radius:4px;}
   .price{color:var(--amber);} .have{color:var(--green);} .na{color:var(--dim);}
   .title-sub{flex:0 0 auto;text-align:center;font-family:'Copperplate','Copperplate Gothic Light',Futura,'Trebuchet MS',sans-serif;color:var(--dim);font-size:1rem;letter-spacing:4px;margin:6px 0 10px;}
   .hero{flex:0 0 auto;border:2px solid var(--amber);border-radius:9px;
@@ -86,10 +84,10 @@
   .hero img{width:100%;height:100%;max-height:none;object-fit:contain;
     display:block;border-radius:5px;}
 
-  .actlog{flex:0 0 auto;font-size:.66rem;color:var(--dim);padding:2px 2px 0;min-height:0;line-height:1.25;}
-  .play-foot{flex:1 1 0%;min-height:0;display:flex;flex-direction:column;gap:2px;padding-top:2px;}
-  .actions{flex:0 0 auto;display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:auto;padding-top:4px;}
-  .play-foot .actions button{padding:10px 10px;}
+  .actlog{flex:0 0 auto;font-size:.64rem;color:var(--dim);padding:2px 0 0;min-height:0;line-height:1.2;}
+  .play-foot{flex:0 0 auto;flex-shrink:0;display:flex;flex-direction:column;gap:1px;padding-top:2px;}
+  .actions{flex:0 0 auto;display:grid;grid-template-columns:1fr 1fr;gap:6px;padding-top:2px;}
+  .play-foot .actions button{padding:9px 6px;font-size:.76rem;letter-spacing:0;}
 
   button{font-family:inherit;background:var(--btnbg);color:var(--text);border:1px solid var(--btnborder);
     padding:12px 12px;font-size:.84rem;letter-spacing:1px;cursor:pointer;border-radius:7px;}
@@ -121,14 +119,15 @@
   .err{color:var(--red);min-height:1em;font-size:.78rem;margin:.2rem 0;text-align:center;}
   .scr{font-size:.82rem;}
   .ticker{font-size:.72rem;color:var(--dim);letter-spacing:.5px;margin-top:8px;}
-  .flavor{font-size:.78rem;color:var(--dim);margin:6px 0 2px;line-height:1.4;
-    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+  .flavor{font-size:.74rem;color:var(--dim);margin:4px 0 1px;line-height:1.35;
+    display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;}
   .range{font-size:.6rem;color:var(--dim);line-height:1;display:block;margin-top:1px;}
   .profit{font-size:.78rem;}
   .profit.up{color:var(--green);}
   .profit.down{color:var(--red);}
-  .tutorial{position:fixed;inset:0;background:rgba(0,0,0,.82);display:flex;align-items:center;justify-content:center;padding:16px;z-index:200;}
-  .tutorial .card{border-color:var(--green);}
+  .tutorial{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.82);display:flex;align-items:center;justify-content:center;
+    padding:calc(env(safe-area-inset-top, 0px) + 16px) 16px calc(env(safe-area-inset-bottom, 0px) + 16px) 16px;}
+  .tutorial .card{border-color:var(--green);max-width:420px;width:100%;}
   .save-err{text-align:center;color:var(--red);font-size:.72rem;padding:2px 0;}
 </style>
 </head>
@@ -225,23 +224,34 @@ if (typeof document !== "undefined") {
       {title:"PACK HEAT", body:"Feds show up on the road. Buy guns when offered — without one, you can only run or bribe."},
     ];
     let step = 0;
+    function hideTutorial(){
+      document.getElementById("tutorial-overlay")?.remove();
+    }
     function showStep(){
       if(step >= steps.length){
         localStorage.setItem(TUTORIAL_KEY, "1");
+        hideTutorial();
         modal = null;
         render();
         return;
       }
       const s = steps[step];
-      modal = function(){
-        app.innerHTML = `<div class="tutorial" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="card">
+      let el = document.getElementById("tutorial-overlay");
+      if(!el){
+        el = document.createElement("div");
+        el.id = "tutorial-overlay";
+        document.body.appendChild(el);
+      }
+      el.className = "tutorial";
+      el.setAttribute("role", "dialog");
+      el.setAttribute("aria-modal", "true");
+      el.innerHTML = `<div class="card">
           <p class="na">Tip ${step+1}/${steps.length}</p>
           <h2 id="modal-title">${s.title}</h2><p>${s.body}</p>
           <button class="full amber" id="tnext">${step===steps.length-1?"PLAY":"NEXT"}</button>
-        </div></div>`;
-        document.getElementById("tnext").onclick=()=>{ step++; showStep(); };
-      };
-      render();
+        </div>`;
+      el.querySelector("#tnext").onclick = ()=>{ step++; showStep(); };
+      modal = ()=>{};
     }
     showStep();
   }
@@ -314,13 +324,11 @@ if (typeof document !== "undefined") {
           <span class="hud-loc">${S.location}</span>
         </div>
         <p class="flavor">${LOCATION_FLAVOR[S.location]||""}</p>
-        <div class="row hud-money">
-          <span class="hud-stat hud-cash"><span class="hud-stat-label">Cash</span><b>${money(S.cash)}</b></span>
-          <span class="hud-stat hud-debt"><span class="hud-stat-label">Owe Don</span><b class="red">${money(S.debt)}</b></span>
-        </div>
-        <div class="row hud-meta">
-          <span class="hud-stat"><span class="hud-stat-label">Bank</span><b>${money(S.bank)}</b></span>
-          <span class="hud-stat hud-gear"><span class="hud-stat-label">Gear</span><b>${S.guns} gun${S.guns!==1?'s':''} · ${S.health}/${CONFIG.startHealth}</b></span>
+        <div class="hud-stats">
+          <div class="hud-stat hud-cash"><span class="hud-stat-label">Cash</span><b>${money(S.cash)}</b></div>
+          <div class="hud-stat hud-debt"><span class="hud-stat-label">Debt</span><b class="red">${money(S.debt)}</b></div>
+          <div class="hud-stat hud-bank"><span class="hud-stat-label">Bank</span><b>${money(S.bank)}</b></div>
+          <div class="hud-stat hud-gear"><span class="hud-stat-label">Guns</span><b>${S.guns} · ${S.health}/${CONFIG.startHealth}</b></div>
         </div>
         <div class="bar"><i style="width:${used/S.space*100}%"></i></div>
       </div>
@@ -346,24 +354,23 @@ if (typeof document !== "undefined") {
   }
 
   function fitMarketPanel(){
-    const screen = app.querySelector(".play-screen");
-    const market = app.querySelector(".market");
-    if(!screen || !market) return;
-    market.classList.remove("market-scroll");
-    market.style.maxHeight = "";
-    const hud = screen.querySelector(".hud");
-    const loc = screen.querySelector(".loc");
-    const foot = screen.querySelector(".play-foot");
-    const footH = foot
-      ? [...foot.children].reduce((sum, el) => sum + el.offsetHeight, 0) + 6
-      : 0;
-    const fixedH = (hud?.offsetHeight || 0) + (loc?.offsetHeight || 0) + footH;
-    const budget = screen.clientHeight - fixedH;
-    const contentH = market.scrollHeight;
-    if(contentH > budget){
-      market.classList.add("market-scroll");
-      market.style.maxHeight = Math.max(0, Math.floor(budget)) + "px";
-    }
+    requestAnimationFrame(()=>{
+      const screen = app.querySelector(".play-screen");
+      const market = app.querySelector(".market");
+      if(!screen || !market) return;
+      market.classList.remove("market-scroll");
+      market.style.maxHeight = "";
+      const hud = screen.querySelector(".hud");
+      const loc = screen.querySelector(".loc");
+      const foot = screen.querySelector(".play-foot");
+      const fixedH = (hud?.offsetHeight || 0) + (loc?.offsetHeight || 0) + (foot?.offsetHeight || 0);
+      const budget = screen.clientHeight - fixedH;
+      const contentH = market.scrollHeight;
+      if(contentH > budget){
+        market.classList.add("market-scroll");
+        market.style.maxHeight = Math.max(80, Math.floor(budget)) + "px";
+      }
+    });
   }
 
   /* ---------- trade — single mode (buy OR sell), opened via inline row button ---------- */
