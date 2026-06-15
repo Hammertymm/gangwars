@@ -1,13 +1,15 @@
 from PIL import Image, ImageDraw
 
-SIZE = 40
+SIZE = 48
 BG = (0, 0, 0, 0)
-DARK = (35, 22, 8, 255)
-MID = (90, 58, 18, 255)
-BRONZE = (139, 95, 28, 255)
-GOLD = (201, 162, 74, 255)
-LIGHT = (231, 200, 121, 255)
-PALE = (245, 228, 180, 255)
+SHADOW = (18, 10, 4, 255)
+DARK = (28, 16, 6, 255)
+MID = (100, 62, 20, 255)
+BRONZE = (150, 100, 30, 255)
+GOLD = (215, 175, 85, 255)
+LIGHT = (240, 210, 130, 255)
+PALE = (250, 235, 195, 255)
+FRAME = (74, 59, 34, 255)
 
 
 def new():
@@ -18,110 +20,127 @@ def save(img, name):
     img.save(f"assets/goods/{name}.png")
 
 
+def frame(d):
+    d.rectangle([1, 1, SIZE - 2, SIZE - 2], outline=FRAME, width=1)
+    d.rectangle([2, 2, SIZE - 3, SIZE - 3], outline=GOLD, width=1)
+
+
 def jug(img):
     d = ImageDraw.Draw(img)
-    d.ellipse([10, 22, 30, 38], fill=MID, outline=GOLD)
-    d.ellipse([12, 24, 28, 36], fill=DARK)
-    d.rectangle([15, 10, 25, 24], fill=BRONZE, outline=GOLD)
-    d.polygon([(15, 10), (25, 10), (23, 6), (17, 6)], fill=GOLD, outline=LIGHT)
-    d.arc([24, 14, 34, 28], 270, 90, fill=GOLD, width=2)
-    for i in range(3):
-        d.rectangle([16 + i * 3, 14, 18 + i * 3, 18], fill=LIGHT)
+    frame(d)
+    d.ellipse([11, 26, 35, 44], fill=MID, outline=GOLD, width=2)
+    d.ellipse([13, 28, 33, 42], fill=DARK)
+    d.rectangle([17, 11, 29, 28], fill=BRONZE, outline=GOLD, width=2)
+    d.polygon([(17, 11), (29, 11), (27, 6), (19, 6)], fill=GOLD, outline=LIGHT)
+    d.arc([28, 16, 40, 32], 270, 90, fill=GOLD, width=2)
+    for i, x in enumerate([19, 22, 25]):
+        d.rectangle([x, 15, x + 2, 20], fill=LIGHT)
+        d.rectangle([x, 15, x + 2, 20], outline=GOLD)
 
 
 def cigars(img):
     d = ImageDraw.Draw(img)
-    d.rectangle([5, 18, 35, 36], fill=DARK, outline=GOLD)
-    d.rectangle([7, 20, 33, 34], fill=(30, 18, 6, 255))
-    d.polygon([(5, 18), (35, 18), (33, 12), (7, 12)], fill=BRONZE, outline=GOLD)
-    for i, x in enumerate([10, 16, 22, 28]):
-        d.rectangle([x, 4 + i % 2, x + 5, 14], fill=MID, outline=GOLD)
-        d.ellipse([x + 1, 2, x + 4, 6], fill=LIGHT)
+    frame(d)
+    d.rectangle([6, 22, 40, 42], fill=DARK, outline=GOLD, width=2)
+    d.rectangle([8, 24, 38, 40], fill=(24, 14, 4, 255))
+    d.polygon([(6, 22), (40, 22), (37, 14), (9, 14)], fill=BRONZE, outline=GOLD, width=2)
+    for i, x in enumerate([11, 18, 25, 32]):
+        d.rectangle([x, 5 + i % 2, x + 6, 16], fill=MID, outline=GOLD, width=1)
+        d.ellipse([x + 1, 3, x + 5, 8], fill=LIGHT, outline=GOLD)
 
 
 def bathgin(img):
     d = ImageDraw.Draw(img)
-    d.rectangle([13, 12, 27, 36], fill=MID, outline=GOLD)
-    d.rectangle([14, 14, 26, 34], fill=(25, 35, 45, 255))
-    d.line([(16, 16), (16, 32)], fill=(60, 80, 100, 180), width=2)
-    d.rectangle([14, 20, 26, 28], fill=PALE, outline=GOLD)
-    d.rectangle([16, 22, 24, 24], fill=DARK)
-    d.rectangle([16, 25, 24, 26], fill=DARK)
-    d.rectangle([14, 6, 26, 12], fill=GOLD)
-    d.rectangle([16, 4, 24, 7], fill=LIGHT)
+    frame(d)
+    d.rectangle([15, 13, 31, 42], fill=MID, outline=GOLD, width=2)
+    d.rectangle([16, 15, 30, 40], fill=(20, 30, 42, 255))
+    d.line([(19, 17), (19, 38)], fill=(70, 95, 120, 200), width=2)
+    d.rectangle([16, 22, 30, 32], fill=PALE, outline=GOLD, width=1)
+    for y in [24, 27, 30]:
+        d.line([(18, y), (28, y)], fill=DARK, width=1)
+    d.rectangle([16, 6, 30, 13], fill=GOLD, outline=LIGHT, width=1)
+    d.rectangle([18, 3, 28, 7], fill=LIGHT, outline=GOLD)
 
 
 def art_icon(img):
     d = ImageDraw.Draw(img)
-    d.rectangle([4, 5, 36, 35], fill=GOLD)
-    d.rectangle([7, 8, 33, 32], fill=DARK)
-    d.rectangle([9, 20, 31, 30], fill=(40, 70, 35, 255))
-    d.polygon([(9, 20), (28, 12), (31, 20)], fill=(55, 95, 45, 255))
-    d.ellipse([18, 22, 24, 28], fill=(200, 180, 60, 255))
-    d.rectangle([9, 28, 31, 30], fill=(60, 45, 25, 255))
+    frame(d)
+    d.rectangle([5, 6, 42, 41], fill=GOLD, width=2)
+    d.rectangle([8, 9, 39, 38], fill=DARK, outline=BRONZE, width=1)
+    d.rectangle([10, 24, 37, 35], fill=(35, 65, 30, 255))
+    d.polygon([(10, 24), (32, 14), (37, 24)], fill=(50, 90, 40, 255), outline=(30, 55, 25, 255))
+    d.ellipse([20, 26, 28, 32], fill=(210, 190, 70, 255), outline=GOLD)
 
 
 def scotch(img):
     d = ImageDraw.Draw(img)
-    d.polygon([(12, 8), (28, 8), (29, 34), (11, 34)], fill=MID, outline=GOLD)
-    d.polygon([(13, 10), (27, 10), (28, 32), (12, 32)], fill=(30, 18, 6, 255))
-    d.rectangle([15, 4, 25, 9], fill=GOLD)
-    d.ellipse([13, 4, 27, 8], fill=LIGHT)
-    d.rectangle([14, 14, 26, 24], fill=PALE, outline=BRONZE)
-    d.rectangle([17, 16, 23, 22], fill=DARK)
+    frame(d)
+    d.polygon([(14, 9), (33, 9), (34, 40), (13, 40)], fill=MID, outline=GOLD, width=2)
+    d.polygon([(15, 11), (32, 11), (33, 38), (14, 38)], fill=(26, 14, 4, 255))
+    d.rectangle([17, 4, 31, 10], fill=GOLD, outline=LIGHT, width=1)
+    d.rectangle([16, 16, 32, 28], fill=PALE, outline=BRONZE, width=2)
+    d.rectangle([20, 19, 28, 25], fill=DARK)
+    d.line([(21, 20), (27, 24)], fill=LIGHT, width=1)
+    d.line([(27, 20), (21, 24)], fill=LIGHT, width=1)
 
 
 def counterfeits(img):
     d = ImageDraw.Draw(img)
-    for i in range(4):
-        ox, oy = i * 2, i * 3
-        d.rectangle([6 + ox, 8 + oy, 30 + ox, 24 + oy], fill=PALE, outline=GOLD)
-        d.ellipse([14 + ox, 12 + oy, 22 + ox, 20 + oy], fill=MID, outline=BRONZE)
-        d.rectangle([16 + ox, 14 + oy, 20 + ox, 18 + oy], fill=DARK)
+    frame(d)
+    stacks = [(4, 6), (8, 10), (12, 14), (16, 18)]
+    for ox, oy in stacks:
+        d.rectangle([7 + ox, 9 + oy, 33 + ox, 27 + oy], fill=PALE, outline=GOLD, width=2)
+        d.ellipse([15 + ox, 14 + oy, 25 + ox, 22 + oy], fill=MID, outline=BRONZE, width=1)
+        d.rectangle([18 + ox, 16 + oy, 22 + ox, 20 + oy], fill=DARK)
 
 
 def cognac(img):
     d = ImageDraw.Draw(img)
-    d.ellipse([9, 18, 31, 38], fill=MID, outline=GOLD)
-    d.ellipse([11, 20, 29, 36], fill=(45, 25, 8, 255))
-    d.rectangle([14, 6, 26, 20], fill=BRONZE, outline=GOLD)
-    d.arc([12, 4, 28, 12], 0, 180, fill=LIGHT, width=2)
-    d.rectangle([17, 2, 23, 6], fill=GOLD)
-    d.arc([12, 20, 22, 34], 200, 320, fill=LIGHT, width=1)
+    frame(d)
+    d.ellipse([10, 22, 36, 44], fill=MID, outline=GOLD, width=2)
+    d.ellipse([12, 24, 34, 42], fill=(40, 22, 6, 255))
+    d.rectangle([16, 7, 30, 24], fill=BRONZE, outline=GOLD, width=2)
+    d.arc([14, 4, 32, 14], 0, 180, fill=LIGHT, width=2)
+    d.rectangle([19, 2, 27, 7], fill=GOLD, outline=LIGHT)
+    d.arc([14, 24, 26, 40], 200, 320, fill=LIGHT, width=2)
 
 
 def furcoats(img):
     d = ImageDraw.Draw(img)
-    d.arc([10, 3, 30, 14], 180, 0, fill=GOLD, width=2)
-    d.line([(20, 3), (20, 8)], fill=GOLD, width=2)
-    d.polygon([(7, 12), (33, 12), (35, 36), (5, 36)], fill=BRONZE, outline=GOLD)
-    d.polygon([(10, 14), (30, 14), (32, 34), (8, 34)], fill=MID)
-    for y in range(16, 32, 3):
-        d.line([(9, y), (31, y)], fill=DARK)
-    d.line([(20, 14), (16, 28)], fill=DARK, width=2)
-    d.line([(20, 14), (24, 28)], fill=DARK, width=2)
+    frame(d)
+    d.arc([11, 3, 35, 16], 180, 0, fill=GOLD, width=2)
+    d.line([(23, 3), (23, 9)], fill=GOLD, width=2)
+    d.polygon([(8, 14), (38, 14), (40, 42), (6, 42)], fill=BRONZE, outline=GOLD, width=2)
+    d.polygon([(11, 16), (35, 16), (37, 40), (9, 40)], fill=MID)
+    for y in range(18, 38, 4):
+        d.line([(10, y), (36, y)], fill=DARK, width=1)
+    d.line([(23, 16), (18, 34)], fill=DARK, width=2)
+    d.line([(23, 16), (28, 34)], fill=DARK, width=2)
 
 
 def champagne(img):
     d = ImageDraw.Draw(img)
-    d.polygon([(13, 10), (27, 10), (28, 36), (12, 36)], fill=MID, outline=GOLD)
-    d.polygon([(14, 12), (26, 12), (27, 34), (13, 34)], fill=(35, 20, 5, 255))
-    d.rectangle([12, 4, 28, 11], fill=GOLD)
-    d.polygon([(12, 4), (28, 4), (26, 1), (14, 1)], fill=LIGHT)
-    d.line([(13, 12), (27, 12)], fill=LIGHT)
-    d.line([(14, 20), (26, 20)], fill=(50, 30, 10, 255))
+    frame(d)
+    d.polygon([(15, 11), (31, 11), (32, 42), (14, 42)], fill=MID, outline=GOLD, width=2)
+    d.polygon([(16, 13), (30, 13), (31, 40), (15, 40)], fill=(30, 16, 4, 255))
+    d.rectangle([14, 4, 32, 12], fill=GOLD, outline=LIGHT, width=2)
+    d.polygon([(14, 4), (32, 4), (29, 1), (17, 1)], fill=LIGHT, outline=GOLD)
+    d.line([(15, 13), (31, 13)], fill=LIGHT, width=1)
+    d.line([(16, 22), (30, 22)], fill=(55, 32, 10, 255), width=1)
 
 
 def diamonds(img):
     d = ImageDraw.Draw(img)
-    d.polygon([(20, 2), (36, 18), (20, 38), (4, 18)], fill=GOLD)
-    d.polygon([(20, 5), (33, 18), (20, 35), (7, 18)], fill=LIGHT)
-    d.polygon([(20, 5), (33, 18), (20, 18)], fill=PALE)
-    d.polygon([(20, 5), (7, 18), (20, 18)], fill=LIGHT)
-    d.polygon([(20, 35), (33, 18), (20, 18)], fill=BRONZE)
-    d.polygon([(20, 35), (7, 18), (20, 18)], fill=MID)
-    d.line([(20, 5), (20, 35)], fill=GOLD)
-    d.line([(7, 18), (33, 18)], fill=GOLD)
+    frame(d)
+    d.polygon([(24, 3), (42, 21), (24, 44), (6, 21)], fill=GOLD, width=2)
+    d.polygon([(24, 6), (39, 21), (24, 41), (9, 21)], fill=LIGHT)
+    d.polygon([(24, 6), (39, 21), (24, 21)], fill=PALE)
+    d.polygon([(24, 6), (9, 21), (24, 21)], fill=LIGHT)
+    d.polygon([(24, 41), (39, 21), (24, 21)], fill=BRONZE)
+    d.polygon([(24, 41), (9, 21), (24, 21)], fill=MID)
+    d.line([(24, 6), (24, 41)], fill=GOLD, width=2)
+    d.line([(9, 21), (39, 21)], fill=GOLD, width=2)
+    d.ellipse([21, 10, 27, 16], fill=PALE)
 
 
 icons = {
