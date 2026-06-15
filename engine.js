@@ -86,6 +86,15 @@ const GODLIKE_EVENTS = [
   {id:'history',     img:'events/godlike_history.png',     lines:['BIG DADDY J MAKES HISTORY','THE CITY WILL REMEMBER THIS DAY']},
 ];
 
+const GOLDEN_GODLIKE = {
+  id:'golden',
+  img:'events/godlike_golden.png',
+  lines:['GOLDEN SHOWER!!!','EVERYWHERE!!!'],
+};
+
+const GODLIKE_CHANCE = 0.002;
+const GOLDEN_GODLIKE_CHANCE = GODLIKE_CHANCE / 5;
+
 function randInt(min,max){ return Math.floor(Math.random()*(max-min+1))+min; }
 function chance(p){ return Math.random() < p; }
 function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
@@ -220,7 +229,9 @@ function newGame(){
     const sr = pick(SUPER_RARE_EVENTS);
     if (sr) events.superRare = {...sr, day: randInt(5, 25)};
   }
-  if (chance(0.002)){
+  if (chance(GOLDEN_GODLIKE_CHANCE)){
+    events.goldenGodlike = {...GOLDEN_GODLIKE, day: randInt(5, 25)};
+  } else if (chance(GODLIKE_CHANCE)){
     const gl = pick(GODLIKE_EVENTS);
     if (gl) events.godlike = {...gl, day: randInt(5, 25), district: pick(LOCATIONS)};
   }
@@ -268,12 +279,15 @@ function resolveTravelMarket(state, dest){
   let anomaly = m.anomaly;
   const sr = state.events && state.events.superRare;
   const gk = state.events && state.events.godlike;
+  const golden = state.events && state.events.goldenGodlike;
   const re = state.events && state.events.rare;
 
   if (sr && state.day === sr.day && dest === sr.district){
     Object.keys(prices).forEach(id=>{ if (prices[id]) prices[id] = Math.round(prices[id] * 3); });
   }
-  if (gk && state.day === gk.day && dest === gk.district){
+  if (golden && state.day === golden.day){
+    Object.keys(prices).forEach(id=>{ if (prices[id]) prices[id] = Math.round(prices[id] * 10); });
+  } else if (gk && state.day === gk.day && dest === gk.district){
     Object.keys(prices).forEach(id=>{ if (prices[id]) prices[id] = Math.round(prices[id] * 10); });
   }
   if (re && state.day === re.day && dest === re.district){
@@ -284,13 +298,14 @@ function resolveTravelMarket(state, dest){
     }
   }
 
-  return { prices, anomaly, sr, gk, re };
+  return { prices, anomaly, sr, gk, golden, re };
 }
 
 if (typeof module !== "undefined") {
   module.exports = {
     CONFIG, DRUGS, DRUG, LOCATIONS, HOME, LOCATION_FLAVOR, TERRITORY_MODIFIERS,
-    FAM_ALCOHOL, FAM_LUXURY, FAM_CRIMINAL, RARE_EVENTS, SUPER_RARE_EVENTS, GODLIKE_EVENTS,
+    FAM_ALCOHOL, FAM_LUXURY, FAM_CRIMINAL, RARE_EVENTS, SUPER_RARE_EVENTS, GODLIKE_EVENTS, GOLDEN_GODLIKE,
+    GODLIKE_CHANCE, GOLDEN_GODLIKE_CHANCE,
     rollMarket, applyTerritoryPrice, spaceUsed, spaceLeft, netWorth, classicScore, getRank, RANKS,
     applyDailyInterest, buy, sell, bankRepay, bankBorrow, bankDeposit, bankWithdraw,
     avgCost, profitPct, newGame, migrateSave, resolveTravelMarket,

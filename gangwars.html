@@ -534,12 +534,15 @@ if (typeof document !== "undefined") {
   function travelTo(dest){
     modal=null; S.location=dest; S.day+=1; applyDailyInterest(S);
     if (S.day > CONFIG.days){ endGame(); return; }
-    const { prices, anomaly, sr, gk, re } = resolveTravelMarket(S, dest);
+    const { prices, anomaly, sr, gk, golden, re } = resolveTravelMarket(S, dest);
     S.prices = prices;
     if (LOCATION_FLAVOR[dest]) logMsg(`Arrived in ${dest}. ${LOCATION_FLAVOR[dest]}`);
 
     let marketEvent=null;
-    if(gk && S.day===gk.day){
+    if(golden && S.day===golden.day){
+      const goldenImg=golden.img||'bigdaddy';
+      marketEvent=(next)=>showEvent(goldenImg, `<b>${golden.lines[0]}</b><br><br>${golden.lines[1]} Every price in the city is climbing.`, 'GOLDEN', next);
+    } else if(gk && S.day===gk.day){
       const gkImg=gk.img||'bigdaddy';
       if(dest===gk.district){
         marketEvent=(next)=>showEvent(gkImg, `<b>${gk.lines[0]}</b><br><br>${gk.lines[1]}`, 'BIG DADDY J', next);

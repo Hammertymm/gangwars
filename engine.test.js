@@ -1,7 +1,8 @@
 const { describe, it } = require('node:test');
 const assert = require('node:assert/strict');
 const {
-  CONFIG, DRUG, DRUGS, HOME, LOCATIONS, RARE_EVENTS, SUPER_RARE_EVENTS, GODLIKE_EVENTS,
+  CONFIG, DRUG, DRUGS, HOME, LOCATIONS, RARE_EVENTS, SUPER_RARE_EVENTS, GODLIKE_EVENTS, GOLDEN_GODLIKE,
+  GODLIKE_CHANCE, GOLDEN_GODLIKE_CHANCE,
   rollMarket, buy, sell, newGame, migrateSave, resolveTravelMarket,
   bankBorrow, bankRepay, avgCost, profitPct, applyTerritoryPrice,
   TERRITORY_MODIFIERS, FAM_LUXURY, getRank, RANKS,
@@ -93,6 +94,17 @@ describe('GODLIKE_EVENTS', () => {
   });
 });
 
+describe('GOLDEN_GODLIKE', () => {
+  it('has img and lines', () => {
+    assert.ok(GOLDEN_GODLIKE.lines && GOLDEN_GODLIKE.lines.length === 2);
+    assert.ok(GOLDEN_GODLIKE.img.startsWith('events/godlike_'));
+  });
+
+  it('is five times rarer than a standard godlike roll', () => {
+    assert.equal(GOLDEN_GODLIKE_CHANCE, GODLIKE_CHANCE / 5);
+  });
+});
+
 describe('resolveTravelMarket', () => {
   it('applies rare spike only in matching district on event day', () => {
     const re = RARE_EVENTS[0];
@@ -116,6 +128,22 @@ describe('resolveTravelMarket', () => {
     assert.ok(ids.length > 0);
     const id = ids[0];
     assert.ok(uptown.prices[id] >= elsewhere.prices[id] * 5);
+  });
+
+  it('applies golden godlike x10 in every district on event day', () => {
+    const s = newGame();
+    s.day = 9;
+    s.events.goldenGodlike = { ...GOLDEN_GODLIKE, day: 9 };
+    s.prices = rollMarket(HOME).prices;
+    const home = resolveTravelMarket(s, HOME);
+    const dock = resolveTravelMarket(s, 'Dock #13');
+    const id = DRUGS.find(d => home.prices[d.id] && dock.prices[d.id])?.id;
+    assert.ok(id);
+    delete s.events.goldenGodlike;
+    const baselineHome = resolveTravelMarket(s, HOME);
+    const baselineDock = resolveTravelMarket(s, 'Dock #13');
+    assert.ok(home.prices[id] >= baselineHome.prices[id] * 5);
+    assert.ok(dock.prices[id] >= baselineDock.prices[id] * 5);
   });
 
   it('applies super rare x3 in matching district', () => {
