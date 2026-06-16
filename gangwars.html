@@ -192,25 +192,23 @@
     background:var(--panel);font-size:.82rem;line-height:1.4;}
   .hud b{color:var(--amber);} .hud .red{color:var(--red);}
   #crt.title-mode .masthead{display:none;}
-  #crt.title-mode{padding:env(safe-area-inset-top, 0px) 0 env(safe-area-inset-bottom, 0px) 0;}
+  #crt.title-mode{background:#0a0a0a;padding:env(safe-area-inset-top, 0px) 0 env(safe-area-inset-bottom, 0px) 0;}
   #crt.title-mode #app{flex:1 1 auto;min-height:0;overflow:hidden;display:flex;flex-direction:column;}
   .title-play{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;overflow:hidden;}
-  .title-screen{position:relative;flex:1 1 auto;min-height:0;width:100%;height:100%;overflow:hidden;}
-  .title-screen img{position:absolute;inset:0;width:100%;height:100%;display:block;
-    object-fit:fill;user-select:none;-webkit-user-drag:none;pointer-events:none;}
+  .title-screen{flex:1 1 auto;min-height:0;width:100%;display:flex;align-items:center;
+    justify-content:center;overflow:hidden;background:#0a0a0a;container-type:size;}
+  .title-art{position:relative;aspect-ratio:481/1024;
+    width:min(100cqw,calc(100cqh * 481 / 1024));max-height:100cqh;}
+  .title-art img{width:100%;height:100%;display:block;user-select:none;-webkit-user-drag:none;
+    pointer-events:none;}
   .title-hit{position:absolute;border:0;background:transparent;cursor:pointer;padding:0;margin:0;
-    border-radius:0;min-height:0;min-width:0;}
+    border-radius:0;min-height:0;min-width:0;-webkit-tap-highlight-color:transparent;}
   .title-hit:focus-visible{outline:2px solid var(--amber);outline-offset:-2px;}
-  .title-hit:active:not(:disabled){background:rgba(231,200,121,.14);}
-  .title-hit:disabled{cursor:default;pointer-events:none;}
-  .title-hit-new{left:3.5%;right:3.5%;top:84.5%;height:7.5%;}
-  .title-hit-cont{left:3.5%;width:28%;top:91%;height:7.8%;}
-  .title-hit-scores{left:33.5%;width:28%;top:91%;height:7.8%;}
-  .title-hit-ledger{left:63.5%;width:33%;top:91%;height:7.8%;}
-  .title-ledger-progress{position:absolute;left:63.5%;width:33%;top:88.2%;height:2.4%;
-    display:flex;align-items:center;justify-content:center;text-align:center;
-    font-size:clamp(.42rem,1.8vw,.52rem);color:var(--amber);letter-spacing:.6px;
-    pointer-events:none;text-shadow:0 1px 2px rgba(0,0,0,.85);line-height:1.1;}
+  .title-hit:disabled{cursor:default;pointer-events:none;opacity:0;}
+  .title-hit-new{left:3.742%;width:43.451%;top:81.152%;height:7.129%;}
+  .title-hit-cont{left:51.975%;width:43.867%;top:81.152%;height:7.129%;}
+  .title-hit-ledger{left:3.742%;width:43.451%;top:89.063%;height:7.227%;}
+  .title-hit-scores{left:51.975%;width:43.867%;top:89.063%;height:7.227%;}
   .save-err{text-align:center;color:var(--red);font-size:.72rem;padding:1px 0;}
 
   /* CRIME LEDGER */
@@ -836,15 +834,16 @@ if (typeof document !== "undefined") {
 
   function renderTitle(){
     const saved = load();
-    const prog = ledgerProgressText();
     app.innerHTML = `<div class="play title-play">
       <div class="title-screen">
-        <img src="${TITLE_SCREEN}" alt="Gang Wars — Prohibition 1929">
-        <button type="button" class="title-hit title-hit-new" id="new" aria-label="New Game"></button>
-        <button type="button" class="title-hit title-hit-cont" id="cont" aria-label="Continue" ${saved?"":"disabled"}></button>
-        <button type="button" class="title-hit title-hit-scores" id="scores" aria-label="High Scores"></button>
-        <div class="title-ledger-progress" aria-hidden="true">${prog}</div>
-        <button type="button" class="title-hit title-hit-ledger" id="ledger" aria-label="Crime Ledger"></button>
+        <div class="title-art">
+          <img src="${TITLE_SCREEN}" width="481" height="1024" decoding="async" fetchpriority="high"
+            alt="Gang Wars — Prohibition 1929">
+          <button type="button" class="title-hit title-hit-new" id="new" aria-label="New Game"></button>
+          <button type="button" class="title-hit title-hit-cont" id="cont" aria-label="Continue" ${saved?"":"disabled"}></button>
+          <button type="button" class="title-hit title-hit-ledger" id="ledger" aria-label="Crime Ledger"></button>
+          <button type="button" class="title-hit title-hit-scores" id="scores" aria-label="High Scores"></button>
+        </div>
       </div>
     </div>`;
     document.getElementById("new").onclick = ()=>{ startNewGame(); render(); maybeTutorial(); };
