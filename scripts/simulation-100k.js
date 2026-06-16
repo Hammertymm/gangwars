@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/* 60,000-run gameplay simulation — 6 player archetypes × 10,000 runs */
+/* 100,000-run gameplay simulation — 10 player archetypes × 10,000 runs */
 
 const fs = require('fs');
 const path = require('path');
@@ -9,18 +9,21 @@ const {
   newGame, resolveTravelMarket, applyDailyInterest,
   buy, sell, bankRepay, bankBorrow, bankDeposit,
   spaceLeft, spaceUsed, netWorth, classicScore, getRank, profitPct, avgCost,
-  randInt, chance, pick, fightKillChance, fedsCounterHitChance, gunEventCost,
-  maxBorrowAmount, tickStallPressure, checkDebtCap,
+  randInt, chance, pick, fightKillChance, fedsCounterHitChance, fedsApplyFightKill, gunEventCost,
+  rollStashUpgrade, maxBorrowAmount, tickStallPressure, checkDebtCap,
+  bankDepositLimit, grantDebtInterestFreeze,
 } = require('../engine.js');
 const {
   LEDGER_CATEGORIES, LEDGER_TOTAL, emptyLedger,
   migrateRunStats, recordDistrictVisit, recordBuy, recordSell, recordBorrow,
   recordSpaceChange, checkGeneralAchievements, checkEndRunAchievements,
   unlockEventAchievement, countDiscovered, isCategoryComplete, checkMasterComplete,
+  eventRollChances, recordEventPityTravel, resetEventPity,
+  isEventLedgerSlow, countEventAchievementsUnlocked, isUnlocked,
 } = require('../ledger.js');
 
 const RUNS_PER_ARCHETYPE = 10000;
-const OUT = path.join(__dirname, '..', 'docs', 'review', 'simulation-50k.json');
+const OUT = path.join(__dirname, '..', 'docs', 'review', 'simulation-100k.json');
 
 function hit(s) {
   s.health -= 1;
@@ -44,13 +47,12 @@ function resolveFeds(s, opts) {
       return;
     }
     if (s.guns > 0 && opts.fedsFight) {
-      if (chance(fightKillChance(s.guns))) {
-        cops -= 1;
-        if (cops <= 0) {
-          s.cash += randInt(3750, 10000);
-          s.stats.fedsWins++;
-          return;
-        }
+      cops = fedsApplyFightKill(s, cops, rounds);
+      if (cops <= 0) {
+        s.cash += randInt(3750, 10000);
+        grantDebtInterestFreeze(s, 1);
+        s.stats.fedsWins++;
+        return;
       }
       if (chance(fedsCounterHitChance(s.guns, rounds, s.day)) && hit(s)) {
         s.over = true;
@@ -116,8 +118,7 @@ function runTravelEvents(s, opts) {
         break;
       }
       case 'stash': {
-        const add = pick([10, 15, 20, 30]);
-        const cost = add * randInt(90, 110);
+        const { add, cost } = rollStashUpgrade();
         if (s.cash >= cost && opts.buyStash) {
           s.cash -= cost;
           s.space += add;
@@ -189,7 +190,9 @@ function pickDestination(s, opts) {
     if (bestDest && bestScore > 0) return bestDest;
   }
 
-  if (opts.preferDock && chance(0.4)) return 'Dock #13';
+  if (opts.preferHome && s.location !== HOME && chance(opts.preferHomeWeight ?? 0.35)) return HOME;
+  if (opts.preferUptown && chance(opts.preferUptownWeight ?? 0.45)) return 'Uptown';
+  if (opts.preferDock && chance(opts.preferDockWeight ?? 0.4)) return 'Dock #13';
   return pick(LOCATIONS.filter(l => l !== s.location));
 }
 
@@ -199,7 +202,8 @@ function syncLedger(s, ledger) {
 }
 
 function trade(s, opts, ledger) {
-  for (const d of DRUGS) {
+  const drugs = opts.luxuryOnly ? DRUGS.filter(d => FAM_LUXURY.has(d.id)) : DRUGS;
+  for (const d of drugs) {
     const qty = s.inventory[d.id] || 0;
     if (qty <= 0 || s.prices[d.id] == null) continue;
     const pct = profitPct(s, d.id, s.prices[d.id]);
@@ -215,7 +219,7 @@ function trade(s, opts, ledger) {
   }
 
   const candidates = [];
-  for (const d of DRUGS) {
+  for (const d of drugs) {
     const price = s.prices[d.id];
     if (price == null) continue;
     const mid = (d.low + d.high) / 2;
@@ -260,7 +264,7 @@ function bankAtHome(s, opts, ledger) {
   }
 
   if (opts.useBank && s.cash > (opts.depositThreshold || 15000)) {
-    const dep = Math.floor(s.cash * opts.depositFraction);
+    const dep = Math.min(Math.floor(s.cash * opts.depositFraction), bankDepositLimit(s));
     if (dep > 0) bankDeposit(s, dep);
   }
   if (ledger) syncLedger(s, ledger);
@@ -288,11 +292,16 @@ function travelTo(s, dest, opts, ledger) {
   const market = resolveTravelMarket(s, dest);
   s.prices = market.prices;
   if (ledger) {
+    const eventsBefore = countEventAchievementsUnlocked(ledger);
     if (market.golden && s.day === market.golden.day) unlockEventAchievement(ledger, 'golden');
     if (market.gk && s.day === market.gk.day) unlockEventAchievement(ledger, market.gk.id);
     if (market.sr && s.day === market.sr.day) unlockEventAchievement(ledger, market.sr.id);
     if (market.re && s.day === market.re.day) unlockEventAchievement(ledger, market.re.id);
+    if (countEventAchievementsUnlocked(ledger) > eventsBefore) resetEventPity(ledger);
     syncLedger(s, ledger);
+    if (isEventLedgerSlow(ledger) && countEventAchievementsUnlocked(ledger) === eventsBefore) {
+      recordEventPityTravel(ledger);
+    }
   }
   if (market.golden && s.day === market.golden.day) s.stats.goldenHits++;
   if (market.gk && s.day === market.gk.day && dest === market.gk.district) s.stats.godlikeHits++;
@@ -324,9 +333,12 @@ function initStats(s) {
   if (s.events.goldenGodlike) s.stats.scheduledGolden = 1;
 }
 
-function playGame(opts) {
-  const s = newGame();
-  const ledger = emptyLedger();
+function playGame(opts, accountLedger) {
+  const ledger = accountLedger || emptyLedger();
+  const unlockedBefore = new Set(
+    Object.keys(ledger.achievements).filter(id => isUnlocked(ledger, id))
+  );
+  const s = newGame(eventRollChances(ledger));
   s.over = false;
   s.deathReason = null;
   initStats(s);
@@ -362,7 +374,9 @@ function playGame(opts) {
 
   const worth = netWorth(s);
   const used = spaceUsed(s.inventory);
-  const unlockedThisRun = Object.keys(ledger.achievements).filter(id => ledger.achievements[id].unlocked);
+  const unlockedThisRun = Object.keys(ledger.achievements).filter(
+    id => isUnlocked(ledger, id) && !unlockedBefore.has(id)
+  );
   const categoriesComplete = LEDGER_CATEGORIES.filter(cat => isCategoryComplete(ledger, cat.id)).map(c => c.id);
   return {
     worth, score: classicScore(s), rank: getRank(classicScore(s)),
@@ -382,6 +396,7 @@ function playGame(opts) {
 
 const ARCHETYPES = {
   conservative: {
+    group: 'original',
     label: 'Conservative Trader',
     sellProfitPct: 20,
     buyThreshold: 0.82,
@@ -403,6 +418,7 @@ const ARCHETYPES = {
     buyMultiple: false,
   },
   aggressive: {
+    group: 'original',
     label: 'Aggressive Risk Taker',
     sellProfitPct: 5,
     buyThreshold: 1.05,
@@ -420,6 +436,7 @@ const ARCHETYPES = {
     buyMultiple: true,
   },
   smuggler: {
+    group: 'original',
     label: 'Smuggler / Arbitrage Specialist',
     sellProfitPct: 12,
     buyThreshold: 0.92,
@@ -439,6 +456,7 @@ const ARCHETYPES = {
     buyMultiple: true,
   },
   debtExploiter: {
+    group: 'original',
     label: 'Debt Exploiter',
     sellProfitPct: 10,
     buyThreshold: 0.95,
@@ -458,6 +476,7 @@ const ARCHETYPES = {
     buyMultiple: false,
   },
   balanced: {
+    group: 'original',
     label: 'Balanced Player',
     sellProfitPct: 15,
     buyThreshold: 0.85,
@@ -476,11 +495,76 @@ const ARCHETYPES = {
     borrowMax: false,
     buyMultiple: false,
   },
-  day1Staller: {
-    label: 'Day 1 Staller',
-    sellProfitPct: 12,
+  eventHunter: {
+    group: 'new',
+    label: 'Event Hunter',
+    sellProfitPct: 8,
+    buyThreshold: 1.0,
+    maxBuyQty: 35,
+    chaseEvents: true,
+    preferDock: false,
+    arbitrageMode: false,
+    buyStash: true,
+    buyGun: false,
+    fedsPreferBribe: true,
+    fedsFight: false,
+    repayDebt: true,
+    repayFraction: 0.15,
+    keepCash: 5000,
+    useBank: false,
+    borrowMax: false,
+    buyMultiple: false,
+  },
+  dockRunner: {
+    group: 'new',
+    label: 'Dock Runner',
+    sellProfitPct: 10,
     buyThreshold: 0.88,
-    maxBuyQty: 50,
+    maxBuyQty: 90,
+    chaseEvents: false,
+    preferDock: true,
+    preferDockWeight: 0.65,
+    arbitrageMode: false,
+    buyStash: true,
+    buyGun: true,
+    fedsPreferBribe: true,
+    fedsFight: true,
+    repayDebt: true,
+    repayFraction: 0.2,
+    useBank: false,
+    borrowMax: false,
+    buyMultiple: true,
+  },
+  luxuryBroker: {
+    group: 'new',
+    label: 'Luxury Broker',
+    sellProfitPct: 18,
+    buyThreshold: 0.78,
+    maxBuyQty: 40,
+    luxuryOnly: true,
+    chaseEvents: false,
+    preferUptown: true,
+    preferUptownWeight: 0.55,
+    arbitrageMode: true,
+    buyStash: true,
+    buyGun: false,
+    fedsPreferBribe: true,
+    fedsFight: false,
+    repayDebt: true,
+    repayFraction: 0.3,
+    keepCash: 10000,
+    useBank: true,
+    depositFraction: 0.4,
+    depositThreshold: 15000,
+    borrowMax: false,
+    buyMultiple: false,
+  },
+  streetHustler: {
+    group: 'new',
+    label: 'Street Hustler',
+    sellProfitPct: 3,
+    buyThreshold: 1.08,
+    maxBuyQty: 25,
     chaseEvents: false,
     preferDock: false,
     arbitrageMode: false,
@@ -489,12 +573,27 @@ const ARCHETYPES = {
     fedsPreferBribe: true,
     fedsFight: false,
     repayDebt: false,
-    useBank: true,
-    depositFraction: 0.4,
-    depositThreshold: 8000,
-    borrowMax: true,
+    useBank: false,
+    borrowMax: false,
+    buyMultiple: true,
+  },
+  enforcer: {
+    group: 'new',
+    label: 'Enforcer',
+    sellProfitPct: 12,
+    buyThreshold: 0.9,
+    maxBuyQty: 55,
+    chaseEvents: false,
+    preferDock: false,
+    arbitrageMode: false,
+    buyStash: true,
+    buyGun: true,
+    fedsPreferBribe: false,
+    fedsFight: true,
+    repayDebt: false,
+    useBank: false,
+    borrowMax: false,
     buyMultiple: false,
-    day1StallActions: 15,
   },
 };
 
@@ -553,6 +652,7 @@ function summarizeArchetype(name, results) {
 
   return {
     archetype: ARCHETYPES[name].label,
+    group: ARCHETYPES[name].group,
     key: name,
     runs: n,
     winRate: pct(wins, n),
@@ -720,16 +820,22 @@ function aggregateEconomy(allResults) {
 }
 
 function main() {
-  console.log(`\n=== Gang Wars 60,000-Run Simulation ===\n`);
+  const archetypeCount = Object.keys(ARCHETYPES).length;
+  console.log(`\n=== Gang Wars ${(RUNS_PER_ARCHETYPE * archetypeCount).toLocaleString()}-Run Simulation ===`);
+  console.log(`${archetypeCount} archetypes (${RUNS_PER_ARCHETYPE.toLocaleString()} runs each)\n`);
   const t0 = Date.now();
   const summaries = {};
   const rawByArchetype = {};
 
   for (const name of Object.keys(ARCHETYPES)) {
-    process.stdout.write(`Running ${ARCHETYPES[name].label} (${RUNS_PER_ARCHETYPE})...`);
-    const opts = ARCHETYPES[name];
+    const meta = ARCHETYPES[name];
+    process.stdout.write(`Running [${meta.group}] ${meta.label} (${RUNS_PER_ARCHETYPE})...`);
+    const opts = meta;
     const results = [];
-    for (let i = 0; i < RUNS_PER_ARCHETYPE; i++) results.push(playGame(opts));
+    for (let i = 0; i < RUNS_PER_ARCHETYPE; i++) {
+      results.push(playGame(opts));
+      if ((i + 1) % 2500 === 0) process.stdout.write(` ${i + 1}`);
+    }
     summaries[name] = summarizeArchetype(name, results);
     rawByArchetype[name] = results;
     console.log(` done. Avg NW: $${summaries[name].avgEndingWealth.toLocaleString()}`);
@@ -779,7 +885,7 @@ function main() {
   fs.mkdirSync(path.dirname(OUT), { recursive: true });
   fs.writeFileSync(OUT, JSON.stringify(report, null, 2));
   console.log(`\nWritten to ${OUT} (${report.durationSeconds}s)`);
-  console.log(`\n--- Crime Ledger (60k runs) ---`);
+  console.log(`\n--- Crime Ledger (${report.totalRuns.toLocaleString()} runs) ---`);
   console.log(`Avg unlocks/run: ${crimeLedger.avgUnlocksPerRun}`);
   console.log(`Master complete in single run: ${crimeLedger.masterCompleteSingleRunPct}%`);
   console.log(`Unique entries after all ${report.totalRuns} runs: ${crimeLedger.cumulativeAfterAllRuns}/${crimeLedger.totalAchievements}`);

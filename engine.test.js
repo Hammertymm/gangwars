@@ -8,6 +8,7 @@ const {
   avgCost, profitPct, applyTerritoryPrice, marketPriceBounds, netWorth, classicScore, PERFECT_SCORE_NET_WORTH,
   TERRITORY_MODIFIERS, FAM_LUXURY, getRank, RANKS, maxBorrowAmount, fightKillChance, fedsCounterHitChance,
   gunEventCost, effectiveBankInterest, checkDebtCap, tickStallPressure,
+  fedsApplyFightKill, rollStashUpgrade, grantDebtInterestFreeze, bankDepositLimit,
 } = require('./engine.js');
 
 describe('rollMarket', () => {
@@ -32,8 +33,9 @@ describe('rollMarket', () => {
     assert.ok(dock.low < home.low);
     assert.ok(dock.high > home.high);
     assert.ok(dock.high - dock.low > home.high - home.low);
-    // variance 1.35 → extend each end by 17.5% of catalog spread
-    const extra = Math.round((d.high - d.low) * 0.35 / 2);
+    // variance widens each end by (variance - 1) / 2 of catalog spread
+    const spread = d.high - d.low;
+    const extra = Math.round(spread * (TERRITORY_MODIFIERS['Dock #13'].variance - 1) / 2);
     assert.equal(dock.low, Math.max(1, d.low - extra));
     assert.equal(dock.high, d.high + extra);
   });
@@ -128,7 +130,7 @@ describe('tickStallPressure', () => {
     for (let i = 0; i < CONFIG.day1StallActions - 1; i++) assert.equal(tickStallPressure(s), null);
     const msg = tickStallPressure(s);
     assert.match(msg, /patience ran out/);
-    assert.equal(s.debt, Math.round(10000 * 1.08));
+    assert.equal(s.debt, Math.round(10000 * (1 + CONFIG.loanInterest)));
   });
 });
 
@@ -138,8 +140,19 @@ describe('applyDailyInterest', () => {
     s.debt = 10000;
     s.bank = 10000;
     assert.equal(applyDailyInterest(s), null);
-    assert.equal(s.debt, Math.round(10000 * 1.08));
+    assert.equal(s.debt, Math.round(10000 * (1 + CONFIG.loanInterest)));
     assert.equal(s.bank, Math.round(10000 * 1.08));
+  });
+
+  it('skips debt compound while interest freeze is active', () => {
+    const s = newGame();
+    s.debt = 10000;
+    grantDebtInterestFreeze(s, 1);
+    assert.equal(applyDailyInterest(s), null);
+    assert.equal(s.debt, 10000);
+    assert.equal(s.debtInterestFreeze, 0);
+    applyDailyInterest(s);
+    assert.equal(s.debt, Math.round(10000 * (1 + CONFIG.loanInterest)));
   });
 
   it('applies conservative bank bonus when debt is low', () => {
@@ -188,6 +201,62 @@ describe('classicScore', () => {
     assert.equal(classicScore(s), 90);
     s.cash = PERFECT_SCORE_NET_WORTH;
     assert.equal(classicScore(s), 100);
+  });
+});
+
+describe('fedsApplyFightKill', () => {
+  it('guarantees one kill on round 1 with max guns', () => {
+    const s = newGame();
+    s.guns = CONFIG.maxGuns;
+    assert.equal(fedsApplyFightKill(s, 3, 1), 2);
+    assert.equal(fedsApplyFightKill(s, 1, 1), 0);
+  });
+
+  it('uses normal odds after round 1', () => {
+    const s = newGame();
+    s.guns = 1;
+    const realRandom = Math.random;
+    Math.random = () => 1;
+    assert.equal(fedsApplyFightKill(s, 2, 2), 2);
+    Math.random = realRandom;
+  });
+});
+
+describe('rollStashUpgrade', () => {
+  it('includes a small +5 tier', () => {
+    let sawSmall = false;
+    for (let i = 0; i < 200; i++) {
+      if (rollStashUpgrade().add === 5) sawSmall = true;
+    }
+    assert.ok(sawSmall);
+  });
+});
+
+describe('bankDeposit', () => {
+  it('limits deposits when debt exceeds half the cap', () => {
+    const s = newGame();
+    s.cash = 100000;
+    s.debt = 60000;
+    assert.equal(bankDepositLimit(s), 25000);
+    assert.match(bankDeposit(s, 50000), /deep in his debt/);
+    assert.equal(bankDeposit(s, 25000), null);
+    assert.equal(s.bank, 25000);
+  });
+});
+
+describe('commodity ladder', () => {
+  it('steps buy-in and spread from street goods to luxury', () => {
+    const moon = DRUG.moonshine;
+    const fur = DRUG.furcoats;
+    const dia = DRUG.diamonds;
+    assert.ok(moon.high <= DRUG.cigars.low);
+    assert.ok(DRUG.cognac.low <= fur.low);
+    assert.ok(fur.low <= dia.low);
+    assert.ok(DRUG.champagne.low < dia.low);
+    assert.ok(DRUG.champagne.high < dia.high);
+    assert.ok((fur.high - fur.low) / fur.low >= 2);
+    assert.ok((dia.high - dia.low) / dia.low >= 2);
+    assert.ok(fur.low <= CONFIG.startCash * 4);
   });
 });
 
@@ -317,7 +386,7 @@ describe('newGame', () => {
     const s = newGame();
     assert.equal(s.location, HOME);
     assert.equal(s.day, 1);
-    assert.ok(s.prices.moonshine != null || s.prices.cigars != null);
+    assert.ok(Object.values(s.prices).some(p => p != null));
   });
 });
 

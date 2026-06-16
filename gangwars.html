@@ -204,9 +204,54 @@
   .title-hit:active:not(:disabled){background:rgba(231,200,121,.14);}
   .title-hit:disabled{cursor:default;pointer-events:none;}
   .title-hit-new{left:3.5%;right:3.5%;top:84.5%;height:7.5%;}
-  .title-hit-cont{left:3.5%;width:44.5%;top:91%;height:7.8%;}
-  .title-hit-scores{left:52%;width:44.5%;top:91%;height:7.8%;}
+  .title-hit-cont{left:3.5%;width:28%;top:91%;height:7.8%;}
+  .title-hit-scores{left:33.5%;width:28%;top:91%;height:7.8%;}
+  .title-hit-ledger{left:63.5%;width:33%;top:91%;height:7.8%;}
+  .title-ledger-progress{position:absolute;left:63.5%;width:33%;top:88.2%;height:2.4%;
+    display:flex;align-items:center;justify-content:center;text-align:center;
+    font-size:clamp(.42rem,1.8vw,.52rem);color:var(--amber);letter-spacing:.6px;
+    pointer-events:none;text-shadow:0 1px 2px rgba(0,0,0,.85);line-height:1.1;}
   .save-err{text-align:center;color:var(--red);font-size:.72rem;padding:1px 0;}
+
+  /* CRIME LEDGER */
+  .ledger-play{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;overflow:hidden;gap:8px;}
+  .ledger-screen{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;overflow:hidden;
+    border:3px double var(--amber);border-radius:8px;background:var(--bg);}
+  .ledger-head{flex:0 0 auto;text-align:center;padding:10px 8px 8px;border-bottom:1px solid var(--amber);}
+  .ledger-head h2{margin:0;font-size:clamp(.92rem,4.2vw,1.08rem);color:var(--amber);letter-spacing:2px;}
+  .ledger-sub{font-size:clamp(.62rem,2.8vw,.72rem);color:var(--dim);margin-top:4px;letter-spacing:.8px;}
+  .ledger-crime-lord{flex:0 0 auto;margin-top:6px;padding:4px 8px;border:1px solid var(--amber);
+    border-radius:4px;font-size:clamp(.58rem,2.5vw,.66rem);color:var(--amber);letter-spacing:1px;}
+  .ledger-list{flex:1 1 0;min-height:0;overflow:hidden;display:flex;flex-direction:column;gap:0;padding:0;}
+  .ledger-row{flex:1 1 0;min-height:0;display:flex;align-items:center;justify-content:center;
+    padding:6px 10px;border:none;border-bottom:1px solid var(--btnborder);border-radius:0;
+    background:var(--bg);color:var(--amber);text-align:center;cursor:pointer;width:100%;
+    font-family:inherit;font-size:clamp(.72rem,3.2vw,.84rem);letter-spacing:1.2px;}
+  .ledger-row:last-child{border-bottom:none;}
+  .ledger-row:active{background:rgba(231,200,121,.12);}
+  .ledger-ach-list{flex:1 1 0;min-height:0;overflow:hidden;display:flex;flex-direction:column;
+    gap:1px;padding:6px 8px;background:var(--panel);border-top:1px solid var(--border);}
+  .ledger-ach{flex:0 0 auto;display:flex;align-items:flex-start;gap:6px;padding:5px 4px;
+    font-size:clamp(.58rem,2.6vw,.68rem);line-height:1.35;border-bottom:1px solid var(--rowline);}
+  .ledger-ach:last-child{border-bottom:none;}
+  .ledger-ach-mark{flex:0 0 1.2em;color:var(--green);}
+  .ledger-ach-text{flex:1 1 auto;color:var(--text);word-break:break-word;}
+  .ledger-ach.hidden .ledger-ach-text{color:var(--dim);letter-spacing:1px;}
+  .ledger-ach.reveal-focus .ledger-ach-text{color:var(--amber);}
+  .ledger-foot{flex:0 0 auto;min-height:42px;max-height:52px;padding:5px 10px 6px;
+    border-top:1px solid var(--amber);background:var(--panel);}
+  .ledger-foot button{width:100%;letter-spacing:1px;font-size:clamp(.72rem,3.2vw,.84rem);
+    padding:clamp(6px,2vw,10px) 8px;border-color:var(--amber);}
+  .ledger-complete{flex:1 1 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:16px;gap:10px;border:3px double var(--amber);border-radius:8px;}
+  .ledger-complete h2{margin:0;font-size:clamp(.88rem,4vw,1rem);color:var(--amber);letter-spacing:2px;line-height:1.35;}
+  .ledger-complete p{margin:0;font-size:clamp(.68rem,3vw,.78rem);color:var(--dim);letter-spacing:1px;}
+  .ledger-complete.master h2{font-size:clamp(.82rem,3.6vw,.94rem);}
+  .ledger-complete.master .ledger-master-tag{font-size:clamp(.72rem,3.2vw,.82rem);color:var(--text);letter-spacing:1.5px;margin-top:6px;}
+  .ach-found-popup{text-align:center;padding:8px 4px;}
+  .ach-found-rule{color:var(--amber);letter-spacing:1px;font-size:clamp(.62rem,2.8vw,.72rem);margin:4px 0;}
+  .ach-found-title{font-size:clamp(.92rem,4.2vw,1.05rem);color:var(--amber);letter-spacing:2px;margin:10px 0;}
+  .ach-found-body{font-size:clamp(.72rem,3.2vw,.82rem);color:var(--text);line-height:1.55;margin:8px 0 14px;}
 
   button{font-family:inherit;background:var(--btnbg);color:var(--text);border:1px solid var(--btnborder);
     padding:12px 12px;font-size:.84rem;letter-spacing:1px;cursor:pointer;border-radius:7px;}
@@ -328,6 +373,7 @@
 </div>
 
 <script src="engine.js"></script>
+<script src="ledger.js"></script>
 <script>
 if (typeof document !== "undefined") {
 (function lockPortrait(){
@@ -342,8 +388,11 @@ if (typeof document !== "undefined") {
 })();
 (function(){
   const app = document.getElementById("app");
-  const SAVE_KEY = "gw:save", HS_KEY = "gw:highscores";
+  const SAVE_KEY = "gw:save", HS_KEY = "gw:highscores", LEDGER_KEY = "gw:ledger";
   let S = null, modal = null;
+  let ledgerView = null, ledgerViewCat = null, ledgerFocusId = null, ledgerReturn = null;
+  let pendingUnlockQueue = [], pendingCompleteQueue = [];
+  let ledger = migrateLedger((() => { try { return JSON.parse(localStorage.getItem(LEDGER_KEY)); } catch(e) { return null; } })());
   const money = n => "$"+Math.round(n).toLocaleString("en-US");
   const TITLE_SCREEN = "title-screen.png";
   const DISTRICT_IMG = {
@@ -390,6 +439,269 @@ if (typeof document !== "undefined") {
     const pos = hs.indexOf(entry) + 1; // exact-ref find works even with duplicate values
     localStorage.setItem(HS_KEY, JSON.stringify(hs.slice(0,10).map(({score:s,worth:w,date:d})=>({score:s,worth:w,date:d}))));
     return pos;
+  }
+  function saveLedger(){
+    try { localStorage.setItem(LEDGER_KEY, JSON.stringify(ledger)); }
+    catch(e) { /* storage full */ }
+  }
+  function ledgerProgressText(){
+    return `${countDiscovered(ledger)} / ${LEDGER_TOTAL} DISCOVERED`;
+  }
+  function startNewGame(){
+    S = newGame(eventRollChances(ledger));
+    migrateRunStats(S);
+    save();
+  }
+  function queueUnlocks(ids){
+    if (!ids || !ids.length) return;
+    let eventUnlocked = false;
+    ids.forEach(id => {
+      if (!pendingUnlockQueue.includes(id)) pendingUnlockQueue.push(id);
+      if (isEventAchievementId(id)) eventUnlocked = true;
+    });
+    if (eventUnlocked) resetEventPity(ledger);
+    saveLedger();
+    refreshCategoryCompletions();
+    if (checkMasterComplete(ledger) && !ledger.masterComplete) {
+      ledger.masterComplete = true;
+      saveLedger();
+      if (!ledger.masterCompleteShown) pendingCompleteQueue.push('master');
+    }
+  }
+  function refreshCategoryCompletions(){
+    LEDGER_CATEGORIES.forEach(cat => {
+      if (isCategoryComplete(ledger, cat.id) && !wasCategoryCompleteShown(ledger, cat.id)) {
+        if (!pendingCompleteQueue.includes(cat.id)) pendingCompleteQueue.push(cat.id);
+      }
+    });
+  }
+  function checkRunAchievements(){
+    if (!S || S.over) return;
+    migrateRunStats(S);
+    const ids = checkGeneralAchievements(S, ledger);
+    queueUnlocks(ids);
+  }
+  function checkEndAchievements(){
+    if (!S) return;
+    migrateRunStats(S);
+    const ids = checkEndRunAchievements(S, ledger);
+    queueUnlocks(ids);
+  }
+  function unlockFromEvent(eventId){
+    queueUnlocks(unlockEventAchievement(ledger, eventId));
+  }
+  function tryShowAchievementFlow(){
+    if (modal && modal._achFlow) return true;
+    if (pendingUnlockQueue.length) { showAchievementFoundPopup(); return true; }
+    if (pendingCompleteQueue.length) { showLedgerCompletionPopup(pendingCompleteQueue[0]); return true; }
+    return false;
+  }
+  function captureLedgerReturn(){
+    ledgerReturn = {
+      type: S ? 'game' : 'title',
+      savedModal: modal && modal._achFlow ? null : modal,
+      savedModalEscape: modal && modal._achFlow ? null : modalEscape,
+    };
+  }
+  function restoreLedgerReturn(){
+    const ret = ledgerReturn;
+    ledgerView = null;
+    ledgerViewCat = null;
+    ledgerFocusId = null;
+    ledgerReturn = null;
+    if (!ret) { render(); return; }
+    modal = ret.savedModal || null;
+    modalEscape = ret.savedModalEscape || null;
+    render();
+  }
+  function showAchievementFoundPopup(){
+    modal = function(){
+      modal._achFlow = true;
+      app.innerHTML = `<div class="modal"><div class="card" role="dialog" aria-modal="true">
+        <div class="ach-found-popup">
+          <div class="ach-found-rule">════════════════════</div>
+          <div class="ach-found-title">ACHIEVEMENT FOUND</div>
+          <div class="ach-found-body">A NEW ENTRY HAS BEEN<br>ADDED TO YOUR LEDGER</div>
+          <button class="full amber" id="view">VIEW</button>
+          <div class="ach-found-rule">════════════════════</div>
+        </div>
+      </div></div>`;
+      document.getElementById("view").onclick = ()=>{
+        const id = pendingUnlockQueue[0];
+        if (!id) { modal = null; modal._achFlow = false; render(); return; }
+        captureLedgerReturn();
+        modal = null;
+        modalEscape = null;
+        modal._achFlow = false;
+        openLedgerReveal(id);
+      };
+      modalEscape = ()=>{ modal = null; modal._achFlow = false; modalEscape = null; render(); };
+    };
+    render();
+  }
+  function showLedgerCompletionPopup(kind){
+    const isMaster = kind === 'master';
+    const cat = isMaster ? null : LEDGER_CATEGORIES.find(c => c.id === kind);
+    const title = isMaster ? 'CRIME LORD' : cat.completeTitle;
+    const sub = isMaster
+      ? 'ALL 40 LEDGER ENTRIES DISCOVERED'
+      : `${cat.achievements.length} / ${cat.achievements.length} FOUND`;
+    modal = function(){
+      modal._achFlow = true;
+      app.innerHTML = `<div class="modal"><div class="card ledger-complete${isMaster?' master':''}" role="dialog" aria-modal="true">
+        <div class="ach-found-rule">════════════════════</div>
+        <h2>${title}</h2>
+        <p>${isMaster ? sub : `${cat.achievements.length} / ${cat.achievements.length} FOUND`}</p>
+        ${isMaster ? '<p class="ledger-master-tag">THE CITY IS YOURS</p>' : ''}
+        <div class="ach-found-rule">════════════════════</div>
+        <button class="full amber" id="ok" style="margin-top:12px">CONTINUE</button>
+      </div></div>`;
+      document.getElementById("ok").onclick = ()=>{
+        if (isMaster) {
+          ledger.masterCompleteShown = true;
+          saveLedger();
+        } else {
+          markCategoryCompleteShown(ledger, kind);
+          saveLedger();
+        }
+        pendingCompleteQueue = pendingCompleteQueue.filter(k => k !== kind);
+        modal = null;
+        modal._achFlow = false;
+        modalEscape = null;
+        if (pendingUnlockQueue.length) showAchievementFoundPopup();
+        else if (pendingCompleteQueue.length) showLedgerCompletionPopup(pendingCompleteQueue[0]);
+        else restoreLedgerReturn();
+      };
+    };
+    render();
+  }
+  function openLedgerFromTitle(){
+    ledgerReturn = { type: 'title', savedModal: null, savedModalEscape: null };
+    ledgerView = 'home';
+    ledgerViewCat = null;
+    ledgerFocusId = null;
+    render();
+  }
+  function openLedgerReveal(achievementId){
+    ledgerView = 'category';
+    ledgerViewCat = getCategoryForAchievement(achievementId);
+    ledgerFocusId = achievementId;
+    render();
+  }
+  function exitLedgerCategory(){
+    if (ledgerFocusId && isUnlocked(ledger, ledgerFocusId)) {
+      pendingUnlockQueue = pendingUnlockQueue.filter(id => id !== ledgerFocusId);
+      saveLedger();
+    }
+    if (ledgerReturn) {
+      restoreLedgerReturn();
+      if (tryShowAchievementFlow()) return;
+      return;
+    }
+    ledgerView = 'home';
+    ledgerViewCat = null;
+    ledgerFocusId = null;
+    render();
+  }
+  function exitLedgerHome(){
+    if (ledgerReturn) { restoreLedgerReturn(); return; }
+    ledgerView = null;
+    render();
+  }
+  function renderLedgerScreen(){
+    document.getElementById("crt").classList.remove("title-mode");
+    document.getElementById("crt").classList.add("game-mode");
+    if (ledgerView === 'category' && ledgerViewCat) renderLedgerCategory(ledgerViewCat);
+    else renderLedgerHome();
+  }
+  function renderLedgerHome(){
+    const found = countDiscovered(ledger);
+    const crimeLord = ledger.masterComplete
+      ? `<div class="ledger-crime-lord">CRIME LORD<br>✓ COMPLETED</div>` : '';
+    const rows = LEDGER_CATEGORIES.map(cat => {
+      const n = countUnlocked(ledger, cat.id);
+      return `<button type="button" class="ledger-row" data-cat="${cat.id}">${cat.title}<br><span class="ledger-sub">${n} / ${cat.achievements.length}</span></button>`;
+    }).join('');
+    app.innerHTML = `<div class="play ledger-play">
+      <div class="ledger-screen">
+        <div class="ledger-head">
+          <h2>CRIME LEDGER</h2>
+          <div class="ledger-sub">${found} / ${LEDGER_TOTAL} FOUND</div>
+          ${crimeLord}
+        </div>
+        <div class="ledger-list">${rows}</div>
+        <div class="ledger-foot"><button type="button" class="full" id="back">BACK</button></div>
+      </div>
+    </div>`;
+    app.querySelectorAll("[data-cat]").forEach(b => b.onclick = ()=>{
+      ledgerView = 'category';
+      ledgerViewCat = b.dataset.cat;
+      ledgerFocusId = null;
+      render();
+    });
+    document.getElementById("back").onclick = exitLedgerHome;
+  }
+  function renderLedgerCategory(catId){
+    const cat = LEDGER_CATEGORIES.find(c => c.id === catId);
+    if (!cat) { exitLedgerCategory(); return; }
+    const found = countUnlocked(ledger, catId);
+    const rows = cat.achievements.map(a => {
+      const unlocked = isUnlocked(ledger, a.id);
+      const revealed = isRevealed(ledger, a.id);
+      const showName = revealed;
+      const focus = ledgerFocusId === a.id ? ' reveal-focus' : '';
+      const mark = revealed ? '✓' : ' ';
+      const text = showName ? a.title : '???';
+      return `<div class="ledger-ach${showName ? '' : ' hidden'}${focus}" data-aid="${a.id}">
+        <span class="ledger-ach-mark">${mark}</span>
+        <span class="ledger-ach-text" data-full="${a.title.replace(/"/g,'&quot;')}">${text}</span>
+      </div>`;
+    }).join('');
+    app.innerHTML = `<div class="play ledger-play">
+      <div class="ledger-screen">
+        <div class="ledger-head">
+          <h2>${cat.title}</h2>
+          <div class="ledger-sub">${found} / ${cat.achievements.length} FOUND</div>
+        </div>
+        <div class="ledger-ach-list">${rows}</div>
+        <div class="ledger-foot"><button type="button" class="full" id="back">BACK</button></div>
+      </div>
+    </div>`;
+    document.getElementById("back").onclick = exitLedgerCategory;
+    if (ledgerFocusId && isUnlocked(ledger, ledgerFocusId) && !isRevealed(ledger, ledgerFocusId)) {
+      const backBtn = document.getElementById("back");
+      backBtn.disabled = true;
+      const el = app.querySelector(`[data-aid="${ledgerFocusId}"] .ledger-ach-text`);
+      if (el) runRevealAnimation(el, getAchievementTitle(ledgerFocusId), ()=>{
+        revealAchievement(ledger, ledgerFocusId);
+        saveLedger();
+        backBtn.disabled = false;
+      });
+    }
+  }
+  function runRevealAnimation(el, fullText, onDone){
+    const chars = fullText.length;
+    const steps = chars;
+    const duration = Math.min(1000, Math.max(500, chars * 35));
+    const stepMs = duration / steps;
+    let i = 0;
+    el.textContent = '???';
+    el.closest('.ledger-ach')?.classList.add('reveal-focus');
+    const tick = ()=>{
+      i++;
+      const shown = Math.ceil((i / steps) * chars);
+      el.textContent = fullText.slice(0, shown) + '?'.repeat(Math.max(0, chars - shown));
+      if (i >= steps) {
+        el.textContent = fullText;
+        el.closest('.ledger-ach')?.classList.remove('hidden');
+        const markEl = el.closest('.ledger-ach')?.querySelector('.ledger-ach-mark');
+        if (markEl) markEl.textContent = '✓';
+        onDone();
+        return;
+      }
+      setTimeout(tick, stepMs);
+    };
+    setTimeout(tick, stepMs);
   }
   function rankCard(r){ return r.toLowerCase().replace(/ /g,'-'); }
   function logMsg(t){ S.log.unshift(`Day ${S.day}: ${t}`); S.log = S.log.slice(0,12); }
@@ -508,6 +820,7 @@ if (typeof document !== "undefined") {
 
   function render(){
     const crt = document.getElementById("crt");
+    if (ledgerView && !modal){ crt.classList.remove("title-mode"); crt.classList.add("game-mode"); renderLedgerScreen(); return; }
     if (modal){ crt.classList.remove("title-mode"); crt.classList.add("game-mode"); modal(); return; }
     if (!S){ crt.classList.add("title-mode"); crt.classList.remove("game-mode"); renderTitle(); return; }
     crt.classList.remove("title-mode"); crt.classList.add("game-mode");
@@ -517,17 +830,28 @@ if (typeof document !== "undefined") {
 
   function renderTitle(){
     const saved = load();
+    const prog = ledgerProgressText();
     app.innerHTML = `<div class="play title-play">
       <div class="title-screen">
         <img src="${TITLE_SCREEN}" alt="Gang Wars — Prohibition 1929">
         <button type="button" class="title-hit title-hit-new" id="new" aria-label="New Game"></button>
         <button type="button" class="title-hit title-hit-cont" id="cont" aria-label="Continue" ${saved?"":"disabled"}></button>
         <button type="button" class="title-hit title-hit-scores" id="scores" aria-label="High Scores"></button>
+        <div class="title-ledger-progress" aria-hidden="true">${prog}</div>
+        <button type="button" class="title-hit title-hit-ledger" id="ledger" aria-label="Crime Ledger"></button>
       </div>
     </div>`;
-    document.getElementById("new").onclick = ()=>{ S=newGame(); save(); render(); maybeTutorial(); };
-    document.getElementById("cont").onclick = ()=>{ const v=load(); if(v){ S=v; render(); maybeTutorial(); } };
+    document.getElementById("new").onclick = ()=>{ startNewGame(); render(); maybeTutorial(); };
+    document.getElementById("cont").onclick = ()=>{
+      const v=load();
+      if(v){
+        S=v; migrateRunStats(S); checkRunAchievements(); render();
+        if (tryShowAchievementFlow()) return;
+        maybeTutorial();
+      }
+    };
     document.getElementById("scores").onclick = renderScores;
+    document.getElementById("ledger").onclick = openLedgerFromTitle;
   }
 
   function renderScores(){
@@ -650,7 +974,17 @@ if (typeof document !== "undefined") {
       conf.onclick=()=>{
         const err = mode==="buy"?buy(S,id,qty):sell(S,id,qty);
         if(err){ document.getElementById("terr").textContent=err; return; }
-        afterMarketAction(`${mode==="buy"?"Bought":"Sold"} ${qty} ${d.name}.`); modal=null; render();
+        if (mode === "buy") recordBuy(S, id, qty);
+        else {
+          const avg = avgCost(S, id);
+          const profit = avg ? (price - avg) * qty : 0;
+          recordSell(S, id, qty, profit);
+        }
+        afterMarketAction(`${mode==="buy"?"Bought":"Sold"} ${qty} ${d.name}.`);
+        checkRunAchievements();
+        modal=null;
+        if (tryShowAchievementFlow()) return;
+        render();
       };
     };
     render();
@@ -663,7 +997,7 @@ if (typeof document !== "undefined") {
       const A = {
         repay:    {label:"Pay the Don", max:Math.min(S.cash,S.debt), fn:v=>bankRepay(S,v), msg:v=>`Paid the Don ${money(v)}.`},
         borrow:   {label:"Borrow",      max:maxBorrowAmount(S),      fn:v=>bankBorrow(S,v), msg:v=>`Borrowed ${money(v)} from the Don.`},
-        deposit:  {label:"Deposit",     max:S.cash,                  fn:v=>bankDeposit(S,v), msg:v=>`Banked ${money(v)}.`},
+        deposit:  {label:"Deposit",     max:bankDepositLimit(S),     fn:v=>bankDeposit(S,v), msg:v=>`Banked ${money(v)}.`},
         withdraw: {label:"Withdraw",    max:S.bank,                  fn:v=>bankWithdraw(S,v), msg:v=>`Withdrew ${money(v)}.`},
       };
       if(!action){
@@ -708,8 +1042,12 @@ if (typeof document !== "undefined") {
           if(qty<=0){ document.getElementById("berr").textContent="Enter an amount."; return; }
           const err = a.fn(qty);
           if(err){ document.getElementById("berr").textContent=err; return; }
+          if (action === 'borrow') recordBorrow(S);
           afterMarketAction(a.msg(qty));
-          action=null; render();
+          checkRunAchievements();
+          action=null;
+          if (tryShowAchievementFlow()) return;
+          render();
         };
       }
     };
@@ -752,6 +1090,9 @@ if (typeof document !== "undefined") {
   }
   function travelTo(dest){
     modal=null; S.location=dest; S.day+=1;
+    const eventsBefore = countEventAchievementsUnlocked(ledger);
+    recordDistrictVisit(S, dest);
+    recordSpaceChange(S);
     const capMsg = applyDailyInterest(S);
     if (capMsg){ endGame(capMsg); return; }
     if (S.day > CONFIG.days){ endGame(); return; }
@@ -761,9 +1102,11 @@ if (typeof document !== "undefined") {
 
     let marketEvent=null;
     if(golden && S.day===golden.day){
+      unlockFromEvent('golden');
       const goldenImg=golden.img||'bigdaddy';
       marketEvent=(next)=>showEvent(goldenImg, `<b>${golden.lines[0]}</b><br><br>${golden.lines[1]} Every price in the city is climbing.`, 'GOLDEN', next);
     } else if(gk && S.day===gk.day){
+      unlockFromEvent(gk.id);
       const gkImg=gk.img||'bigdaddy';
       if(dest===gk.district){
         marketEvent=(next)=>showEvent(gkImg, `<b>${gk.lines[0]}</b><br><br>${gk.lines[1]}`, 'BIG DADDY J', next);
@@ -771,6 +1114,7 @@ if (typeof document !== "undefined") {
         marketEvent=(next)=>showEvent(gkImg, `<b>BIG DADDY J IS ACROSS TOWN</b><br><br>He's making moves in ${gk.district}. Every price there is climbing.`, 'NOTED', next);
       }
     } else if(sr && S.day===sr.day){
+      unlockFromEvent(sr.id);
       const srImg=sr.img||'celeb';
       if(dest===sr.district){
         marketEvent=(next)=>showEvent(srImg, `<b>${sr.lines[0]}</b><br><br>${sr.lines[1]} Every price in the district is climbing.`, "LET'S GO", next);
@@ -778,6 +1122,7 @@ if (typeof document !== "undefined") {
         marketEvent=(next)=>showEvent(srImg, `<b>${sr.lines[0]}</b><br><br>${sr.lines[1]} Head to ${sr.district} for the action.`, 'NOTED', next);
       }
     } else if(re && S.day===re.day){
+      unlockFromEvent(re.id);
       const reDrug=DRUG[re.commodity];
       const reImg=re.img||'intel';
       if(dest===re.district){
@@ -791,7 +1136,16 @@ if (typeof document !== "undefined") {
       marketEvent=(next)=>showEvent(anomalyImg[anomaly.type], body, 'NOTED', next);
     }
 
-    runTravelEvents(()=>{ render(); }, marketEvent);
+    runTravelEvents(()=>{
+      if (isEventLedgerSlow(ledger) && countEventAchievementsUnlocked(ledger) === eventsBefore) {
+        recordEventPityTravel(ledger);
+        saveLedger();
+      }
+      checkRunAchievements();
+      save();
+      if (tryShowAchievementFlow()) return;
+      render();
+    }, marketEvent);
   }
   function runTravelEvents(done, firstEvent){
     const queue=[];
@@ -905,7 +1259,7 @@ if (typeof document !== "undefined") {
     showEvent('find', findV[1], "NICE", next);
   }
   function eventStash(next){
-    const add=pick([10,15,20,30]); const cost=add*randInt(90,110);
+    const { add, cost } = rollStashUpgrade();
     if (S.cash<cost){ next(); return; }
     const sv=pick([
       `A mechanic at the yard can fit <b>+${add}</b> extra hidden crates into your vehicle for <span class="price">${money(cost)}</span>. Do it?`,
@@ -913,7 +1267,7 @@ if (typeof document !== "undefined") {
       `A grease-stained man slides a card across the bar. Says he can build <b>+${add}</b> hidden crates into your vehicle for <span class="price">${money(cost)}</span>. Doesn't ask what you're carrying. Doesn't want to know.`,
     ]);
     showEventAsk('stash', sv, 'BUY',
-      ()=>{ S.cash-=cost; S.space+=add; logMsg(`+${add} stash space.`); modal=null; next(); },
+      ()=>{ S.cash-=cost; S.space+=add; recordSpaceChange(S); logMsg(`+${add} stash space.`); modal=null; next(); },
       'PASS', ()=>{ modal=null; next(); }
     );
   }
@@ -970,8 +1324,9 @@ if (typeof document !== "undefined") {
     const hit=()=>{ S.health-=1; if(S.health<=0){ endGame("The city has a short memory. By morning nobody will remember your name."); return true; } return false; };
     const doFight=()=>{
       fightRound++;
-      if (chance(fightKillChance(S.guns))) cops-=1;
+      cops = fedsApplyFightKill(S, cops, fightRound);
       if (cops<=0){ const reward=randInt(3750,10000); S.cash+=reward;
+        grantDebtInterestFreeze(S, 1);
         logMsg(`Beat the Feds, grabbed ${money(reward)}.`); modal=null;
         const winV=pick([
           ["LAST MAN STANDING",                  `Last man standing. You grab <span class="price">${money(reward)}</span> off the bodies and disappear into the night.`],
@@ -1017,7 +1372,11 @@ if (typeof document !== "undefined") {
   function endGame(reason){
     S.over=true; S.overReason=reason||`Your month is over. Whatever you made, it's going to have to be enough.`;
     S.placement = pushScore(classicScore(S), netWorth(S));
-    save(); render();
+    checkEndAchievements();
+    save();
+    saveLedger();
+    if (tryShowAchievementFlow()) { render(); return; }
+    render();
   }
   function renderGameOver(){
     const worth=netWorth(S), score=classicScore(S), rank=getRank(score);
@@ -1058,7 +1417,7 @@ if (typeof document !== "undefined") {
         <button id="menu">MAIN MENU</button>
       </div>
     </div>`;
-    document.getElementById("again").onclick=()=>{ localStorage.removeItem(SAVE_KEY); S=newGame(); save(); render(); };
+    document.getElementById("again").onclick=()=>{ localStorage.removeItem(SAVE_KEY); startNewGame(); render(); };
     document.getElementById("menu").onclick=()=>{ S=null; renderTitle(); };
   }
 

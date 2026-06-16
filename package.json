@@ -4,13 +4,14 @@
   "private": true,
   "description": "Gang Wars — Prohibition 1929 PWA",
   "scripts": {
-    "test": "node --test engine.test.js",
+    "test": "node --test engine.test.js ledger.test.js",
     "simulate": "node scripts/monte-carlo.js",
     "sweep": "node scripts/sweep.js",
     "audit:assets": "node scripts/audit-assets.js",
-    "audit:simulate": "node scripts/simulation-50k.js",
+    "audit:simulate": "node scripts/simulation-100k.js",
+    "audit:simulate:50k": "node scripts/simulation-50k.js",
     "audit:screens": "node scripts/capture-screens.js",
-    "audit:all": "node --test engine.test.js && node scripts/audit-assets.js && node scripts/simulation-50k.js"
+    "audit:all": "node --test engine.test.js ledger.test.js && node scripts/audit-assets.js && node scripts/simulation-100k.js"
   },
   "devDependencies": {
     "playwright": "^1.60.0"

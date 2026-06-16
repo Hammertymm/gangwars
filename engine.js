@@ -4,10 +4,10 @@
 const CONFIG = {
   days: 30,
   startCash: 10000,
-  startDebt: 25000,
+  startDebt: 22000,
   startSpace: 100,
   startHealth: 10,
-  loanInterest: 0.08,
+  loanInterest: 0.07,
   bankInterest: 0.06,
   conservativeBankBonus: 0.02,
   unavailableChance: 1/8,
@@ -32,24 +32,24 @@ const LOCATION_FLAVOR = {
 
 const TERRITORY_MODIFIERS = {
   "Little Italy":       { homeDiscount: 0.03 },
-  "Dock #13":           { variance: 1.35 },
+  "Dock #13":           { variance: 1.28 },
   "Kitty Kat Club":     { alcoholBonus: 0.05 },
-  "Uptown":             { luxuryBonus: 0.18 },
+  "Uptown":             { luxuryBonus: 0.26 },
   "Warehouse District": { criminalBonus: 0.10 },
-  "City Hall":          { bias: -0.06 },
+  "City Hall":          { bias: -0.01 },
 };
 
 const DRUGS = [
-  {id:"moonshine",    name:"Moonshine",     low:50,    high:200},
-  {id:"cigars",       name:"Cuban Cigars",  low:200,   high:700},
-  {id:"bathgin",      name:"Bathtub Gin",   low:600,   high:2000},
-  {id:"art",          name:"Forged Art",    low:1500,  high:5500},
-  {id:"scotch",       name:"Aged Scotch",   low:4500,  high:16000},
-  {id:"counterfeits", name:"Counterfeits",  low:13000, high:35000},
-  {id:"cognac",       name:"Fine Cognac",   low:28000, high:65000},
-  {id:"furcoats",     name:"Fur Coats",     low:52000, high:100000},
-  {id:"champagne",    name:"Champagne",     low:78000, high:115000},
-  {id:"diamonds",     name:"Diamonds",      low:96000, high:140000},
+  {id:"moonshine",    name:"Moonshine",     low:50,    high:175},
+  {id:"cigars",       name:"Cuban Cigars",  low:175,   high:780},
+  {id:"bathgin",      name:"Bathtub Gin",   low:550,   high:1750},
+  {id:"art",          name:"Forged Art",    low:1400,  high:5200},
+  {id:"scotch",       name:"Aged Scotch",   low:4000,  high:13775},
+  {id:"counterfeits", name:"Counterfeits",  low:12000, high:32300},
+  {id:"cognac",       name:"Fine Cognac",   low:24000, high:58900},
+  {id:"furcoats",     name:"Fur Coats",     low:24000, high:78000},
+  {id:"champagne",    name:"Champagne",     low:34000, high:92000},
+  {id:"diamonds",     name:"Diamonds",      low:48000, high:144000},
 ];
 const DRUG = Object.fromEntries(DRUGS.map(d=>[d.id,d]));
 
@@ -58,29 +58,29 @@ const FAM_LUXURY   = new Set(['cigars','furcoats','diamonds']);
 const FAM_CRIMINAL = new Set(['art','counterfeits']);
 
 const RARE_EVENTS = [
-  {id:'capone',    commodity:'counterfeits', district:'Warehouse District', img:'events/rare_capone.png',    lines:['AL CAPONE SEEN MEETING ASSOCIATES','RIVALS KEEP A LOW PROFILE TONIGHT']},
   {id:'luciano',   commodity:'cigars',       district:'Little Italy',       img:'events/rare_luciano.png',   lines:['LUCKY LUCIANO CALLS A MEETING','RUMORS OF A NEW ORDER SPREAD']},
-  {id:'schultz',   commodity:'furcoats',     district:'Uptown',               img:'events/rare_schultz.png',   lines:['DUTCH SCHULTZ EYES NEW TERRITORY','ESTABLISHED INTERESTS GROW UNEASY']},
-  {id:'madden',    commodity:'champagne',    district:'Kitty Kat Club',       img:'events/rare_madden.png',    lines:['OWNEY MADDEN BACKS ANOTHER BIG NIGHT','KITTY KAT CLUB EXPECTS RECORD CROWDS']},
-  {id:'rothstein', commodity:'art',          district:'City Hall',            img:'events/rare_rothstein.png', lines:['ARNOLD ROTHSTEIN TAKES AN INTEREST','SPECULATION SWEEPS THE DISTRICT']},
-  {id:'lansky',    commodity:'diamonds',     district:'Uptown',               img:'events/rare_lansky.png',    lines:['MEYER LANSKY ENTERS THE PICTURE','MONEY CHANGES HANDS RAPIDLY']},
-  {id:'ellington', commodity:'diamonds',     district:'Kitty Kat Club',       img:'events/rare_ellington.png', lines:['DUKE ELLINGTON HEADLINES TONIGHT','KITTY KAT CLUB EXPECTS RECORD CROWDS']},
-  {id:'armstrong', commodity:'champagne',    district:'Kitty Kat Club',       img:'events/rare_armstrong.png', lines:['LOUIS ARMSTRONG PLAYS TONIGHT','THE DISTRICT SWINGS INTO THE SMALL HOURS']},
   {id:'rumrow',    commodity:'moonshine',    district:'Dock #13',             img:'events/rare_rumrow.png',    lines:['THE SILENT FLEET RETURNS TO HARBOR','RUM ROW SAID TO BE BUSIER THAN EVER']},
   {id:'midnight',  commodity:'moonshine',    district:'Dock #13',             img:'events/rare_midnight.png',  lines:['THE MIDNIGHT RUN REACHES THE CITY','RUM RUNNERS EVADE PATROL BOATS']},
+  {id:'ellington', commodity:'diamonds',     district:'Kitty Kat Club',       img:'events/rare_ellington.png', lines:['DUKE ELLINGTON HEADLINES TONIGHT','KITTY KAT CLUB EXPECTS RECORD CROWDS']},
+  {id:'armstrong', commodity:'champagne',    district:'Kitty Kat Club',       img:'events/rare_armstrong.png', lines:['LOUIS ARMSTRONG PLAYS TONIGHT','THE DISTRICT SWINGS INTO THE SMALL HOURS']},
+  {id:'schultz',   commodity:'furcoats',     district:'Uptown',               img:'events/rare_schultz.png',   lines:['DUTCH SCHULTZ EYES NEW TERRITORY','ESTABLISHED INTERESTS GROW UNEASY']},
+  {id:'lansky',    commodity:'diamonds',     district:'Uptown',               img:'events/rare_lansky.png',    lines:['MEYER LANSKY ENTERS THE PICTURE','MONEY CHANGES HANDS RAPIDLY']},
+  {id:'capone',    commodity:'counterfeits', district:'Warehouse District', img:'events/rare_capone.png',    lines:['AL CAPONE SEEN MEETING ASSOCIATES','RIVALS KEEP A LOW PROFILE TONIGHT']},
+  {id:'rothstein', commodity:'art',          district:'City Hall',            img:'events/rare_rothstein.png', lines:['ARNOLD ROTHSTEIN TAKES AN INTEREST','SPECULATION SWEEPS THE DISTRICT']},
+  {id:'madden',    commodity:'champagne',    district:'City Hall',            img:'events/rare_madden.png',    lines:['OWNEY MADDEN BACKS ANOTHER BIG NIGHT','THE FIX IS IN AT CITY HALL']},
 ];
 
 const SUPER_RARE_EVENTS = [
-  {id:'ruth',       district:'Kitty Kat Club', img:'events/super_ruth.png',       lines:['BABE RUTH FEVER SWEEPS THE CITY','VISITORS POUR IN FROM EVERYWHERE']},
   {id:'lindbergh',  district:'Dock #13',       img:'events/super_lindbergh.png',  lines:['LINDBERGH ARRIVES TO GREAT FANFARE','THE CITY STOPS TO WATCH']},
-  {id:'dempsey',    district:'Kitty Kat Club', img:'events/super_dempsey.png',    lines:['A BIG FIGHT DRAWS NEAR','DEMPSEY MANIA GRIPS THE DISTRICT']},
-  {id:'wales',      district:'Uptown',         img:'events/super_wales.png',      lines:['THE PRINCE OF WALES IS IN TOWN','NO EXPENSE IS BEING SPARED']},
-  {id:'kkrevue',    district:'Kitty Kat Club', img:'events/super_kkrevue.png',    lines:['THE KITTY KAT CLUB DEBUTS A NEW REVUE',"THE CITY'S ELITE FLOCK TO THE DISTRICT"]},
   {id:'mauretania', district:'Dock #13',       img:'events/super_mauretania.png', lines:['MAURETANIA DOCKS TO HUGE CROWDS','THE WATERFRONT HAS NEVER BEEN BUSIER']},
+  {id:'dempsey',    district:'Kitty Kat Club', img:'events/super_dempsey.png',    lines:['A BIG FIGHT DRAWS NEAR','DEMPSEY MANIA GRIPS THE DISTRICT']},
+  {id:'kkrevue',    district:'Kitty Kat Club', img:'events/super_kkrevue.png',    lines:['THE KITTY KAT CLUB DEBUTS A NEW REVUE',"THE CITY'S ELITE FLOCK TO THE DISTRICT"]},
   {id:'ziegfeld',   district:'Kitty Kat Club', img:'events/super_ziegfeld.png',   lines:['ZIEGFELD FEVER SWEEPS THE CITY','EVERYBODY WANTS THE BEST SEAT']},
-  {id:'wallst',     district:'Uptown',         img:'events/super_wallst.png',     lines:['STOCK MARKET FORTUNES GROW AGAIN','UPSCALE DISTRICTS REPORT RECORD TRADE']},
-  {id:'walker',     district:'City Hall',      img:'events/super_walker.png',     lines:['MAYOR WALKER VISITS THE DISTRICT','EVERY TABLE IN TOWN IS RESERVED']},
   {id:'hollywood',  district:'Kitty Kat Club', img:'events/super_hollywood.png',  lines:['THE TALKIES ARE ALL THE RAGE','THEATRES SELL OUT ACROSS THE DISTRICT']},
+  {id:'wales',      district:'Uptown',         img:'events/super_wales.png',      lines:['THE PRINCE OF WALES IS IN TOWN','NO EXPENSE IS BEING SPARED']},
+  {id:'wallst',     district:'Uptown',         img:'events/super_wallst.png',     lines:['STOCK MARKET FORTUNES GROW AGAIN','UPSCALE DISTRICTS REPORT RECORD TRADE']},
+  {id:'ruth',       district:'City Hall',      img:'events/super_ruth.png',       lines:['BABE RUTH FEVER SWEEPS THE CITY','CITY HALL DECLARES A DAY OF CELEBRATION']},
+  {id:'walker',     district:'City Hall',      img:'events/super_walker.png',     lines:['MAYOR WALKER VISITS THE DISTRICT','EVERY TABLE IN TOWN IS RESERVED']},
 ];
 
 const GODLIKE_EVENTS = [
@@ -98,7 +98,16 @@ const GOLDEN_GODLIKE = {
 };
 
 const GODLIKE_CHANCE = 0.005;
-const GOLDEN_GODLIKE_CHANCE = 0.001;
+const GOLDEN_GODLIKE_CHANCE = GODLIKE_CHANCE / 5;
+const RARE_EVENT_CHANCE = 0.045;
+const SUPER_RARE_EVENT_CHANCE = 0.01;
+
+const DEFAULT_EVENT_RATES = {
+  rare: RARE_EVENT_CHANCE,
+  superRare: SUPER_RARE_EVENT_CHANCE,
+  godlike: GODLIKE_CHANCE,
+  golden: GOLDEN_GODLIKE_CHANCE,
+};
 
 function randInt(min,max){ return Math.floor(Math.random()*(max-min+1))+min; }
 function chance(p){ return Math.random() < p; }
@@ -158,7 +167,7 @@ function rollMarket(location){
 function spaceUsed(inv){ return Object.values(inv).reduce((a,b)=>a+b,0); }
 function spaceLeft(s){ return s.space - spaceUsed(s.inventory); }
 function netWorth(s){ return s.cash + s.bank - s.debt; }
-const PERFECT_SCORE_NET_WORTH = 20000000;
+const PERFECT_SCORE_NET_WORTH = 45000000;
 function classicScore(s){
   const nw = Math.max(0, netWorth(s));
   return Math.max(0, Math.min(100, Math.round(100 * Math.sqrt(nw / PERFECT_SCORE_NET_WORTH))));
@@ -178,13 +187,33 @@ function fightKillChance(guns){
 /** Chance the Feds land a hit each fight round (scales with round count and late game). */
 function fedsCounterHitChance(guns, round, day){
   const gunMitigation = Math.min(0.12, 0.04 * Math.max(0, guns));
-  let p = 0.35 + 0.03 * Math.max(0, round - 1) - gunMitigation;
+  let p = 0.30 + 0.03 * Math.max(0, round - 1) - gunMitigation;
   if (day > 20) p += 0.05;
-  return Math.min(0.55, Math.max(0.18, p));
+  return Math.min(0.48, Math.max(0.18, p));
 }
 
 function gunEventCost(baseCost, guns){
   return Math.round(baseCost * (1 + 0.5 * Math.max(0, guns)));
+}
+
+const STASH_UPGRADE_TIERS = [
+  { add: 5, unitCost: 100 },
+  { add: 10, unitCost: 100 },
+  { add: 15, unitCost: 100 },
+  { add: 20, unitCost: 100 },
+  { add: 30, unitCost: 100 },
+];
+
+function rollStashUpgrade(){
+  const tier = pick(STASH_UPGRADE_TIERS);
+  return { add: tier.add, cost: tier.add * randInt(90, 110) };
+}
+
+/** First fight round with max guns — one agent drops guaranteed (Enforcer path). */
+function fedsApplyFightKill(s, cops, fightRound){
+  if (fightRound === 1 && s.guns >= CONFIG.maxGuns && cops > 0) return cops - 1;
+  if (chance(fightKillChance(s.guns))) return cops - 1;
+  return cops;
 }
 
 function effectiveBankInterest(s){
@@ -218,10 +247,24 @@ function tickStallPressure(s){
 }
 
 function applyDailyInterest(s){
-  s.debt = Math.round(s.debt * (1 + CONFIG.loanInterest));
+  if ((s.debtInterestFreeze || 0) > 0) {
+    s.debtInterestFreeze -= 1;
+  } else {
+    s.debt = Math.round(s.debt * (1 + CONFIG.loanInterest));
+  }
   const bankRate = effectiveBankInterest(s);
   if (bankRate > 0) s.bank = Math.round(s.bank * (1 + bankRate));
   return checkDebtCap(s);
+}
+
+function grantDebtInterestFreeze(s, days = 1){
+  s.debtInterestFreeze = Math.max(s.debtInterestFreeze || 0, days);
+}
+
+function bankDepositLimit(s){
+  const threshold = CONFIG.maxTotalDebt * 0.5;
+  if (s.debt <= threshold) return s.cash;
+  return Math.floor(s.cash * 0.25);
 }
 
 function buy(s, id, qty){
@@ -240,7 +283,7 @@ function sell(s, id, qty){
   const price = s.prices[id];
   if (price==null || qty<=0) return "No buyers here right now.";
   if (qty > (s.inventory[id]||0)) return "You don't have that many.";
-  s.cash += price*qty; s.inventory[id] -= qty;
+  s.cash += price * qty; s.inventory[id] -= qty;
   if (s.inventory[id]===0){ delete s.inventory[id]; if(s.costBasis) delete s.costBasis[id]; }
   return null;
 }
@@ -264,6 +307,8 @@ function bankBorrow(s, amount){
 function bankDeposit(s, amount){
   amount = Math.floor(amount);
   if (amount <= 0) return "Enter an amount.";
+  const limit = bankDepositLimit(s);
+  if (amount > limit) return "The Don won't let you hide that much while you're deep in his debt.";
   if (amount > s.cash) return "You don't have that much cash.";
   s.cash -= amount; s.bank += amount; return null;
 }
@@ -285,19 +330,20 @@ function profitPct(s, id, price){
   return Math.round(((price - avg) / avg) * 100);
 }
 
-function newGame(){
+function newGame(rates){
+  const r = { ...DEFAULT_EVENT_RATES, ...(rates || {}) };
   const events = {};
-  if (chance(0.04)){
+  if (chance(r.rare)){
     const re = pick(RARE_EVENTS);
     if (re) events.rare = {...re, day: randInt(5, 25)};
   }
-  if (chance(0.01)){
+  if (chance(r.superRare)){
     const sr = pick(SUPER_RARE_EVENTS);
     if (sr) events.superRare = {...sr, day: randInt(5, 25)};
   }
-  if (chance(GOLDEN_GODLIKE_CHANCE)){
+  if (chance(r.golden)){
     events.goldenGodlike = {...GOLDEN_GODLIKE, day: randInt(5, 25)};
-  } else if (chance(GODLIKE_CHANCE)){
+  } else if (chance(r.godlike)){
     const gl = pick(GODLIKE_EVENTS);
     if (gl) events.godlike = {...gl, day: randInt(5, 25), district: pick(LOCATIONS)};
   }
@@ -306,6 +352,19 @@ function newGame(){
     space: CONFIG.startSpace, health: CONFIG.startHealth, guns: 0,
     inventory: {}, costBasis: {}, events,
     prices: rollMarket(HOME).prices, log: [], over: false, stallActions: 0,
+    debtInterestFreeze: 0,
+    runStats: {
+      districtsVisited: { [HOME]: true },
+      dockVisits: 0,
+      moonshineSold: 0,
+      cigarsSold: 0,
+      buys: {},
+      sells: {},
+      commoditiesTouched: {},
+      didBorrow: false,
+      diamondSellProfit: 0,
+      maxSpace: CONFIG.startSpace,
+    },
   };
 }
 
@@ -337,6 +396,16 @@ function migrateSave(state){
   if (!state.events) state.events = {};
   if (!state.costBasis) state.costBasis = {};
   if (state.stallActions == null) state.stallActions = 0;
+  if (state.debtInterestFreeze == null) state.debtInterestFreeze = 0;
+  if (!state.runStats || typeof state.runStats !== 'object') {
+    state.runStats = {
+      districtsVisited: state.location ? { [state.location]: true } : {},
+      dockVisits: 0, moonshineSold: 0, cigarsSold: 0,
+      buys: {}, sells: {}, commoditiesTouched: {},
+      didBorrow: false, diamondSellProfit: 0,
+      maxSpace: state.space || CONFIG.startSpace,
+    };
+  }
   return state;
 }
 
@@ -372,11 +441,12 @@ if (typeof module !== "undefined") {
   module.exports = {
     CONFIG, DRUGS, DRUG, LOCATIONS, HOME, LOCATION_FLAVOR, TERRITORY_MODIFIERS,
     FAM_ALCOHOL, FAM_LUXURY, FAM_CRIMINAL, RARE_EVENTS, SUPER_RARE_EVENTS, GODLIKE_EVENTS, GOLDEN_GODLIKE,
-    GODLIKE_CHANCE, GOLDEN_GODLIKE_CHANCE,
+    GODLIKE_CHANCE, GOLDEN_GODLIKE_CHANCE, RARE_EVENT_CHANCE, SUPER_RARE_EVENT_CHANCE, DEFAULT_EVENT_RATES,
     rollMarket, applyTerritoryPrice, marketPriceBounds, spaceUsed, spaceLeft, netWorth, classicScore, PERFECT_SCORE_NET_WORTH, getRank, RANKS,
     applyDailyInterest, buy, sell, bankRepay, bankBorrow, bankDeposit, bankWithdraw,
-    avgCost, profitPct, newGame, migrateSave, resolveTravelMarket,
-    fightKillChance, fedsCounterHitChance, gunEventCost, effectiveBankInterest, checkDebtCap,
+    avgCost, profitPct, bankDepositLimit, grantDebtInterestFreeze, newGame, migrateSave, resolveTravelMarket,
+    fightKillChance, fedsCounterHitChance, fedsApplyFightKill, gunEventCost,
+    rollStashUpgrade, STASH_UPGRADE_TIERS, effectiveBankInterest, checkDebtCap,
     maxBorrowAmount, tickStallPressure,
     randInt, chance, pick,
   };

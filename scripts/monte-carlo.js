@@ -6,8 +6,8 @@ const {
   newGame, resolveTravelMarket, applyDailyInterest,
   buy, sell, bankRepay, bankBorrow, bankDeposit, bankWithdraw,
   spaceLeft, netWorth, classicScore, getRank, profitPct, avgCost, PERFECT_SCORE_NET_WORTH,
-  randInt, chance, pick, fightKillChance, fedsCounterHitChance, gunEventCost,
-  maxBorrowAmount, tickStallPressure, checkDebtCap,
+  randInt, chance, pick, fightKillChance, fedsCounterHitChance, fedsApplyFightKill, gunEventCost,
+  rollStashUpgrade, maxBorrowAmount, tickStallPressure, checkDebtCap, grantDebtInterestFreeze,
 } = require('../engine.js');
 
 const RUNS = parseInt(process.argv[2] || '10000', 10);
@@ -53,8 +53,7 @@ function runTravelEvents(s, opts) {
         break;
       }
       case 'stash': {
-        const add = pick([10, 15, 20, 30]);
-        const cost = add * randInt(90, 110);
+        const { add, cost } = rollStashUpgrade();
         if (s.cash >= cost && opts.buyStash) {
           s.cash -= cost;
           s.space += add;
@@ -96,13 +95,12 @@ function resolveFeds(s, opts) {
       return;
     }
     if (s.guns > 0 && opts.fedsFight) {
-      if (chance(fightKillChance(s.guns))) {
-        cops -= 1;
-        if (cops <= 0) {
-          s.cash += randInt(3750, 10000);
-          s.stats.fedsWins++;
-          return;
-        }
+      cops = fedsApplyFightKill(s, cops, rounds);
+      if (cops <= 0) {
+        s.cash += randInt(3750, 10000);
+        grantDebtInterestFreeze(s, 1);
+        s.stats.fedsWins++;
+        return;
       }
       if (chance(fedsCounterHitChance(s.guns, rounds, s.day)) && hit(s)) {
         s.over = true;

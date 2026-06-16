@@ -1,0 +1,1945 @@
+{
+  "generatedAt": "2026-06-16T03:57:27.387Z",
+  "totalRuns": 100000,
+  "durationSeconds": 52,
+  "archetypes": {
+    "conservative": {
+      "archetype": "Conservative Trader",
+      "group": "original",
+      "key": "conservative",
+      "runs": 10000,
+      "winRate": "90.6",
+      "lossRate": "9.4",
+      "avgEndingWealth": 19419696,
+      "medianEndingWealth": 15368032,
+      "p10Wealth": 3048612,
+      "p90Wealth": 38751567,
+      "maxWealth": 261728713,
+      "minWealth": -100000,
+      "avgDebtRemaining": 10119,
+      "avgStashUtilization": "0.641",
+      "avgDaysSurvived": "30.4",
+      "avgTrades": "63.9",
+      "avgScore": "57.9",
+      "negativeNetWorthPct": "3.4",
+      "score90PlusPct": "11.8",
+      "bigDaddyJPct": "7.2",
+      "avgFedsEncounters": "3.97",
+      "avgStallInterestHits": "0.00",
+      "avgDebtCapHits": "0.09",
+      "avgEventsPerTrip": "0.58",
+      "districtUsage": {
+        "Kitty Kat Club": 49409,
+        "Little Italy": 47806,
+        "City Hall": 49270,
+        "Warehouse District": 49355,
+        "Uptown": 49457,
+        "Dock #13": 49127
+      },
+      "goodsBuyFrequency": {
+        "bathgin": 1708538,
+        "cigars": 2604545,
+        "cognac": 665858,
+        "counterfeits": 873179,
+        "moonshine": 2299852,
+        "scotch": 1556345,
+        "diamonds": 737446,
+        "furcoats": 999861,
+        "art": 1901078,
+        "champagne": 738302
+      },
+      "goodsSellFrequency": {
+        "bathgin": 1619013,
+        "cigars": 2475378,
+        "cognac": 614300,
+        "counterfeits": 809028,
+        "moonshine": 2191157,
+        "scotch": 1450187,
+        "diamonds": 669799,
+        "furcoats": 923345,
+        "art": 1785884,
+        "champagne": 675020
+      },
+      "bankruptcyCauses": {
+        "feds": 939,
+        "survived": 9061
+      },
+      "rankDistribution": {
+        "Wise Guy": 1581,
+        "Pickpocket": 256,
+        "Crew Boss": 1212,
+        "Bootlegger": 1337,
+        "Underboss": 849,
+        "Godfather": 463,
+        "Big Daddy J": 721,
+        "Racketeer": 1604,
+        "Hustler": 590,
+        "Rum Runner": 978,
+        "Nobody": 409
+      },
+      "scheduledEventRates": {
+        "rare": "4.4",
+        "superRare": "1.0",
+        "godlike": "0.5",
+        "golden": "0.1"
+      },
+      "crimeLedger": {
+        "avgUnlocksPerRun": "10.13",
+        "masterCompletePct": "0.0",
+        "categoryCompletePct": {
+          "general": "0.0",
+          "rare": "0.0",
+          "superRare": "0.0",
+          "godlike": "0.0",
+          "goldenGodlike": "0.1"
+        },
+        "achievementUnlockPct": {
+          "made_man": "100.0",
+          "debt_survivor": "89.3",
+          "first_million": "96.2",
+          "connected": "99.3",
+          "bootlegger": "81.2",
+          "smoke_merchant": "86.6",
+          "the_collector": "30.8",
+          "high_roller": "91.4",
+          "diamond_hands": "76.2",
+          "empire_builder": "53.0",
+          "king_of_docks": "0.0",
+          "smooth_operator": "90.6",
+          "market_maven": "21.1",
+          "survivor": "91.0",
+          "luciano": "0.5",
+          "rumrow": "0.5",
+          "midnight": "0.4",
+          "ellington": "0.5",
+          "armstrong": "0.5",
+          "schultz": "0.4",
+          "lansky": "0.4",
+          "capone": "0.5",
+          "rothstein": "0.5",
+          "madden": "0.3",
+          "lindbergh": "0.1",
+          "mauretania": "0.1",
+          "dempsey": "0.2",
+          "kkrevue": "0.1",
+          "ziegfeld": "0.1",
+          "hollywood": "0.1",
+          "wales": "0.1",
+          "wallst": "0.0",
+          "ruth": "0.1",
+          "walker": "0.1",
+          "in_town": "0.0",
+          "interest": "0.1",
+          "move": "0.1",
+          "celebration": "0.1",
+          "history": "0.1",
+          "golden": "0.1"
+        }
+      }
+    },
+    "aggressive": {
+      "archetype": "Aggressive Risk Taker",
+      "group": "original",
+      "key": "aggressive",
+      "runs": 10000,
+      "winRate": "0.6",
+      "lossRate": "99.4",
+      "avgEndingWealth": 16033593,
+      "medianEndingWealth": 12978700,
+      "p10Wealth": 2443256,
+      "p90Wealth": 31265788,
+      "maxWealth": 192898212,
+      "minWealth": -100000,
+      "avgDebtRemaining": 99780,
+      "avgStashUtilization": "0.984",
+      "avgDaysSurvived": "25.8",
+      "avgTrades": "59.5",
+      "avgScore": "53.3",
+      "negativeNetWorthPct": "4.1",
+      "score90PlusPct": "7.1",
+      "bigDaddyJPct": "4.2",
+      "avgFedsEncounters": "3.31",
+      "avgStallInterestHits": "0.00",
+      "avgDebtCapHits": "0.98",
+      "avgEventsPerTrip": "0.58",
+      "districtUsage": {
+        "Kitty Kat Club": 26633,
+        "Dock #13": 116025,
+        "Little Italy": 25610,
+        "Uptown": 26593,
+        "City Hall": 26754,
+        "Warehouse District": 26319
+      },
+      "goodsBuyFrequency": {
+        "scotch": 1830584,
+        "bathgin": 2061989,
+        "counterfeits": 1114003,
+        "art": 2161988,
+        "cigars": 3077257,
+        "champagne": 968298,
+        "moonshine": 2985424,
+        "cognac": 881841,
+        "diamonds": 983349,
+        "furcoats": 1231810
+      },
+      "goodsSellFrequency": {
+        "bathgin": 1920945,
+        "scotch": 1674852,
+        "counterfeits": 1007966,
+        "art": 1991924,
+        "cigars": 2887941,
+        "moonshine": 2821616,
+        "champagne": 853958,
+        "cognac": 784950,
+        "diamonds": 868614,
+        "furcoats": 1105452
+      },
+      "bankruptcyCauses": {
+        "feds": 9938,
+        "survived": 62
+      },
+      "rankDistribution": {
+        "Racketeer": 1883,
+        "Wise Guy": 1602,
+        "Rum Runner": 1152,
+        "Crew Boss": 1065,
+        "Hustler": 675,
+        "Big Daddy J": 416,
+        "Godfather": 290,
+        "Nobody": 487,
+        "Underboss": 570,
+        "Bootlegger": 1561,
+        "Pickpocket": 299
+      },
+      "scheduledEventRates": {
+        "rare": "4.4",
+        "superRare": "1.0",
+        "godlike": "0.4",
+        "golden": "0.1"
+      },
+      "crimeLedger": {
+        "avgUnlocksPerRun": "8.35",
+        "masterCompletePct": "0.0",
+        "categoryCompletePct": {
+          "general": "0.0",
+          "rare": "0.0",
+          "superRare": "0.0",
+          "godlike": "0.0",
+          "goldenGodlike": "0.1"
+        },
+        "achievementUnlockPct": {
+          "made_man": "100.0",
+          "debt_survivor": "0.0",
+          "first_million": "97.3",
+          "connected": "83.1",
+          "bootlegger": "91.7",
+          "smoke_merchant": "92.4",
+          "the_collector": "54.3",
+          "high_roller": "94.0",
+          "diamond_hands": "82.6",
+          "empire_builder": "37.0",
+          "king_of_docks": "51.6",
+          "smooth_operator": "1.8",
+          "market_maven": "39.4",
+          "survivor": "4.3",
+          "luciano": "0.5",
+          "rumrow": "0.5",
+          "midnight": "0.4",
+          "ellington": "0.4",
+          "armstrong": "0.4",
+          "schultz": "0.4",
+          "lansky": "0.5",
+          "capone": "0.5",
+          "rothstein": "0.4",
+          "madden": "0.3",
+          "lindbergh": "0.1",
+          "mauretania": "0.1",
+          "dempsey": "0.1",
+          "kkrevue": "0.1",
+          "ziegfeld": "0.1",
+          "hollywood": "0.1",
+          "wales": "0.1",
+          "wallst": "0.1",
+          "ruth": "0.1",
+          "walker": "0.1",
+          "in_town": "0.1",
+          "interest": "0.1",
+          "move": "0.1",
+          "celebration": "0.1",
+          "history": "0.1",
+          "golden": "0.1"
+        }
+      }
+    },
+    "smuggler": {
+      "archetype": "Smuggler / Arbitrage Specialist",
+      "group": "original",
+      "key": "smuggler",
+      "runs": 10000,
+      "winRate": "0.0",
+      "lossRate": "100.0",
+      "avgEndingWealth": 13610576,
+      "medianEndingWealth": 11079864,
+      "p10Wealth": 2381129,
+      "p90Wealth": 26397418,
+      "maxWealth": 151194661,
+      "minWealth": -100000,
+      "avgDebtRemaining": 100000,
+      "avgStashUtilization": "0.968",
+      "avgDaysSurvived": "24.0",
+      "avgTrades": "64.4",
+      "avgScore": "49.5",
+      "negativeNetWorthPct": "4.0",
+      "score90PlusPct": "4.8",
+      "bigDaddyJPct": "2.7",
+      "avgFedsEncounters": "3.07",
+      "avgStallInterestHits": "0.00",
+      "avgDebtCapHits": "1.00",
+      "avgEventsPerTrip": "0.58",
+      "districtUsage": {
+        "Kitty Kat Club": 99670,
+        "Uptown": 85215,
+        "Warehouse District": 45268
+      },
+      "goodsBuyFrequency": {
+        "bathgin": 1788493,
+        "art": 1795937,
+        "cigars": 2310842,
+        "champagne": 866673,
+        "furcoats": 950864,
+        "counterfeits": 1027455,
+        "moonshine": 2492026,
+        "cognac": 817691,
+        "diamonds": 748398,
+        "scotch": 1504116
+      },
+      "goodsSellFrequency": {
+        "bathgin": 1652374,
+        "art": 1643588,
+        "cigars": 2161138,
+        "champagne": 754639,
+        "furcoats": 840566,
+        "moonshine": 2342146,
+        "counterfeits": 916853,
+        "cognac": 711184,
+        "scotch": 1356318,
+        "diamonds": 654984
+      },
+      "bankruptcyCauses": {
+        "feds": 10000,
+        "survived": 0
+      },
+      "rankDistribution": {
+        "Racketeer": 2017,
+        "Crew Boss": 765,
+        "Wise Guy": 1409,
+        "Bootlegger": 1979,
+        "Rum Runner": 1420,
+        "Nobody": 485,
+        "Hustler": 773,
+        "Pickpocket": 317,
+        "Godfather": 211,
+        "Underboss": 354,
+        "Big Daddy J": 270
+      },
+      "scheduledEventRates": {
+        "rare": "4.3",
+        "superRare": "0.7",
+        "godlike": "0.4",
+        "golden": "0.1"
+      },
+      "crimeLedger": {
+        "avgUnlocksPerRun": "6.85",
+        "masterCompletePct": "0.0",
+        "categoryCompletePct": {
+          "general": "0.0",
+          "rare": "0.0",
+          "superRare": "0.0",
+          "godlike": "0.0",
+          "goldenGodlike": "0.1"
+        },
+        "achievementUnlockPct": {
+          "made_man": "100.0",
+          "debt_survivor": "0.0",
+          "first_million": "97.8",
+          "connected": "0.0",
+          "bootlegger": "88.7",
+          "smoke_merchant": "86.6",
+          "the_collector": "59.6",
+          "high_roller": "94.4",
+          "diamond_hands": "82.6",
+          "empire_builder": "28.1",
+          "king_of_docks": "0.0",
+          "smooth_operator": "0.0",
+          "market_maven": "42.8",
+          "survivor": "0.0",
+          "luciano": "0.3",
+          "rumrow": "0.4",
+          "midnight": "0.3",
+          "ellington": "0.4",
+          "armstrong": "0.3",
+          "schultz": "0.4",
+          "lansky": "0.4",
+          "capone": "0.4",
+          "rothstein": "0.4",
+          "madden": "0.4",
+          "lindbergh": "0.1",
+          "mauretania": "0.0",
+          "dempsey": "0.1",
+          "kkrevue": "0.0",
+          "ziegfeld": "0.0",
+          "hollywood": "0.1",
+          "wales": "0.1",
+          "wallst": "0.1",
+          "ruth": "0.1",
+          "walker": "0.0",
+          "in_town": "0.1",
+          "interest": "0.1",
+          "move": "0.0",
+          "celebration": "0.1",
+          "history": "0.0",
+          "golden": "0.1"
+        }
+      }
+    },
+    "debtExploiter": {
+      "archetype": "Debt Exploiter",
+      "group": "original",
+      "key": "debtExploiter",
+      "runs": 10000,
+      "winRate": "0.0",
+      "lossRate": "100.0",
+      "avgEndingWealth": 1388717,
+      "medianEndingWealth": 56080,
+      "p10Wealth": -66736,
+      "p90Wealth": 4091684,
+      "maxWealth": 89150690,
+      "minWealth": -77397,
+      "avgDebtRemaining": 100000,
+      "avgStashUtilization": "0.690",
+      "avgDaysSurvived": "12.6",
+      "avgTrades": "19.4",
+      "avgScore": "10.0",
+      "negativeNetWorthPct": "44.1",
+      "score90PlusPct": "0.1",
+      "bigDaddyJPct": "0.1",
+      "avgFedsEncounters": "1.47",
+      "avgStallInterestHits": "0.00",
+      "avgDebtCapHits": "1.00",
+      "avgEventsPerTrip": "0.58",
+      "districtUsage": {
+        "Kitty Kat Club": 19626,
+        "Little Italy": 17755,
+        "Uptown": 19582,
+        "Dock #13": 19701,
+        "Warehouse District": 19710,
+        "City Hall": 19427
+      },
+      "goodsBuyFrequency": {
+        "cigars": 1106496,
+        "scotch": 402995,
+        "bathgin": 661902,
+        "furcoats": 137981,
+        "art": 605357,
+        "diamonds": 78992,
+        "moonshine": 1066637,
+        "cognac": 107633,
+        "champagne": 95389,
+        "counterfeits": 169754
+      },
+      "goodsSellFrequency": {
+        "cigars": 980658,
+        "scotch": 316193,
+        "bathgin": 569786,
+        "furcoats": 102075,
+        "diamonds": 58013,
+        "moonshine": 960975,
+        "cognac": 77872,
+        "art": 500997,
+        "champagne": 72962,
+        "counterfeits": 128292
+      },
+      "bankruptcyCauses": {
+        "feds": 10000,
+        "survived": 0
+      },
+      "rankDistribution": {
+        "Nobody": 6501,
+        "Pickpocket": 1625,
+        "Hustler": 832,
+        "Rum Runner": 482,
+        "Bootlegger": 297,
+        "Racketeer": 136,
+        "Big Daddy J": 10,
+        "Wise Guy": 73,
+        "Crew Boss": 27,
+        "Underboss": 13,
+        "Godfather": 4
+      },
+      "scheduledEventRates": {
+        "rare": "4.0",
+        "superRare": "1.0",
+        "godlike": "0.4",
+        "golden": "0.1"
+      },
+      "crimeLedger": {
+        "avgUnlocksPerRun": "3.26",
+        "masterCompletePct": "0.0",
+        "categoryCompletePct": {
+          "general": "0.0",
+          "rare": "0.0",
+          "superRare": "0.0",
+          "godlike": "0.0",
+          "goldenGodlike": "0.0"
+        },
+        "achievementUnlockPct": {
+          "made_man": "100.0",
+          "debt_survivor": "0.0",
+          "first_million": "30.6",
+          "connected": "54.9",
+          "bootlegger": "49.2",
+          "smoke_merchant": "50.4",
+          "the_collector": "0.4",
+          "high_roller": "15.9",
+          "diamond_hands": "22.6",
+          "empire_builder": "0.0",
+          "king_of_docks": "0.0",
+          "smooth_operator": "0.0",
+          "market_maven": "0.1",
+          "survivor": "0.0",
+          "luciano": "0.2",
+          "rumrow": "0.1",
+          "midnight": "0.1",
+          "ellington": "0.1",
+          "armstrong": "0.1",
+          "schultz": "0.1",
+          "lansky": "0.3",
+          "capone": "0.2",
+          "rothstein": "0.1",
+          "madden": "0.1",
+          "lindbergh": "0.0",
+          "mauretania": "0.0",
+          "dempsey": "0.0",
+          "kkrevue": "0.1",
+          "ziegfeld": "0.1",
+          "hollywood": "0.0",
+          "wales": "0.0",
+          "wallst": "0.0",
+          "ruth": "0.0",
+          "walker": "0.1",
+          "in_town": "0.1",
+          "interest": "0.0",
+          "move": "0.0",
+          "celebration": "0.0",
+          "history": "0.0",
+          "golden": "0.0"
+        }
+      }
+    },
+    "balanced": {
+      "archetype": "Balanced Player",
+      "group": "original",
+      "key": "balanced",
+      "runs": 10000,
+      "winRate": "88.2",
+      "lossRate": "11.8",
+      "avgEndingWealth": 20702703,
+      "medianEndingWealth": 16427601,
+      "p10Wealth": 2713838,
+      "p90Wealth": 42249005,
+      "maxWealth": 228729894,
+      "minWealth": -100000,
+      "avgDebtRemaining": 12448,
+      "avgStashUtilization": "0.745",
+      "avgDaysSurvived": "30.3",
+      "avgTrades": "61.9",
+      "avgScore": "59.2",
+      "negativeNetWorthPct": "3.7",
+      "score90PlusPct": "14.4",
+      "bigDaddyJPct": "8.8",
+      "avgFedsEncounters": "3.92",
+      "avgStallInterestHits": "0.00",
+      "avgDebtCapHits": "0.12",
+      "avgEventsPerTrip": "0.58",
+      "districtUsage": {
+        "Dock #13": 49325,
+        "Kitty Kat Club": 48895,
+        "Warehouse District": 48999,
+        "City Hall": 49137,
+        "Uptown": 49240,
+        "Little Italy": 47557
+      },
+      "goodsBuyFrequency": {
+        "moonshine": 2706147,
+        "cigars": 3031600,
+        "bathgin": 1995568,
+        "cognac": 765742,
+        "art": 2190468,
+        "scotch": 1837181,
+        "furcoats": 1146209,
+        "diamonds": 844471,
+        "counterfeits": 1019540,
+        "champagne": 860906
+      },
+      "goodsSellFrequency": {
+        "moonshine": 2573182,
+        "cigars": 2878963,
+        "bathgin": 1885477,
+        "cognac": 703739,
+        "art": 2061009,
+        "scotch": 1717082,
+        "furcoats": 1052538,
+        "diamonds": 766716,
+        "counterfeits": 942229,
+        "champagne": 782058
+      },
+      "bankruptcyCauses": {
+        "feds": 1178,
+        "survived": 8822
+      },
+      "rankDistribution": {
+        "Underboss": 879,
+        "Rum Runner": 900,
+        "Bootlegger": 1173,
+        "Big Daddy J": 877,
+        "Racketeer": 1485,
+        "Wise Guy": 1532,
+        "Godfather": 564,
+        "Nobody": 461,
+        "Crew Boss": 1272,
+        "Pickpocket": 279,
+        "Hustler": 578
+      },
+      "scheduledEventRates": {
+        "rare": "4.5",
+        "superRare": "1.0",
+        "godlike": "0.5",
+        "golden": "0.1"
+      },
+      "crimeLedger": {
+        "avgUnlocksPerRun": "10.15",
+        "masterCompletePct": "0.0",
+        "categoryCompletePct": {
+          "general": "0.0",
+          "rare": "0.0",
+          "superRare": "0.0",
+          "godlike": "0.0",
+          "goldenGodlike": "0.1"
+        },
+        "achievementUnlockPct": {
+          "made_man": "100.0",
+          "debt_survivor": "87.0",
+          "first_million": "96.2",
+          "connected": "99.4",
+          "bootlegger": "90.2",
+          "smoke_merchant": "91.8",
+          "the_collector": "29.8",
+          "high_roller": "91.4",
+          "diamond_hands": "75.3",
+          "empire_builder": "51.8",
+          "king_of_docks": "0.0",
+          "smooth_operator": "88.3",
+          "market_maven": "19.8",
+          "survivor": "88.5",
+          "luciano": "0.5",
+          "rumrow": "0.4",
+          "midnight": "0.4",
+          "ellington": "0.4",
+          "armstrong": "0.4",
+          "schultz": "0.6",
+          "lansky": "0.4",
+          "capone": "0.3",
+          "rothstein": "0.4",
+          "madden": "0.5",
+          "lindbergh": "0.1",
+          "mauretania": "0.1",
+          "dempsey": "0.1",
+          "kkrevue": "0.1",
+          "ziegfeld": "0.1",
+          "hollywood": "0.1",
+          "wales": "0.0",
+          "wallst": "0.1",
+          "ruth": "0.1",
+          "walker": "0.1",
+          "in_town": "0.1",
+          "interest": "0.1",
+          "move": "0.1",
+          "celebration": "0.1",
+          "history": "0.1",
+          "golden": "0.1"
+        }
+      }
+    },
+    "eventHunter": {
+      "archetype": "Event Hunter",
+      "group": "new",
+      "key": "eventHunter",
+      "runs": 10000,
+      "winRate": "87.4",
+      "lossRate": "12.6",
+      "avgEndingWealth": 13602721,
+      "medianEndingWealth": 11568789,
+      "p10Wealth": 2476495,
+      "p90Wealth": 25090474,
+      "maxWealth": 300393195,
+      "minWealth": -100000,
+      "avgDebtRemaining": 13319,
+      "avgStashUtilization": "0.582",
+      "avgDaysSurvived": "30.2",
+      "avgTrades": "69.2",
+      "avgScore": "49.9",
+      "negativeNetWorthPct": "3.9",
+      "score90PlusPct": "3.8",
+      "bigDaddyJPct": "2.3",
+      "avgFedsEncounters": "3.96",
+      "avgStallInterestHits": "0.00",
+      "avgDebtCapHits": "0.13",
+      "avgEventsPerTrip": "0.58",
+      "districtUsage": {
+        "Dock #13": 48997,
+        "Kitty Kat Club": 48890,
+        "Warehouse District": 49202,
+        "Little Italy": 46932,
+        "Uptown": 49297,
+        "City Hall": 48940
+      },
+      "goodsBuyFrequency": {
+        "art": 1824127,
+        "cigars": 2467005,
+        "furcoats": 1012197,
+        "scotch": 1544273,
+        "bathgin": 1636624,
+        "champagne": 773817,
+        "moonshine": 2192838,
+        "counterfeits": 877176,
+        "cognac": 694220,
+        "diamonds": 781924
+      },
+      "goodsSellFrequency": {
+        "art": 1725490,
+        "cigars": 2349507,
+        "furcoats": 943914,
+        "scotch": 1450893,
+        "bathgin": 1555840,
+        "champagne": 714122,
+        "moonshine": 2095476,
+        "counterfeits": 821946,
+        "cognac": 645195,
+        "diamonds": 721644
+      },
+      "bankruptcyCauses": {
+        "feds": 1262,
+        "survived": 8738
+      },
+      "rankDistribution": {
+        "Racketeer": 2222,
+        "Hustler": 642,
+        "Rum Runner": 1269,
+        "Underboss": 328,
+        "Wise Guy": 1576,
+        "Bootlegger": 2010,
+        "Crew Boss": 789,
+        "Nobody": 520,
+        "Pickpocket": 268,
+        "Big Daddy J": 230,
+        "Godfather": 146
+      },
+      "scheduledEventRates": {
+        "rare": "4.5",
+        "superRare": "1.1",
+        "godlike": "0.5",
+        "golden": "0.1"
+      },
+      "crimeLedger": {
+        "avgUnlocksPerRun": "10.19",
+        "masterCompletePct": "0.0",
+        "categoryCompletePct": {
+          "general": "0.0",
+          "rare": "0.0",
+          "superRare": "0.0",
+          "godlike": "0.0",
+          "goldenGodlike": "0.1"
+        },
+        "achievementUnlockPct": {
+          "made_man": "100.0",
+          "debt_survivor": "86.0",
+          "first_million": "96.1",
+          "connected": "99.1",
+          "bootlegger": "82.7",
+          "smoke_merchant": "87.2",
+          "the_collector": "35.8",
+          "high_roller": "93.3",
+          "diamond_hands": "78.3",
+          "empire_builder": "53.2",
+          "king_of_docks": "0.0",
+          "smooth_operator": "87.3",
+          "market_maven": "25.7",
+          "survivor": "87.7",
+          "luciano": "0.4",
+          "rumrow": "0.3",
+          "midnight": "0.4",
+          "ellington": "0.5",
+          "armstrong": "0.4",
+          "schultz": "0.5",
+          "lansky": "0.5",
+          "capone": "0.5",
+          "rothstein": "0.6",
+          "madden": "0.5",
+          "lindbergh": "0.1",
+          "mauretania": "0.1",
+          "dempsey": "0.1",
+          "kkrevue": "0.2",
+          "ziegfeld": "0.1",
+          "hollywood": "0.2",
+          "wales": "0.1",
+          "wallst": "0.1",
+          "ruth": "0.1",
+          "walker": "0.1",
+          "in_town": "0.1",
+          "interest": "0.1",
+          "move": "0.1",
+          "celebration": "0.1",
+          "history": "0.1",
+          "golden": "0.1"
+        }
+      }
+    },
+    "dockRunner": {
+      "archetype": "Dock Runner",
+      "group": "new",
+      "key": "dockRunner",
+      "runs": 10000,
+      "winRate": "59.8",
+      "lossRate": "40.2",
+      "avgEndingWealth": 22391745,
+      "medianEndingWealth": 19197422,
+      "p10Wealth": 5911127,
+      "p90Wealth": 41026665,
+      "maxWealth": 184720038,
+      "minWealth": -100000,
+      "avgDebtRemaining": 40836,
+      "avgStashUtilization": "0.982",
+      "avgDaysSurvived": "28.3",
+      "avgTrades": "71.8",
+      "avgScore": "64.5",
+      "negativeNetWorthPct": "1.5",
+      "score90PlusPct": "14.8",
+      "bigDaddyJPct": "7.8",
+      "avgFedsEncounters": "3.71",
+      "avgStallInterestHits": "0.00",
+      "avgDebtCapHits": "0.40",
+      "avgEventsPerTrip": "0.58",
+      "districtUsage": {
+        "Dock #13": 184438,
+        "Uptown": 17686,
+        "Little Italy": 17381,
+        "City Hall": 17906,
+        "Warehouse District": 17972,
+        "Kitty Kat Club": 17668
+      },
+      "goodsBuyFrequency": {
+        "moonshine": 3065197,
+        "bathgin": 2253829,
+        "scotch": 2110374,
+        "art": 2455253,
+        "cigars": 3323235,
+        "cognac": 1124110,
+        "counterfeits": 1363844,
+        "diamonds": 1319606,
+        "furcoats": 1617161,
+        "champagne": 1259322
+      },
+      "goodsSellFrequency": {
+        "moonshine": 2903278,
+        "bathgin": 2107906,
+        "art": 2286519,
+        "scotch": 1954631,
+        "cigars": 3133760,
+        "cognac": 1026036,
+        "counterfeits": 1251122,
+        "diamonds": 1198314,
+        "furcoats": 1479989,
+        "champagne": 1140624
+      },
+      "bankruptcyCauses": {
+        "feds": 4024,
+        "survived": 5976
+      },
+      "rankDistribution": {
+        "Underboss": 1151,
+        "Crew Boss": 1585,
+        "Rum Runner": 636,
+        "Bootlegger": 1095,
+        "Racketeer": 1602,
+        "Hustler": 311,
+        "Wise Guy": 1835,
+        "Godfather": 690,
+        "Big Daddy J": 785,
+        "Nobody": 183,
+        "Pickpocket": 127
+      },
+      "scheduledEventRates": {
+        "rare": "5.0",
+        "superRare": "0.8",
+        "godlike": "0.5",
+        "golden": "0.1"
+      },
+      "crimeLedger": {
+        "avgUnlocksPerRun": "10.88",
+        "masterCompletePct": "0.0",
+        "categoryCompletePct": {
+          "general": "13.3",
+          "rare": "0.0",
+          "superRare": "0.0",
+          "godlike": "0.0",
+          "goldenGodlike": "0.1"
+        },
+        "achievementUnlockPct": {
+          "made_man": "100.0",
+          "debt_survivor": "58.6",
+          "first_million": "99.2",
+          "connected": "54.2",
+          "bootlegger": "91.7",
+          "smoke_merchant": "93.6",
+          "the_collector": "71.8",
+          "high_roller": "97.9",
+          "diamond_hands": "91.5",
+          "empire_builder": "43.8",
+          "king_of_docks": "99.3",
+          "smooth_operator": "59.9",
+          "market_maven": "60.2",
+          "survivor": "60.0",
+          "luciano": "0.5",
+          "rumrow": "0.4",
+          "midnight": "0.5",
+          "ellington": "0.5",
+          "armstrong": "0.5",
+          "schultz": "0.5",
+          "lansky": "0.6",
+          "capone": "0.4",
+          "rothstein": "0.5",
+          "madden": "0.4",
+          "lindbergh": "0.1",
+          "mauretania": "0.1",
+          "dempsey": "0.1",
+          "kkrevue": "0.1",
+          "ziegfeld": "0.0",
+          "hollywood": "0.1",
+          "wales": "0.1",
+          "wallst": "0.1",
+          "ruth": "0.1",
+          "walker": "0.1",
+          "in_town": "0.1",
+          "interest": "0.1",
+          "move": "0.1",
+          "celebration": "0.1",
+          "history": "0.1",
+          "golden": "0.1"
+        }
+      }
+    },
+    "luxuryBroker": {
+      "archetype": "Luxury Broker",
+      "group": "new",
+      "key": "luxuryBroker",
+      "runs": 10000,
+      "winRate": "0.0",
+      "lossRate": "100.0",
+      "avgEndingWealth": 1217092,
+      "medianEndingWealth": -62139,
+      "p10Wealth": -100000,
+      "p90Wealth": 3300481,
+      "maxWealth": 99873631,
+      "minWealth": -100000,
+      "avgDebtRemaining": 99993,
+      "avgStashUtilization": "0.202",
+      "avgDaysSurvived": "24.0",
+      "avgTrades": "14.4",
+      "avgScore": "8.3",
+      "negativeNetWorthPct": "57.1",
+      "score90PlusPct": "0.2",
+      "bigDaddyJPct": "0.1",
+      "avgFedsEncounters": "3.05",
+      "avgStallInterestHits": "0.00",
+      "avgDebtCapHits": "1.00",
+      "avgEventsPerTrip": "0.58",
+      "districtUsage": {
+        "Kitty Kat Club": 111159,
+        "Uptown": 104723,
+        "Warehouse District": 14103
+      },
+      "goodsBuyFrequency": {
+        "cigars": 2136430,
+        "furcoats": 215534,
+        "diamonds": 129080
+      },
+      "goodsSellFrequency": {
+        "cigars": 1997212,
+        "furcoats": 179813,
+        "diamonds": 106083
+      },
+      "bankruptcyCauses": {
+        "feds": 10000,
+        "survived": 0
+      },
+      "rankDistribution": {
+        "Hustler": 679,
+        "Nobody": 7115,
+        "Pickpocket": 1317,
+        "Racketeer": 144,
+        "Wise Guy": 73,
+        "Rum Runner": 364,
+        "Crew Boss": 34,
+        "Bootlegger": 248,
+        "Underboss": 8,
+        "Big Daddy J": 15,
+        "Godfather": 3
+      },
+      "scheduledEventRates": {
+        "rare": "4.2",
+        "superRare": "1.1",
+        "godlike": "0.5",
+        "golden": "0.1"
+      },
+      "crimeLedger": {
+        "avgUnlocksPerRun": "2.79",
+        "masterCompletePct": "0.0",
+        "categoryCompletePct": {
+          "general": "0.0",
+          "rare": "0.0",
+          "superRare": "0.0",
+          "godlike": "0.0",
+          "goldenGodlike": "0.1"
+        },
+        "achievementUnlockPct": {
+          "made_man": "100.0",
+          "debt_survivor": "0.0",
+          "first_million": "25.2",
+          "connected": "0.0",
+          "bootlegger": "0.0",
+          "smoke_merchant": "66.7",
+          "the_collector": "0.0",
+          "high_roller": "15.1",
+          "diamond_hands": "36.6",
+          "empire_builder": "29.6",
+          "king_of_docks": "0.0",
+          "smooth_operator": "0.0",
+          "market_maven": "0.0",
+          "survivor": "0.0",
+          "luciano": "0.5",
+          "rumrow": "0.4",
+          "midnight": "0.4",
+          "ellington": "0.4",
+          "armstrong": "0.4",
+          "schultz": "0.4",
+          "lansky": "0.3",
+          "capone": "0.4",
+          "rothstein": "0.4",
+          "madden": "0.4",
+          "lindbergh": "0.1",
+          "mauretania": "0.1",
+          "dempsey": "0.1",
+          "kkrevue": "0.2",
+          "ziegfeld": "0.1",
+          "hollywood": "0.2",
+          "wales": "0.1",
+          "wallst": "0.1",
+          "ruth": "0.1",
+          "walker": "0.1",
+          "in_town": "0.1",
+          "interest": "0.1",
+          "move": "0.1",
+          "celebration": "0.1",
+          "history": "0.1",
+          "golden": "0.1"
+        }
+      }
+    },
+    "streetHustler": {
+      "archetype": "Street Hustler",
+      "group": "new",
+      "key": "streetHustler",
+      "runs": 10000,
+      "winRate": "0.0",
+      "lossRate": "100.0",
+      "avgEndingWealth": 10547116,
+      "medianEndingWealth": 8890447,
+      "p10Wealth": 2507008,
+      "p90Wealth": 19683109,
+      "maxWealth": 99958754,
+      "minWealth": -100000,
+      "avgDebtRemaining": 100000,
+      "avgStashUtilization": "0.984",
+      "avgDaysSurvived": "24.0",
+      "avgTrades": "87.6",
+      "avgScore": "44.6",
+      "negativeNetWorthPct": "2.8",
+      "score90PlusPct": "1.8",
+      "bigDaddyJPct": "0.9",
+      "avgFedsEncounters": "3.07",
+      "avgStallInterestHits": "0.00",
+      "avgDebtCapHits": "1.00",
+      "avgEventsPerTrip": "0.58",
+      "districtUsage": {
+        "Warehouse District": 38745,
+        "Dock #13": 38681,
+        "Uptown": 38528,
+        "Little Italy": 37191,
+        "City Hall": 38413,
+        "Kitty Kat Club": 38442
+      },
+      "goodsBuyFrequency": {
+        "art": 1427595,
+        "moonshine": 1899016,
+        "cigars": 1871322,
+        "champagne": 756626,
+        "scotch": 1218200,
+        "counterfeits": 862677,
+        "bathgin": 1477480,
+        "furcoats": 868912,
+        "diamonds": 711850,
+        "cognac": 716903
+      },
+      "goodsSellFrequency": {
+        "moonshine": 1793129,
+        "art": 1318810,
+        "cigars": 1760022,
+        "champagne": 672134,
+        "scotch": 1111616,
+        "counterfeits": 780536,
+        "bathgin": 1381406,
+        "furcoats": 776533,
+        "diamonds": 630136,
+        "cognac": 642121
+      },
+      "bankruptcyCauses": {
+        "feds": 10000,
+        "survived": 0
+      },
+      "rankDistribution": {
+        "Racketeer": 1974,
+        "Bootlegger": 2614,
+        "Wise Guy": 920,
+        "Nobody": 363,
+        "Rum Runner": 2020,
+        "Hustler": 997,
+        "Crew Boss": 407,
+        "Pickpocket": 334,
+        "Underboss": 194,
+        "Big Daddy J": 93,
+        "Godfather": 84
+      },
+      "scheduledEventRates": {
+        "rare": "4.4",
+        "superRare": "1.0",
+        "godlike": "0.4",
+        "golden": "0.1"
+      },
+      "crimeLedger": {
+        "avgUnlocksPerRun": "7.90",
+        "masterCompletePct": "0.0",
+        "categoryCompletePct": {
+          "general": "0.0",
+          "rare": "0.0",
+          "superRare": "0.0",
+          "godlike": "0.0",
+          "goldenGodlike": "0.1"
+        },
+        "achievementUnlockPct": {
+          "made_man": "100.0",
+          "debt_survivor": "0.0",
+          "first_million": "98.5",
+          "connected": "97.1",
+          "bootlegger": "86.9",
+          "smoke_merchant": "86.0",
+          "the_collector": "73.8",
+          "high_roller": "95.1",
+          "diamond_hands": "89.2",
+          "empire_builder": "0.0",
+          "king_of_docks": "0.0",
+          "smooth_operator": "0.0",
+          "market_maven": "58.6",
+          "survivor": "0.0",
+          "luciano": "0.4",
+          "rumrow": "0.5",
+          "midnight": "0.4",
+          "ellington": "0.4",
+          "armstrong": "0.3",
+          "schultz": "0.4",
+          "lansky": "0.4",
+          "capone": "0.4",
+          "rothstein": "0.3",
+          "madden": "0.3",
+          "lindbergh": "0.1",
+          "mauretania": "0.1",
+          "dempsey": "0.1",
+          "kkrevue": "0.1",
+          "ziegfeld": "0.0",
+          "hollywood": "0.1",
+          "wales": "0.1",
+          "wallst": "0.1",
+          "ruth": "0.1",
+          "walker": "0.1",
+          "in_town": "0.1",
+          "interest": "0.1",
+          "move": "0.1",
+          "celebration": "0.0",
+          "history": "0.1",
+          "golden": "0.1"
+        }
+      }
+    },
+    "enforcer": {
+      "archetype": "Enforcer",
+      "group": "new",
+      "key": "enforcer",
+      "runs": 10000,
+      "winRate": "0.9",
+      "lossRate": "99.1",
+      "avgEndingWealth": 12283546,
+      "medianEndingWealth": 9414704,
+      "p10Wealth": 698401,
+      "p90Wealth": 25161976,
+      "maxWealth": 160297037,
+      "minWealth": -100000,
+      "avgDebtRemaining": 99794,
+      "avgStashUtilization": "0.818",
+      "avgDaysSurvived": "26.0",
+      "avgTrades": "52.3",
+      "avgScore": "45.2",
+      "negativeNetWorthPct": "7.1",
+      "score90PlusPct": "4.2",
+      "bigDaddyJPct": "2.6",
+      "avgFedsEncounters": "3.34",
+      "avgStallInterestHits": "0.00",
+      "avgDebtCapHits": "0.98",
+      "avgEventsPerTrip": "0.58",
+      "districtUsage": {
+        "Kitty Kat Club": 41767,
+        "Warehouse District": 42042,
+        "Dock #13": 42021,
+        "City Hall": 42060,
+        "Little Italy": 40538,
+        "Uptown": 41720
+      },
+      "goodsBuyFrequency": {
+        "cigars": 2754638,
+        "bathgin": 1829615,
+        "scotch": 1563987,
+        "cognac": 653599,
+        "champagne": 715497,
+        "furcoats": 950818,
+        "art": 1945734,
+        "counterfeits": 876056,
+        "moonshine": 2480889,
+        "diamonds": 676893
+      },
+      "goodsSellFrequency": {
+        "cigars": 2593208,
+        "bathgin": 1711642,
+        "scotch": 1431877,
+        "cognac": 587831,
+        "champagne": 628295,
+        "furcoats": 844663,
+        "art": 1804013,
+        "moonshine": 2336553,
+        "counterfeits": 793780,
+        "diamonds": 598247
+      },
+      "bankruptcyCauses": {
+        "feds": 9908,
+        "survived": 92
+      },
+      "rankDistribution": {
+        "Bootlegger": 1664,
+        "Rum Runner": 1434,
+        "Pickpocket": 589,
+        "Godfather": 163,
+        "Hustler": 1067,
+        "Underboss": 327,
+        "Nobody": 861,
+        "Crew Boss": 660,
+        "Wise Guy": 1261,
+        "Racketeer": 1716,
+        "Big Daddy J": 258
+      },
+      "scheduledEventRates": {
+        "rare": "4.7",
+        "superRare": "1.0",
+        "godlike": "0.6",
+        "golden": "0.1"
+      },
+      "crimeLedger": {
+        "avgUnlocksPerRun": "7.12",
+        "masterCompletePct": "0.0",
+        "categoryCompletePct": {
+          "general": "0.0",
+          "rare": "0.0",
+          "superRare": "0.0",
+          "godlike": "0.0",
+          "goldenGodlike": "0.1"
+        },
+        "achievementUnlockPct": {
+          "made_man": "100.0",
+          "debt_survivor": "0.0",
+          "first_million": "95.9",
+          "connected": "97.9",
+          "bootlegger": "87.1",
+          "smoke_merchant": "89.8",
+          "the_collector": "18.3",
+          "high_roller": "88.8",
+          "diamond_hands": "68.5",
+          "empire_builder": "41.6",
+          "king_of_docks": "0.0",
+          "smooth_operator": "2.2",
+          "market_maven": "10.4",
+          "survivor": "5.0",
+          "luciano": "0.4",
+          "rumrow": "0.4",
+          "midnight": "0.4",
+          "ellington": "0.5",
+          "armstrong": "0.5",
+          "schultz": "0.5",
+          "lansky": "0.5",
+          "capone": "0.5",
+          "rothstein": "0.5",
+          "madden": "0.5",
+          "lindbergh": "0.1",
+          "mauretania": "0.1",
+          "dempsey": "0.1",
+          "kkrevue": "0.1",
+          "ziegfeld": "0.1",
+          "hollywood": "0.1",
+          "wales": "0.1",
+          "wallst": "0.1",
+          "ruth": "0.1",
+          "walker": "0.1",
+          "in_town": "0.1",
+          "interest": "0.1",
+          "move": "0.1",
+          "celebration": "0.1",
+          "history": "0.1",
+          "golden": "0.1"
+        }
+      }
+    }
+  },
+  "economy": {
+    "mostProfitableStrategies": [
+      {
+        "strategy": "Dock Runner",
+        "avgWealth": 22391745
+      },
+      {
+        "strategy": "Balanced Player",
+        "avgWealth": 20702703
+      }
+    ],
+    "leastProfitableStrategies": [
+      {
+        "strategy": "Luxury Broker",
+        "avgWealth": 1217092
+      },
+      {
+        "strategy": "Debt Exploiter",
+        "avgWealth": 1388717
+      }
+    ],
+    "dominantStrategy": "dockRunner",
+    "overpoweredGoods": [
+      "cigars",
+      "moonshine",
+      "art"
+    ],
+    "underpoweredGoods": [
+      "champagne",
+      "diamonds",
+      "cognac"
+    ],
+    "interestOnlyDebt30Days": 100000,
+    "exploits": [
+      {
+        "id": "day1_stall",
+        "severity": "Medium",
+        "note": "Stall archetype triggers stall interest; debt cap ends run if debt hits ceiling"
+      },
+      {
+        "id": "debt_stack",
+        "severity": "Medium",
+        "note": "Debt capped at $100k including compounded interest — game over at ceiling"
+      },
+      {
+        "id": "gun_stack",
+        "severity": "Low",
+        "note": "Gun cap 2; escalating purchase cost; Feds counter-hit scales per round"
+      },
+      {
+        "id": "event_pileup",
+        "severity": "Low",
+        "note": "Avg events per trip capped at 2"
+      }
+    ]
+  },
+  "crimeLedger": {
+    "totalAchievements": 40,
+    "avgUnlocksPerRun": "7.76",
+    "masterCompleteSingleRunPct": "0.0",
+    "estimatedRunsToCompleteLedger": 10002,
+    "cumulativeAfterAllRuns": 40,
+    "categorySummary": [
+      {
+        "id": "general",
+        "title": "GENERAL",
+        "total": 14,
+        "avgUnlocksPerRun": "7.71",
+        "fullCategoryPct": "1.3",
+        "rarestInCategory": [
+          {
+            "id": "king_of_docks",
+            "title": "KING OF THE DOCKS",
+            "pct": "15.1"
+          },
+          {
+            "id": "market_maven",
+            "title": "MARKET MAVEN",
+            "pct": "27.8"
+          },
+          {
+            "id": "debt_survivor",
+            "title": "DEBT SURVIVOR",
+            "pct": "32.1"
+          }
+        ]
+      },
+      {
+        "id": "rare",
+        "title": "RARE",
+        "total": 10,
+        "avgUnlocksPerRun": "0.04",
+        "fullCategoryPct": "0.0",
+        "rarestInCategory": [
+          {
+            "id": "luciano",
+            "title": "LUCKY LUCIANO CALLS A MEETING",
+            "pct": "0.4"
+          },
+          {
+            "id": "rumrow",
+            "title": "THE SILENT FLEET RETURNS TO HARBOR",
+            "pct": "0.4"
+          },
+          {
+            "id": "midnight",
+            "title": "THE MIDNIGHT RUN REACHES THE CITY",
+            "pct": "0.4"
+          }
+        ]
+      },
+      {
+        "id": "superRare",
+        "title": "SUPER RARE",
+        "total": 10,
+        "avgUnlocksPerRun": "0.01",
+        "fullCategoryPct": "0.0",
+        "rarestInCategory": [
+          {
+            "id": "lindbergh",
+            "title": "LINDBERGH ARRIVES TO GREAT FANFARE",
+            "pct": "0.1"
+          },
+          {
+            "id": "mauretania",
+            "title": "MAURETANIA DOCKS TO HUGE CROWDS",
+            "pct": "0.1"
+          },
+          {
+            "id": "dempsey",
+            "title": "A BIG FIGHT DRAWS NEAR",
+            "pct": "0.1"
+          }
+        ]
+      },
+      {
+        "id": "godlike",
+        "title": "GODLIKE",
+        "total": 5,
+        "avgUnlocksPerRun": "0.00",
+        "fullCategoryPct": "0.0",
+        "rarestInCategory": [
+          {
+            "id": "in_town",
+            "title": "BIG DADDY J IS IN TOWN",
+            "pct": "0.1"
+          },
+          {
+            "id": "interest",
+            "title": "BIG DADDY J TAKES AN INTEREST",
+            "pct": "0.1"
+          },
+          {
+            "id": "move",
+            "title": "BIG DADDY J MAKES A MOVE",
+            "pct": "0.1"
+          }
+        ]
+      },
+      {
+        "id": "goldenGodlike",
+        "title": "GOLDEN GODLIKE",
+        "total": 1,
+        "avgUnlocksPerRun": "0.00",
+        "fullCategoryPct": "0.1",
+        "rarestInCategory": [
+          {
+            "id": "golden",
+            "title": "GOLDEN SHOWER!!!",
+            "pct": "0.1"
+          }
+        ]
+      }
+    ],
+    "rarestAchievements": [
+      {
+        "id": "lindbergh",
+        "title": "LINDBERGH ARRIVES TO GREAT FANFARE",
+        "category": "superRare",
+        "unlockPct": "0.1"
+      },
+      {
+        "id": "mauretania",
+        "title": "MAURETANIA DOCKS TO HUGE CROWDS",
+        "category": "superRare",
+        "unlockPct": "0.1"
+      },
+      {
+        "id": "dempsey",
+        "title": "A BIG FIGHT DRAWS NEAR",
+        "category": "superRare",
+        "unlockPct": "0.1"
+      },
+      {
+        "id": "kkrevue",
+        "title": "THE KITTY KAT CLUB DEBUTS A NEW REVUE",
+        "category": "superRare",
+        "unlockPct": "0.1"
+      },
+      {
+        "id": "ziegfeld",
+        "title": "ZIEGFELD FEVER SWEEPS THE CITY",
+        "category": "superRare",
+        "unlockPct": "0.1"
+      },
+      {
+        "id": "hollywood",
+        "title": "THE TALKIES ARE ALL THE RAGE",
+        "category": "superRare",
+        "unlockPct": "0.1"
+      },
+      {
+        "id": "wales",
+        "title": "THE PRINCE OF WALES IS IN TOWN",
+        "category": "superRare",
+        "unlockPct": "0.1"
+      },
+      {
+        "id": "wallst",
+        "title": "STOCK MARKET FORTUNES GROW AGAIN",
+        "category": "superRare",
+        "unlockPct": "0.1"
+      },
+      {
+        "id": "ruth",
+        "title": "BABE RUTH FEVER SWEEPS THE CITY",
+        "category": "superRare",
+        "unlockPct": "0.1"
+      },
+      {
+        "id": "walker",
+        "title": "MAYOR WALKER VISITS THE DISTRICT",
+        "category": "superRare",
+        "unlockPct": "0.1"
+      }
+    ],
+    "commonAchievements": [
+      {
+        "id": "made_man",
+        "title": "MADE MAN",
+        "category": "general",
+        "unlockPct": "100.0"
+      },
+      {
+        "id": "first_million",
+        "title": "FIRST MILLION",
+        "category": "general",
+        "unlockPct": "83.3"
+      },
+      {
+        "id": "smoke_merchant",
+        "title": "SMOKE MERCHANT",
+        "category": "general",
+        "unlockPct": "83.1"
+      },
+      {
+        "id": "high_roller",
+        "title": "HIGH ROLLER",
+        "category": "general",
+        "unlockPct": "77.7"
+      },
+      {
+        "id": "bootlegger",
+        "title": "BOOTLEGGER",
+        "category": "general",
+        "unlockPct": "74.9"
+      },
+      {
+        "id": "diamond_hands",
+        "title": "DIAMOND HANDS",
+        "category": "general",
+        "unlockPct": "70.4"
+      },
+      {
+        "id": "connected",
+        "title": "CONNECTED",
+        "category": "general",
+        "unlockPct": "68.5"
+      },
+      {
+        "id": "the_collector",
+        "title": "THE COLLECTOR",
+        "category": "general",
+        "unlockPct": "37.5"
+      },
+      {
+        "id": "empire_builder",
+        "title": "EMPIRE BUILDER",
+        "category": "general",
+        "unlockPct": "33.8"
+      },
+      {
+        "id": "survivor",
+        "title": "SURVIVOR",
+        "category": "general",
+        "unlockPct": "33.6"
+      }
+    ],
+    "generalAchievementRates": {
+      "made_man": {
+        "title": "MADE MAN",
+        "category": "general",
+        "unlockPct": "100.0",
+        "runs": 100000
+      },
+      "debt_survivor": {
+        "title": "DEBT SURVIVOR",
+        "category": "general",
+        "unlockPct": "32.1",
+        "runs": 32088
+      },
+      "first_million": {
+        "title": "FIRST MILLION",
+        "category": "general",
+        "unlockPct": "83.3",
+        "runs": 83289
+      },
+      "connected": {
+        "title": "CONNECTED",
+        "category": "general",
+        "unlockPct": "68.5",
+        "runs": 68499
+      },
+      "bootlegger": {
+        "title": "BOOTLEGGER",
+        "category": "general",
+        "unlockPct": "74.9",
+        "runs": 74931
+      },
+      "smoke_merchant": {
+        "title": "SMOKE MERCHANT",
+        "category": "general",
+        "unlockPct": "83.1",
+        "runs": 83118
+      },
+      "the_collector": {
+        "title": "THE COLLECTOR",
+        "category": "general",
+        "unlockPct": "37.5",
+        "runs": 37460
+      },
+      "high_roller": {
+        "title": "HIGH ROLLER",
+        "category": "general",
+        "unlockPct": "77.7",
+        "runs": 77729
+      },
+      "diamond_hands": {
+        "title": "DIAMOND HANDS",
+        "category": "general",
+        "unlockPct": "70.4",
+        "runs": 70355
+      },
+      "empire_builder": {
+        "title": "EMPIRE BUILDER",
+        "category": "general",
+        "unlockPct": "33.8",
+        "runs": 33815
+      },
+      "king_of_docks": {
+        "title": "KING OF THE DOCKS",
+        "category": "general",
+        "unlockPct": "15.1",
+        "runs": 15090
+      },
+      "smooth_operator": {
+        "title": "SMOOTH OPERATOR",
+        "category": "general",
+        "unlockPct": "33.0",
+        "runs": 33000
+      },
+      "market_maven": {
+        "title": "MARKET MAVEN",
+        "category": "general",
+        "unlockPct": "27.8",
+        "runs": 27818
+      },
+      "survivor": {
+        "title": "SURVIVOR",
+        "category": "general",
+        "unlockPct": "33.6",
+        "runs": 33644
+      }
+    },
+    "eventAchievementRates": {
+      "luciano": {
+        "title": "LUCKY LUCIANO CALLS A MEETING",
+        "category": "rare",
+        "unlockPct": "0.4",
+        "runs": 400
+      },
+      "rumrow": {
+        "title": "THE SILENT FLEET RETURNS TO HARBOR",
+        "category": "rare",
+        "unlockPct": "0.4",
+        "runs": 395
+      },
+      "midnight": {
+        "title": "THE MIDNIGHT RUN REACHES THE CITY",
+        "category": "rare",
+        "unlockPct": "0.4",
+        "runs": 376
+      },
+      "ellington": {
+        "title": "DUKE ELLINGTON HEADLINES TONIGHT",
+        "category": "rare",
+        "unlockPct": "0.4",
+        "runs": 406
+      },
+      "armstrong": {
+        "title": "LOUIS ARMSTRONG PLAYS TONIGHT",
+        "category": "rare",
+        "unlockPct": "0.4",
+        "runs": 389
+      },
+      "schultz": {
+        "title": "DUTCH SCHULTZ EYES NEW TERRITORY",
+        "category": "rare",
+        "unlockPct": "0.4",
+        "runs": 417
+      },
+      "lansky": {
+        "title": "MEYER LANSKY ENTERS THE PICTURE",
+        "category": "rare",
+        "unlockPct": "0.4",
+        "runs": 422
+      },
+      "capone": {
+        "title": "AL CAPONE SEEN MEETING ASSOCIATES",
+        "category": "rare",
+        "unlockPct": "0.4",
+        "runs": 400
+      },
+      "rothstein": {
+        "title": "ARNOLD ROTHSTEIN TAKES AN INTEREST",
+        "category": "rare",
+        "unlockPct": "0.4",
+        "runs": 413
+      },
+      "madden": {
+        "title": "OWNEY MADDEN BACKS ANOTHER BIG NIGHT",
+        "category": "rare",
+        "unlockPct": "0.4",
+        "runs": 372
+      },
+      "lindbergh": {
+        "title": "LINDBERGH ARRIVES TO GREAT FANFARE",
+        "category": "superRare",
+        "unlockPct": "0.1",
+        "runs": 83
+      },
+      "mauretania": {
+        "title": "MAURETANIA DOCKS TO HUGE CROWDS",
+        "category": "superRare",
+        "unlockPct": "0.1",
+        "runs": 75
+      },
+      "dempsey": {
+        "title": "A BIG FIGHT DRAWS NEAR",
+        "category": "superRare",
+        "unlockPct": "0.1",
+        "runs": 83
+      },
+      "kkrevue": {
+        "title": "THE KITTY KAT CLUB DEBUTS A NEW REVUE",
+        "category": "superRare",
+        "unlockPct": "0.1",
+        "runs": 93
+      },
+      "ziegfeld": {
+        "title": "ZIEGFELD FEVER SWEEPS THE CITY",
+        "category": "superRare",
+        "unlockPct": "0.1",
+        "runs": 76
+      },
+      "hollywood": {
+        "title": "THE TALKIES ARE ALL THE RAGE",
+        "category": "superRare",
+        "unlockPct": "0.1",
+        "runs": 110
+      },
+      "wales": {
+        "title": "THE PRINCE OF WALES IS IN TOWN",
+        "category": "superRare",
+        "unlockPct": "0.1",
+        "runs": 80
+      },
+      "wallst": {
+        "title": "STOCK MARKET FORTUNES GROW AGAIN",
+        "category": "superRare",
+        "unlockPct": "0.1",
+        "runs": 81
+      },
+      "ruth": {
+        "title": "BABE RUTH FEVER SWEEPS THE CITY",
+        "category": "superRare",
+        "unlockPct": "0.1",
+        "runs": 84
+      },
+      "walker": {
+        "title": "MAYOR WALKER VISITS THE DISTRICT",
+        "category": "superRare",
+        "unlockPct": "0.1",
+        "runs": 93
+      },
+      "in_town": {
+        "title": "BIG DADDY J IS IN TOWN",
+        "category": "godlike",
+        "unlockPct": "0.1",
+        "runs": 77
+      },
+      "interest": {
+        "title": "BIG DADDY J TAKES AN INTEREST",
+        "category": "godlike",
+        "unlockPct": "0.1",
+        "runs": 89
+      },
+      "move": {
+        "title": "BIG DADDY J MAKES A MOVE",
+        "category": "godlike",
+        "unlockPct": "0.1",
+        "runs": 93
+      },
+      "celebration": {
+        "title": "BIG DADDY J THROWS A CELEBRATION",
+        "category": "godlike",
+        "unlockPct": "0.1",
+        "runs": 80
+      },
+      "history": {
+        "title": "BIG DADDY J MAKES HISTORY",
+        "category": "godlike",
+        "unlockPct": "0.1",
+        "runs": 88
+      },
+      "golden": {
+        "title": "GOLDEN SHOWER!!!",
+        "category": "goldenGodlike",
+        "unlockPct": "0.1",
+        "runs": 91
+      }
+    }
+  },
+  "globalDistrictUsage": {
+    "Kitty Kat Club": 502159,
+    "Little Italy": 280770,
+    "City Hall": 291907,
+    "Warehouse District": 351715,
+    "Uptown": 482041,
+    "Dock #13": 548315
+  },
+  "globalGoodsBuyFrequency": {
+    "bathgin": 15414038,
+    "cigars": 24683370,
+    "cognac": 6427597,
+    "counterfeits": 8183684,
+    "moonshine": 21188026,
+    "scotch": 13568055,
+    "diamonds": 7012009,
+    "furcoats": 9131347,
+    "art": 16307537,
+    "champagne": 7034830
+  },
+  "balanceFindings": {
+    "dominantStrategies": [
+      {
+        "strategy": "Dock Runner",
+        "avgWealth": 22391745
+      },
+      {
+        "strategy": "Balanced Player",
+        "avgWealth": 20702703
+      }
+    ],
+    "brokenStrategies": [],
+    "unusedMechanics": [
+      "Golden Godlike chase (0.1% roll)",
+      "Full debt payoff win condition"
+    ],
+    "difficultySpikes": [
+      "Day 20+ extra Feds agent and +5% counter-hit",
+      "8% daily compound debt; hard cap at $100k"
+    ],
+    "softLockPossibilities": [
+      "Day 1 stall (player choice)",
+      "Zero cash + zero bank + high debt + no goods"
+    ],
+    "unwinnableScenarios": [
+      "None forced — negative NW allowed at end"
+    ],
+    "exploitableLoops": [
+      {
+        "id": "day1_stall",
+        "severity": "Medium",
+        "note": "Stall archetype triggers stall interest; debt cap ends run if debt hits ceiling"
+      },
+      {
+        "id": "debt_stack",
+        "severity": "Medium",
+        "note": "Debt capped at $100k including compounded interest — game over at ceiling"
+      },
+      {
+        "id": "gun_stack",
+        "severity": "Low",
+        "note": "Gun cap 2; escalating purchase cost; Feds counter-hit scales per round"
+      },
+      {
+        "id": "event_pileup",
+        "severity": "Low",
+        "note": "Avg events per trip capped at 2"
+      }
+    ]
+  },
+  "debtExploiterDetail": {
+    "avgBorrows": "1.4",
+    "avgEndingDebt": 100000,
+    "avgBank": 320877
+  }
+}

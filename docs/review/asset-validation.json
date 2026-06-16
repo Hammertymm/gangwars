@@ -1,12 +1,370 @@
 {
-  "generatedAt": "2026-06-15",
-  "totalImagesOnDisk": 69,
-  "totalReferences": 69,
+  "generatedAt": "2026-06-16",
+  "totalImagesOnDisk": 291,
+  "totalReferences": 70,
   "missing": [],
   "orphans": [
-    "assets/event-grid-source.png"
+    "assets/eos-layout-source.png",
+    "assets/eos-tommy-right.png",
+    "assets/event-grid-source.png",
+    "assets/godlike-event-grid-source.png",
+    "assets/godlike-golden-source.png",
+    "assets/rare-event-grid-source.png",
+    "assets/super-rare-event-grid-source.png",
+    "events/_backup-godlike-20260616-005504/godlike_celebration.png",
+    "events/_backup-godlike-20260616-005504/godlike_history.png",
+    "events/_backup-godlike-20260616-005504/godlike_in_town.png",
+    "events/_backup-godlike-20260616-005504/godlike_interest.png",
+    "events/_backup-godlike-20260616-005504/godlike_move.png",
+    "events/_backup-godlike-20260616-012114/godlike_celebration.png",
+    "events/_backup-godlike-20260616-012114/godlike_history.png",
+    "events/_backup-godlike-20260616-012114/godlike_in_town.png",
+    "events/_backup-godlike-20260616-012114/godlike_interest.png",
+    "events/_backup-godlike-20260616-012114/godlike_move.png",
+    "events/_backup-golden-20260616-005911/godlike_golden.png",
+    "events/_backup-golden-20260616-012115/godlike_golden.png",
+    "events/_backup-rare-20260616-004857/rare_armstrong.png",
+    "events/_backup-rare-20260616-004857/rare_capone.png",
+    "events/_backup-rare-20260616-004857/rare_ellington.png",
+    "events/_backup-rare-20260616-004857/rare_lansky.png",
+    "events/_backup-rare-20260616-004857/rare_luciano.png",
+    "events/_backup-rare-20260616-004857/rare_madden.png",
+    "events/_backup-rare-20260616-004857/rare_midnight.png",
+    "events/_backup-rare-20260616-004857/rare_rothstein.png",
+    "events/_backup-rare-20260616-004857/rare_rumrow.png",
+    "events/_backup-rare-20260616-004857/rare_schultz.png",
+    "events/_backup-rare-20260616-005311/rare_armstrong.png",
+    "events/_backup-rare-20260616-005311/rare_capone.png",
+    "events/_backup-rare-20260616-005311/rare_ellington.png",
+    "events/_backup-rare-20260616-005311/rare_lansky.png",
+    "events/_backup-rare-20260616-005311/rare_luciano.png",
+    "events/_backup-rare-20260616-005311/rare_madden.png",
+    "events/_backup-rare-20260616-005311/rare_midnight.png",
+    "events/_backup-rare-20260616-005311/rare_rothstein.png",
+    "events/_backup-rare-20260616-005311/rare_rumrow.png",
+    "events/_backup-rare-20260616-005311/rare_schultz.png",
+    "events/_backup-rare-20260616-012112/rare_armstrong.png",
+    "events/_backup-rare-20260616-012112/rare_capone.png",
+    "events/_backup-rare-20260616-012112/rare_ellington.png",
+    "events/_backup-rare-20260616-012112/rare_lansky.png",
+    "events/_backup-rare-20260616-012112/rare_luciano.png",
+    "events/_backup-rare-20260616-012112/rare_madden.png",
+    "events/_backup-rare-20260616-012112/rare_midnight.png",
+    "events/_backup-rare-20260616-012112/rare_rothstein.png",
+    "events/_backup-rare-20260616-012112/rare_rumrow.png",
+    "events/_backup-rare-20260616-012112/rare_schultz.png",
+    "events/_backup-standard-20260615-234447/ambushed_rolled.png",
+    "events/_backup-standard-20260615-234447/buying_frenzy.png",
+    "events/_backup-standard-20260615-234447/dead_drop.png",
+    "events/_backup-standard-20260615-234447/flooded_market.png",
+    "events/_backup-standard-20260615-234447/packing_iron.png",
+    "events/_backup-standard-20260615-234447/rare_event_intel.png",
+    "events/_backup-standard-20260615-234447/shortage.png",
+    "events/_backup-standard-20260615-234447/super_rare_event.png",
+    "events/_backup-standard-20260615-234447/the_feds.png",
+    "events/_backup-standard-20260615-234447/upgrade_available.png",
+    "events/_backup-standard-20260615-234656/ambushed_rolled.png",
+    "events/_backup-standard-20260615-234656/buying_frenzy.png",
+    "events/_backup-standard-20260615-234656/dead_drop.png",
+    "events/_backup-standard-20260615-234656/flooded_market.png",
+    "events/_backup-standard-20260615-234656/packing_iron.png",
+    "events/_backup-standard-20260615-234656/rare_event_intel.png",
+    "events/_backup-standard-20260615-234656/shortage.png",
+    "events/_backup-standard-20260615-234656/super_rare_event.png",
+    "events/_backup-standard-20260615-234656/the_feds.png",
+    "events/_backup-standard-20260615-234656/upgrade_available.png",
+    "events/_backup-standard-20260615-235817/ambushed_rolled.png",
+    "events/_backup-standard-20260615-235817/buying_frenzy.png",
+    "events/_backup-standard-20260615-235817/dead_drop.png",
+    "events/_backup-standard-20260615-235817/flooded_market.png",
+    "events/_backup-standard-20260615-235817/packing_iron.png",
+    "events/_backup-standard-20260615-235817/rare_event_intel.png",
+    "events/_backup-standard-20260615-235817/shortage.png",
+    "events/_backup-standard-20260615-235817/super_rare_event.png",
+    "events/_backup-standard-20260615-235817/the_feds.png",
+    "events/_backup-standard-20260615-235817/upgrade_available.png",
+    "events/_backup-standard-20260616-001727/ambushed_rolled.png",
+    "events/_backup-standard-20260616-001727/buying_frenzy.png",
+    "events/_backup-standard-20260616-001727/dead_drop.png",
+    "events/_backup-standard-20260616-001727/flooded_market.png",
+    "events/_backup-standard-20260616-001727/packing_iron.png",
+    "events/_backup-standard-20260616-001727/rare_event_intel.png",
+    "events/_backup-standard-20260616-001727/shortage.png",
+    "events/_backup-standard-20260616-001727/super_rare_event.png",
+    "events/_backup-standard-20260616-001727/the_feds.png",
+    "events/_backup-standard-20260616-001727/upgrade_available.png",
+    "events/_backup-standard-20260616-004802/ambushed_rolled.png",
+    "events/_backup-standard-20260616-004802/buying_frenzy.png",
+    "events/_backup-standard-20260616-004802/dead_drop.png",
+    "events/_backup-standard-20260616-004802/flooded_market.png",
+    "events/_backup-standard-20260616-004802/packing_iron.png",
+    "events/_backup-standard-20260616-004802/rare_event_intel.png",
+    "events/_backup-standard-20260616-004802/shortage.png",
+    "events/_backup-standard-20260616-004802/super_rare_event.png",
+    "events/_backup-standard-20260616-004802/the_feds.png",
+    "events/_backup-standard-20260616-004802/upgrade_available.png",
+    "events/_backup-standard-20260616-004855/ambushed_rolled.png",
+    "events/_backup-standard-20260616-004855/buying_frenzy.png",
+    "events/_backup-standard-20260616-004855/dead_drop.png",
+    "events/_backup-standard-20260616-004855/flooded_market.png",
+    "events/_backup-standard-20260616-004855/packing_iron.png",
+    "events/_backup-standard-20260616-004855/rare_event_intel.png",
+    "events/_backup-standard-20260616-004855/shortage.png",
+    "events/_backup-standard-20260616-004855/super_rare_event.png",
+    "events/_backup-standard-20260616-004855/the_feds.png",
+    "events/_backup-standard-20260616-004855/upgrade_available.png",
+    "events/_backup-standard-20260616-005310/ambushed_rolled.png",
+    "events/_backup-standard-20260616-005310/buying_frenzy.png",
+    "events/_backup-standard-20260616-005310/dead_drop.png",
+    "events/_backup-standard-20260616-005310/flooded_market.png",
+    "events/_backup-standard-20260616-005310/packing_iron.png",
+    "events/_backup-standard-20260616-005310/rare_event_intel.png",
+    "events/_backup-standard-20260616-005310/shortage.png",
+    "events/_backup-standard-20260616-005310/super_rare_event.png",
+    "events/_backup-standard-20260616-005310/the_feds.png",
+    "events/_backup-standard-20260616-005310/upgrade_available.png",
+    "events/_backup-standard-20260616-012110/ambushed_rolled.png",
+    "events/_backup-standard-20260616-012110/buying_frenzy.png",
+    "events/_backup-standard-20260616-012110/dead_drop.png",
+    "events/_backup-standard-20260616-012110/flooded_market.png",
+    "events/_backup-standard-20260616-012110/packing_iron.png",
+    "events/_backup-standard-20260616-012110/rare_event_intel.png",
+    "events/_backup-standard-20260616-012110/shortage.png",
+    "events/_backup-standard-20260616-012110/super_rare_event.png",
+    "events/_backup-standard-20260616-012110/the_feds.png",
+    "events/_backup-standard-20260616-012110/upgrade_available.png",
+    "events/_backup-super-20260616-004859/super_dempsey.png",
+    "events/_backup-super-20260616-004859/super_hollywood.png",
+    "events/_backup-super-20260616-004859/super_kkrevue.png",
+    "events/_backup-super-20260616-004859/super_lindbergh.png",
+    "events/_backup-super-20260616-004859/super_mauretania.png",
+    "events/_backup-super-20260616-004859/super_ruth.png",
+    "events/_backup-super-20260616-004859/super_wales.png",
+    "events/_backup-super-20260616-004859/super_walker.png",
+    "events/_backup-super-20260616-004859/super_wallst.png",
+    "events/_backup-super-20260616-004859/super_ziegfeld.png",
+    "events/_backup-super-20260616-005313/super_dempsey.png",
+    "events/_backup-super-20260616-005313/super_hollywood.png",
+    "events/_backup-super-20260616-005313/super_kkrevue.png",
+    "events/_backup-super-20260616-005313/super_lindbergh.png",
+    "events/_backup-super-20260616-005313/super_mauretania.png",
+    "events/_backup-super-20260616-005313/super_ruth.png",
+    "events/_backup-super-20260616-005313/super_wales.png",
+    "events/_backup-super-20260616-005313/super_walker.png",
+    "events/_backup-super-20260616-005313/super_wallst.png",
+    "events/_backup-super-20260616-005313/super_ziegfeld.png",
+    "events/_backup-super-20260616-012113/super_dempsey.png",
+    "events/_backup-super-20260616-012113/super_hollywood.png",
+    "events/_backup-super-20260616-012113/super_kkrevue.png",
+    "events/_backup-super-20260616-012113/super_lindbergh.png",
+    "events/_backup-super-20260616-012113/super_mauretania.png",
+    "events/_backup-super-20260616-012113/super_ruth.png",
+    "events/_backup-super-20260616-012113/super_wales.png",
+    "events/_backup-super-20260616-012113/super_walker.png",
+    "events/_backup-super-20260616-012113/super_wallst.png",
+    "events/_backup-super-20260616-012113/super_ziegfeld.png",
+    "events/_backup-tier-20260616-000240/godlike_celebration.png",
+    "events/_backup-tier-20260616-000240/godlike_golden.png",
+    "events/_backup-tier-20260616-000240/godlike_history.png",
+    "events/_backup-tier-20260616-000240/godlike_in_town.png",
+    "events/_backup-tier-20260616-000240/godlike_interest.png",
+    "events/_backup-tier-20260616-000240/godlike_move.png",
+    "events/_backup-tier-20260616-000240/rare_armstrong.png",
+    "events/_backup-tier-20260616-000240/rare_capone.png",
+    "events/_backup-tier-20260616-000240/rare_ellington.png",
+    "events/_backup-tier-20260616-000240/rare_lansky.png",
+    "events/_backup-tier-20260616-000240/rare_luciano.png",
+    "events/_backup-tier-20260616-000240/rare_madden.png",
+    "events/_backup-tier-20260616-000240/rare_midnight.png",
+    "events/_backup-tier-20260616-000240/rare_rothstein.png",
+    "events/_backup-tier-20260616-000240/rare_rumrow.png",
+    "events/_backup-tier-20260616-000240/rare_schultz.png",
+    "events/_backup-tier-20260616-000240/super_dempsey.png",
+    "events/_backup-tier-20260616-000240/super_hollywood.png",
+    "events/_backup-tier-20260616-000240/super_kkrevue.png",
+    "events/_backup-tier-20260616-000240/super_lindbergh.png",
+    "events/_backup-tier-20260616-000240/super_mauretania.png",
+    "events/_backup-tier-20260616-000240/super_ruth.png",
+    "events/_backup-tier-20260616-000240/super_wales.png",
+    "events/_backup-tier-20260616-000240/super_walker.png",
+    "events/_backup-tier-20260616-000240/super_wallst.png",
+    "events/_backup-tier-20260616-000240/super_ziegfeld.png",
+    "events/_backup-tier-20260616-001729/ambushed_rolled.png",
+    "events/_backup-tier-20260616-001729/buying_frenzy.png",
+    "events/_backup-tier-20260616-001729/dead_drop.png",
+    "events/_backup-tier-20260616-001729/flooded_market.png",
+    "events/_backup-tier-20260616-001729/godlike_celebration.png",
+    "events/_backup-tier-20260616-001729/godlike_golden.png",
+    "events/_backup-tier-20260616-001729/godlike_history.png",
+    "events/_backup-tier-20260616-001729/godlike_in_town.png",
+    "events/_backup-tier-20260616-001729/godlike_interest.png",
+    "events/_backup-tier-20260616-001729/godlike_move.png",
+    "events/_backup-tier-20260616-001729/packing_iron.png",
+    "events/_backup-tier-20260616-001729/rare_armstrong.png",
+    "events/_backup-tier-20260616-001729/rare_capone.png",
+    "events/_backup-tier-20260616-001729/rare_ellington.png",
+    "events/_backup-tier-20260616-001729/rare_event_intel.png",
+    "events/_backup-tier-20260616-001729/rare_lansky.png",
+    "events/_backup-tier-20260616-001729/rare_luciano.png",
+    "events/_backup-tier-20260616-001729/rare_madden.png",
+    "events/_backup-tier-20260616-001729/rare_midnight.png",
+    "events/_backup-tier-20260616-001729/rare_rothstein.png",
+    "events/_backup-tier-20260616-001729/rare_rumrow.png",
+    "events/_backup-tier-20260616-001729/rare_schultz.png",
+    "events/_backup-tier-20260616-001729/shortage.png",
+    "events/_backup-tier-20260616-001729/super_dempsey.png",
+    "events/_backup-tier-20260616-001729/super_hollywood.png",
+    "events/_backup-tier-20260616-001729/super_kkrevue.png",
+    "events/_backup-tier-20260616-001729/super_lindbergh.png",
+    "events/_backup-tier-20260616-001729/super_mauretania.png",
+    "events/_backup-tier-20260616-001729/super_rare_event.png",
+    "events/_backup-tier-20260616-001729/super_ruth.png",
+    "events/_backup-tier-20260616-001729/super_wales.png",
+    "events/_backup-tier-20260616-001729/super_walker.png",
+    "events/_backup-tier-20260616-001729/super_wallst.png",
+    "events/_backup-tier-20260616-001729/super_ziegfeld.png",
+    "events/_backup-tier-20260616-001729/the_feds.png",
+    "events/_backup-tier-20260616-001729/upgrade_available.png",
+    "events/_test-trim.png"
   ],
-  "duplicates": [],
+  "duplicates": [
+    [
+      "events/_backup-rare-20260616-005311/rare_armstrong.png",
+      "events/_backup-rare-20260616-012112/rare_armstrong.png"
+    ],
+    [
+      "events/_backup-rare-20260616-005311/rare_capone.png",
+      "events/_backup-rare-20260616-012112/rare_capone.png"
+    ],
+    [
+      "events/_backup-rare-20260616-005311/rare_ellington.png",
+      "events/_backup-rare-20260616-012112/rare_ellington.png"
+    ],
+    [
+      "events/_backup-rare-20260616-005311/rare_lansky.png",
+      "events/_backup-rare-20260616-012112/rare_lansky.png"
+    ],
+    [
+      "events/_backup-rare-20260616-005311/rare_luciano.png",
+      "events/_backup-rare-20260616-012112/rare_luciano.png"
+    ],
+    [
+      "events/_backup-rare-20260616-005311/rare_madden.png",
+      "events/_backup-rare-20260616-012112/rare_madden.png"
+    ],
+    [
+      "events/_backup-rare-20260616-005311/rare_midnight.png",
+      "events/_backup-rare-20260616-012112/rare_midnight.png"
+    ],
+    [
+      "events/_backup-rare-20260616-005311/rare_rothstein.png",
+      "events/_backup-rare-20260616-012112/rare_rothstein.png"
+    ],
+    [
+      "events/_backup-rare-20260616-005311/rare_rumrow.png",
+      "events/_backup-rare-20260616-012112/rare_rumrow.png"
+    ],
+    [
+      "events/_backup-rare-20260616-005311/rare_schultz.png",
+      "events/_backup-rare-20260616-012112/rare_schultz.png"
+    ],
+    [
+      "events/_backup-standard-20260616-001727/dead_drop.png",
+      "events/_backup-tier-20260616-001729/dead_drop.png"
+    ],
+    [
+      "events/_backup-standard-20260616-001727/flooded_market.png",
+      "events/_backup-tier-20260616-001729/flooded_market.png"
+    ],
+    [
+      "events/_backup-standard-20260616-004855/buying_frenzy.png",
+      "events/_backup-standard-20260616-005310/buying_frenzy.png",
+      "events/_backup-standard-20260616-012110/buying_frenzy.png"
+    ],
+    [
+      "events/_backup-standard-20260616-004855/dead_drop.png",
+      "events/_backup-standard-20260616-005310/dead_drop.png",
+      "events/_backup-standard-20260616-012110/dead_drop.png"
+    ],
+    [
+      "events/_backup-standard-20260616-004855/flooded_market.png",
+      "events/_backup-standard-20260616-005310/flooded_market.png",
+      "events/_backup-standard-20260616-012110/flooded_market.png"
+    ],
+    [
+      "events/_backup-standard-20260616-004855/packing_iron.png",
+      "events/_backup-standard-20260616-005310/packing_iron.png",
+      "events/_backup-standard-20260616-012110/packing_iron.png"
+    ],
+    [
+      "events/_backup-standard-20260616-004855/rare_event_intel.png",
+      "events/_backup-standard-20260616-005310/rare_event_intel.png",
+      "events/_backup-standard-20260616-012110/rare_event_intel.png"
+    ],
+    [
+      "events/_backup-standard-20260616-004855/super_rare_event.png",
+      "events/_backup-standard-20260616-005310/super_rare_event.png",
+      "events/_backup-standard-20260616-012110/super_rare_event.png"
+    ],
+    [
+      "events/_backup-standard-20260616-004855/the_feds.png",
+      "events/_backup-standard-20260616-005310/the_feds.png",
+      "events/_backup-standard-20260616-012110/the_feds.png"
+    ],
+    [
+      "events/_backup-standard-20260616-004855/upgrade_available.png",
+      "events/_backup-standard-20260616-005310/upgrade_available.png",
+      "events/_backup-standard-20260616-012110/upgrade_available.png"
+    ],
+    [
+      "events/_backup-standard-20260616-005310/ambushed_rolled.png",
+      "events/_backup-standard-20260616-012110/ambushed_rolled.png"
+    ],
+    [
+      "events/_backup-standard-20260616-005310/shortage.png",
+      "events/_backup-standard-20260616-012110/shortage.png"
+    ],
+    [
+      "events/_backup-super-20260616-005313/super_dempsey.png",
+      "events/_backup-super-20260616-012113/super_dempsey.png"
+    ],
+    [
+      "events/_backup-super-20260616-005313/super_hollywood.png",
+      "events/_backup-super-20260616-012113/super_hollywood.png"
+    ],
+    [
+      "events/_backup-super-20260616-005313/super_kkrevue.png",
+      "events/_backup-super-20260616-012113/super_kkrevue.png"
+    ],
+    [
+      "events/_backup-super-20260616-005313/super_lindbergh.png",
+      "events/_backup-super-20260616-012113/super_lindbergh.png"
+    ],
+    [
+      "events/_backup-super-20260616-005313/super_mauretania.png",
+      "events/_backup-super-20260616-012113/super_mauretania.png"
+    ],
+    [
+      "events/_backup-super-20260616-005313/super_ruth.png",
+      "events/_backup-super-20260616-012113/super_ruth.png"
+    ],
+    [
+      "events/_backup-super-20260616-005313/super_wales.png",
+      "events/_backup-super-20260616-012113/super_wales.png"
+    ],
+    [
+      "events/_backup-super-20260616-005313/super_walker.png",
+      "events/_backup-super-20260616-012113/super_walker.png"
+    ],
+    [
+      "events/_backup-super-20260616-005313/super_wallst.png",
+      "events/_backup-super-20260616-012113/super_wallst.png"
+    ],
+    [
+      "events/_backup-super-20260616-005313/super_ziegfeld.png",
+      "events/_backup-super-20260616-012113/super_ziegfeld.png"
+    ]
+  ],
   "dimensions": {
     "apple-touch-icon.png": {
       "width": 180,
@@ -20,49 +378,69 @@
       "width": 341,
       "height": 341
     },
+    "assets/eos-layout-source.png": {
+      "width": 682,
+      "height": 1024
+    },
+    "assets/eos-tommy-left.png": {
+      "width": 45,
+      "height": 50
+    },
+    "assets/eos-tommy-right.png": {
+      "width": 45,
+      "height": 50
+    },
     "assets/event-grid-source.png": {
       "width": 65536,
       "height": 4293001688
     },
+    "assets/godlike-event-grid-source.png": {
+      "width": 65536,
+      "height": 4293001688
+    },
+    "assets/godlike-golden-source.png": {
+      "width": 65536,
+      "height": 4293001688
+    },
     "assets/goods/art.png": {
-      "width": 48,
-      "height": 48
+      "width": 96,
+      "height": 96
     },
     "assets/goods/bathgin.png": {
-      "width": 48,
-      "height": 48
+      "width": 96,
+      "height": 96
     },
     "assets/goods/champagne.png": {
-      "width": 48,
-      "height": 48
+      "width": 96,
+      "height": 96
     },
     "assets/goods/cigars.png": {
-      "width": 48,
-      "height": 48
+      "width": 96,
+      "height": 96
     },
     "assets/goods/cognac.png": {
-      "width": 48,
-      "height": 48
+      "width": 96,
+      "height": 96
     },
     "assets/goods/counterfeits.png": {
-      "width": 48,
-      "height": 48
+      "width": 96,
+      "height": 96
     },
     "assets/goods/diamonds.png": {
-      "width": 48,
-      "height": 48
+      "width": 96,
+      "height": 96
     },
     "assets/goods/furcoats.png": {
-      "width": 48,
-      "height": 48
+      "width": 96,
+      "height": 96
     },
     "assets/goods/moonshine.png": {
-      "width": 48,
-      "height": 48
+      "width": 96,
+      "height": 96
     },
     "assets/goods/scotch.png": {
-      "width": 48,
-      "height": 48
+      "width": 96,
+      "height": 96
     },
     "assets/kitty-kat-club.png": {
       "width": 342,
@@ -72,9 +450,17 @@
       "width": 341,
       "height": 341
     },
+    "assets/rare-event-grid-source.png": {
+      "width": 65536,
+      "height": 4293001688
+    },
+    "assets/super-rare-event-grid-source.png": {
+      "width": 65536,
+      "height": 4293001688
+    },
     "assets/travel-car.png": {
-      "width": 100,
-      "height": 60
+      "width": 224,
+      "height": 170
     },
     "assets/uptown.png": {
       "width": 341,
@@ -85,192 +471,1052 @@
       "height": 341
     },
     "cards/big-daddy-j.png": {
-      "width": 768,
-      "height": 1024
+      "width": 402,
+      "height": 538
     },
     "cards/bootlegger.png": {
-      "width": 207,
-      "height": 315
+      "width": 402,
+      "height": 610
     },
     "cards/crew-boss.png": {
-      "width": 184,
-      "height": 318
+      "width": 402,
+      "height": 693
     },
     "cards/godfather.png": {
-      "width": 207,
-      "height": 318
+      "width": 402,
+      "height": 616
     },
     "cards/hustler.png": {
-      "width": 184,
-      "height": 315
+      "width": 402,
+      "height": 686
     },
     "cards/nobody.png": {
-      "width": 186,
-      "height": 315
+      "width": 402,
+      "height": 679
     },
     "cards/pickpocket.png": {
-      "width": 187,
-      "height": 315
+      "width": 402,
+      "height": 675
     },
     "cards/racketeer.png": {
-      "width": 186,
-      "height": 318
+      "width": 402,
+      "height": 685
     },
     "cards/rum-runner.png": {
-      "width": 185,
-      "height": 315
+      "width": 402,
+      "height": 683
     },
     "cards/underboss.png": {
-      "width": 185,
-      "height": 318
+      "width": 402,
+      "height": 689
     },
     "cards/wise-guy.png": {
-      "width": 187,
-      "height": 318
+      "width": 402,
+      "height": 682
+    },
+    "events/_backup-godlike-20260616-005504/godlike_celebration.png": {
+      "width": 405,
+      "height": 662
+    },
+    "events/_backup-godlike-20260616-005504/godlike_history.png": {
+      "width": 411,
+      "height": 662
+    },
+    "events/_backup-godlike-20260616-005504/godlike_in_town.png": {
+      "width": 409,
+      "height": 662
+    },
+    "events/_backup-godlike-20260616-005504/godlike_interest.png": {
+      "width": 412,
+      "height": 662
+    },
+    "events/_backup-godlike-20260616-005504/godlike_move.png": {
+      "width": 411,
+      "height": 662
+    },
+    "events/_backup-godlike-20260616-012114/godlike_celebration.png": {
+      "width": 416,
+      "height": 662
+    },
+    "events/_backup-godlike-20260616-012114/godlike_history.png": {
+      "width": 416,
+      "height": 662
+    },
+    "events/_backup-godlike-20260616-012114/godlike_in_town.png": {
+      "width": 419,
+      "height": 662
+    },
+    "events/_backup-godlike-20260616-012114/godlike_interest.png": {
+      "width": 406,
+      "height": 662
+    },
+    "events/_backup-godlike-20260616-012114/godlike_move.png": {
+      "width": 397,
+      "height": 662
+    },
+    "events/_backup-golden-20260616-005911/godlike_golden.png": {
+      "width": 400,
+      "height": 662
+    },
+    "events/_backup-golden-20260616-012115/godlike_golden.png": {
+      "width": 458,
+      "height": 662
+    },
+    "events/_backup-rare-20260616-004857/rare_armstrong.png": {
+      "width": 422,
+      "height": 662
+    },
+    "events/_backup-rare-20260616-004857/rare_capone.png": {
+      "width": 407,
+      "height": 662
+    },
+    "events/_backup-rare-20260616-004857/rare_ellington.png": {
+      "width": 422,
+      "height": 662
+    },
+    "events/_backup-rare-20260616-004857/rare_lansky.png": {
+      "width": 416,
+      "height": 662
+    },
+    "events/_backup-rare-20260616-004857/rare_luciano.png": {
+      "width": 411,
+      "height": 662
+    },
+    "events/_backup-rare-20260616-004857/rare_madden.png": {
+      "width": 410,
+      "height": 662
+    },
+    "events/_backup-rare-20260616-004857/rare_midnight.png": {
+      "width": 415,
+      "height": 662
+    },
+    "events/_backup-rare-20260616-004857/rare_rothstein.png": {
+      "width": 404,
+      "height": 662
+    },
+    "events/_backup-rare-20260616-004857/rare_rumrow.png": {
+      "width": 420,
+      "height": 662
+    },
+    "events/_backup-rare-20260616-004857/rare_schultz.png": {
+      "width": 410,
+      "height": 662
+    },
+    "events/_backup-rare-20260616-005311/rare_armstrong.png": {
+      "width": 395,
+      "height": 662
+    },
+    "events/_backup-rare-20260616-005311/rare_capone.png": {
+      "width": 409,
+      "height": 662
+    },
+    "events/_backup-rare-20260616-005311/rare_ellington.png": {
+      "width": 403,
+      "height": 662
+    },
+    "events/_backup-rare-20260616-005311/rare_lansky.png": {
+      "width": 416,
+      "height": 662
+    },
+    "events/_backup-rare-20260616-005311/rare_luciano.png": {
+      "width": 408,
+      "height": 662
+    },
+    "events/_backup-rare-20260616-005311/rare_madden.png": {
+      "width": 417,
+      "height": 662
+    },
+    "events/_backup-rare-20260616-005311/rare_midnight.png": {
+      "width": 405,
+      "height": 662
+    },
+    "events/_backup-rare-20260616-005311/rare_rothstein.png": {
+      "width": 411,
+      "height": 662
+    },
+    "events/_backup-rare-20260616-005311/rare_rumrow.png": {
+      "width": 425,
+      "height": 662
+    },
+    "events/_backup-rare-20260616-005311/rare_schultz.png": {
+      "width": 392,
+      "height": 662
+    },
+    "events/_backup-rare-20260616-012112/rare_armstrong.png": {
+      "width": 395,
+      "height": 662
+    },
+    "events/_backup-rare-20260616-012112/rare_capone.png": {
+      "width": 409,
+      "height": 662
+    },
+    "events/_backup-rare-20260616-012112/rare_ellington.png": {
+      "width": 403,
+      "height": 662
+    },
+    "events/_backup-rare-20260616-012112/rare_lansky.png": {
+      "width": 416,
+      "height": 662
+    },
+    "events/_backup-rare-20260616-012112/rare_luciano.png": {
+      "width": 408,
+      "height": 662
+    },
+    "events/_backup-rare-20260616-012112/rare_madden.png": {
+      "width": 417,
+      "height": 662
+    },
+    "events/_backup-rare-20260616-012112/rare_midnight.png": {
+      "width": 405,
+      "height": 662
+    },
+    "events/_backup-rare-20260616-012112/rare_rothstein.png": {
+      "width": 411,
+      "height": 662
+    },
+    "events/_backup-rare-20260616-012112/rare_rumrow.png": {
+      "width": 425,
+      "height": 662
+    },
+    "events/_backup-rare-20260616-012112/rare_schultz.png": {
+      "width": 392,
+      "height": 662
+    },
+    "events/_backup-standard-20260615-234447/ambushed_rolled.png": {
+      "width": 194,
+      "height": 331
+    },
+    "events/_backup-standard-20260615-234447/buying_frenzy.png": {
+      "width": 194,
+      "height": 331
+    },
+    "events/_backup-standard-20260615-234447/dead_drop.png": {
+      "width": 194,
+      "height": 331
+    },
+    "events/_backup-standard-20260615-234447/flooded_market.png": {
+      "width": 194,
+      "height": 331
+    },
+    "events/_backup-standard-20260615-234447/packing_iron.png": {
+      "width": 194,
+      "height": 331
+    },
+    "events/_backup-standard-20260615-234447/rare_event_intel.png": {
+      "width": 194,
+      "height": 331
+    },
+    "events/_backup-standard-20260615-234447/shortage.png": {
+      "width": 194,
+      "height": 331
+    },
+    "events/_backup-standard-20260615-234447/super_rare_event.png": {
+      "width": 194,
+      "height": 331
+    },
+    "events/_backup-standard-20260615-234447/the_feds.png": {
+      "width": 194,
+      "height": 331
+    },
+    "events/_backup-standard-20260615-234447/upgrade_available.png": {
+      "width": 194,
+      "height": 331
+    },
+    "events/_backup-standard-20260615-234656/ambushed_rolled.png": {
+      "width": 388,
+      "height": 662
+    },
+    "events/_backup-standard-20260615-234656/buying_frenzy.png": {
+      "width": 388,
+      "height": 662
+    },
+    "events/_backup-standard-20260615-234656/dead_drop.png": {
+      "width": 388,
+      "height": 662
+    },
+    "events/_backup-standard-20260615-234656/flooded_market.png": {
+      "width": 388,
+      "height": 662
+    },
+    "events/_backup-standard-20260615-234656/packing_iron.png": {
+      "width": 388,
+      "height": 662
+    },
+    "events/_backup-standard-20260615-234656/rare_event_intel.png": {
+      "width": 388,
+      "height": 662
+    },
+    "events/_backup-standard-20260615-234656/shortage.png": {
+      "width": 388,
+      "height": 662
+    },
+    "events/_backup-standard-20260615-234656/super_rare_event.png": {
+      "width": 388,
+      "height": 662
+    },
+    "events/_backup-standard-20260615-234656/the_feds.png": {
+      "width": 388,
+      "height": 662
+    },
+    "events/_backup-standard-20260615-234656/upgrade_available.png": {
+      "width": 388,
+      "height": 662
+    },
+    "events/_backup-standard-20260615-235817/ambushed_rolled.png": {
+      "width": 388,
+      "height": 662
+    },
+    "events/_backup-standard-20260615-235817/buying_frenzy.png": {
+      "width": 388,
+      "height": 662
+    },
+    "events/_backup-standard-20260615-235817/dead_drop.png": {
+      "width": 388,
+      "height": 662
+    },
+    "events/_backup-standard-20260615-235817/flooded_market.png": {
+      "width": 388,
+      "height": 662
+    },
+    "events/_backup-standard-20260615-235817/packing_iron.png": {
+      "width": 388,
+      "height": 662
+    },
+    "events/_backup-standard-20260615-235817/rare_event_intel.png": {
+      "width": 388,
+      "height": 662
+    },
+    "events/_backup-standard-20260615-235817/shortage.png": {
+      "width": 388,
+      "height": 662
+    },
+    "events/_backup-standard-20260615-235817/super_rare_event.png": {
+      "width": 388,
+      "height": 662
+    },
+    "events/_backup-standard-20260615-235817/the_feds.png": {
+      "width": 388,
+      "height": 662
+    },
+    "events/_backup-standard-20260615-235817/upgrade_available.png": {
+      "width": 388,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-001727/ambushed_rolled.png": {
+      "width": 400,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-001727/buying_frenzy.png": {
+      "width": 395,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-001727/dead_drop.png": {
+      "width": 389,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-001727/flooded_market.png": {
+      "width": 385,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-001727/packing_iron.png": {
+      "width": 408,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-001727/rare_event_intel.png": {
+      "width": 399,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-001727/shortage.png": {
+      "width": 399,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-001727/super_rare_event.png": {
+      "width": 403,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-001727/the_feds.png": {
+      "width": 404,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-001727/upgrade_available.png": {
+      "width": 404,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-004802/ambushed_rolled.png": {
+      "width": 401,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-004802/buying_frenzy.png": {
+      "width": 395,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-004802/dead_drop.png": {
+      "width": 390,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-004802/flooded_market.png": {
+      "width": 386,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-004802/packing_iron.png": {
+      "width": 403,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-004802/rare_event_intel.png": {
+      "width": 396,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-004802/shortage.png": {
+      "width": 396,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-004802/super_rare_event.png": {
+      "width": 398,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-004802/the_feds.png": {
+      "width": 401,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-004802/upgrade_available.png": {
+      "width": 401,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-004855/ambushed_rolled.png": {
+      "width": 548,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-004855/buying_frenzy.png": {
+      "width": 405,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-004855/dead_drop.png": {
+      "width": 402,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-004855/flooded_market.png": {
+      "width": 400,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-004855/packing_iron.png": {
+      "width": 416,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-004855/rare_event_intel.png": {
+      "width": 418,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-004855/shortage.png": {
+      "width": 153,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-004855/super_rare_event.png": {
+      "width": 417,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-004855/the_feds.png": {
+      "width": 426,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-004855/upgrade_available.png": {
+      "width": 406,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-005310/ambushed_rolled.png": {
+      "width": 406,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-005310/buying_frenzy.png": {
+      "width": 405,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-005310/dead_drop.png": {
+      "width": 402,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-005310/flooded_market.png": {
+      "width": 400,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-005310/packing_iron.png": {
+      "width": 416,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-005310/rare_event_intel.png": {
+      "width": 418,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-005310/shortage.png": {
+      "width": 425,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-005310/super_rare_event.png": {
+      "width": 417,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-005310/the_feds.png": {
+      "width": 426,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-005310/upgrade_available.png": {
+      "width": 406,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-012110/ambushed_rolled.png": {
+      "width": 406,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-012110/buying_frenzy.png": {
+      "width": 405,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-012110/dead_drop.png": {
+      "width": 402,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-012110/flooded_market.png": {
+      "width": 400,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-012110/packing_iron.png": {
+      "width": 416,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-012110/rare_event_intel.png": {
+      "width": 418,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-012110/shortage.png": {
+      "width": 425,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-012110/super_rare_event.png": {
+      "width": 417,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-012110/the_feds.png": {
+      "width": 426,
+      "height": 662
+    },
+    "events/_backup-standard-20260616-012110/upgrade_available.png": {
+      "width": 406,
+      "height": 662
+    },
+    "events/_backup-super-20260616-004859/super_dempsey.png": {
+      "width": 394,
+      "height": 662
+    },
+    "events/_backup-super-20260616-004859/super_hollywood.png": {
+      "width": 400,
+      "height": 662
+    },
+    "events/_backup-super-20260616-004859/super_kkrevue.png": {
+      "width": 400,
+      "height": 662
+    },
+    "events/_backup-super-20260616-004859/super_lindbergh.png": {
+      "width": 407,
+      "height": 662
+    },
+    "events/_backup-super-20260616-004859/super_mauretania.png": {
+      "width": 402,
+      "height": 662
+    },
+    "events/_backup-super-20260616-004859/super_ruth.png": {
+      "width": 404,
+      "height": 662
+    },
+    "events/_backup-super-20260616-004859/super_wales.png": {
+      "width": 401,
+      "height": 662
+    },
+    "events/_backup-super-20260616-004859/super_walker.png": {
+      "width": 399,
+      "height": 662
+    },
+    "events/_backup-super-20260616-004859/super_wallst.png": {
+      "width": 391,
+      "height": 662
+    },
+    "events/_backup-super-20260616-004859/super_ziegfeld.png": {
+      "width": 405,
+      "height": 662
+    },
+    "events/_backup-super-20260616-005313/super_dempsey.png": {
+      "width": 381,
+      "height": 662
+    },
+    "events/_backup-super-20260616-005313/super_hollywood.png": {
+      "width": 408,
+      "height": 662
+    },
+    "events/_backup-super-20260616-005313/super_kkrevue.png": {
+      "width": 400,
+      "height": 662
+    },
+    "events/_backup-super-20260616-005313/super_lindbergh.png": {
+      "width": 397,
+      "height": 662
+    },
+    "events/_backup-super-20260616-005313/super_mauretania.png": {
+      "width": 416,
+      "height": 662
+    },
+    "events/_backup-super-20260616-005313/super_ruth.png": {
+      "width": 410,
+      "height": 662
+    },
+    "events/_backup-super-20260616-005313/super_wales.png": {
+      "width": 410,
+      "height": 662
+    },
+    "events/_backup-super-20260616-005313/super_walker.png": {
+      "width": 416,
+      "height": 662
+    },
+    "events/_backup-super-20260616-005313/super_wallst.png": {
+      "width": 391,
+      "height": 662
+    },
+    "events/_backup-super-20260616-005313/super_ziegfeld.png": {
+      "width": 400,
+      "height": 662
+    },
+    "events/_backup-super-20260616-012113/super_dempsey.png": {
+      "width": 381,
+      "height": 662
+    },
+    "events/_backup-super-20260616-012113/super_hollywood.png": {
+      "width": 408,
+      "height": 662
+    },
+    "events/_backup-super-20260616-012113/super_kkrevue.png": {
+      "width": 400,
+      "height": 662
+    },
+    "events/_backup-super-20260616-012113/super_lindbergh.png": {
+      "width": 397,
+      "height": 662
+    },
+    "events/_backup-super-20260616-012113/super_mauretania.png": {
+      "width": 416,
+      "height": 662
+    },
+    "events/_backup-super-20260616-012113/super_ruth.png": {
+      "width": 410,
+      "height": 662
+    },
+    "events/_backup-super-20260616-012113/super_wales.png": {
+      "width": 410,
+      "height": 662
+    },
+    "events/_backup-super-20260616-012113/super_walker.png": {
+      "width": 416,
+      "height": 662
+    },
+    "events/_backup-super-20260616-012113/super_wallst.png": {
+      "width": 391,
+      "height": 662
+    },
+    "events/_backup-super-20260616-012113/super_ziegfeld.png": {
+      "width": 400,
+      "height": 662
+    },
+    "events/_backup-tier-20260616-000240/godlike_celebration.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/_backup-tier-20260616-000240/godlike_golden.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/_backup-tier-20260616-000240/godlike_history.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/_backup-tier-20260616-000240/godlike_in_town.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/_backup-tier-20260616-000240/godlike_interest.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/_backup-tier-20260616-000240/godlike_move.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/_backup-tier-20260616-000240/rare_armstrong.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/_backup-tier-20260616-000240/rare_capone.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/_backup-tier-20260616-000240/rare_ellington.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/_backup-tier-20260616-000240/rare_lansky.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/_backup-tier-20260616-000240/rare_luciano.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/_backup-tier-20260616-000240/rare_madden.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/_backup-tier-20260616-000240/rare_midnight.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/_backup-tier-20260616-000240/rare_rothstein.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/_backup-tier-20260616-000240/rare_rumrow.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/_backup-tier-20260616-000240/rare_schultz.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/_backup-tier-20260616-000240/super_dempsey.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/_backup-tier-20260616-000240/super_hollywood.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/_backup-tier-20260616-000240/super_kkrevue.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/_backup-tier-20260616-000240/super_lindbergh.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/_backup-tier-20260616-000240/super_mauretania.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/_backup-tier-20260616-000240/super_ruth.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/_backup-tier-20260616-000240/super_wales.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/_backup-tier-20260616-000240/super_walker.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/_backup-tier-20260616-000240/super_wallst.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/_backup-tier-20260616-000240/super_ziegfeld.png": {
+      "width": 199,
+      "height": 324
+    },
+    "events/_backup-tier-20260616-001729/ambushed_rolled.png": {
+      "width": 401,
+      "height": 662
+    },
+    "events/_backup-tier-20260616-001729/buying_frenzy.png": {
+      "width": 395,
+      "height": 662
+    },
+    "events/_backup-tier-20260616-001729/dead_drop.png": {
+      "width": 389,
+      "height": 662
+    },
+    "events/_backup-tier-20260616-001729/flooded_market.png": {
+      "width": 385,
+      "height": 662
+    },
+    "events/_backup-tier-20260616-001729/godlike_celebration.png": {
+      "width": 417,
+      "height": 662
+    },
+    "events/_backup-tier-20260616-001729/godlike_golden.png": {
+      "width": 401,
+      "height": 662
+    },
+    "events/_backup-tier-20260616-001729/godlike_history.png": {
+      "width": 416,
+      "height": 662
+    },
+    "events/_backup-tier-20260616-001729/godlike_in_town.png": {
+      "width": 415,
+      "height": 662
+    },
+    "events/_backup-tier-20260616-001729/godlike_interest.png": {
+      "width": 421,
+      "height": 662
+    },
+    "events/_backup-tier-20260616-001729/godlike_move.png": {
+      "width": 421,
+      "height": 662
+    },
+    "events/_backup-tier-20260616-001729/packing_iron.png": {
+      "width": 403,
+      "height": 662
+    },
+    "events/_backup-tier-20260616-001729/rare_armstrong.png": {
+      "width": 414,
+      "height": 662
+    },
+    "events/_backup-tier-20260616-001729/rare_capone.png": {
+      "width": 415,
+      "height": 662
+    },
+    "events/_backup-tier-20260616-001729/rare_ellington.png": {
+      "width": 414,
+      "height": 662
+    },
+    "events/_backup-tier-20260616-001729/rare_event_intel.png": {
+      "width": 396,
+      "height": 662
+    },
+    "events/_backup-tier-20260616-001729/rare_lansky.png": {
+      "width": 412,
+      "height": 662
+    },
+    "events/_backup-tier-20260616-001729/rare_luciano.png": {
+      "width": 417,
+      "height": 662
+    },
+    "events/_backup-tier-20260616-001729/rare_madden.png": {
+      "width": 414,
+      "height": 662
+    },
+    "events/_backup-tier-20260616-001729/rare_midnight.png": {
+      "width": 408,
+      "height": 662
+    },
+    "events/_backup-tier-20260616-001729/rare_rothstein.png": {
+      "width": 410,
+      "height": 662
+    },
+    "events/_backup-tier-20260616-001729/rare_rumrow.png": {
+      "width": 414,
+      "height": 662
+    },
+    "events/_backup-tier-20260616-001729/rare_schultz.png": {
+      "width": 417,
+      "height": 662
+    },
+    "events/_backup-tier-20260616-001729/shortage.png": {
+      "width": 396,
+      "height": 662
+    },
+    "events/_backup-tier-20260616-001729/super_dempsey.png": {
+      "width": 399,
+      "height": 662
+    },
+    "events/_backup-tier-20260616-001729/super_hollywood.png": {
+      "width": 403,
+      "height": 662
+    },
+    "events/_backup-tier-20260616-001729/super_kkrevue.png": {
+      "width": 403,
+      "height": 662
+    },
+    "events/_backup-tier-20260616-001729/super_lindbergh.png": {
+      "width": 408,
+      "height": 662
+    },
+    "events/_backup-tier-20260616-001729/super_mauretania.png": {
+      "width": 408,
+      "height": 662
+    },
+    "events/_backup-tier-20260616-001729/super_rare_event.png": {
+      "width": 398,
+      "height": 662
+    },
+    "events/_backup-tier-20260616-001729/super_ruth.png": {
+      "width": 409,
+      "height": 662
+    },
+    "events/_backup-tier-20260616-001729/super_wales.png": {
+      "width": 407,
+      "height": 662
+    },
+    "events/_backup-tier-20260616-001729/super_walker.png": {
+      "width": 405,
+      "height": 662
+    },
+    "events/_backup-tier-20260616-001729/super_wallst.png": {
+      "width": 399,
+      "height": 662
+    },
+    "events/_backup-tier-20260616-001729/super_ziegfeld.png": {
+      "width": 408,
+      "height": 662
+    },
+    "events/_backup-tier-20260616-001729/the_feds.png": {
+      "width": 401,
+      "height": 662
+    },
+    "events/_backup-tier-20260616-001729/upgrade_available.png": {
+      "width": 401,
+      "height": 662
+    },
+    "events/_test-trim.png": {
+      "width": 386,
+      "height": 662
     },
     "events/ambushed_rolled.png": {
-      "width": 194,
-      "height": 331
+      "width": 408,
+      "height": 664
     },
     "events/buying_frenzy.png": {
-      "width": 194,
-      "height": 331
+      "width": 407,
+      "height": 664
     },
     "events/dead_drop.png": {
-      "width": 194,
-      "height": 331
+      "width": 404,
+      "height": 664
     },
     "events/flooded_market.png": {
-      "width": 194,
-      "height": 331
+      "width": 402,
+      "height": 664
     },
     "events/godlike_celebration.png": {
-      "width": 199,
-      "height": 324
+      "width": 418,
+      "height": 664
     },
     "events/godlike_golden.png": {
-      "width": 199,
-      "height": 324
+      "width": 460,
+      "height": 664
     },
     "events/godlike_history.png": {
-      "width": 199,
-      "height": 324
+      "width": 418,
+      "height": 664
     },
     "events/godlike_in_town.png": {
-      "width": 199,
-      "height": 324
+      "width": 421,
+      "height": 664
     },
     "events/godlike_interest.png": {
-      "width": 199,
-      "height": 324
+      "width": 408,
+      "height": 664
     },
     "events/godlike_move.png": {
-      "width": 199,
-      "height": 324
+      "width": 399,
+      "height": 664
     },
     "events/packing_iron.png": {
-      "width": 194,
-      "height": 331
+      "width": 418,
+      "height": 664
     },
     "events/rare_armstrong.png": {
-      "width": 199,
-      "height": 324
+      "width": 397,
+      "height": 664
     },
     "events/rare_capone.png": {
-      "width": 199,
-      "height": 324
+      "width": 411,
+      "height": 664
     },
     "events/rare_ellington.png": {
-      "width": 199,
-      "height": 324
+      "width": 405,
+      "height": 664
     },
     "events/rare_event_intel.png": {
-      "width": 194,
-      "height": 331
+      "width": 420,
+      "height": 664
     },
     "events/rare_lansky.png": {
-      "width": 199,
-      "height": 324
+      "width": 418,
+      "height": 664
     },
     "events/rare_luciano.png": {
-      "width": 199,
-      "height": 324
+      "width": 410,
+      "height": 664
     },
     "events/rare_madden.png": {
-      "width": 199,
-      "height": 324
+      "width": 419,
+      "height": 664
     },
     "events/rare_midnight.png": {
-      "width": 199,
-      "height": 324
+      "width": 407,
+      "height": 664
     },
     "events/rare_rothstein.png": {
-      "width": 199,
-      "height": 324
+      "width": 413,
+      "height": 664
     },
     "events/rare_rumrow.png": {
-      "width": 199,
-      "height": 324
+      "width": 427,
+      "height": 664
     },
     "events/rare_schultz.png": {
-      "width": 199,
-      "height": 324
+      "width": 394,
+      "height": 664
     },
     "events/shortage.png": {
-      "width": 194,
-      "height": 331
+      "width": 427,
+      "height": 664
     },
     "events/super_dempsey.png": {
-      "width": 199,
-      "height": 324
+      "width": 383,
+      "height": 664
     },
     "events/super_hollywood.png": {
-      "width": 199,
-      "height": 324
+      "width": 410,
+      "height": 664
     },
     "events/super_kkrevue.png": {
-      "width": 199,
-      "height": 324
+      "width": 402,
+      "height": 664
     },
     "events/super_lindbergh.png": {
-      "width": 199,
-      "height": 324
+      "width": 399,
+      "height": 664
     },
     "events/super_mauretania.png": {
-      "width": 199,
-      "height": 324
+      "width": 418,
+      "height": 664
     },
     "events/super_rare_event.png": {
-      "width": 194,
-      "height": 331
+      "width": 419,
+      "height": 664
     },
     "events/super_ruth.png": {
-      "width": 199,
-      "height": 324
+      "width": 412,
+      "height": 664
     },
     "events/super_wales.png": {
-      "width": 199,
-      "height": 324
+      "width": 412,
+      "height": 664
     },
     "events/super_walker.png": {
-      "width": 199,
-      "height": 324
+      "width": 418,
+      "height": 664
     },
     "events/super_wallst.png": {
-      "width": 199,
-      "height": 324
+      "width": 393,
+      "height": 664
     },
     "events/super_ziegfeld.png": {
-      "width": 199,
-      "height": 324
+      "width": 402,
+      "height": 664
     },
     "events/the_feds.png": {
-      "width": 194,
-      "height": 331
+      "width": 428,
+      "height": 664
     },
     "events/upgrade_available.png": {
-      "width": 194,
-      "height": 331
+      "width": 408,
+      "height": 664
     },
     "icon-192.png": {
       "width": 192,
@@ -359,8 +1605,8 @@
       "path": "assets/goods/moonshine.png",
       "exists": true,
       "dimensions": {
-        "width": 48,
-        "height": 48
+        "width": 96,
+        "height": 96
       },
       "expected": "40x40"
     },
@@ -369,8 +1615,8 @@
       "path": "assets/goods/cigars.png",
       "exists": true,
       "dimensions": {
-        "width": 48,
-        "height": 48
+        "width": 96,
+        "height": 96
       },
       "expected": "40x40"
     },
@@ -379,8 +1625,8 @@
       "path": "assets/goods/bathgin.png",
       "exists": true,
       "dimensions": {
-        "width": 48,
-        "height": 48
+        "width": 96,
+        "height": 96
       },
       "expected": "40x40"
     },
@@ -389,8 +1635,8 @@
       "path": "assets/goods/art.png",
       "exists": true,
       "dimensions": {
-        "width": 48,
-        "height": 48
+        "width": 96,
+        "height": 96
       },
       "expected": "40x40"
     },
@@ -399,8 +1645,8 @@
       "path": "assets/goods/scotch.png",
       "exists": true,
       "dimensions": {
-        "width": 48,
-        "height": 48
+        "width": 96,
+        "height": 96
       },
       "expected": "40x40"
     },
@@ -409,8 +1655,8 @@
       "path": "assets/goods/counterfeits.png",
       "exists": true,
       "dimensions": {
-        "width": 48,
-        "height": 48
+        "width": 96,
+        "height": 96
       },
       "expected": "40x40"
     },
@@ -419,8 +1665,8 @@
       "path": "assets/goods/cognac.png",
       "exists": true,
       "dimensions": {
-        "width": 48,
-        "height": 48
+        "width": 96,
+        "height": 96
       },
       "expected": "40x40"
     },
@@ -429,8 +1675,8 @@
       "path": "assets/goods/furcoats.png",
       "exists": true,
       "dimensions": {
-        "width": 48,
-        "height": 48
+        "width": 96,
+        "height": 96
       },
       "expected": "40x40"
     },
@@ -439,8 +1685,8 @@
       "path": "assets/goods/champagne.png",
       "exists": true,
       "dimensions": {
-        "width": 48,
-        "height": 48
+        "width": 96,
+        "height": 96
       },
       "expected": "40x40"
     },
@@ -449,8 +1695,8 @@
       "path": "assets/goods/diamonds.png",
       "exists": true,
       "dimensions": {
-        "width": 48,
-        "height": 48
+        "width": 96,
+        "height": 96
       },
       "expected": "40x40"
     }
@@ -459,9 +1705,16 @@
     "districts": [
       "assets/city-hall.png",
       "assets/dock-13.png",
+      "assets/eos-layout-source.png",
+      "assets/eos-tommy-left.png",
+      "assets/eos-tommy-right.png",
       "assets/event-grid-source.png",
+      "assets/godlike-event-grid-source.png",
+      "assets/godlike-golden-source.png",
       "assets/kitty-kat-club.png",
       "assets/little-italy.png",
+      "assets/rare-event-grid-source.png",
+      "assets/super-rare-event-grid-source.png",
       "assets/travel-car.png",
       "assets/uptown.png",
       "assets/warehouse-district.png"
@@ -479,6 +1732,221 @@
       "assets/goods/scotch.png"
     ],
     "events": [
+      "events/_backup-godlike-20260616-005504/godlike_celebration.png",
+      "events/_backup-godlike-20260616-005504/godlike_history.png",
+      "events/_backup-godlike-20260616-005504/godlike_in_town.png",
+      "events/_backup-godlike-20260616-005504/godlike_interest.png",
+      "events/_backup-godlike-20260616-005504/godlike_move.png",
+      "events/_backup-godlike-20260616-012114/godlike_celebration.png",
+      "events/_backup-godlike-20260616-012114/godlike_history.png",
+      "events/_backup-godlike-20260616-012114/godlike_in_town.png",
+      "events/_backup-godlike-20260616-012114/godlike_interest.png",
+      "events/_backup-godlike-20260616-012114/godlike_move.png",
+      "events/_backup-golden-20260616-005911/godlike_golden.png",
+      "events/_backup-golden-20260616-012115/godlike_golden.png",
+      "events/_backup-rare-20260616-004857/rare_armstrong.png",
+      "events/_backup-rare-20260616-004857/rare_capone.png",
+      "events/_backup-rare-20260616-004857/rare_ellington.png",
+      "events/_backup-rare-20260616-004857/rare_lansky.png",
+      "events/_backup-rare-20260616-004857/rare_luciano.png",
+      "events/_backup-rare-20260616-004857/rare_madden.png",
+      "events/_backup-rare-20260616-004857/rare_midnight.png",
+      "events/_backup-rare-20260616-004857/rare_rothstein.png",
+      "events/_backup-rare-20260616-004857/rare_rumrow.png",
+      "events/_backup-rare-20260616-004857/rare_schultz.png",
+      "events/_backup-rare-20260616-005311/rare_armstrong.png",
+      "events/_backup-rare-20260616-005311/rare_capone.png",
+      "events/_backup-rare-20260616-005311/rare_ellington.png",
+      "events/_backup-rare-20260616-005311/rare_lansky.png",
+      "events/_backup-rare-20260616-005311/rare_luciano.png",
+      "events/_backup-rare-20260616-005311/rare_madden.png",
+      "events/_backup-rare-20260616-005311/rare_midnight.png",
+      "events/_backup-rare-20260616-005311/rare_rothstein.png",
+      "events/_backup-rare-20260616-005311/rare_rumrow.png",
+      "events/_backup-rare-20260616-005311/rare_schultz.png",
+      "events/_backup-rare-20260616-012112/rare_armstrong.png",
+      "events/_backup-rare-20260616-012112/rare_capone.png",
+      "events/_backup-rare-20260616-012112/rare_ellington.png",
+      "events/_backup-rare-20260616-012112/rare_lansky.png",
+      "events/_backup-rare-20260616-012112/rare_luciano.png",
+      "events/_backup-rare-20260616-012112/rare_madden.png",
+      "events/_backup-rare-20260616-012112/rare_midnight.png",
+      "events/_backup-rare-20260616-012112/rare_rothstein.png",
+      "events/_backup-rare-20260616-012112/rare_rumrow.png",
+      "events/_backup-rare-20260616-012112/rare_schultz.png",
+      "events/_backup-standard-20260615-234447/ambushed_rolled.png",
+      "events/_backup-standard-20260615-234447/buying_frenzy.png",
+      "events/_backup-standard-20260615-234447/dead_drop.png",
+      "events/_backup-standard-20260615-234447/flooded_market.png",
+      "events/_backup-standard-20260615-234447/packing_iron.png",
+      "events/_backup-standard-20260615-234447/rare_event_intel.png",
+      "events/_backup-standard-20260615-234447/shortage.png",
+      "events/_backup-standard-20260615-234447/super_rare_event.png",
+      "events/_backup-standard-20260615-234447/the_feds.png",
+      "events/_backup-standard-20260615-234447/upgrade_available.png",
+      "events/_backup-standard-20260615-234656/ambushed_rolled.png",
+      "events/_backup-standard-20260615-234656/buying_frenzy.png",
+      "events/_backup-standard-20260615-234656/dead_drop.png",
+      "events/_backup-standard-20260615-234656/flooded_market.png",
+      "events/_backup-standard-20260615-234656/packing_iron.png",
+      "events/_backup-standard-20260615-234656/rare_event_intel.png",
+      "events/_backup-standard-20260615-234656/shortage.png",
+      "events/_backup-standard-20260615-234656/super_rare_event.png",
+      "events/_backup-standard-20260615-234656/the_feds.png",
+      "events/_backup-standard-20260615-234656/upgrade_available.png",
+      "events/_backup-standard-20260615-235817/ambushed_rolled.png",
+      "events/_backup-standard-20260615-235817/buying_frenzy.png",
+      "events/_backup-standard-20260615-235817/dead_drop.png",
+      "events/_backup-standard-20260615-235817/flooded_market.png",
+      "events/_backup-standard-20260615-235817/packing_iron.png",
+      "events/_backup-standard-20260615-235817/rare_event_intel.png",
+      "events/_backup-standard-20260615-235817/shortage.png",
+      "events/_backup-standard-20260615-235817/super_rare_event.png",
+      "events/_backup-standard-20260615-235817/the_feds.png",
+      "events/_backup-standard-20260615-235817/upgrade_available.png",
+      "events/_backup-standard-20260616-001727/ambushed_rolled.png",
+      "events/_backup-standard-20260616-001727/buying_frenzy.png",
+      "events/_backup-standard-20260616-001727/dead_drop.png",
+      "events/_backup-standard-20260616-001727/flooded_market.png",
+      "events/_backup-standard-20260616-001727/packing_iron.png",
+      "events/_backup-standard-20260616-001727/rare_event_intel.png",
+      "events/_backup-standard-20260616-001727/shortage.png",
+      "events/_backup-standard-20260616-001727/super_rare_event.png",
+      "events/_backup-standard-20260616-001727/the_feds.png",
+      "events/_backup-standard-20260616-001727/upgrade_available.png",
+      "events/_backup-standard-20260616-004802/ambushed_rolled.png",
+      "events/_backup-standard-20260616-004802/buying_frenzy.png",
+      "events/_backup-standard-20260616-004802/dead_drop.png",
+      "events/_backup-standard-20260616-004802/flooded_market.png",
+      "events/_backup-standard-20260616-004802/packing_iron.png",
+      "events/_backup-standard-20260616-004802/rare_event_intel.png",
+      "events/_backup-standard-20260616-004802/shortage.png",
+      "events/_backup-standard-20260616-004802/super_rare_event.png",
+      "events/_backup-standard-20260616-004802/the_feds.png",
+      "events/_backup-standard-20260616-004802/upgrade_available.png",
+      "events/_backup-standard-20260616-004855/ambushed_rolled.png",
+      "events/_backup-standard-20260616-004855/buying_frenzy.png",
+      "events/_backup-standard-20260616-004855/dead_drop.png",
+      "events/_backup-standard-20260616-004855/flooded_market.png",
+      "events/_backup-standard-20260616-004855/packing_iron.png",
+      "events/_backup-standard-20260616-004855/rare_event_intel.png",
+      "events/_backup-standard-20260616-004855/shortage.png",
+      "events/_backup-standard-20260616-004855/super_rare_event.png",
+      "events/_backup-standard-20260616-004855/the_feds.png",
+      "events/_backup-standard-20260616-004855/upgrade_available.png",
+      "events/_backup-standard-20260616-005310/ambushed_rolled.png",
+      "events/_backup-standard-20260616-005310/buying_frenzy.png",
+      "events/_backup-standard-20260616-005310/dead_drop.png",
+      "events/_backup-standard-20260616-005310/flooded_market.png",
+      "events/_backup-standard-20260616-005310/packing_iron.png",
+      "events/_backup-standard-20260616-005310/rare_event_intel.png",
+      "events/_backup-standard-20260616-005310/shortage.png",
+      "events/_backup-standard-20260616-005310/super_rare_event.png",
+      "events/_backup-standard-20260616-005310/the_feds.png",
+      "events/_backup-standard-20260616-005310/upgrade_available.png",
+      "events/_backup-standard-20260616-012110/ambushed_rolled.png",
+      "events/_backup-standard-20260616-012110/buying_frenzy.png",
+      "events/_backup-standard-20260616-012110/dead_drop.png",
+      "events/_backup-standard-20260616-012110/flooded_market.png",
+      "events/_backup-standard-20260616-012110/packing_iron.png",
+      "events/_backup-standard-20260616-012110/rare_event_intel.png",
+      "events/_backup-standard-20260616-012110/shortage.png",
+      "events/_backup-standard-20260616-012110/super_rare_event.png",
+      "events/_backup-standard-20260616-012110/the_feds.png",
+      "events/_backup-standard-20260616-012110/upgrade_available.png",
+      "events/_backup-super-20260616-004859/super_dempsey.png",
+      "events/_backup-super-20260616-004859/super_hollywood.png",
+      "events/_backup-super-20260616-004859/super_kkrevue.png",
+      "events/_backup-super-20260616-004859/super_lindbergh.png",
+      "events/_backup-super-20260616-004859/super_mauretania.png",
+      "events/_backup-super-20260616-004859/super_ruth.png",
+      "events/_backup-super-20260616-004859/super_wales.png",
+      "events/_backup-super-20260616-004859/super_walker.png",
+      "events/_backup-super-20260616-004859/super_wallst.png",
+      "events/_backup-super-20260616-004859/super_ziegfeld.png",
+      "events/_backup-super-20260616-005313/super_dempsey.png",
+      "events/_backup-super-20260616-005313/super_hollywood.png",
+      "events/_backup-super-20260616-005313/super_kkrevue.png",
+      "events/_backup-super-20260616-005313/super_lindbergh.png",
+      "events/_backup-super-20260616-005313/super_mauretania.png",
+      "events/_backup-super-20260616-005313/super_ruth.png",
+      "events/_backup-super-20260616-005313/super_wales.png",
+      "events/_backup-super-20260616-005313/super_walker.png",
+      "events/_backup-super-20260616-005313/super_wallst.png",
+      "events/_backup-super-20260616-005313/super_ziegfeld.png",
+      "events/_backup-super-20260616-012113/super_dempsey.png",
+      "events/_backup-super-20260616-012113/super_hollywood.png",
+      "events/_backup-super-20260616-012113/super_kkrevue.png",
+      "events/_backup-super-20260616-012113/super_lindbergh.png",
+      "events/_backup-super-20260616-012113/super_mauretania.png",
+      "events/_backup-super-20260616-012113/super_ruth.png",
+      "events/_backup-super-20260616-012113/super_wales.png",
+      "events/_backup-super-20260616-012113/super_walker.png",
+      "events/_backup-super-20260616-012113/super_wallst.png",
+      "events/_backup-super-20260616-012113/super_ziegfeld.png",
+      "events/_backup-tier-20260616-000240/godlike_celebration.png",
+      "events/_backup-tier-20260616-000240/godlike_golden.png",
+      "events/_backup-tier-20260616-000240/godlike_history.png",
+      "events/_backup-tier-20260616-000240/godlike_in_town.png",
+      "events/_backup-tier-20260616-000240/godlike_interest.png",
+      "events/_backup-tier-20260616-000240/godlike_move.png",
+      "events/_backup-tier-20260616-000240/rare_armstrong.png",
+      "events/_backup-tier-20260616-000240/rare_capone.png",
+      "events/_backup-tier-20260616-000240/rare_ellington.png",
+      "events/_backup-tier-20260616-000240/rare_lansky.png",
+      "events/_backup-tier-20260616-000240/rare_luciano.png",
+      "events/_backup-tier-20260616-000240/rare_madden.png",
+      "events/_backup-tier-20260616-000240/rare_midnight.png",
+      "events/_backup-tier-20260616-000240/rare_rothstein.png",
+      "events/_backup-tier-20260616-000240/rare_rumrow.png",
+      "events/_backup-tier-20260616-000240/rare_schultz.png",
+      "events/_backup-tier-20260616-000240/super_dempsey.png",
+      "events/_backup-tier-20260616-000240/super_hollywood.png",
+      "events/_backup-tier-20260616-000240/super_kkrevue.png",
+      "events/_backup-tier-20260616-000240/super_lindbergh.png",
+      "events/_backup-tier-20260616-000240/super_mauretania.png",
+      "events/_backup-tier-20260616-000240/super_ruth.png",
+      "events/_backup-tier-20260616-000240/super_wales.png",
+      "events/_backup-tier-20260616-000240/super_walker.png",
+      "events/_backup-tier-20260616-000240/super_wallst.png",
+      "events/_backup-tier-20260616-000240/super_ziegfeld.png",
+      "events/_backup-tier-20260616-001729/ambushed_rolled.png",
+      "events/_backup-tier-20260616-001729/buying_frenzy.png",
+      "events/_backup-tier-20260616-001729/dead_drop.png",
+      "events/_backup-tier-20260616-001729/flooded_market.png",
+      "events/_backup-tier-20260616-001729/godlike_celebration.png",
+      "events/_backup-tier-20260616-001729/godlike_golden.png",
+      "events/_backup-tier-20260616-001729/godlike_history.png",
+      "events/_backup-tier-20260616-001729/godlike_in_town.png",
+      "events/_backup-tier-20260616-001729/godlike_interest.png",
+      "events/_backup-tier-20260616-001729/godlike_move.png",
+      "events/_backup-tier-20260616-001729/packing_iron.png",
+      "events/_backup-tier-20260616-001729/rare_armstrong.png",
+      "events/_backup-tier-20260616-001729/rare_capone.png",
+      "events/_backup-tier-20260616-001729/rare_ellington.png",
+      "events/_backup-tier-20260616-001729/rare_event_intel.png",
+      "events/_backup-tier-20260616-001729/rare_lansky.png",
+      "events/_backup-tier-20260616-001729/rare_luciano.png",
+      "events/_backup-tier-20260616-001729/rare_madden.png",
+      "events/_backup-tier-20260616-001729/rare_midnight.png",
+      "events/_backup-tier-20260616-001729/rare_rothstein.png",
+      "events/_backup-tier-20260616-001729/rare_rumrow.png",
+      "events/_backup-tier-20260616-001729/rare_schultz.png",
+      "events/_backup-tier-20260616-001729/shortage.png",
+      "events/_backup-tier-20260616-001729/super_dempsey.png",
+      "events/_backup-tier-20260616-001729/super_hollywood.png",
+      "events/_backup-tier-20260616-001729/super_kkrevue.png",
+      "events/_backup-tier-20260616-001729/super_lindbergh.png",
+      "events/_backup-tier-20260616-001729/super_mauretania.png",
+      "events/_backup-tier-20260616-001729/super_rare_event.png",
+      "events/_backup-tier-20260616-001729/super_ruth.png",
+      "events/_backup-tier-20260616-001729/super_wales.png",
+      "events/_backup-tier-20260616-001729/super_walker.png",
+      "events/_backup-tier-20260616-001729/super_wallst.png",
+      "events/_backup-tier-20260616-001729/super_ziegfeld.png",
+      "events/_backup-tier-20260616-001729/the_feds.png",
+      "events/_backup-tier-20260616-001729/upgrade_available.png",
+      "events/_test-trim.png",
       "events/ambushed_rolled.png",
       "events/buying_frenzy.png",
       "events/dead_drop.png",
@@ -538,9 +2006,9 @@
   },
   "summary": {
     "missingCount": 0,
-    "orphanCount": 1,
+    "orphanCount": 222,
     "docOnlyOrphans": [],
-    "duplicateGroups": 0,
+    "duplicateGroups": 32,
     "allDistrictsPresent": true,
     "allGoodsPresent": true
   }
