@@ -48,7 +48,7 @@
   .play{flex:1 1 auto;display:flex;flex-direction:column;min-height:0;}
 
   /* Sepia pixel-art assets — lighten ~10% for readability on dark UI */
-  .goods-icon,.market-play .loc-header img,.travel-head img,.travel-row img,.eos-left img{
+  .goods-icon,.market-play .loc-header img,.travel-head img,.travel-row img,.eos-card img{
     filter:brightness(1.1);}
 
   /* MARKET SCREEN — fixed single-screen layout (no scroll) */
@@ -256,32 +256,37 @@
   .tutorial .card-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px;}
   .save-err{text-align:center;color:var(--red);font-size:.72rem;padding:2px 0;}
 
-  /* === END-OF-GAME SPLIT SCREEN — locked standard (see docs/ui-standards/end-screen.png) === */
-  .eos{flex:1 1 auto;display:flex;flex-direction:row;gap:8px;min-height:0;overflow:hidden;align-items:stretch;}
-  .eos-left{flex:0 0 36%;min-width:0;display:flex;align-items:center;justify-content:center;
-    min-height:0;padding:0;border:3px double var(--amber);border-radius:8px;
-    overflow:hidden;background:var(--panel);}
-  .eos-left img{width:100%;height:100%;object-fit:contain;display:block;}
-  .eos-right{flex:1 1 0;min-width:0;display:flex;flex-direction:column;min-height:0;overflow:hidden;
-    padding:8px 10px 6px;border:3px double var(--amber);border-radius:8px;background:var(--bg);}
-  .eos-title{font-size:.58rem;color:var(--dim);letter-spacing:3px;text-align:center;margin-bottom:1px;}
-  .eos-amount-wrap{flex:0 0 auto;display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:5px;}
-  .eos-amount{flex:1 1 auto;font-size:clamp(1rem,4.2vw,1.45rem);color:var(--amber);font-weight:900;
-    text-align:center;letter-spacing:1px;line-height:1.15;min-width:0;}
-  .eos-hs-header{font-size:.56rem;color:var(--dim);letter-spacing:2px;text-align:center;margin-bottom:3px;}
-  .eos-rows{flex:1 1 auto;overflow:hidden;min-height:0;display:flex;flex-direction:column;justify-content:flex-start;gap:1px;}
-  .eos-row{display:flex;align-items:baseline;gap:2px;padding:1.5px 0;font-size:.68rem;line-height:1.3;}
-  .eos-pos{flex:0 0 2em;text-align:right;color:var(--dim);padding-right:3px;}
+  /* === END-OF-GAME — locked portrait stack (see docs/ui-standards/end-screen.png) === */
+  .eos{flex:1 1 auto;display:flex;flex-direction:column;gap:5px;min-height:0;overflow:hidden;}
+  .eos-score-head{flex:0 0 auto;text-align:center;padding:0 2px;}
+  .eos-title{font-family:"Didot","Bodoni MT","Playfair Display",Georgia,serif;
+    font-size:clamp(.62rem,2.8vw,.72rem);color:var(--dim);letter-spacing:3px;margin:0 0 2px;}
+  .eos-amount-wrap{flex:0 0 auto;display:flex;align-items:center;justify-content:center;gap:6px;margin:0 0 4px;}
+  .eos-gun{flex:0 0 auto;width:clamp(28px,8vw,40px);height:auto;display:block;
+    image-rendering:pixelated;image-rendering:crisp-edges;filter:brightness(1.1);}
+  .eos-gun-r{transform:scaleX(-1);}
+  .eos-amount{flex:1 1 auto;font-size:clamp(1.05rem,5.2vw,1.55rem);color:var(--amber);font-weight:900;
+    text-align:center;letter-spacing:.5px;line-height:1.1;min-width:0;}
+  .eos-rule{height:0;border:none;border-top:1px solid var(--border);margin:0 0 4px;}
+  .eos-scores{flex:1 1 0;min-height:0;display:flex;flex-direction:column;overflow:hidden;}
+  .eos-hs-header{flex:0 0 auto;font-size:clamp(.52rem,2.4vw,.6rem);color:var(--dim);letter-spacing:2px;
+    text-align:center;margin-bottom:2px;}
+  .eos-rows{flex:1 1 0;overflow:hidden;min-height:0;display:flex;flex-direction:column;justify-content:flex-start;gap:0;}
+  .eos-row{display:flex;align-items:baseline;gap:2px;padding:1px 0;font-size:clamp(.58rem,2.6vw,.68rem);line-height:1.25;}
+  .eos-pos{flex:0 0 1.8em;text-align:right;color:var(--dim);padding-right:2px;}
   .eos-name{flex:0 0 auto;color:var(--amber);letter-spacing:.3px;white-space:nowrap;}
   .eos-fill{flex:1 1 auto;overflow:hidden;color:var(--dim);white-space:nowrap;padding:0 2px;}
   .eos-fill::before{content:'·················································';}
   .eos-val{flex:0 0 auto;color:var(--text);white-space:nowrap;}
-  .eos-tag{flex:0 0 auto;font-size:.56rem;color:var(--amber);letter-spacing:.5px;padding-left:2px;}
-  .eos-row.you{background:rgba(231,200,121,.09);border:1px solid var(--btnborder);border-radius:3px;padding:2px 3px;margin:1px -3px;}
+  .eos-tag{flex:0 0 auto;font-size:clamp(.5rem,2.2vw,.56rem);color:var(--amber);letter-spacing:.5px;padding-left:2px;}
   .eos-row.you .eos-name,.eos-row.you .eos-val{color:var(--amber);}
-  .eos-sep{border:none;border-top:1px solid var(--border);margin:3px 0;}
-  .eos-btns{flex:0 0 auto;display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:6px;}
-  .eos-btns button{font-size:.7rem;padding:9px 4px;letter-spacing:.5px;}
+  .eos-rows .eos-row.you{background:rgba(231,200,121,.07);}
+  .eos-you-box{flex:0 0 auto;border:1px solid var(--amber);border-radius:3px;padding:3px 6px;margin-top:2px;}
+  .eos-card{flex:1 1 0;min-height:72px;max-height:38%;display:flex;align-items:center;justify-content:center;
+    padding:2px;border:1px solid var(--amber);border-radius:4px;background:#000;overflow:hidden;}
+  .eos-card img{width:100%;height:100%;object-fit:contain;display:block;}
+  .eos-btns{flex:0 0 auto;display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:2px;}
+  .eos-btns button{font-size:clamp(.66rem,2.8vw,.74rem);padding:9px 4px;letter-spacing:.5px;}
 
   /* === EVENT POPUP — locked standard: full-bleed left art (see docs/ui-standards/popup.png) === */
   .modal .ev-popup{width:100%;}
@@ -302,19 +307,39 @@
   .ev-acts button{font-size:.8rem;padding:10px 8px;letter-spacing:.5px;}
   .ev-status{font-size:.8rem;color:var(--dim);text-align:center;margin-bottom:4px;}
   .ev-warn{font-size:.72rem;color:var(--dim);text-align:center;margin-top:4px;}
+
+  /* === PORTRAIT ONLY — portrait layout fixed; rotate viewport on touch landscape === */
+  #portrait-root{width:100%;height:100%;min-height:0;}
+  @media (orientation:landscape) and (pointer:coarse){
+    html,body{overflow:hidden;}
+    #portrait-root{position:fixed;top:0;left:0;width:100vh;height:100vw;
+      transform:rotate(-90deg) translateX(-100%);transform-origin:top left;}
+  }
 </style>
 </head>
 <body>
+<div id="portrait-root">
 <div id="crt">
   <div class="masthead">
     <h1 class="serif">GANG WARS</h1>
   </div>
   <div id="app"></div>
 </div>
+</div>
 
 <script src="engine.js"></script>
 <script>
 if (typeof document !== "undefined") {
+(function lockPortrait(){
+  const tryLock = () => {
+    const o = screen.orientation;
+    if (!o || typeof o.lock !== "function") return;
+    o.lock("portrait").catch(() => {});
+  };
+  tryLock();
+  window.addEventListener("orientationchange", tryLock);
+  document.addEventListener("click", tryLock, { once: true, passive: true });
+})();
 (function(){
   const app = document.getElementById("app");
   const SAVE_KEY = "gw:save", HS_KEY = "gw:highscores";
@@ -1004,26 +1029,33 @@ if (typeof document !== "undefined") {
 
     const rows=hs.map((h,i)=>mkRow(h,i,inTop10&&i===placement-1)).join('');
     const playerRow=inTop10?'':
-      `<hr class="eos-sep"><div class="eos-row you">
+      `<div class="eos-you-box"><div class="eos-row you">
         <span class="eos-pos">${placement}.</span>
         <span class="eos-name">${rank.toUpperCase()}</span>
         <span class="eos-fill"></span>
         <span class="eos-val">${money(worth)}</span>
-        <span class="eos-tag">← YOU</span></div>`;
+        <span class="eos-tag">← YOU</span></div></div>`;
 
     app.innerHTML=`<div class="eos">
-      <div class="eos-left">
-        <img src="cards/${rankCard(rank)}.png" alt="${rank}">
+      <div class="eos-score-head">
+        <div class="eos-title">FINAL SCORE</div>
+        <div class="eos-amount-wrap">
+          <img class="eos-gun" src="assets/eos-tommy-left.png" alt="" aria-hidden="true">
+          <div class="eos-amount">${money(worth)}</div>
+          <img class="eos-gun eos-gun-r" src="assets/eos-tommy-left.png" alt="" aria-hidden="true">
+        </div>
+        <hr class="eos-rule">
       </div>
-      <div class="eos-right">
-        <div class="eos-title">— FINAL SCORE —</div>
-        <div class="eos-amount-wrap"><div class="eos-amount">${money(worth)}</div></div>
+      <div class="eos-scores">
         <div class="eos-hs-header">— ALL TIME HIGH SCORES —</div>
         <div class="eos-rows">${rows}${playerRow}</div>
-        <div class="eos-btns">
-          <button class="amber" id="again">PLAY AGAIN</button>
-          <button id="menu">MAIN MENU</button>
-        </div>
+      </div>
+      <div class="eos-card">
+        <img src="cards/${rankCard(rank)}.png" alt="${rank}">
+      </div>
+      <div class="eos-btns">
+        <button class="amber" id="again">PLAY AGAIN</button>
+        <button id="menu">MAIN MENU</button>
       </div>
     </div>`;
     document.getElementById("again").onclick=()=>{ localStorage.removeItem(SAVE_KEY); S=newGame(); save(); render(); };

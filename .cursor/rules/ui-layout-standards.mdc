@@ -6,7 +6,15 @@ alwaysApply: false
 
 # Gang Wars — Locked UI Layout Standards
 
-These three layouts are **unchangeable standards**. Match `docs/ui-standards/*.png` exactly. Do not refactor, restyle, or "improve" them.
+These layouts are **unchangeable standards**. Match `docs/ui-standards/*.png` exactly. Do not refactor, restyle, or "improve" them.
+
+## Portrait only
+
+- Game is **portrait-only** — layout never reflows for landscape
+- `manifest.json`: `"orientation": "portrait-primary"`
+- `#portrait-root` uses a CSS rotate on touch landscape so the portrait layout stays fixed while the device moves
+- JS attempts `screen.orientation.lock('portrait')` when supported (installed PWA)
+- Desktop browsers (fine pointer) are unaffected — `#crt` stays `max-width:540px` centered
 
 ## 1. Event popups (`.ev-popup`)
 
@@ -35,8 +43,10 @@ Reference: `docs/ui-standards/travel.png`
 
 Reference: `docs/ui-standards/end-screen.png`
 
-- **Left panel (~36%)**: rank card image in double-border frame (`cards/{rank}.png`)
-- **Right panel**: double-border frame with — FINAL SCORE —, amount, — ALL TIME HIGH SCORES —, dotted leaderboard rows, optional ← YOU row, PLAY AGAIN / MAIN MENU
+- **Portrait stack** (top → bottom): FINAL SCORE + Tommy guns + amount → high-score table → rank card → PLAY AGAIN / MAIN MENU
+- **Score header**: `assets/eos-tommy-left.png` flanking amount (mirrored right); rule line below
+- **Rank card**: full `cards/{rank}.png` in `.eos-card` gold frame — cards normalized via `scripts/prepare-eos-assets.py` (400px wide + 1px black pad)
+- **Outside top 10**: player row in `.eos-you-box` with gold border
 - Every game-over path must use `renderGameOver()` / `.eos` — no alternate end layouts
 - Single-screen, no scroll
 

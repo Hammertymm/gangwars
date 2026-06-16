@@ -5,7 +5,7 @@
   "start_url": "./gangwars.html",
   "scope": "./",
   "display": "standalone",
-  "orientation": "portrait",
+  "orientation": "portrait-primary",
   "background_color": "#15110b",
   "theme_color": "#15110b",
   "icons": [
