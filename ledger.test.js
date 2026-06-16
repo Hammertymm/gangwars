@@ -39,7 +39,24 @@ describe('ledger definitions', () => {
     assert.equal(LEDGER_CATEGORIES.length, 5);
     assert.equal(LEDGER_CATEGORIES[0].achievements.length, 14);
     assert.equal(LEDGER_CATEGORIES[1].achievements.length, 10);
+    assert.equal(LEDGER_CATEGORIES[2].achievements.length, 10);
+    assert.equal(LEDGER_CATEGORIES[3].achievements.length, 5);
+    assert.equal(LEDGER_CATEGORIES[4].achievements.length, 1);
     assert.equal(LEDGER_CATEGORIES[4].achievements[0].title, 'GOLDEN SHOWER!!!');
+  });
+
+  it('assigns every achievement to exactly one category', () => {
+    const ids = new Set();
+    const totals = { general: 14, rare: 10, superRare: 10, godlike: 5, goldenGodlike: 1 };
+    LEDGER_CATEGORIES.forEach(cat => {
+      assert.equal(cat.achievements.length, totals[cat.id]);
+      cat.achievements.forEach(a => {
+        assert.ok(!ids.has(a.id), `duplicate achievement id: ${a.id}`);
+        ids.add(a.id);
+        assert.equal(getCategoryForAchievement(a.id), cat.id);
+      });
+    });
+    assert.equal(ids.size, 40);
   });
 });
 

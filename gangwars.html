@@ -40,6 +40,9 @@
     padding:3px 0;margin:0 0 3px;}
   #crt.game-mode{padding:calc(env(safe-area-inset-top, 0px) + 1px) 8px env(safe-area-inset-bottom, 0px) 8px;}
   #crt.game-mode .masthead{padding:2px 0;margin:0 0 15px;}
+  #crt.ledger-mode{padding:env(safe-area-inset-top, 0px) 0 env(safe-area-inset-bottom, 0px) 0;background:#0a0a0a;}
+  #crt.ledger-mode .masthead{display:none;}
+  #crt.ledger-mode #app{flex:1 1 auto;min-height:0;}
   #crt.game-mode h1{font-size:clamp(1.1rem, 6.5vw, 2rem);}
   h1{font-size:clamp(1.35rem, 7.5vw, 2.4rem);letter-spacing:2px;margin:0;line-height:1.05;
     color:var(--amber);text-shadow:var(--glow);font-weight:900;white-space:nowrap;}
@@ -211,39 +214,47 @@
   .title-hit-scores{left:51.975%;width:43.867%;top:89.063%;height:7.227%;}
   .save-err{text-align:center;color:var(--red);font-size:.72rem;padding:1px 0;}
 
-  /* CRIME LEDGER — uploaded art screens (481×1024), hit regions + dynamic overlays only */
+  /* CRIME LEDGER — uploaded art screens (481×1024), masked overlays + hit regions */
   .ledger-play{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;overflow:hidden;background:#0a0a0a;}
   .ledger-art-screen{flex:1 1 auto;min-height:0;width:100%;display:flex;align-items:center;
-    justify-content:center;overflow:hidden;background:#0a0a0a;container-type:size;
-    padding:env(safe-area-inset-top, 0px) 0 env(safe-area-inset-bottom, 0px);}
+    justify-content:center;overflow:hidden;background:#0a0a0a;container-type:size;}
   .ledger-art-frame{position:relative;aspect-ratio:481/1024;
     width:min(100cqw,calc(100cqh * 481 / 1024));max-height:100cqh;}
-  .ledger-art-frame img{width:100%;height:100%;display:block;user-select:none;-webkit-user-drag:none;pointer-events:none;}
+  .ledger-art-frame img{position:relative;z-index:0;width:100%;height:100%;display:block;
+    user-select:none;-webkit-user-drag:none;pointer-events:none;}
+  .ledger-overlay-layer{position:absolute;inset:0;z-index:1;pointer-events:none;}
   .ledger-hit{position:absolute;border:0;background:transparent;cursor:pointer;padding:0;margin:0;
-    border-radius:0;min-height:0;min-width:0;-webkit-tap-highlight-color:transparent;}
+    border-radius:0;min-height:0;min-width:0;-webkit-tap-highlight-color:transparent;
+    pointer-events:auto;z-index:3;}
   .ledger-hit:focus-visible{outline:2px solid var(--amber);outline-offset:-2px;}
   .ledger-hit-back{left:4.2%;width:91.6%;top:91.2%;height:6.4%;}
-  .ledger-total-count{position:absolute;left:0;right:0;top:47.8%;text-align:center;
-    font-size:clamp(.58rem,2.6vw,.68rem);letter-spacing:1.2px;color:#c9a85a;pointer-events:none;}
-  .ledger-row-count{position:absolute;right:14%;text-align:right;
-    font-size:clamp(.52rem,2.3vw,.62rem);letter-spacing:.8px;color:#9a8860;pointer-events:none;}
-  .ledger-cat-count{position:absolute;left:0;right:0;top:33.6%;text-align:center;
-    font-size:clamp(.56rem,2.5vw,.66rem);letter-spacing:1px;color:#c9a85a;pointer-events:none;}
-  .ledger-list-panel{position:absolute;left:3.6%;right:3.6%;top:38.4%;bottom:11.2%;
-    overflow:hidden;display:flex;flex-direction:column;background:#080808;}
-  .ledger-list-row{flex:1 1 0;min-height:0;display:flex;align-items:center;gap:clamp(6px,2vw,10px);
-    padding:0 clamp(6px,2vw,10px);border-bottom:1px solid #1a1610;}
+  .ledger-count-slot{position:absolute;display:flex;align-items:center;justify-content:center;
+    pointer-events:none;background:#0a0a0a;color:#c9a85a;letter-spacing:1px;white-space:nowrap;z-index:2;}
+  .ledger-count-slot.total{top:46.6%;left:26%;right:26%;height:2.6%;
+    font-size:clamp(.56rem,2.4vw,.66rem);}
+  .ledger-count-slot.cat{top:32.2%;left:20%;right:20%;height:2.8%;
+    font-size:clamp(.54rem,2.3vw,.64rem);}
+  .ledger-count-slot.row{font-size:clamp(.5rem,2.1vw,.6rem);color:#9a8860;height:2.4%;
+    left:61%;right:13%;justify-content:flex-end;}
+  .ledger-list-panel{position:absolute;left:3.5%;right:3.5%;top:36.6%;bottom:11.4%;
+    overflow:hidden;display:flex;flex-direction:column;background:#0a0a0a;z-index:2;
+    pointer-events:none;}
+  .ledger-list-row{flex:0 0 calc(100% / var(--ledger-rows, 10));max-height:calc(100% / var(--ledger-rows, 10));
+    min-height:0;display:flex;align-items:center;gap:clamp(5px,1.8vw,8px);
+    padding:0 clamp(5px,1.8vw,8px);border-bottom:1px solid #1a1610;box-sizing:border-box;}
   .ledger-list-row:last-child{border-bottom:none;}
-  .ledger-row-icon{flex:0 0 clamp(28px,8vw,34px);width:clamp(28px,8vw,34px);height:clamp(28px,8vw,34px);
-    border:1px solid var(--amber);border-radius:6px;display:flex;align-items:center;justify-content:center;
-    font-size:clamp(.58rem,2.4vw,.66rem);color:var(--amber);}
+  .ledger-row-icon{flex:0 0 clamp(26px,7.5vw,32px);width:clamp(26px,7.5vw,32px);height:clamp(26px,7.5vw,32px);
+    border:1px solid var(--amber);border-radius:5px;display:flex;align-items:center;justify-content:center;
+    font-size:clamp(.52rem,2.2vw,.6rem);color:var(--amber);line-height:1;}
   .ledger-row-icon.locked{border-color:#5a5040;color:#5a5040;}
-  .ledger-row-copy{flex:1 1 auto;min-width:0;line-height:1.25;}
-  .ledger-row-title{font-size:clamp(.56rem,2.4vw,.66rem);letter-spacing:.6px;color:var(--amber);}
+  .ledger-row-copy{flex:1 1 auto;min-width:0;line-height:1.2;overflow:hidden;}
+  .ledger-row-title{font-size:clamp(.52rem,2.2vw,.62rem);letter-spacing:.5px;color:var(--amber);
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
   .ledger-row-title.hidden{color:#5a5040;}
-  .ledger-row-desc{font-size:clamp(.48rem,2.1vw,.56rem);color:#7a6e58;margin-top:1px;}
+  .ledger-row-desc{font-size:clamp(.46rem,2vw,.54rem);color:#7a6e58;margin-top:1px;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
   .ledger-row-desc:empty{display:none;margin:0;}
-  .ledger-row-mark{flex:0 0 1em;color:var(--green);font-size:clamp(.62rem,2.6vw,.72rem);}
+  .ledger-row-mark{flex:0 0 .9em;color:var(--green);font-size:clamp(.58rem,2.4vw,.66rem);}
   .ledger-list-row.reveal-focus .ledger-row-title{color:var(--amber);}
   .ledger-complete{flex:1 1 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;
     text-align:center;padding:16px;gap:10px;border:3px double var(--amber);border-radius:8px;}
@@ -416,12 +427,25 @@ if (typeof document !== "undefined") {
     goldenGodlike: "assets/ledger/ledger-golden-godlike.png",
   };
   const LEDGER_HOME_ROWS = [
-    { id: "general", top: 52.4, height: 7.4 },
-    { id: "rare", top: 60.1, height: 7.4 },
-    { id: "superRare", top: 67.8, height: 7.4 },
-    { id: "godlike", top: 75.5, height: 7.4 },
-    { id: "goldenGodlike", top: 83.2, height: 7.4 },
+    { id: "general", top: 51.6, height: 5.1, countTop: 52.4 },
+    { id: "rare", top: 57.0, height: 5.1, countTop: 57.8 },
+    { id: "superRare", top: 62.4, height: 5.1, countTop: 63.2 },
+    { id: "godlike", top: 67.8, height: 5.1, countTop: 68.6 },
+    { id: "goldenGodlike", top: 73.2, height: 5.1, countTop: 74.0 },
   ];
+  function ledgerCategoryById(catId){
+    return LEDGER_CATEGORIES.find(c => c.id === catId) || null;
+  }
+  function openLedgerCategory(catId){
+    if (!LEDGER_SCREENS[catId] || !ledgerCategoryById(catId)) return;
+    ledgerView = "category";
+    ledgerViewCat = catId;
+    ledgerFocusId = null;
+    render();
+  }
+  function ledgerCountSlot(cls, text, style){
+    return `<div class="ledger-count-slot ${cls}"${style ? ` style="${style}"` : ""}>${text}</div>`;
+  }
   const DISTRICT_IMG = {
     "Little Italy":       "assets/little-italy.png",
     "Dock #13":           "assets/dock-13.png",
@@ -651,9 +675,30 @@ if (typeof document !== "undefined") {
   function ledgerArtShell(imgSrc, innerHtml){
     return `<div class="play ledger-play"><div class="ledger-art-screen"><div class="ledger-art-frame">
       <img src="${imgSrc}" width="481" height="1024" decoding="async" alt="">
-      ${innerHtml}
+      <div class="ledger-overlay-layer">${innerHtml}</div>
       <button type="button" class="ledger-hit ledger-hit-back" id="back" aria-label="Back"></button>
     </div></div></div>`;
+  }
+  function buildLedgerListRows(cat, focusId){
+    return cat.achievements.map(a=>{
+      const unlocked = isUnlocked(ledger, a.id);
+      const revealed = isRevealed(ledger, a.id);
+      const showName = revealed;
+      const focus = focusId === a.id ? " reveal-focus" : "";
+      const iconCls = showName ? "" : " locked";
+      const icon = showName ? "★" : "◆";
+      const title = showName ? a.title : "UNKNOWN";
+      const desc = showName ? "" : "Achievement not yet discovered.";
+      const mark = showName && unlocked ? "✓" : "";
+      return `<div class="ledger-list-row${focus}" data-aid="${a.id}">
+        <span class="ledger-row-icon${iconCls}">${icon}</span>
+        <div class="ledger-row-copy">
+          <div class="ledger-row-title${showName ? "" : " hidden"}">${title}</div>
+          <div class="ledger-row-desc">${desc}</div>
+        </div>
+        <span class="ledger-row-mark">${mark}</span>
+      </div>`;
+    }).join("");
   }
   function openLedgerReveal(achievementId){
     ledgerView = "category";
@@ -683,56 +728,45 @@ if (typeof document !== "undefined") {
   }
   function renderLedgerScreen(){
     document.getElementById("crt").classList.remove("title-mode");
-    document.getElementById("crt").classList.add("game-mode");
-    if (ledgerView === "category" && ledgerViewCat) renderLedgerCategory(ledgerViewCat);
-    else renderLedgerHome();
+    document.getElementById("crt").classList.add("ledger-mode");
+    document.getElementById("crt").classList.remove("game-mode");
+    if (ledgerView === "category" && ledgerViewCat && LEDGER_SCREENS[ledgerViewCat]) {
+      renderLedgerCategory(ledgerViewCat);
+    } else {
+      ledgerView = "home";
+      ledgerViewCat = null;
+      renderLedgerHome();
+    }
   }
   function renderLedgerHome(){
     const found = countDiscovered(ledger);
     const rowHits = LEDGER_HOME_ROWS.map(r=>{
-      const cat = LEDGER_CATEGORIES.find(c => c.id === r.id);
+      const cat = ledgerCategoryById(r.id);
       const n = countUnlocked(ledger, r.id);
       return `<button type="button" class="ledger-hit" data-cat="${r.id}" aria-label="${cat.title}"
         style="left:3.6%;width:92.8%;top:${r.top}%;height:${r.height}%"></button>
-        <div class="ledger-row-count" style="top:${r.top + r.height * 0.28}%">${n} / ${cat.achievements.length}</div>`;
+        ${ledgerCountSlot("row", `${n} / ${cat.achievements.length}`, `top:${r.countTop}%`)}`;
     }).join("");
     app.innerHTML = ledgerArtShell(LEDGER_SCREENS.home,
-      `<div class="ledger-total-count">${found} / ${LEDGER_TOTAL} FOUND</div>${rowHits}`);
-    app.querySelectorAll("[data-cat]").forEach(b => b.onclick = ()=>{
-      ledgerView = "category";
-      ledgerViewCat = b.dataset.cat;
-      ledgerFocusId = null;
-      render();
+      `${ledgerCountSlot("total", `${found} / ${LEDGER_TOTAL} FOUND`)}${rowHits}`);
+    LEDGER_HOME_ROWS.forEach(r=>{
+      const btn = app.querySelector(`[data-cat="${r.id}"]`);
+      if (btn) btn.onclick = () => openLedgerCategory(r.id);
     });
     document.getElementById("back").onclick = exitLedgerHome;
   }
   function renderLedgerCategory(catId){
-    const cat = LEDGER_CATEGORIES.find(c => c.id === catId);
-    if (!cat) { exitLedgerCategory(); return; }
+    const cat = ledgerCategoryById(catId);
+    if (!cat || !LEDGER_SCREENS[catId]) {
+      if (ledgerReturn) restoreLedgerReturn();
+      else { ledgerView = "home"; ledgerViewCat = null; render(); }
+      return;
+    }
     const found = countUnlocked(ledger, catId);
-    const img = LEDGER_SCREENS[catId] || LEDGER_SCREENS.general;
-    const rows = cat.achievements.map(a=>{
-      const unlocked = isUnlocked(ledger, a.id);
-      const revealed = isRevealed(ledger, a.id);
-      const showName = revealed;
-      const focus = ledgerFocusId === a.id ? " reveal-focus" : "";
-      const iconCls = showName ? "" : " locked";
-      const icon = showName ? "★" : "🔒";
-      const title = showName ? a.title : "UNKNOWN";
-      const desc = showName ? a.title : "Achievement not yet discovered.";
-      const mark = showName && unlocked ? "✓" : "";
-      return `<div class="ledger-list-row${focus}" data-aid="${a.id}">
-        <span class="ledger-row-icon${iconCls}">${icon}</span>
-        <div class="ledger-row-copy">
-          <div class="ledger-row-title${showName ? "" : " hidden"}">${title}</div>
-          <div class="ledger-row-desc">${showName ? "" : desc}</div>
-        </div>
-        <span class="ledger-row-mark">${mark}</span>
-      </div>`;
-    }).join("");
-    app.innerHTML = ledgerArtShell(img,
-      `<div class="ledger-cat-count">${found} OF ${cat.achievements.length} DISCOVERED</div>
-      <div class="ledger-list-panel">${rows}</div>`);
+    const rows = buildLedgerListRows(cat, ledgerFocusId);
+    app.innerHTML = ledgerArtShell(LEDGER_SCREENS[catId],
+      `${ledgerCountSlot("cat", `${found} OF ${cat.achievements.length} DISCOVERED`)}
+      <div class="ledger-list-panel" style="--ledger-rows:${cat.achievements.length}">${rows}</div>`);
     document.getElementById("back").onclick = exitLedgerCategory;
     if (ledgerFocusId && isUnlocked(ledger, ledgerFocusId) && !isRevealed(ledger, ledgerFocusId)) {
       const row = app.querySelector(`[data-aid="${ledgerFocusId}"] .ledger-row-title`);
@@ -763,8 +797,6 @@ if (typeof document !== "undefined") {
         if (markEl) markEl.textContent = "✓";
         const iconEl = el.closest(".ledger-list-row")?.querySelector(".ledger-row-icon");
         if (iconEl) { iconEl.textContent = "★"; iconEl.classList.remove("locked"); }
-        const descEl = el.closest(".ledger-list-row")?.querySelector(".ledger-row-desc");
-        if (descEl) descEl.textContent = "";
         onDone();
         return;
       }
@@ -889,7 +921,14 @@ if (typeof document !== "undefined") {
 
   function render(){
     const crt = document.getElementById("crt");
-    if (ledgerView && !modal){ crt.classList.remove("title-mode"); crt.classList.add("game-mode"); renderLedgerScreen(); return; }
+    if (ledgerView && !modal){
+      crt.classList.remove("title-mode");
+      crt.classList.remove("game-mode");
+      crt.classList.add("ledger-mode");
+      renderLedgerScreen();
+      return;
+    }
+    crt.classList.remove("ledger-mode");
     if (modal){ crt.classList.remove("title-mode"); crt.classList.add("game-mode"); modal(); return; }
     if (!S){ crt.classList.add("title-mode"); crt.classList.remove("game-mode"); renderTitle(); return; }
     crt.classList.remove("title-mode"); crt.classList.add("game-mode");
