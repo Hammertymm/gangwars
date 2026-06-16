@@ -13,7 +13,7 @@ TRIM_THRESHOLD = 18
 
 
 def trim_black(img: Image.Image, threshold: int = TRIM_THRESHOLD) -> Image.Image:
-    """Remove outer black gutter — keeps title banners and gold frames."""
+    """Remove outer black gutter."""
     rgb = img.convert("RGB")
     arr = np.array(rgb)
     mask = arr.max(axis=2) > threshold
@@ -31,7 +31,7 @@ def enhance_panel(img: Image.Image) -> Image.Image:
 
 
 def export_panel(panel: Image.Image, target_h: int = POPUP_ART_HEIGHT) -> Image.Image:
-    """Trim, enhance, scale to popup height — no letterboxing on canvas."""
+    """Trim gutter, enhance, scale to popup height — no letterboxing."""
     panel = trim_black(panel)
     panel = enhance_panel(panel)
     w, h = panel.size

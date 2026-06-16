@@ -17,17 +17,41 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from event_art import export_panel, needs_normalize  # noqa: E402
 
 GLOBS = ("rare_*.png", "super_*.png", "godlike_*.png")
+STANDARD = (
+    "the_feds.png",
+    "ambushed_rolled.png",
+    "dead_drop.png",
+    "packing_iron.png",
+    "upgrade_available.png",
+    "shortage.png",
+    "buying_frenzy.png",
+    "flooded_market.png",
+    "super_rare_event.png",
+    "rare_event_intel.png",
+)
 
 
-def main() -> None:
+def collect_paths(all_events: bool) -> list[Path]:
+    if all_events:
+        paths = sorted(
+            p
+            for p in EVENTS.glob("*.png")
+            if not p.name.startswith("_") and p.name in STANDARD
+            or any(p.match(g) for g in GLOBS)
+        )
+        return paths
     paths: list[Path] = []
     for pattern in GLOBS:
         paths.extend(EVENTS.glob(pattern))
-    paths = sorted(set(paths))
+    return sorted(set(paths))
 
-    todo = [p for p in paths if needs_normalize(p)]
+
+def main() -> None:
+    all_events = "--all" in sys.argv
+    paths = collect_paths(all_events)
+    todo = paths if all_events else [p for p in paths if needs_normalize(p)]
     if not todo:
-        print("All rare/super/godlike event art already normalized.")
+        print("All event popup art already normalized.")
         return
 
     stamp = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S")

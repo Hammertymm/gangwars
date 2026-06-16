@@ -18,7 +18,7 @@ SOURCE = ROOT / "assets" / "event-grid-source.png"
 FALLBACK_SOURCE = Path(
     r"C:\Users\jarro\.cursor\projects\c-Projects-gang-wars-GangWars\assets"
     r"\c__Users_jarro_AppData_Roaming_Cursor_User_workspaceStorage_b8abd18152c996897b88164cd8a20284"
-    r"_images_image-9b10f273-468d-4512-8b7e-1718b8c9ef96.png"
+    r"_images_image-eaef4b3e-40e1-419b-b2cc-c412fbb4b243.png"
 )
 OUT_DIR = ROOT / "events"
 
@@ -39,7 +39,7 @@ EVENTS = [
 V_GUTTERS = [208, 411, 609, 817]
 H_GUTTER = 339
 GUTTER_TRIM = 3
-EDGE_TRIM = 2  # drop seam pixels only — keep title banners and gold frames
+EDGE_TRIM = 2  # drop seam pixels only
 
 
 def source_path() -> Path:

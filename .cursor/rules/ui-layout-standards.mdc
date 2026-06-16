@@ -14,7 +14,8 @@ Reference: `docs/ui-standards/popup.png`
 
 - **50/50 split**: CSS grid `1fr 1fr` — `.ev-left` column 1, `.ev-right` column 2
 - **Full-bleed art**: zero padding on `.ev-left`; `background-size:cover; background-position:top left` — no letterboxing or gaps
-- All tier event PNGs (`rare_*`, `super_*`, `godlike_*`) normalized to 662px height via `scripts/normalize-event-art.py`
+- All popup PNGs processed through `scripts/event_art.py` `export_panel()` — trim outer black gutter, enhance, scale to 662px height
+- All tier event PNGs (`rare_*`, `super_*`, `godlike_*`) normalized to 662px height via `scripts/normalize-event-art.py --all`
 - Gold vertical divider between panels (`border-left: 1px solid var(--amber)`)
 - All narrative/event popups use `showEvent` / `showEventAsk` / feds `draw()` — never plain `.card` for events
 - Standard event art: 10 PNGs in `events/` from `assets/event-grid-source.png` via `scripts/split-event-grid.py` — do not hand-edit; re-slice from source if needed
