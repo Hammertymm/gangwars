@@ -1,0 +1,14 @@
+node_modules/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Event image pipeline backups (local only)
+events/_backup-*/
+events/_test-trim.png
+
+# OS / editor
+.DS_Store
+Thumbs.db
