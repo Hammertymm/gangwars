@@ -14,11 +14,11 @@ const VIEWPORTS = [
 
 const STATES = ['empty', 'partial'];
 const CATEGORIES = [
-  { id: 'general', rows: 14, base: 'ledger-general-base.png' },
-  { id: 'rare', rows: 10, base: 'ledger-rare-base.png' },
-  { id: 'superRare', rows: 10, base: 'ledger-super-rare-base.png' },
-  { id: 'godlike', rows: 5, base: 'ledger-godlike-base.png' },
-  { id: 'goldenGodlike', rows: 1, base: 'ledger-golden-godlike-base.png' },
+  { id: 'general', rows: 14, base: 'ledger-general-base.png', hiddenTitle: '???' },
+  { id: 'rare', rows: 10, base: 'ledger-rare-base.png', hiddenTitle: 'UNKNOWN' },
+  { id: 'superRare', rows: 10, base: 'ledger-super-rare-base.png', hiddenTitle: 'UNKNOWN' },
+  { id: 'godlike', rows: 5, base: 'ledger-godlike-base.png', hiddenTitle: 'UNKNOWN' },
+  { id: 'goldenGodlike', rows: 1, base: 'ledger-golden-godlike-base.png', hiddenTitle: 'UNKNOWN' },
 ];
 
 async function applyLedgerState(page, stateName) {
@@ -65,6 +65,7 @@ async function assertHomeStructure(page, stateName) {
 
   await expect(page.locator('.ledger-counter.total')).toHaveCount(1);
   await expect(page.locator('.ledger-counter.row')).toHaveCount(5);
+  await expect(page.locator('.ledger-list-panel')).toHaveCount(0);
   await expect(page.locator('[data-cat]')).toHaveCount(5);
   await expect(page.locator('#ledgerBack')).toHaveCount(1);
 
@@ -78,19 +79,38 @@ async function assertHomeStructure(page, stateName) {
     expect(totalText).toMatch(/3 \/ 40 FOUND/);
   }
 
-  const boxes = await page.locator('.ledger-counter.row').evaluateAll(els =>
+  const rowCounterBoxes = await page.locator('.ledger-counter.row').evaluateAll(els =>
     els.map(el => {
       const r = el.getBoundingClientRect();
       return { x: r.x, y: r.y, w: r.width, h: r.height };
     })
   );
-  for (let i = 0; i < boxes.length; i++) {
-    for (let j = i + 1; j < boxes.length; j++) {
-      expect(rectsOverlap(boxes[i], boxes[j])).toBe(false);
+  for (let i = 0; i < rowCounterBoxes.length; i++) {
+    for (let j = i + 1; j < rowCounterBoxes.length; j++) {
+      expect(rectsOverlap(rowCounterBoxes[i], rowCounterBoxes[j])).toBe(false);
     }
   }
 
-  for (const sel of ['#ledgerBack', '[data-cat="general"]', '[data-cat="rare"]']) {
+  const hitBoxes = await page.locator('[data-cat]').evaluateAll(els =>
+    els.map(el => {
+      const id = el.getAttribute('data-cat');
+      const r = el.getBoundingClientRect();
+      return { id, x: r.x, y: r.y, w: r.width, h: r.height };
+    })
+  );
+  const catIds = ['general', 'rare', 'superRare', 'godlike', 'goldenGodlike'];
+  rowCounterBoxes.forEach((box, i) => {
+    const hit = hitBoxes.find(h => h.id === catIds[i]);
+    expect(hit).toBeTruthy();
+    const cx = box.x + box.w / 2;
+    const cy = box.y + box.h / 2;
+    expect(cx).toBeGreaterThanOrEqual(hit.x);
+    expect(cx).toBeLessThanOrEqual(hit.x + hit.w);
+    expect(cy).toBeGreaterThanOrEqual(hit.y);
+    expect(cy).toBeLessThanOrEqual(hit.y + hit.h);
+  });
+
+  for (const sel of ['#ledgerBack', '[data-cat="general"]', '[data-cat="rare"]', '[data-cat="superRare"]', '[data-cat="godlike"]', '[data-cat="goldenGodlike"]']) {
     await assertHitTarget(page, sel);
   }
 }
@@ -99,15 +119,45 @@ async function assertCategoryStructure(page, cat, stateName) {
   const imgSrc = await page.locator('.ledger-art-frame > img').getAttribute('src');
   expect(imgSrc).toContain(cat.base);
 
+  await expect(page.locator('.ledger-counter.cat')).toHaveCount(1);
   await expect(page.locator('.ledger-list-row')).toHaveCount(cat.rows);
   await expect(page.locator('#ledgerBack')).toHaveCount(1);
   expect((await page.locator('#ledgerBack').innerText()).trim()).toBe('');
 
-  const iconSrcs = await page.locator('.ledger-row-icon img').evaluateAll(els =>
-    els.map(el => el.getAttribute('src') || '')
-  );
-  expect(iconSrcs.length).toBe(cat.rows);
-  iconSrcs.forEach(src => expect(src).toMatch(/assets\/ledger\/icons\/.+\.png$/));
+  const counterBox = await page.locator('.ledger-counter.cat').boundingBox();
+  const panelBox = await page.locator('.ledger-list-panel').boundingBox();
+  expect(counterBox).toBeTruthy();
+  expect(panelBox).toBeTruthy();
+  expect(rectsOverlap(
+    { x: counterBox.x, y: counterBox.y, w: counterBox.width, h: counterBox.height },
+    { x: panelBox.x, y: panelBox.y, w: panelBox.width, h: panelBox.height }
+  )).toBe(false);
+
+  const listText = await page.locator('.ledger-list-panel').innerText();
+  expect(listText).not.toMatch(/DISCOVERED/);
+  expect(listText).not.toMatch(/FOUND/);
+
+  if (stateName === 'empty') {
+    await expect(page.locator('.ledger-row-icon img')).toHaveCount(0);
+    const titles = await page.locator('.ledger-row-title').allTextContents();
+    expect(titles).toHaveLength(cat.rows);
+    titles.forEach(t => expect(t.trim()).toBe(cat.hiddenTitle));
+
+    const iconBoxes = await page.locator('.ledger-row-icon, .ledger-row-icon-spacer').evaluateAll(els =>
+      els.map(el => {
+        const row = el.closest('.ledger-list-row');
+        const rowBox = row.getBoundingClientRect();
+        const iconBox = el.getBoundingClientRect();
+        return iconBox.height <= rowBox.height + 1;
+      })
+    );
+    iconBoxes.forEach(ok => expect(ok).toBe(true));
+  } else {
+    const iconSrcs = await page.locator('.ledger-row-icon img').evaluateAll(els =>
+      els.map(el => el.getAttribute('src') || '')
+    );
+    iconSrcs.forEach(src => expect(src).toMatch(/assets\/ledger\/icons\/.+\.png$/));
+  }
 
   if (cat.id === 'general' && stateName === 'partial') {
     const bootlegger = page.locator('[data-aid="bootlegger"] .ledger-row-icon.revealed');
@@ -162,6 +212,17 @@ for (const vp of VIEWPORTS) {
         });
       }
     }
+
+    test('home — category navigation taps', async ({ page }) => {
+      await applyLedgerState(page, 'empty');
+      await openLedgerHome(page);
+      for (const cat of CATEGORIES) {
+        await page.click(`[data-cat="${cat.id}"]`);
+        await page.waitForSelector('.ledger-list-panel');
+        await page.click('#ledgerBack');
+        await page.waitForSelector('[data-cat="general"]');
+      }
+    });
 
     test('general — general-reveal', async ({ page }) => {
       await applyLedgerState(page, 'general-reveal');

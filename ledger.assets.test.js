@@ -16,7 +16,7 @@ const {
   loadBlueprintJson,
   runtimeBlueprintFromJson,
   loadRuntimeBlueprintJs,
-  checkInpaintRegionsBlack,
+  checkInpaintRegionsApplied,
   ledgerSwAssetPaths,
   expectedSwLedgerPaths,
   allAchievementIds,
@@ -43,15 +43,16 @@ describe('ledger screen assets', () => {
     }
   });
 
-  it('inpaint regions on -base PNGs are solid black', () => {
+  it('inpaint regions on -base PNGs differ from full PNG (dynamic text removed)', () => {
     for (const key of RUNTIME_SCREEN_KEYS) {
       const spec = blueprint[key];
+      const fullPath = path.join(LEDGER_DIR, spec.asset);
       const basePath = path.join(LEDGER_DIR, spec.baseAsset);
-      const failures = checkInpaintRegionsBlack(basePath, spec.inpaint || []);
+      const failures = checkInpaintRegionsApplied(fullPath, basePath, spec.inpaint || []);
       assert.equal(
         failures.length,
         0,
-        `${spec.baseAsset} inpaint not black: ${JSON.stringify(failures[0] || {})}`
+        `${spec.baseAsset} inpaint not applied: ${JSON.stringify(failures[0] || {})}`
       );
     }
   });

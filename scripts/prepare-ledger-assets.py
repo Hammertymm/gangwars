@@ -16,13 +16,19 @@ BLUEPRINT_PATH = ROOT / "scripts" / "ledger-blueprint.json"
 CANVAS_W = 473
 CANVAS_H = 1024
 
+ROW_COUNTER_W = 68
+ROW_COUNTER_H = 14
+ROW_COUNTER_MARGIN = 18
+CATEGORY_COUNTER = {"x": 111, "y": 337, "w": 250, "h": 16}
+HOME_TOTAL_COUNTER = {"x": 142, "y": 492, "w": 120, "h": 14}
+
 
 def load_blueprint() -> dict:
     return json.loads(BLUEPRINT_PATH.read_text(encoding="utf-8-sig"))
 
 
 def normalize_canvas(img: Image.Image) -> Image.Image:
-    """Crop/scale reference art to 473├ù1024 design canvas."""
+    """Crop/scale reference art to 473×1024 design canvas."""
     w, h = img.size
     if w == CANVAS_W and h == CANVAS_H:
         return img.convert("RGB")
@@ -42,16 +48,79 @@ def normalize_canvas(img: Image.Image) -> Image.Image:
     return img.convert("RGB")
 
 
+def derive_row_counters(row_hits: list[dict]) -> list[dict]:
+    counters = []
+    for rh in row_hits:
+        counters.append({
+            "id": rh["id"],
+            "x": rh["x"] + rh["w"] - ROW_COUNTER_W - ROW_COUNTER_MARGIN,
+            "y": rh["y"] + (rh["h"] - ROW_COUNTER_H) // 2,
+            "w": ROW_COUNTER_W,
+            "h": ROW_COUNTER_H,
+        })
+    return counters
+
+
+def sample_fill_color(img: Image.Image, rect: dict) -> tuple[int, int, int]:
+    sx = max(0, min(CANVAS_W - 1, rect["x"] + rect["w"] // 2))
+    sy = max(0, min(CANVAS_H - 1, rect["y"] - 2))
+    return img.getpixel((sx, sy))
+
+
 def inpaint_rects(img: Image.Image, rects: list[dict]) -> Image.Image:
     out = img.copy()
     px = out.load()
     for r in rects:
+        fill = sample_fill_color(img, r)
         x1, y1 = r["x"], r["y"]
         x2, y2 = x1 + r["w"], y1 + r["h"]
         for y in range(y1, min(y2, CANVAS_H)):
             for x in range(x1, min(x2, CANVAS_W)):
-                px[x, y] = (0, 0, 0)
+                px[x, y] = fill
     return out
+
+
+def gap_rect(counter: dict, list_panel: dict) -> dict | None:
+    gap_y = counter["y"] + counter["h"]
+    gap_h = list_panel["y"] - gap_y
+    if gap_h <= 0:
+        return None
+    return {"x": list_panel["x"], "y": gap_y, "w": list_panel["w"], "h": gap_h, "label": "gap"}
+
+
+def sync_blueprint_counters(blueprint: dict) -> None:
+    home = blueprint["home"]
+    home["totalCounter"] = dict(HOME_TOTAL_COUNTER)
+    home["rowCounters"] = derive_row_counters(home["rowHits"])
+    home["inpaint"] = [
+        {**home["totalCounter"], "label": "total"},
+        *[ {**rc, "label": rc["id"]} for rc in home["rowCounters"] ],
+    ]
+
+    for key in ["general", "rare", "superRare", "godlike"]:
+        spec = blueprint[key]
+        counter = dict(CATEGORY_COUNTER)
+        spec["counter"] = counter
+        gap = gap_rect(counter, spec["listPanel"])
+        inpaint = [
+            {**counter, "label": "counter"},
+            {**spec["listPanel"], "label": "list"},
+        ]
+        if gap:
+            inpaint.insert(1, gap)
+        spec["inpaint"] = inpaint
+
+    gg = blueprint["goldenGodlike"]
+    gg_counter = {"x": 111, "y": 388, "w": 250, "h": 16}
+    gg["counter"] = gg_counter
+    gap = gap_rect(gg_counter, gg["listPanel"])
+    inpaint = [
+        {**gg_counter, "label": "counter"},
+        {**gg["listPanel"], "label": "list"},
+    ]
+    if gap:
+        inpaint.insert(1, gap)
+    gg["inpaint"] = inpaint
 
 
 def process_screen(key: str, spec: dict) -> None:
@@ -110,7 +179,10 @@ def copy_references_to_docs(blueprint: dict) -> None:
 
 def main() -> None:
     blueprint = load_blueprint()
-    for key in ["home", "general", "rare", "superRare", "godlike", "goldenGodlike"]:
+    sync_blueprint_counters(blueprint)
+    BLUEPRINT_PATH.write_text(json.dumps(blueprint, indent=2) + "\n", encoding="utf-8")
+    print(f"Updated {BLUEPRINT_PATH.relative_to(ROOT)}")
+    for key in RUNTIME_SCREEN_KEYS:
         process_screen(key, blueprint[key])
     copy_references_to_docs(blueprint)
     write_ledger_blueprint_js(blueprint)

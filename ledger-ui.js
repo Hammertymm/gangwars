@@ -6,7 +6,6 @@
 const LEDGER_CANVAS = { w: 473, h: 1024 };
 const LEDGER_ASSET_PREFIX = "assets/ledger/";
 const LEDGER_ICON_PREFIX = "assets/ledger/icons/";
-const LOCKED_PLACEHOLDER = "Achievement not yet discovered.";
 
 function ledgerRectStyle(r) {
   const { w: W, h: H } = LEDGER_CANVAS;
@@ -31,37 +30,44 @@ function categoryCounterText(catId, found, total) {
 }
 
 function listPanelStyleVars(bp) {
-  const rowPct = ((bp.rowHeight / bp.listPanel.h) * 100).toFixed(4);
-  const iconScale = (bp.iconBox.h / bp.rowHeight).toFixed(4);
-  const iconPadPct = ((bp.iconBox.x / bp.listPanel.w) * 100).toFixed(3);
-  return `--row-h:${rowPct}%;--icon-scale:${iconScale};--icon-pad:${iconPadPct}%`;
+  const lp = bp.listPanel;
+  return [
+    `--row-h:${((bp.rowHeight / lp.h) * 100).toFixed(4)}%`,
+    `--icon-w:${((bp.iconBox.w / lp.w) * 100).toFixed(4)}%`,
+    `--icon-h:${((bp.iconBox.h / lp.h) * 100).toFixed(4)}%`,
+    `--icon-pad:${((bp.iconBox.x / lp.w) * 100).toFixed(4)}%`,
+  ].join(";");
 }
 
 function buildListRows(cat, ledger, focusId) {
   const isGeneral = cat.id === "general";
+  const categoryHasDiscoveries = countUnlocked(ledger, cat.id) > 0;
   return cat.achievements.map(a => {
     const unlocked = isUnlocked(ledger, a.id);
     const revealed = isRevealed(ledger, a.id);
     const focus = focusId === a.id ? " reveal-focus" : "";
-    const showContent = revealed;
-    const iconSrc = showContent ? ledgerIconPath(a.id) : LEDGER_ICON_PREFIX + "locked.png";
-    let title = isGeneral ? "???" : "UNKNOWN";
-    let desc = LOCKED_PLACEHOLDER;
+    const showContent = categoryHasDiscoveries && revealed;
+    const hiddenTitle = isGeneral ? "???" : "UNKNOWN";
+    let title = hiddenTitle;
+    let desc = "";
     let mark = "";
+    let iconHtml = '<div class="ledger-row-icon-spacer" aria-hidden="true"></div>';
     if (showContent) {
       title = getAchievementTitle(a.id);
       desc = getAchievementDescription(a.id);
       if (unlocked) mark = "✓";
+      iconHtml = `<div class="ledger-row-icon revealed"><img src="${ledgerIconPath(a.id)}" alt="" decoding="async"></div>`;
+    } else if (categoryHasDiscoveries) {
+      iconHtml = `<div class="ledger-row-icon locked"><img src="${LEDGER_ICON_PREFIX}locked.png" alt="" decoding="async"></div>`;
     }
     const titleCls = showContent ? "" : " hidden";
     const descCls = showContent ? "" : " placeholder";
+    const descBlock = desc ? `<div class="ledger-row-desc${descCls}">${desc}</div>` : "";
     return `<div class="ledger-list-row${focus}" data-aid="${a.id}">
-      <div class="ledger-row-icon${showContent ? " revealed" : " locked"}">
-        <img src="${iconSrc}" alt="" decoding="async">
-      </div>
+      ${iconHtml}
       <div class="ledger-row-copy">
         <div class="ledger-row-title${titleCls}">${title}</div>
-        <div class="ledger-row-desc${descCls}">${desc}</div>
+        ${descBlock}
       </div>
       <span class="ledger-row-mark">${mark}</span>
     </div>`;
@@ -92,8 +98,10 @@ function runRevealAnimation(rowEl, achievementId, onDone) {
   let i = 0;
   titleEl.textContent = "???";
   titleEl.classList.add("hidden");
-  descEl.textContent = "";
-  descEl.classList.add("placeholder");
+  if (descEl) {
+    descEl.textContent = "";
+    descEl.classList.add("placeholder");
+  }
   rowEl.classList.add("reveal-focus");
   const tick = () => {
     i++;
@@ -102,8 +110,10 @@ function runRevealAnimation(rowEl, achievementId, onDone) {
     if (i >= steps) {
       titleEl.textContent = fullText;
       titleEl.classList.remove("hidden");
-      descEl.textContent = fullDesc;
-      descEl.classList.remove("placeholder");
+      if (descEl) {
+        descEl.textContent = fullDesc;
+        descEl.classList.remove("placeholder");
+      }
       const markEl = rowEl.querySelector(".ledger-row-mark");
       if (markEl) markEl.textContent = "✓";
       if (iconImg) iconImg.src = ledgerIconPath(achievementId);
@@ -152,10 +162,14 @@ const LedgerUI = {
     const rows = buildListRows(cat, ctx.ledger, ctx.focusId);
     const scrollCls = bp.scroll ? " scroll" : "";
     const panelStyle = ledgerRectStyle(bp.listPanel);
-    const inner = ledgerCounterHtml(categoryCounterText(catId, found, cat.achievements.length), bp.counter, "cat")
-      + `<div class="ledger-list-panel${scrollCls}" style="${panelStyle}">`
+    const headerOverlay = `<div class="ledger-header-overlay">${ledgerCounterHtml(
+      categoryCounterText(catId, found, cat.achievements.length),
+      bp.counter,
+      "cat"
+    )}</div>`;
+    const listOverlay = `<div class="ledger-list-panel${scrollCls}" style="${panelStyle}">`
       + `<div class="ledger-list-inner" style="${listPanelStyleVars(bp)}">${rows}</div></div>`;
-    app.innerHTML = ledgerShell(bp.baseAsset, inner, "", bp.back);
+    app.innerHTML = ledgerShell(bp.baseAsset, headerOverlay + listOverlay, "", bp.back);
     document.getElementById("ledgerBack").onclick = ctx.onBackCategory;
     if (ctx.focusId && isUnlocked(ctx.ledger, ctx.focusId) && !isRevealed(ctx.ledger, ctx.focusId) && catId === "general") {
       const row = app.querySelector(`[data-aid="${ctx.focusId}"]`);
@@ -182,5 +196,5 @@ const LedgerUI = {
 };
 
 if (typeof module !== "undefined") {
-  module.exports = { LedgerUI, LEDGER_CANVAS, ledgerRectStyle };
+  module.exports = { LedgerUI, LEDGER_CANVAS, ledgerRectStyle, buildListRows, listPanelStyleVars };
 }

@@ -267,3 +267,29 @@ describe('master completion', () => {
     assert.equal(checkMasterComplete(ledger), true);
   });
 });
+
+describe('ledger UI list rows', () => {
+  const ledgerApi = require('./ledger.js');
+  Object.assign(globalThis, ledgerApi);
+  const { buildListRows } = require('./ledger-ui.js');
+
+  it('empty category shows only hidden titles with no icons', () => {
+    const ledger = emptyLedger();
+    const cat = LEDGER_CATEGORIES.find(c => c.id === 'rare');
+    const html = buildListRows(cat, ledger, null);
+    assert.equal((html.match(/UNKNOWN/g) || []).length, 10);
+    assert.ok(!html.includes('<img'));
+    assert.ok(!html.includes('Achievement not yet discovered'));
+  });
+
+  it('partial category shows revealed achievement title and icon', () => {
+    const ledger = emptyLedger();
+    unlockAchievement(ledger, 'bootlegger');
+    revealAchievement(ledger, 'bootlegger');
+    const cat = LEDGER_CATEGORIES.find(c => c.id === 'general');
+    const html = buildListRows(cat, ledger, null);
+    assert.ok(html.includes('BOOTLEGGER'));
+    assert.ok(html.includes('icons/bootlegger.png'));
+    assert.ok(html.includes('???'));
+  });
+});

@@ -90,6 +90,34 @@ function rectsOverlap(a, b) {
   return !(a.x + a.w <= b.x || b.x + b.w <= a.x || a.y + a.h <= b.y || b.y + b.h <= a.y);
 }
 
+function checkInpaintRegionsApplied(fullPath, basePath, inpaintRects) {
+  const full = readPng(fullPath);
+  const base = readPng(basePath);
+  const failures = [];
+  for (const r of inpaintRects) {
+    let changed = 0;
+    let checked = 0;
+    for (let y = r.y; y < r.y + r.h && y < CANVAS_H; y++) {
+      for (let x = r.x; x < r.x + r.w && x < CANVAS_W; x++) {
+        checked++;
+        const fi = (full.width * y + x) << 2;
+        const bi = (base.width * y + x) << 2;
+        const fr = full.data[fi];
+        const fg = full.data[fi + 1];
+        const fb = full.data[fi + 2];
+        const br = base.data[bi];
+        const bg = base.data[bi + 1];
+        const bb = base.data[bi + 2];
+        if (fr !== br || fg !== bg || fb !== bb) changed++;
+      }
+    }
+    if (checked > 0 && changed / checked < 0.15) {
+      failures.push({ rect: r.label || 'inpaint', changed, checked });
+    }
+  }
+  return failures;
+}
+
 function checkInpaintRegionsBlack(basePath, inpaintRects) {
   const png = readPng(basePath);
   const failures = [];
@@ -186,6 +214,7 @@ module.exports = {
   loadRuntimeBlueprintJs,
   rectsOverlap,
   checkInpaintRegionsBlack,
+  checkInpaintRegionsApplied,
   ledgerSwAssetPaths,
   expectedSwLedgerPaths,
   allAchievementIds,
