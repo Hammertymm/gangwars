@@ -211,7 +211,7 @@
   .title-hit-scores{left:51.975%;width:43.867%;top:89.063%;height:7.227%;}
   .save-err{text-align:center;color:var(--red);font-size:.72rem;padding:1px 0;}
 
-  /* CRIME LEDGER — base mount (graphics: docs/crime-ledger-integration-prompt.md) */
+  /* CRIME LEDGER — reference base PNG (473×1024) + transparent dynamic overlays */
   #crt.ledger-mode{padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0);background:#000;}
   #crt.ledger-mode .masthead{display:none;}
   #crt.ledger-mode #app{flex:1 1 auto;min-height:0;}
@@ -220,9 +220,57 @@
     justify-content:center;overflow:hidden;background:#000;container-type:size;}
   .ledger-art-frame{position:relative;aspect-ratio:473/1024;
     width:min(100cqw,calc(100cqh * 473 / 1024));max-height:100cqh;background:#000;}
-  .ledger-pending-msg{margin:0;font-size:clamp(.72rem,3.2vw,.84rem);color:var(--dim);
-    letter-spacing:2px;text-align:center;position:absolute;inset:0;display:flex;align-items:center;
-    justify-content:center;pointer-events:none;}
+  .ledger-art-frame img{width:100%;height:100%;display:block;user-select:none;-webkit-user-drag:none;pointer-events:none;}
+  .ledger-overlay-layer{position:absolute;inset:0;z-index:1;pointer-events:none;}
+  .ledger-hit{position:absolute;border:0;background:transparent;cursor:pointer;padding:0;margin:0;
+    border-radius:0;min-height:0;min-width:0;-webkit-tap-highlight-color:transparent;z-index:3;}
+  .ledger-hit:focus-visible{outline:2px solid var(--amber);outline-offset:-2px;}
+  .ledger-counter{position:absolute;display:flex;align-items:center;justify-content:center;
+    font-size:clamp(.52rem,2.2vw,.64rem);letter-spacing:.8px;color:#c9a85a;pointer-events:none;z-index:2;}
+  .ledger-counter.total{font-size:clamp(.52rem,2.2vw,.64rem);}
+  .ledger-counter.row{justify-content:flex-start;padding-left:2px;color:#9a8860;font-size:clamp(.48rem,2vw,.58rem);}
+  .ledger-counter.cat{font-size:clamp(.52rem,2.2vw,.64rem);}
+  .ledger-list-panel{position:absolute;overflow:hidden;background:#000;z-index:2;pointer-events:none;}
+  .ledger-list-panel.scroll{overflow-y:auto;-webkit-overflow-scrolling:touch;}
+  .ledger-list-inner{display:flex;flex-direction:column;min-height:min-content;}
+  .ledger-list-row{flex:0 0 auto;display:flex;align-items:center;gap:clamp(6px,2vw,10px);
+    padding:0 clamp(6px,2vw,10px);border-bottom:1px solid #1a1610;box-sizing:border-box;}
+  .ledger-list-row:last-child{border-bottom:none;}
+  .ledger-row-icon{flex:0 0 clamp(28px,8vw,38px);width:clamp(28px,8vw,38px);height:clamp(28px,8vw,38px);
+    border:1px solid #5a5040;border-radius:6px;display:flex;align-items:center;justify-content:center;
+    overflow:hidden;background:#080808;}
+  .ledger-row-icon.locked{border-color:#5a5040;}
+  .ledger-row-icon.revealed{border-color:#c9a85a;}
+  .ledger-row-icon img{width:100%;height:100%;object-fit:contain;display:block;}
+  .ledger-row-copy{flex:1 1 auto;min-width:0;line-height:1.25;overflow:hidden;}
+  .ledger-row-title{font-size:clamp(.54rem,2.25vw,.64rem);letter-spacing:.45px;color:#c9a85a;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .ledger-row-title.hidden{color:#6a5e48;}
+  .ledger-row-desc{font-size:clamp(.46rem,2vw,.54rem);color:#7a6e58;margin-top:1px;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .ledger-row-desc.placeholder{color:#5a5040;}
+  .ledger-row-mark{flex:0 0 1em;color:#c9a85a;font-size:clamp(.6rem,2.5vw,.7rem);text-align:right;}
+  .ledger-list-row.reveal-focus .ledger-row-title{color:#e7c879;}
+  .ledger-complete{flex:1 1 auto;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:16px;gap:10px;border:3px double var(--amber);border-radius:8px;}
+  .ledger-complete h2{margin:0;font-size:clamp(.88rem,4vw,1rem);color:var(--amber);letter-spacing:2px;line-height:1.35;}
+  .ledger-complete p{margin:0;font-size:clamp(.68rem,3vw,.78rem);color:var(--dim);letter-spacing:1px;}
+  .ledger-complete.master h2{font-size:clamp(.82rem,3.6vw,.94rem);}
+  .ledger-complete.master .ledger-master-tag{font-size:clamp(.72rem,3.2vw,.82rem);color:var(--text);letter-spacing:1.5px;margin-top:6px;}
+  .ach-card-reveal{position:fixed;inset:0;z-index:150;background:#000;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;padding:calc(env(safe-area-inset-top,0px) + 12px) 16px calc(env(safe-area-inset-bottom,0px) + 12px);
+    animation:achCardFade .45s ease;}
+  .ach-card-reveal.golden img{max-width:min(94vw,440px);max-height:min(72dvh,580px);}
+  .ach-card-reveal img{max-width:min(92vw,420px);max-height:min(68dvh,560px);width:auto;height:auto;object-fit:contain;}
+  .ach-card-next{margin-top:16px;border:1px solid var(--amber);color:var(--amber);background:transparent;
+    padding:10px 36px;font-family:inherit;font-size:clamp(.72rem,3.2vw,.84rem);letter-spacing:2px;cursor:pointer;border-radius:7px;}
+  .ach-card-next:active{background:var(--amber);color:#1a1206;}
+  @keyframes achCardFade{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:scale(1)}}
+  .ach-found-popup{text-align:center;padding:4px 2px;}
+  .ach-found-rule{color:var(--amber);letter-spacing:1px;font-size:clamp(.62rem,2.8vw,.72rem);margin:2px 0;}
+  .ach-found-title{font-size:clamp(.84rem,3.8vw,.96rem);color:var(--amber);letter-spacing:2px;margin:8px 0 6px;}
+  .ach-found-body{font-size:clamp(.68rem,3vw,.78rem);color:var(--text);line-height:1.45;margin:6px 0 10px;}
+  .card.ach-found-card{width:auto;max-width:min(88vw,300px);padding:12px 14px 10px;}
 
   button{font-family:inherit;background:var(--btnbg);color:var(--text);border:1px solid var(--btnborder);
     padding:12px 12px;font-size:.84rem;letter-spacing:1px;cursor:pointer;border-radius:7px;}
@@ -421,8 +469,8 @@ if (typeof document !== "undefined") {
   function captureLedgerReturn(){
     ledgerReturn = {
       type: S ? "game" : "title",
-      savedModal: modal || null,
-      savedModalEscape: modalEscape || null,
+      savedModal: modal && modal._achFlow ? null : modal,
+      savedModalEscape: modal && modal._achFlow ? null : modalEscape,
     };
   }
   function restoreLedgerReturn(){
@@ -453,9 +501,106 @@ if (typeof document !== "undefined") {
     if (cat === "goldenGodlike") return "events/godlike_golden.png";
     return null;
   }
-  /** Re-enable presentation popups when ledger-ui.js graphics ship (see docs/crime-ledger-integration-prompt.md). */
+  /** Achievement unlock presentation (Achievement Found → reveal / card → ledger list). */
   function tryShowAchievementFlow(){
+    if (modal && modal._achFlow) return true;
+    if (pendingUnlockQueue.length) { showAchievementFoundPopup(); return true; }
+    if (pendingCompleteQueue.length) { showLedgerCompletionPopup(pendingCompleteQueue[0]); return true; }
     return false;
+  }
+  function showAchievementFoundPopup(){
+    modal = function(){
+      modal._achFlow = true;
+      app.innerHTML = `<div class="modal"><div class="card ach-found-card" role="dialog" aria-modal="true">
+        <div class="ach-found-popup">
+          <div class="ach-found-rule">════════════════════</div>
+          <div class="ach-found-title">ACHIEVEMENT FOUND</div>
+          <div class="ach-found-body">A NEW ENTRY HAS BEEN<br>ADDED TO YOUR LEDGER</div>
+          <button type="button" class="full amber" id="achView">OK</button>
+          <div class="ach-found-rule">════════════════════</div>
+        </div>
+      </div></div>`;
+      document.getElementById("achView").onclick = ()=>{
+        const id = pendingUnlockQueue[0];
+        modal._achFlow = false;
+        modal = null;
+        modalEscape = null;
+        if (!id) { render(); return; }
+        captureLedgerReturn();
+        const catId = getCategoryForAchievement(id);
+        if (catId === "general") openLedgerReveal(id);
+        else showAchievementCardReveal(id);
+      };
+      modalEscape = ()=>{
+        modal._achFlow = false;
+        modal = null;
+        modalEscape = null;
+        render();
+      };
+    };
+    render();
+  }
+  function showLedgerCompletionPopup(kind){
+    const isMaster = kind === "master";
+    const cat = isMaster ? null : LEDGER_CATEGORIES.find(c => c.id === kind);
+    const title = isMaster ? "CRIME LORD" : cat.completeTitle;
+    const sub = isMaster
+      ? "ALL 40 LEDGER ENTRIES DISCOVERED"
+      : `${cat.achievements.length} / ${cat.achievements.length} FOUND`;
+    modal = function(){
+      modal._achFlow = true;
+      app.innerHTML = `<div class="modal"><div class="card ledger-complete${isMaster ? " master" : ""}" role="dialog" aria-modal="true">
+        <div class="ach-found-rule">════════════════════</div>
+        <h2>${title}</h2>
+        <p>${isMaster ? sub : `${cat.achievements.length} / ${cat.achievements.length} FOUND`}</p>
+        ${isMaster ? '<p class="ledger-master-tag">THE CITY IS YOURS</p>' : ""}
+        <div class="ach-found-rule">════════════════════</div>
+        <button class="full amber" id="ok" style="margin-top:12px">CONTINUE</button>
+      </div></div>`;
+      document.getElementById("ok").onclick = ()=>{
+        if (isMaster) {
+          ledger.masterCompleteShown = true;
+          saveLedger();
+        } else {
+          markCategoryCompleteShown(ledger, kind);
+          saveLedger();
+        }
+        pendingCompleteQueue = pendingCompleteQueue.filter(k => k !== kind);
+        modal._achFlow = false;
+        modal = null;
+        modalEscape = null;
+        if (pendingUnlockQueue.length) showAchievementFoundPopup();
+        else if (pendingCompleteQueue.length) showLedgerCompletionPopup(pendingCompleteQueue[0]);
+        else restoreLedgerReturn();
+      };
+    };
+    render();
+  }
+  function showAchievementCardReveal(achievementId){
+    const img = getAchievementCardImage(achievementId);
+    const cat = getCategoryForAchievement(achievementId);
+    const golden = cat === "goldenGodlike";
+    modal = function(){
+      modal._achFlow = true;
+      app.innerHTML = `<div class="ach-card-reveal${golden ? " golden" : ""}" id="achCardReveal" role="dialog" aria-modal="true">
+        <img src="${img}" alt="${getAchievementTitle(achievementId)}" decoding="async">
+        <button type="button" class="ach-card-next" id="achCardNext">NEXT</button>
+      </div>`;
+      const advance = ()=>{
+        revealAchievement(ledger, achievementId);
+        saveLedger();
+        modal._achFlow = false;
+        modal = null;
+        modalEscape = null;
+        openLedgerReveal(achievementId);
+      };
+      document.getElementById("achCardNext").onclick = advance;
+      document.getElementById("achCardReveal").onclick = e=>{
+        if (e.target.id === "achCardReveal") advance();
+      };
+      modalEscape = advance;
+    };
+    render();
   }
   const DISTRICT_IMG = {
     "Little Italy":       "assets/little-italy.png",

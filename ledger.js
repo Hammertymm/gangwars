@@ -8,20 +8,20 @@ const LEDGER_CATEGORIES = [
     title: 'GENERAL',
     completeTitle: 'GENERAL COLLECTION COMPLETE',
     achievements: [
-      { id: 'made_man', title: 'MADE MAN' },
-      { id: 'debt_survivor', title: 'DEBT SURVIVOR' },
-      { id: 'first_million', title: 'FIRST MILLION' },
-      { id: 'connected', title: 'CONNECTED' },
-      { id: 'bootlegger', title: 'BOOTLEGGER' },
-      { id: 'smoke_merchant', title: 'SMOKE MERCHANT' },
-      { id: 'the_collector', title: 'THE COLLECTOR' },
-      { id: 'high_roller', title: 'HIGH ROLLER' },
-      { id: 'diamond_hands', title: 'DIAMOND HANDS' },
-      { id: 'empire_builder', title: 'EMPIRE BUILDER' },
-      { id: 'king_of_docks', title: 'KING OF THE DOCKS' },
-      { id: 'smooth_operator', title: 'SMOOTH OPERATOR' },
-      { id: 'market_maven', title: 'MARKET MAVEN' },
-      { id: 'survivor', title: 'SURVIVOR' },
+      { id: 'made_man', title: 'MADE MAN', description: 'Complete a full run.' },
+      { id: 'debt_survivor', title: 'DEBT SURVIVOR', description: 'Finish with the Don paid off.' },
+      { id: 'first_million', title: 'FIRST MILLION', description: 'Reach a net worth of one million dollars.' },
+      { id: 'connected', title: 'CONNECTED', description: 'Visit every district in the city.' },
+      { id: 'bootlegger', title: 'BOOTLEGGER', description: 'Move one hundred units of moonshine.' },
+      { id: 'smoke_merchant', title: 'SMOKE MERCHANT', description: 'Move one hundred units of Cuban cigars.' },
+      { id: 'the_collector', title: 'THE COLLECTOR', description: 'Trade every commodity at least once.' },
+      { id: 'high_roller', title: 'HIGH ROLLER', description: 'Hold two and a half million in cash.' },
+      { id: 'diamond_hands', title: 'DIAMOND HANDS', description: 'Profit one hundred thousand on diamond sales.' },
+      { id: 'empire_builder', title: 'EMPIRE BUILDER', description: 'Expand your stash to one hundred fifty units.' },
+      { id: 'king_of_docks', title: 'KING OF THE DOCKS', description: 'Visit Dock #13 twelve times.' },
+      { id: 'smooth_operator', title: 'SMOOTH OPERATOR', description: 'Win without ever borrowing from the Don.' },
+      { id: 'market_maven', title: 'MARKET MAVEN', description: 'Buy and sell every commodity at least three times.' },
+      { id: 'survivor', title: 'SURVIVOR', description: 'Survive all thirty days.' },
     ],
   },
   {
@@ -29,16 +29,16 @@ const LEDGER_CATEGORIES = [
     title: 'RARE',
     completeTitle: 'RARE COLLECTION COMPLETE',
     achievements: [
-      { id: 'luciano', title: 'LUCKY LUCIANO CALLS A MEETING' },
-      { id: 'rumrow', title: 'THE SILENT FLEET RETURNS TO HARBOR' },
-      { id: 'midnight', title: 'THE MIDNIGHT RUN REACHES THE CITY' },
-      { id: 'ellington', title: 'DUKE ELLINGTON HEADLINES TONIGHT' },
-      { id: 'armstrong', title: 'LOUIS ARMSTRONG PLAYS TONIGHT' },
-      { id: 'schultz', title: 'DUTCH SCHULTZ EYES NEW TERRITORY' },
-      { id: 'lansky', title: 'MEYER LANSKY ENTERS THE PICTURE' },
-      { id: 'capone', title: 'AL CAPONE SEEN MEETING ASSOCIATES' },
-      { id: 'rothstein', title: 'ARNOLD ROTHSTEIN TAKES AN INTEREST' },
-      { id: 'madden', title: 'OWNEY MADDEN BACKS ANOTHER BIG NIGHT' },
+      { id: 'luciano', title: 'THE MEETING', description: 'Lucky Luciano calls the families together.' },
+      { id: 'rumrow', title: 'THE FLEET', description: 'The silent fleet returns to harbor.' },
+      { id: 'midnight', title: 'THE DELIVERY', description: 'A midnight run reaches the city.' },
+      { id: 'ellington', title: 'THE LOUNGE', description: 'Duke Ellington headlines tonight.' },
+      { id: 'armstrong', title: 'THE JAZZ', description: 'Louis Armstrong plays the district.' },
+      { id: 'schultz', title: 'THE INTEL', description: 'Dutch Schultz eyes new territory.' },
+      { id: 'lansky', title: 'THE SHADOW', description: 'Meyer Lansky enters the picture.' },
+      { id: 'capone', title: 'THE BOSS', description: 'Al Capone is seen meeting associates.' },
+      { id: 'rothstein', title: 'THE FIX', description: 'Arnold Rothstein takes an interest.' },
+      { id: 'madden', title: 'THE ACCOUNTANT', description: 'Owney Madden backs another big night.' },
     ],
   },
   {
@@ -46,16 +46,16 @@ const LEDGER_CATEGORIES = [
     title: 'SUPER RARE',
     completeTitle: 'SUPER RARE COLLECTION COMPLETE',
     achievements: [
-      { id: 'lindbergh', title: 'LINDBERGH ARRIVES TO GREAT FANFARE' },
-      { id: 'mauretania', title: 'MAURETANIA DOCKS TO HUGE CROWDS' },
-      { id: 'dempsey', title: 'A BIG FIGHT DRAWS NEAR' },
-      { id: 'kkrevue', title: 'THE KITTY KAT CLUB DEBUTS A NEW REVUE' },
-      { id: 'ziegfeld', title: 'ZIEGFELD FEVER SWEEPS THE CITY' },
-      { id: 'hollywood', title: 'THE TALKIES ARE ALL THE RAGE' },
-      { id: 'wales', title: 'THE PRINCE OF WALES IS IN TOWN' },
-      { id: 'wallst', title: 'STOCK MARKET FORTUNES GROW AGAIN' },
-      { id: 'ruth', title: 'BABE RUTH FEVER SWEEPS THE CITY' },
-      { id: 'walker', title: 'MAYOR WALKER VISITS THE DISTRICT' },
+      { id: 'lindbergh', title: 'THE AVIATOR', description: 'Lindbergh arrives to great fanfare.' },
+      { id: 'mauretania', title: 'THE LINER', description: 'Mauretania docks to huge crowds.' },
+      { id: 'dempsey', title: 'THE FIGHT', description: 'A big fight draws near.' },
+      { id: 'kkrevue', title: 'THE REVUE', description: 'The Kitty Kat Club debuts a new revue.' },
+      { id: 'ziegfeld', title: 'THE MARQUEE', description: 'Ziegfeld fever sweeps the city.' },
+      { id: 'hollywood', title: 'THE TALKIES', description: 'Moving pictures are all the rage.' },
+      { id: 'wales', title: 'THE GENTLEMAN', description: 'The Prince of Wales is in town.' },
+      { id: 'wallst', title: 'THE MARKET', description: 'Stock market fortunes grow again.' },
+      { id: 'ruth', title: 'THE SLUGGER', description: 'Babe Ruth fever sweeps the city.' },
+      { id: 'walker', title: 'THE MAYOR', description: 'Mayor Walker visits the district.' },
     ],
   },
   {
@@ -63,11 +63,11 @@ const LEDGER_CATEGORIES = [
     title: 'GODLIKE',
     completeTitle: 'BIG DADDY J KNOWS YOUR NAME',
     achievements: [
-      { id: 'in_town', title: 'BIG DADDY J IS IN TOWN' },
-      { id: 'interest', title: 'BIG DADDY J TAKES AN INTEREST' },
-      { id: 'move', title: 'BIG DADDY J MAKES A MOVE' },
-      { id: 'celebration', title: 'BIG DADDY J THROWS A CELEBRATION' },
-      { id: 'history', title: 'BIG DADDY J MAKES HISTORY' },
+      { id: 'in_town', title: 'THE ARRIVAL', description: 'Big Daddy J is in town.' },
+      { id: 'interest', title: 'THE MASTERMIND', description: 'Big Daddy J takes an interest.' },
+      { id: 'move', title: 'THE STRATEGIST', description: 'Big Daddy J makes a move.' },
+      { id: 'celebration', title: 'THE TOAST', description: 'Big Daddy J throws a celebration.' },
+      { id: 'history', title: 'THE LEGEND', description: 'Big Daddy J makes history.' },
     ],
   },
   {
@@ -75,7 +75,7 @@ const LEDGER_CATEGORIES = [
     title: 'GOLDEN GODLIKE',
     completeTitle: 'TOUCHED BY GOLD',
     achievements: [
-      { id: 'golden', title: 'GOLDEN SHOWER!!!' },
+      { id: 'golden', title: 'GOLDEN SHOWER', description: 'Everybody is drenched in a golden stream.' },
     ],
   },
 ];
@@ -337,6 +337,10 @@ function getAchievementTitle(id){
   return ACHIEVEMENT_BY_ID[id]?.title || id.toUpperCase();
 }
 
+function getAchievementDescription(id){
+  return ACHIEVEMENT_BY_ID[id]?.description || '';
+}
+
 function isEventAchievementId(id){
   return EVENT_ACHIEVEMENT_IDS.includes(id);
 }
@@ -410,6 +414,7 @@ if (typeof module !== 'undefined') {
     unlockEventAchievement,
     getCategoryForAchievement,
     getAchievementTitle,
+    getAchievementDescription,
     categoryCompleteKey,
     isEventAchievementId,
     isEventLedgerSlow,

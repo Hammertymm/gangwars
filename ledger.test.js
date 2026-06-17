@@ -20,6 +20,7 @@ const {
   unlockEventAchievement,
   getCategoryForAchievement,
   getAchievementTitle,
+  getAchievementDescription,
   defaultRunStats,
   recordBuy,
   recordSell,
@@ -42,7 +43,18 @@ describe('ledger definitions', () => {
     assert.equal(LEDGER_CATEGORIES[2].achievements.length, 10);
     assert.equal(LEDGER_CATEGORIES[3].achievements.length, 5);
     assert.equal(LEDGER_CATEGORIES[4].achievements.length, 1);
-    assert.equal(LEDGER_CATEGORIES[4].achievements[0].title, 'GOLDEN SHOWER!!!');
+    assert.equal(LEDGER_CATEGORIES[4].achievements[0].title, 'GOLDEN SHOWER');
+  });
+
+  it('every achievement has title and description copy', () => {
+    LEDGER_CATEGORIES.forEach(cat => {
+      cat.achievements.forEach(a => {
+        assert.ok(a.title && a.title.length > 0, `${a.id} missing title`);
+        assert.ok(a.description && a.description.length > 0, `${a.id} missing description`);
+        assert.equal(getAchievementTitle(a.id), a.title);
+        assert.equal(getAchievementDescription(a.id), a.description);
+      });
+    });
   });
 
   it('assigns every achievement to exactly one category', () => {
@@ -85,7 +97,7 @@ describe('unlock flows', () => {
     const ledger = emptyLedger();
     unlockEventAchievement(ledger, 'luciano');
     assert.equal(getCategoryForAchievement('luciano'), 'rare');
-    assert.equal(getAchievementTitle('golden'), 'GOLDEN SHOWER!!!');
+    assert.equal(getAchievementTitle('golden'), 'GOLDEN SHOWER');
   });
 
   it('tracks category and master completion', () => {
