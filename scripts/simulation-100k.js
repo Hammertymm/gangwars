@@ -4,7 +4,7 @@
 const fs = require('fs');
 const path = require('path');
 const {
-  CONFIG, DRUGS, DRUG, LOCATIONS, HOME, TERRITORY_MODIFIERS,
+  CONFIG, GOODS, GOOD, LOCATIONS, HOME, TERRITORY_MODIFIERS,
   FAM_LUXURY, FAM_CRIMINAL, FAM_ALCOHOL,
   newGame, resolveTravelMarket, applyDailyInterest,
   buy, sell, bankRepay, bankBorrow, bankDeposit,
@@ -110,7 +110,7 @@ function runTravelEvents(s, opts) {
       }
       case 'find': {
         if (spaceLeft(s) <= 0) break;
-        const d = pick(DRUGS);
+        const d = pick(GOODS);
         const n = Math.min(spaceLeft(s), randInt(2, 7));
         s.inventory[d.id] = (s.inventory[d.id] || 0) + n;
         s.stats.finds++;
@@ -176,7 +176,7 @@ function pickDestination(s, opts) {
     let bestScore = -Infinity;
     for (const loc of LOCATIONS.filter(l => l !== s.location)) {
       let score = 0;
-      for (const d of DRUGS) {
+      for (const d of GOODS) {
         const have = s.inventory[d.id] || 0;
         const sellHere = have > 0 && (loc === 'Uptown' && FAM_LUXURY.has(d.id) ||
           loc === 'Warehouse District' && FAM_CRIMINAL.has(d.id) ||
@@ -202,8 +202,8 @@ function syncLedger(s, ledger) {
 }
 
 function trade(s, opts, ledger) {
-  const drugs = opts.luxuryOnly ? DRUGS.filter(d => FAM_LUXURY.has(d.id)) : DRUGS;
-  for (const d of drugs) {
+  const goods = opts.luxuryOnly ? GOODS.filter(d => FAM_LUXURY.has(d.id)) : GOODS;
+  for (const d of goods) {
     const qty = s.inventory[d.id] || 0;
     if (qty <= 0 || s.prices[d.id] == null) continue;
     const pct = profitPct(s, d.id, s.prices[d.id]);
@@ -219,7 +219,7 @@ function trade(s, opts, ledger) {
   }
 
   const candidates = [];
-  for (const d of drugs) {
+  for (const d of goods) {
     const price = s.prices[d.id];
     if (price == null) continue;
     const mid = (d.low + d.high) / 2;

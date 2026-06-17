@@ -9,7 +9,7 @@
     "decisionQuality": { "score": 8, "note": "Meaningful daily choices: where to travel, what to hold, when to bank, fight vs bribe." },
     "riskRewardBalance": { "score": 6, "note": "Aggressive strategy dominates sim (+32% avg wealth vs conservative); debt is punishing but exploitable via bank spread." },
     "learningCurve": { "score": 7, "note": "Tutorial covers basics; territory modifiers and event calendar require discovery." },
-    "themeExecution": { "score": 9, "note": "Prohibition NYC flavor, historical event names, and deadpan copy strongly differentiate from Drug Wars." },
+    "themeExecution": { "score": 9, "note": "Prohibition NYC flavor, historical event names, and deadpan copy strongly differentiate from generic trading clones." },
     "marketDifferentiation": { "score": 8, "note": "PWA + period theme + 8-bit event art vs app-store clones; no accounts/tracking is a selling point." },
     "viralPotential": { "score": 5, "note": "No share hooks, screenshots, or async competition; high-score table is local only." },
     "retentionPotential": { "score": 7, "note": "One-more-run appeal from rank chase and rare event stories; limited meta may cap D30." },
@@ -53,13 +53,13 @@
     "oneMoreTurnAppeal": true,
     "themeCompelling": true,
     "audiences": {
-      "mostLikelyInstall": ["Retro gaming nostalgia (25–45)", "Drug Wars / Dope Wars alumni", "PWA-first mobile users", "Strategy casuals seeking short sessions"],
+      "mostLikelyInstall": ["Retro gaming nostalgia (25–45)", "Classic pocket-trading game alumni", "PWA-first mobile users", "Strategy casuals seeking short sessions"],
       "mostLikelyRetain": ["High-score chasers", "Players who discover rare event stories", "Offline commuters"],
       "mostLikelyPay": ["Ad-averse repeat players", "Theme enthusiasts wanting Intel Brief", "Collectors of rank cosmetics"]
     },
     "comparisons": {
-      "drugWars": "Same mechanical skeleton with safer theme and richer event layer — favorable for modern audiences",
-      "dopeWars": "Comparable loop; Gang Wars wins on presentation and PWA delivery",
+      "classicTradingGame": "Same mechanical skeleton with richer Prohibition theme and event layer — favorable for modern audiences",
+      "pocketTradingClones": "Comparable loop; Gang Wars wins on presentation and PWA delivery",
       "retroTradingGames": "Above average production value; hybrid UI slightly breaks pure retro fantasy",
       "idleStrategy": "More active/decision-dense; shorter sessions than idle titles",
       "mobileManagementSims": "Simpler economy but tighter pacing; less grind"

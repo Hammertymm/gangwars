@@ -1,7 +1,7 @@
 const { describe, it } = require('node:test');
 const assert = require('node:assert/strict');
 const {
-  CONFIG, DRUG, DRUGS, HOME, LOCATIONS, RARE_EVENTS, SUPER_RARE_EVENTS, GODLIKE_EVENTS, GOLDEN_GODLIKE,
+  CONFIG, GOOD, GOODS, HOME, LOCATIONS, RARE_EVENTS, SUPER_RARE_EVENTS, GODLIKE_EVENTS, GOLDEN_GODLIKE,
   GODLIKE_CHANCE, GOLDEN_GODLIKE_CHANCE,
   rollMarket, buy, sell, newGame, migrateSave, resolveTravelMarket,
   bankBorrow, bankRepay, bankDeposit, bankWithdraw, applyDailyInterest,
@@ -14,12 +14,12 @@ const {
 describe('rollMarket', () => {
   it('returns prices for all goods at a location', () => {
     const { prices } = rollMarket(HOME);
-    assert.equal(Object.keys(prices).length, DRUGS.length);
+    assert.equal(Object.keys(prices).length, GOODS.length);
   });
 
   it('applies Uptown luxury bonus to diamonds', () => {
     const base = 100000;
-    const d = DRUG.diamonds;
+    const d = GOOD.diamonds;
     const uptown = applyTerritoryPrice(d, 'Uptown', base);
     const home = applyTerritoryPrice(d, HOME, base);
     assert.ok(uptown > home);
@@ -27,7 +27,7 @@ describe('rollMarket', () => {
   });
 
   it('widens roll bounds at Dock #13', () => {
-    const d = DRUG.bathgin;
+    const d = GOOD.bathgin;
     const dock = marketPriceBounds(d, 'Dock #13');
     const home = marketPriceBounds(d, HOME);
     assert.ok(dock.low < home.low);
@@ -246,14 +246,14 @@ describe('bankDeposit', () => {
 
 describe('commodity ladder', () => {
   it('steps buy-in and spread from street goods to luxury', () => {
-    const moon = DRUG.moonshine;
-    const fur = DRUG.furcoats;
-    const dia = DRUG.diamonds;
-    assert.ok(moon.high <= DRUG.cigars.low);
-    assert.ok(DRUG.cognac.low <= fur.low);
+    const moon = GOOD.moonshine;
+    const fur = GOOD.furcoats;
+    const dia = GOOD.diamonds;
+    assert.ok(moon.high <= GOOD.cigars.low);
+    assert.ok(GOOD.cognac.low <= fur.low);
     assert.ok(fur.low <= dia.low);
-    assert.ok(DRUG.champagne.low < dia.low);
-    assert.ok(DRUG.champagne.high < dia.high);
+    assert.ok(GOOD.champagne.low < dia.low);
+    assert.ok(GOOD.champagne.high < dia.high);
     assert.ok((fur.high - fur.low) / fur.low >= 2);
     assert.ok((dia.high - dia.low) / dia.low >= 2);
     assert.ok(fur.low <= CONFIG.startCash * 4);
@@ -274,7 +274,7 @@ describe('RARE_EVENTS', () => {
     for (const re of RARE_EVENTS) {
       assert.ok(re.district, `${re.id} missing district`);
       assert.ok(LOCATIONS.includes(re.district), `${re.id} invalid district`);
-      assert.ok(re.commodity && DRUG[re.commodity], `${re.id} invalid commodity`);
+      assert.ok(re.commodity && GOOD[re.commodity], `${re.id} invalid commodity`);
       assert.ok(re.img && re.img.startsWith('events/rare_'), `${re.id} missing img`);
     }
   });
@@ -320,7 +320,7 @@ describe('resolveTravelMarket', () => {
     const wrong = resolveTravelMarket(s, HOME);
     const right = resolveTravelMarket(s, re.district);
     assert.notEqual(wrong.prices[re.commodity], right.prices[re.commodity]);
-    assert.ok(right.prices[re.commodity] >= DRUG[re.commodity].low * 3);
+    assert.ok(right.prices[re.commodity] >= GOOD[re.commodity].low * 3);
   });
 
   it('applies godlike x10 only in matching district', () => {
@@ -334,7 +334,7 @@ describe('resolveTravelMarket', () => {
       delete s.events.godlike;
       Math.random = () => 0.55;
       const without = resolveTravelMarket(s, 'Uptown');
-      const id = DRUGS.find(d => withEvent.prices[d.id] && without.prices[d.id])?.id;
+      const id = GOODS.find(d => withEvent.prices[d.id] && without.prices[d.id])?.id;
       assert.ok(id);
       assert.equal(withEvent.prices[id], Math.round(without.prices[id] * 10));
     } finally {
@@ -353,7 +353,7 @@ describe('resolveTravelMarket', () => {
       delete s.events.goldenGodlike;
       Math.random = () => 0.55;
       const baselineHome = resolveTravelMarket(s, HOME);
-      const id = DRUGS.find(d => home.prices[d.id] && baselineHome.prices[d.id])?.id;
+      const id = GOODS.find(d => home.prices[d.id] && baselineHome.prices[d.id])?.id;
       assert.ok(id);
       assert.equal(home.prices[id], Math.round(baselineHome.prices[id] * 10));
     } finally {
@@ -372,7 +372,7 @@ describe('resolveTravelMarket', () => {
       const withEvent = resolveTravelMarket(s, sr.district);
       delete s.events.superRare;
       const without = resolveTravelMarket(s, sr.district);
-      const id = DRUGS.find(d => withEvent.prices[d.id] && without.prices[d.id])?.id;
+      const id = GOODS.find(d => withEvent.prices[d.id] && without.prices[d.id])?.id;
       assert.ok(id);
       assert.equal(withEvent.prices[id], Math.round(without.prices[id] * 3));
     } finally {

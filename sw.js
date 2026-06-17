@@ -1,7 +1,7 @@
 /* Gang Wars — service worker
    Cache-first for app shell; network-first for icons so home-screen art updates. */
 
-const CACHE = 'gangwars-v59';
+const CACHE = 'gangwars-v60';
 const ASSETS = [
   './gangwars.html',
   './engine.js',
@@ -130,6 +130,8 @@ const ASSETS = [
 const ICON_PATTERN = /(?:apple-touch-icon|icon-(?:180|192|512))\.png$/;
 /** App shell — network-first so ledger/UI fixes reach installed PWAs without a stale trap. */
 const SHELL_PATTERN = /\/(gangwars\.html|engine\.js|ledger\.js|ledger-blueprint\.js|ledger-ui\.js|sw\.js)$/;
+/** Ledger art — network-first so regenerated -base PNGs are not trapped in cache-first. */
+const LEDGER_PATTERN = /\/assets\/ledger\//;
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)));
@@ -165,7 +167,7 @@ self.addEventListener('fetch', e => {
     );
     return;
   }
-  if (SHELL_PATTERN.test(path)) {
+  if (SHELL_PATTERN.test(path) || LEDGER_PATTERN.test(path)) {
     e.respondWith(
       fetch(e.request)
         .then(res => {

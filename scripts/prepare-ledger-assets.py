@@ -43,9 +43,16 @@ def normalize_canvas(img: Image.Image) -> Image.Image:
 
 
 def sample_fill_color(img: Image.Image, rect: dict) -> tuple[int, int, int]:
-    sx = max(0, min(CANVAS_W - 1, rect["x"] + rect["w"] // 2))
-    sy = max(0, min(CANVAS_H - 1, rect["y"] - 2))
-    return img.getpixel((sx, sy))
+    """Average row background from pixels just outside the left/right edges of the rect."""
+    y = max(0, min(CANVAS_H - 1, rect["y"] + rect["h"] // 2))
+    samples: list[tuple[int, int, int]] = []
+    for dx in (-4, -3, -2, rect["w"], rect["w"] + 1, rect["w"] + 2, rect["w"] + 3):
+        x = max(0, min(CANVAS_W - 1, rect["x"] + dx))
+        samples.append(img.getpixel((x, y)))
+    rs = [p[0] for p in samples]
+    gs = [p[1] for p in samples]
+    bs = [p[2] for p in samples]
+    return (sum(rs) // len(rs), sum(gs) // len(rs), sum(bs) // len(rs))
 
 
 def inpaint_rects(img: Image.Image, rects: list[dict]) -> Image.Image:
@@ -72,9 +79,9 @@ def gap_rect(counter: dict, list_panel: dict) -> dict | None:
 def sync_blueprint_inpaint(blueprint: dict) -> None:
     """Rebuild inpaint regions from measured counter rects (positions come from blueprint.json)."""
     home = blueprint["home"]
-    home["inpaint"] = [
+    blueprint["home"]["inpaint"] = [
         {**home["totalCounter"], "label": "total"},
-        *[{**rc, "label": rc["id"]} for rc in home["rowCounters"]],
+        *[{**rl, "label": rl["id"]} for rl in home.get("rowLabels", home.get("rowCounters", []))],
     ]
 
     for key in ["general", "rare", "superRare", "godlike", "goldenGodlike"]:

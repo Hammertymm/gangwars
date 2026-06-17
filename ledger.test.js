@@ -32,7 +32,7 @@ const {
   countEventAchievementsUnlocked,
   EVENT_ACHIEVEMENT_IDS,
 } = require('./ledger.js');
-const { newGame, CONFIG, DRUGS, netWorth } = require('./engine.js');
+const { newGame, CONFIG, GOODS, netWorth } = require('./engine.js');
 
 describe('ledger definitions', () => {
   it('has exactly 40 achievements across 5 categories', () => {
@@ -133,7 +133,7 @@ describe('general achievement checks', () => {
   it('unlocks connected after visiting all districts', () => {
     const ledger = emptyLedger();
     const s = newGame();
-    DRUGS.forEach(() => {});
+    GOODS.forEach(() => {});
     ['Little Italy', 'Dock #13', 'Kitty Kat Club', 'Uptown', 'Warehouse District', 'City Hall']
       .forEach(loc => recordDistrictVisit(s, loc));
     const ids = checkGeneralAchievements(s, ledger);
@@ -198,7 +198,7 @@ describe('balance thresholds', () => {
   it('unlocks market maven at 3 buys and 3 sells per commodity', () => {
     const ledger = emptyLedger();
     const s = newGame();
-    DRUGS.forEach(d => {
+    GOODS.forEach(d => {
       recordBuy(s, d.id, 3);
       recordSell(s, d.id, 3, 0);
     });
@@ -206,7 +206,7 @@ describe('balance thresholds', () => {
     assert.ok(ids.includes('market_maven'));
     const ledger2 = emptyLedger();
     const s2 = newGame();
-    DRUGS.forEach(d => {
+    GOODS.forEach(d => {
       recordBuy(s2, d.id, 3);
       recordSell(s2, d.id, 2, 0);
     });

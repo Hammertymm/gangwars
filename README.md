@@ -2,7 +2,7 @@
 
 **🎮 Play now: [hammertymm.github.io/GangWars](https://hammertymm.github.io/GangWars/)**
 
-A browser-based trading game set in 1920s Prohibition-era New York. Inspired by the classic 1984 DOS game *Drug Wars* by John E. Dell — same mechanics, same pressure, different era.
+A browser-based trading game set in 1920s Prohibition-era New York. Inspired by John E. Dell's classic 1984 DOS trading game — same mechanics, same pressure, different era.
 
 Buy low. Sell high. Pay the Don before the clock runs out.
 
@@ -183,7 +183,7 @@ Once installed, the game works fully offline.
 
 ## Design Notes
 
-Gang Wars is a faithful Prohibition-era reskin of *Drug Wars* (John E. Dell, 1984). The core loop — volatile prices, compounding debt, territory movement, combat with law enforcement — is reproduced from the original. All names, locations, flavor text, historical references, and artwork are original.
+Gang Wars is a faithful Prohibition-era reskin of the classic 1984 pocket trading game (John E. Dell). The core loop — volatile prices, compounding debt, territory movement, combat with law enforcement — is reproduced from the original. All names, locations, flavor text, historical references, and artwork are original.
 
 Price ranges are scaled ×5 from the original documented values across 10 distinct trading tiers, giving the same risk/reward structure at a scale that feels right on modern screens.
 

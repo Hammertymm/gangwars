@@ -218,7 +218,7 @@
   .ledger-play{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;overflow:hidden;background:#000;}
   .ledger-art-screen{flex:1 1 auto;min-height:0;width:100%;display:flex;align-items:center;
     justify-content:center;overflow:hidden;background:#000;container-type:size;}
-  .ledger-art-frame{position:relative;aspect-ratio:473/1024;
+  .ledger-art-frame{position:relative;aspect-ratio:473/1024;container-type:size;
     width:min(100cqw,calc(100cqh * 473 / 1024));max-height:100cqh;background:#000;}
   .ledger-art-frame img{position:absolute;inset:0;z-index:0;width:100%;height:100%;display:block;
     user-select:none;-webkit-user-drag:none;pointer-events:none;object-fit:fill;}
@@ -230,11 +230,14 @@
   .ledger-hit:focus-visible{outline:2px solid var(--amber);outline-offset:-2px;}
   .ledger-counter{position:absolute;display:flex;align-items:center;justify-content:center;
     pointer-events:none;background:transparent;color:#c9a85a;letter-spacing:.9px;white-space:nowrap;
-    font-size:clamp(.5rem,2.15vw,.62rem);}
-  .ledger-counter.total{font-size:clamp(.52rem,2.2vw,.64rem);}
+    overflow:hidden;font-size:clamp(7px,2.65cqw,11px);}
+  .ledger-counter.total{font-size:clamp(7px,2.75cqw,11px);}
   .ledger-counter.row{justify-content:flex-start;padding-left:1px;color:#9a8860;
-    font-size:clamp(.48rem,2.05vw,.58rem);}
-  .ledger-counter.cat{font-size:clamp(.52rem,2.2vw,.64rem);}
+    font-size:clamp(7px,2.5cqw,10px);}
+  .ledger-row-label{position:absolute;display:flex;align-items:center;justify-content:flex-start;
+    pointer-events:none;overflow:hidden;white-space:nowrap;color:#9a8860;letter-spacing:.55px;
+    font-size:clamp(7px,2.35cqw,10px);}
+  .ledger-counter.cat{font-size:clamp(7px,2.75cqw,11px);}
   .ledger-list-panel{position:absolute;overflow:hidden;background:#000;z-index:2;pointer-events:none;}
   .ledger-list-panel.scroll{overflow-y:auto;-webkit-overflow-scrolling:touch;}
   .ledger-list-inner{display:flex;flex-direction:column;height:100%;box-sizing:border-box;}
@@ -617,7 +620,7 @@ if (typeof document !== "undefined") {
     "Warehouse District": "assets/warehouse-district.png",
     "City Hall":          "assets/city-hall.png",
   };
-  const GOODS_IMG = Object.fromEntries(DRUGS.map(d => [d.id, `assets/goods/${d.id}.png`]));
+  const GOODS_IMG = Object.fromEntries(GOODS.map(d => [d.id, `assets/goods/${d.id}.png`]));
   const TRAVEL_FLAVOR = {
     "Little Italy":       "The heart of old-world power. Respect matters more than money here.",
     "Dock #13":           "Smugglers' Paradise. High-risk trading and black-market goods rule these foggy docks.",
@@ -880,7 +883,7 @@ if (typeof document !== "undefined") {
 
   function renderMarket(){
     const used = spaceUsed(S.inventory);
-    const rows = DRUGS.map(d=>{
+    const rows = GOODS.map(d=>{
       const p = S.prices[d.id]; const have = S.inventory[d.id]||0;
       const dead = p==null;
       return `<div class="market-row${dead?' dead':''}">
@@ -943,7 +946,7 @@ if (typeof document !== "undefined") {
 
   /* ---------- trade — single mode (buy OR sell), opened via inline row button ---------- */
   function openTrade(id, mode){
-    const d = DRUG[id]; const price = S.prices[id];
+    const d = GOOD[id]; const price = S.prices[id];
     const maxFor = ()=> mode==="buy"
       ? Math.min(Math.floor(S.cash/price), spaceLeft(S))
       : (S.inventory[id]||0);
@@ -1132,12 +1135,12 @@ if (typeof document !== "undefined") {
       }
     } else if(re && S.day===re.day){
       unlockFromEvent(re.id);
-      const reDrug=DRUG[re.commodity];
+      const spikeGood=GOOD[re.commodity];
       const reImg=re.img||'intel';
       if(dest===re.district){
         marketEvent=(next)=>showEvent(reImg, `<b>${re.lines[0]}</b><br><br>${re.lines[1]}`, 'INTERESTING', next);
-      } else if(reDrug){
-        marketEvent=(next)=>showEvent(reImg, `<b>${re.lines[0]}</b><br><br>${re.lines[1]} ${reDrug.name} surging in ${re.district}.`, 'NOTED', next);
+      } else if(spikeGood){
+        marketEvent=(next)=>showEvent(reImg, `<b>${re.lines[0]}</b><br><br>${re.lines[1]} ${spikeGood.name} surging in ${re.district}.`, 'NOTED', next);
       }
     } else if(anomaly){
       const anomalyImg={spike:'shortage',surge:'frenzy',flood:'flood'};
@@ -1258,7 +1261,7 @@ if (typeof document !== "undefined") {
   }
   function eventFind(next){
     if (spaceLeft(S)<=0){ next(); return; }
-    const d=pick(DRUGS); const n=Math.min(spaceLeft(S), randInt(2,7));
+    const d=pick(GOODS); const n=Math.min(spaceLeft(S), randInt(2,7));
     S.inventory[d.id]=(S.inventory[d.id]||0)+n; logMsg(`Dead drop — picked up ${n} ${d.name}.`);
     const findV = pick([
       ["DEAD DROP",             `Someone left a stash and never came back. You help yourself to <b>${n} ${d.name}</b> before anyone's the wiser.`],
@@ -1359,7 +1362,7 @@ if (typeof document !== "undefined") {
       const owned=Object.keys(S.inventory);
       if (owned.length){ const id=pick(owned); const lost=Math.min(S.inventory[id],randInt(1,5));
         S.inventory[id]-=lost; if(S.inventory[id]<=0) delete S.inventory[id];
-        logMsg(`Fled but dropped ${lost} ${DRUG[id].name} and took a hit.`); }
+        logMsg(`Fled but dropped ${lost} ${GOOD[id].name} and took a hit.`); }
       draw("Couldn't shake them — took a hit and dropped some goods.");
     };
     const doBribe=()=>{
@@ -1452,7 +1455,7 @@ if (typeof document !== "undefined") {
 }
 </script>
 <script>
-  if ('serviceWorker' in navigator) {
+  if ('serviceWorker' in navigator && !/^127\.0\.0\.1$|^localhost$/i.test(location.hostname)) {
     navigator.serviceWorker.register('./sw.js').then(reg => {
       reg.update();
       reg.addEventListener('updatefound', () => {
@@ -1466,7 +1469,7 @@ if (typeof document !== "undefined") {
       });
     });
     navigator.serviceWorker.addEventListener('controllerchange', () => {
-      if (ledgerView) render();
+      window.location.reload();
     });
   }
 </script>

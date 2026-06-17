@@ -5,7 +5,7 @@
 
 const engine = require('../engine.js');
 const {
-  DRUGS, DRUG, LOCATIONS, HOME,
+  GOODS, GOOD, LOCATIONS, HOME,
   rollMarket: engineRollMarket, applyTerritoryPrice,
   buy, sell, bankRepay, bankDeposit,
   spaceLeft, netWorth, getRank, profitPct,
@@ -48,7 +48,7 @@ const TM = engine.TERRITORY_MODIFIERS;
 function rollMarket(location, K) {
   const mod = TM[location] || {};
   const prices = {};
-  DRUGS.forEach(d => {
+  GOODS.forEach(d => {
     if (chance(K.unavailableChance)) { prices[d.id] = null; return; }
     let low = d.low, high = d.high;
     if (mod.variance && mod.variance > 1) {
@@ -60,7 +60,7 @@ function rollMarket(location, K) {
     prices[d.id] = applyTerritoryPrice(d, location, randInt(low, high));
   });
   if (chance(K.anomalyChance)) {
-    const avail = DRUGS.filter(d => prices[d.id] != null);
+    const avail = GOODS.filter(d => prices[d.id] != null);
     if (avail.length) {
       const d = pick(avail); const roll = Math.random();
       if (roll < 0.34) prices[d.id] = Math.round(prices[d.id] * 4);
@@ -93,7 +93,7 @@ function runEvents(s, K, opts) {
     s.cash -= loss; s.t.muggingLoss += loss;
   }
   if (chance(K.findChance) && spaceLeft(s) > 0) {
-    const d = pick(DRUGS);
+    const d = pick(GOODS);
     s.inventory[d.id] = (s.inventory[d.id] || 0) + Math.min(spaceLeft(s), randInt(2, 7));
   }
   if (chance(K.stashChance)) {
@@ -124,14 +124,14 @@ function runEvents(s, K, opts) {
 }
 
 function trade(s, K, opts) {
-  for (const d of DRUGS) {
+  for (const d of GOODS) {
     const qty = s.inventory[d.id] || 0;
     if (qty <= 0 || s.prices[d.id] == null) continue;
     const pct = profitPct(s, d.id, s.prices[d.id]);
     if (pct != null && pct >= opts.sellProfitPct) sell(s, d.id, qty);
   }
   let best = null, bestScore = -Infinity;
-  for (const d of DRUGS) {
+  for (const d of GOODS) {
     const price = s.prices[d.id];
     if (price == null) continue;
     const mid = (d.low + d.high) / 2;

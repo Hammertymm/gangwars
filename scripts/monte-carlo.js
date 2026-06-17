@@ -2,7 +2,7 @@
 /* Monte Carlo simulator — headless play using engine.js + UI event math from gangwars.html */
 
 const {
-  CONFIG, DRUGS, DRUG, LOCATIONS, HOME,
+  CONFIG, GOODS, GOOD, LOCATIONS, HOME,
   newGame, resolveTravelMarket, applyDailyInterest,
   buy, sell, bankRepay, bankBorrow, bankDeposit, bankWithdraw,
   spaceLeft, netWorth, classicScore, getRank, profitPct, avgCost, PERFECT_SCORE_NET_WORTH,
@@ -46,7 +46,7 @@ function runTravelEvents(s, opts) {
       }
       case 'find': {
         if (spaceLeft(s) <= 0) break;
-        const d = pick(DRUGS);
+        const d = pick(GOODS);
         const n = Math.min(spaceLeft(s), randInt(2, 7));
         s.inventory[d.id] = (s.inventory[d.id] || 0) + n;
         s.stats.finds++;
@@ -144,7 +144,7 @@ function pickDestination(s, opts) {
 }
 
 function trade(s, opts) {
-  for (const d of DRUGS) {
+  for (const d of GOODS) {
     const qty = s.inventory[d.id] || 0;
     if (qty <= 0 || s.prices[d.id] == null) continue;
     const pct = profitPct(s, d.id, s.prices[d.id]);
@@ -156,7 +156,7 @@ function trade(s, opts) {
 
   let best = null;
   let bestScore = -Infinity;
-  for (const d of DRUGS) {
+  for (const d of GOODS) {
     const price = s.prices[d.id];
     if (price == null) continue;
     const mid = (d.low + d.high) / 2;

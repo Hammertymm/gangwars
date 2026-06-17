@@ -55,11 +55,11 @@ function extractRefs() {
   // rank cards derived at runtime
   const ranks = ['nobody','pickpocket','hustler','rum-runner','bootlegger','racketeer','wise-guy','crew-boss','underboss','godfather','big-daddy-j'];
   ranks.forEach(r => refs.add(`cards/${r}.png`));
-  // goods derived from DRUGS ids
+  // goods derived from GOODS ids
   const engine = readFile('engine.js');
   const ids = [...engine.matchAll(/id:\s*"(\w+)"/g)].map(m => m[1]).filter((id, i, a) => a.indexOf(id) === i && id.length > 2);
-  const drugIds = ['moonshine','cigars','bathgin','art','scotch','counterfeits','cognac','furcoats','champagne','diamonds'];
-  drugIds.forEach(id => refs.add(`assets/goods/${id}.png`));
+  const goodsIds = ['moonshine','cigars','bathgin','art','scotch','counterfeits','cognac','furcoats','champagne','diamonds'];
+  goodsIds.forEach(id => refs.add(`assets/goods/${id}.png`));
   refs.add('title-screen.png');
   refs.add('apple-touch-icon.png');
   refs.add('icon-192.png');
@@ -169,12 +169,12 @@ function main() {
     districtMatrix[name].inSwPrecache = swContent.includes(`'./${img}'`);
   }
 
-  const goodsIcons = drugIds => drugIds.map(id => {
+  const goodsIcons = goodsIds => goodsIds.map(id => {
     const p = `assets/goods/${id}.png`;
     const dim = dimensions[p];
     return { id, path: p, exists: onDisk.includes(p), dimensions: dim, expected: '40x40' };
   });
-  const drugIds = ['moonshine','cigars','bathgin','art','scotch','counterfeits','cognac','furcoats','champagne','diamonds'];
+  const goodsIds = ['moonshine','cigars','bathgin','art','scotch','counterfeits','cognac','furcoats','champagne','diamonds'];
 
   const report = {
     generatedAt: new Date().toISOString().slice(0, 10),
@@ -185,7 +185,7 @@ function main() {
     duplicates,
     dimensions,
     districtMatrix,
-    goodsIcons: goodsIcons(drugIds),
+    goodsIcons: goodsIcons(goodsIds),
     categories: {
       districts: onDisk.filter(f => f.startsWith('assets/') && !f.includes('goods/')),
       goods: onDisk.filter(f => f.startsWith('assets/goods/')),
@@ -200,7 +200,7 @@ function main() {
       docOnlyOrphans: onDisk.filter(f => f === 'hero.jpg'),
       duplicateGroups: duplicates.length,
       allDistrictsPresent: Object.values(districtMatrix).every(d => d.exists),
-      allGoodsPresent: drugIds.every(id => onDisk.includes(`assets/goods/${id}.png`)),
+      allGoodsPresent: goodsIds.every(id => onDisk.includes(`assets/goods/${id}.png`)),
     },
   };
 

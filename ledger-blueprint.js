@@ -4,46 +4,46 @@ const LEDGER_BLUEPRINT = {
     "baseAsset": "crime-ledger-home-base.png",
     "scroll": false,
     "totalCounter": {
-      "x": 141,
-      "y": 491,
-      "w": 113,
-      "h": 15
+      "x": 137,
+      "y": 489,
+      "w": 120,
+      "h": 18
     },
     "rowCounters": [
       {
         "id": "general",
-        "x": 227,
-        "y": 544,
-        "w": 79,
-        "h": 14
+        "x": 170,
+        "y": 526,
+        "w": 200,
+        "h": 18
       },
       {
         "id": "rare",
-        "x": 265,
-        "y": 597,
-        "w": 45,
-        "h": 14
+        "x": 174,
+        "y": 580,
+        "w": 148,
+        "h": 18
       },
       {
         "id": "superRare",
-        "x": 224,
-        "y": 651,
-        "w": 44,
-        "h": 14
+        "x": 177,
+        "y": 634,
+        "w": 120,
+        "h": 18
       },
       {
         "id": "godlike",
-        "x": 248,
-        "y": 707,
-        "w": 44,
-        "h": 14
+        "x": 168,
+        "y": 688,
+        "w": 120,
+        "h": 18
       },
       {
         "id": "goldenGodlike",
-        "x": 349,
-        "y": 758,
-        "w": 60,
-        "h": 14
+        "x": 170,
+        "y": 742,
+        "w": 200,
+        "h": 18
       }
     ],
     "rowHits": [
@@ -88,16 +88,53 @@ const LEDGER_BLUEPRINT = {
       "y": 934,
       "w": 433,
       "h": 48
-    }
+    },
+    "rowLabels": [
+      {
+        "id": "general",
+        "x": 170,
+        "y": 526,
+        "w": 200,
+        "h": 18
+      },
+      {
+        "id": "rare",
+        "x": 174,
+        "y": 580,
+        "w": 148,
+        "h": 18
+      },
+      {
+        "id": "superRare",
+        "x": 177,
+        "y": 634,
+        "w": 120,
+        "h": 18
+      },
+      {
+        "id": "godlike",
+        "x": 168,
+        "y": 688,
+        "w": 120,
+        "h": 18
+      },
+      {
+        "id": "goldenGodlike",
+        "x": 170,
+        "y": 742,
+        "w": 200,
+        "h": 18
+      }
+    ]
   },
   "general": {
     "baseAsset": "ledger-general-base.png",
     "scroll": true,
     "counter": {
-      "x": 93,
-      "y": 344,
+      "x": 63,
+      "y": 343,
       "w": 120,
-      "h": 16
+      "h": 18
     },
     "listPanel": {
       "x": 17,
@@ -123,10 +160,10 @@ const LEDGER_BLUEPRINT = {
     "baseAsset": "ledger-rare-base.png",
     "scroll": false,
     "counter": {
-      "x": 93,
-      "y": 335,
-      "w": 146,
-      "h": 16
+      "x": 92,
+      "y": 334,
+      "w": 148,
+      "h": 18
     },
     "listPanel": {
       "x": 17,
@@ -152,10 +189,10 @@ const LEDGER_BLUEPRINT = {
     "baseAsset": "ledger-super-rare-base.png",
     "scroll": false,
     "counter": {
-      "x": 95,
-      "y": 333,
-      "w": 148,
-      "h": 24
+      "x": 94,
+      "y": 332,
+      "w": 150,
+      "h": 26
     },
     "listPanel": {
       "x": 17,
@@ -181,10 +218,10 @@ const LEDGER_BLUEPRINT = {
     "baseAsset": "ledger-godlike-base.png",
     "scroll": false,
     "counter": {
-      "x": 94,
-      "y": 333,
-      "w": 120,
-      "h": 24
+      "x": 93,
+      "y": 332,
+      "w": 121,
+      "h": 26
     },
     "listPanel": {
       "x": 17,
@@ -210,10 +247,10 @@ const LEDGER_BLUEPRINT = {
     "baseAsset": "ledger-golden-godlike-base.png",
     "scroll": false,
     "counter": {
-      "x": 92,
-      "y": 383,
-      "w": 308,
-      "h": 18
+      "x": 91,
+      "y": 382,
+      "w": 310,
+      "h": 20
     },
     "listPanel": {
       "x": 17,

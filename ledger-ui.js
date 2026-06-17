@@ -6,6 +6,7 @@
 const LEDGER_CANVAS = { w: 473, h: 1024 };
 const LEDGER_ASSET_PREFIX = "assets/ledger/";
 const LEDGER_ICON_PREFIX = "assets/ledger/icons/";
+const LEDGER_ASSET_VERSION = "60";
 
 function ledgerRectStyle(r) {
   const { w: W, h: H } = LEDGER_CANVAS;
@@ -13,7 +14,7 @@ function ledgerRectStyle(r) {
 }
 
 function ledgerAssetPath(name) {
-  return LEDGER_ASSET_PREFIX + name;
+  return `${LEDGER_ASSET_PREFIX}${name}?v=${LEDGER_ASSET_VERSION}`;
 }
 
 function ledgerIconPath(id) {
@@ -22,6 +23,10 @@ function ledgerIconPath(id) {
 
 function ledgerCounterHtml(text, rect, cls) {
   return `<div class="ledger-counter${cls ? " " + cls : ""}" style="${ledgerRectStyle(rect)}">${text}</div>`;
+}
+
+function ledgerRowLabelHtml(title, count, total, rect) {
+  return `<div class="ledger-row-label" style="${ledgerRectStyle(rect)}">${title} ${count} / ${total}</div>`;
 }
 
 function categoryCounterText(catId, found, total) {
@@ -132,10 +137,10 @@ const LedgerUI = {
     const bp = LEDGER_BLUEPRINT.home;
     const found = countDiscovered(ctx.ledger);
     const counters = ledgerCounterHtml(`${found} / ${LEDGER_TOTAL} FOUND`, bp.totalCounter, "total");
-    const rowParts = bp.rowCounters.map(rc => {
-      const cat = LEDGER_CATEGORIES.find(c => c.id === rc.id);
-      const n = countUnlocked(ctx.ledger, rc.id);
-      return ledgerCounterHtml(`${n} / ${cat.achievements.length}`, rc, "row");
+    const rowParts = (bp.rowLabels || bp.rowCounters).map(rl => {
+      const cat = LEDGER_CATEGORIES.find(c => c.id === rl.id);
+      const n = countUnlocked(ctx.ledger, rl.id);
+      return ledgerRowLabelHtml(cat.title, n, cat.achievements.length, rl);
     }).join("");
     const hits = bp.rowHits.map(rh => {
       const cat = LEDGER_CATEGORIES.find(c => c.id === rh.id);

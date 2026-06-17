@@ -64,7 +64,8 @@ async function assertHomeStructure(page, stateName) {
   expect(imgSrc).toContain('crime-ledger-home-base.png');
 
   await expect(page.locator('.ledger-counter.total')).toHaveCount(1);
-  await expect(page.locator('.ledger-counter.row')).toHaveCount(5);
+  await expect(page.locator('.ledger-row-label')).toHaveCount(5);
+  await expect(page.locator('.ledger-counter.row')).toHaveCount(0);
   await expect(page.locator('.ledger-list-panel')).toHaveCount(0);
   await expect(page.locator('[data-cat]')).toHaveCount(5);
   await expect(page.locator('#ledgerBack')).toHaveCount(1);
@@ -79,7 +80,7 @@ async function assertHomeStructure(page, stateName) {
     expect(totalText).toMatch(/3 \/ 40 FOUND/);
   }
 
-  const rowCounterBoxes = await page.locator('.ledger-counter.row').evaluateAll(els =>
+  const rowCounterBoxes = await page.locator('.ledger-row-label').evaluateAll(els =>
     els.map(el => {
       const r = el.getBoundingClientRect();
       return { x: r.x, y: r.y, w: r.width, h: r.height };

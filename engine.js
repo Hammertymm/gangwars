@@ -1,5 +1,5 @@
 /* ============================================================================
-   ENGINE — Drug Wars mechanics. No DOM (testable).
+   ENGINE — Contraband trading mechanics. No DOM (testable).
    ============================================================================ */
 const CONFIG = {
   days: 30,
@@ -39,7 +39,7 @@ const TERRITORY_MODIFIERS = {
   "City Hall":          { bias: -0.01 },
 };
 
-const DRUGS = [
+const GOODS = [
   {id:"moonshine",    name:"Moonshine",     low:50,    high:175},
   {id:"cigars",       name:"Cuban Cigars",  low:175,   high:780},
   {id:"bathgin",      name:"Bathtub Gin",   low:550,   high:1750},
@@ -51,7 +51,7 @@ const DRUGS = [
   {id:"champagne",    name:"Champagne",     low:34000, high:92000},
   {id:"diamonds",     name:"Diamonds",      low:48000, high:144000},
 ];
-const DRUG = Object.fromEntries(DRUGS.map(d=>[d.id,d]));
+const GOOD = Object.fromEntries(GOODS.map(d=>[d.id,d]));
 
 const FAM_ALCOHOL  = new Set(['bathgin','moonshine','scotch','cognac','champagne']);
 const FAM_LUXURY   = new Set(['cigars','furcoats','diamonds']);
@@ -139,14 +139,14 @@ function marketPriceBounds(d, location){
 
 function rollMarket(location){
   const prices = {};
-  DRUGS.forEach(d=>{
+  GOODS.forEach(d=>{
     if (chance(CONFIG.unavailableChance)) { prices[d.id] = null; return; }
     const { low, high } = marketPriceBounds(d, location);
     prices[d.id] = applyTerritoryPrice(d, location, randInt(low, high));
   });
   let anomaly = null;
   if (chance(0.38)){
-    const avail = DRUGS.filter(d=>prices[d.id]!=null);
+    const avail = GOODS.filter(d=>prices[d.id]!=null);
     if (avail.length){
       const d = pick(avail); const roll = Math.random();
       if (roll < 0.34){
@@ -427,10 +427,10 @@ function resolveTravelMarket(state, dest){
     Object.keys(prices).forEach(id=>{ if (prices[id]) prices[id] = Math.round(prices[id] * 10); });
   }
   if (re && state.day === re.day && dest === re.district){
-    const reDrug = DRUG[re.commodity];
-    if (reDrug){
-      prices[re.commodity] = Math.round(randInt(reDrug.low, reDrug.high) * 4);
-      anomaly = {type:'spike', itemId: re.commodity, itemName: reDrug.name};
+    const spikeGood = GOOD[re.commodity];
+    if (spikeGood){
+      prices[re.commodity] = Math.round(randInt(spikeGood.low, spikeGood.high) * 4);
+      anomaly = {type:'spike', itemId: re.commodity, itemName: spikeGood.name};
     }
   }
 
@@ -439,7 +439,7 @@ function resolveTravelMarket(state, dest){
 
 if (typeof module !== "undefined") {
   module.exports = {
-    CONFIG, DRUGS, DRUG, LOCATIONS, HOME, LOCATION_FLAVOR, TERRITORY_MODIFIERS,
+    CONFIG, GOODS, GOOD, LOCATIONS, HOME, LOCATION_FLAVOR, TERRITORY_MODIFIERS,
     FAM_ALCOHOL, FAM_LUXURY, FAM_CRIMINAL, RARE_EVENTS, SUPER_RARE_EVENTS, GODLIKE_EVENTS, GOLDEN_GODLIKE,
     GODLIKE_CHANCE, GOLDEN_GODLIKE_CHANCE, RARE_EVENT_CHANCE, SUPER_RARE_EVENT_CHANCE, DEFAULT_EVENT_RATES,
     rollMarket, applyTerritoryPrice, marketPriceBounds, spaceUsed, spaceLeft, netWorth, classicScore, PERFECT_SCORE_NET_WORTH, getRank, RANKS,

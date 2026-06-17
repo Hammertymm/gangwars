@@ -99,8 +99,8 @@ const EVENT_PITY_GODLIKE_CAP = 0.02;
 const EVENT_PITY_GOLDEN_CAP = EVENT_PITY_GODLIKE_CAP / 5;
 
 function engineApi(){
-  if (typeof netWorth === 'function' && typeof DRUGS !== 'undefined' && typeof CONFIG !== 'undefined') {
-    return { netWorth, DRUGS, CONFIG };
+  if (typeof netWorth === 'function' && typeof GOODS !== 'undefined' && typeof CONFIG !== 'undefined') {
+    return { netWorth, GOODS, CONFIG };
   }
   return require('./engine.js');
 }
@@ -278,7 +278,7 @@ function recordSpaceChange(state){
 }
 
 function checkGeneralAchievements(state, ledger){
-  const { netWorth, DRUGS } = engineApi();
+  const { netWorth, GOODS } = engineApi();
   const unlocks = [];
   const rs = state.runStats;
   const maybe = id => {
@@ -295,10 +295,10 @@ function checkGeneralAchievements(state, ledger){
   if (rs.dockVisits >= 12) maybe('king_of_docks');
   if (Object.keys(rs.districtsVisited).length >= 6) maybe('connected');
 
-  const allCommodities = DRUGS.length;
+  const allCommodities = GOODS.length;
   if (Object.keys(rs.commoditiesTouched).length >= allCommodities) maybe('the_collector');
 
-  const mavenOk = DRUGS.every(d =>
+  const mavenOk = GOODS.every(d =>
     (rs.buys[d.id] || 0) >= 3 && (rs.sells[d.id] || 0) >= 3
   );
   if (mavenOk) maybe('market_maven');
