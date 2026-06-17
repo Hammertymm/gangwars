@@ -211,6 +211,19 @@
   .title-hit-scores{left:51.975%;width:43.867%;top:89.063%;height:7.227%;}
   .save-err{text-align:center;color:var(--red);font-size:.72rem;padding:1px 0;}
 
+  /* CRIME LEDGER — base mount (graphics: docs/crime-ledger-integration-prompt.md) */
+  #crt.ledger-mode{padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0);background:#000;}
+  #crt.ledger-mode .masthead{display:none;}
+  #crt.ledger-mode #app{flex:1 1 auto;min-height:0;}
+  .ledger-play{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;overflow:hidden;background:#000;}
+  .ledger-art-screen{flex:1 1 auto;min-height:0;width:100%;display:flex;align-items:center;
+    justify-content:center;overflow:hidden;background:#000;container-type:size;}
+  .ledger-art-frame{position:relative;aspect-ratio:473/1024;
+    width:min(100cqw,calc(100cqh * 473 / 1024));max-height:100cqh;background:#000;}
+  .ledger-pending-msg{margin:0;font-size:clamp(.72rem,3.2vw,.84rem);color:var(--dim);
+    letter-spacing:2px;text-align:center;position:absolute;inset:0;display:flex;align-items:center;
+    justify-content:center;pointer-events:none;}
+
   button{font-family:inherit;background:var(--btnbg);color:var(--text);border:1px solid var(--btnborder);
     padding:12px 12px;font-size:.84rem;letter-spacing:1px;cursor:pointer;border-radius:7px;}
   button:active{background:var(--green);color:#1a1206;}
@@ -332,6 +345,7 @@
 
 <script src="engine.js"></script>
 <script src="ledger.js"></script>
+<script src="ledger-ui.js"></script>
 <script>
 if (typeof document !== "undefined") {
 (function lockPortrait(){
@@ -425,11 +439,21 @@ if (typeof document !== "undefined") {
   function renderLedgerRoute(){
     const crt = document.getElementById("crt");
     crt.classList.remove("title-mode", "game-mode");
-    app.replaceChildren();
+    crt.classList.add("ledger-mode");
     app.dataset.ledgerView = ledgerView || "";
     app.dataset.ledgerCategory = ledgerViewCat || "";
     app.dataset.ledgerFocus = ledgerFocusId || "";
+    LedgerUI.render(app, ledgerUiCtx());
   }
+  function getAchievementCardImage(id){
+    const cat = getCategoryForAchievement(id);
+    if (cat === "rare") return `events/rare_${id}.png`;
+    if (cat === "superRare") return `events/super_${id}.png`;
+    if (cat === "godlike") return `events/godlike_${id}.png`;
+    if (cat === "goldenGodlike") return "events/godlike_golden.png";
+    return null;
+  }
+  /** Re-enable presentation popups when ledger-ui.js graphics ship (see docs/crime-ledger-integration-prompt.md). */
   function tryShowAchievementFlow(){
     return false;
   }
@@ -652,6 +676,7 @@ if (typeof document !== "undefined") {
       renderLedgerRoute();
       return;
     }
+    crt.classList.remove("ledger-mode");
     if (modal){ crt.classList.remove("title-mode"); crt.classList.add("game-mode"); modal(); return; }
     if (!S){ crt.classList.add("title-mode"); crt.classList.remove("game-mode"); renderTitle(); return; }
     crt.classList.remove("title-mode"); crt.classList.add("game-mode");
@@ -1261,6 +1286,7 @@ if (typeof document !== "undefined") {
     getPendingCompletions: () => pendingCompleteQueue.slice(),
     ledgerUiCtx,
     ledgerProgressText,
+    getAchievementCardImage,
     openLedgerFromTitle,
     openLedgerCategory,
     openLedgerReveal,

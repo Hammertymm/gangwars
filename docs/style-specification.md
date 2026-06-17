@@ -20,7 +20,7 @@ It establishes:
 | Popup, travel, end-screen **layout** | `docs/ui-standards/*.png`, `.cursor/rules/ui-layout-standards.mdc` |
 | Event PNG **processing** | `scripts/event_art.py`, `scripts/split-*-events.py` |
 | Rank card **processing** | `scripts/prepare-eos-assets.py` |
-| Crime Ledger **integration** | `ledger.js`, `window.GangWarsLedger` in `gangwars.html` |
+| Crime Ledger **integration** | `docs/crime-ledger-integration-prompt.md`, `ledger-ui.js`, `window.GangWarsLedger` |
 
 If future artwork conflicts with shipped assets, **the shipped assets are correct**.
 
@@ -252,15 +252,18 @@ Whenever a prompt contains **Big Daddy J**, **BDJ**, **The Boss**, **Boss Man**,
 
 # CRIME LEDGER ARTWORK
 
-Crime Ledger **visuals are not shipped** — legacy PNG layouts and UI were removed. Achievement rules remain in [`ledger.js`](../../ledger.js).
+Crime Ledger graphics are **pending integration**. Achievement rules remain in [`ledger.js`](../../ledger.js).
 
-Future graphics integrate via:
+**Integration brief:** [`docs/crime-ledger-integration-prompt.md`](crime-ledger-integration-prompt.md)
 
-- Data: `ledger.js` exports (`LEDGER_CATEGORIES`, unlock/reveal helpers, counters)
-- Runtime: `window.GangWarsLedger` in `gangwars.html` (view state, pending queues, navigation hooks)
-- Navigation: title-screen LEDGER button → `openLedgerFromTitle()` → `ledgerView` route (empty `#app` mount)
+Mount points:
 
-Do not reference removed `assets/ledger/` paths or old blueprint rects.
+- `ledger-ui.js` — implement `LedgerUI.render(app, ctx)`
+- `gangwars.html` — routing via `renderLedgerRoute()` and `window.GangWarsLedger`
+- `assets/ledger/` — drop screen PNGs here
+- `scripts/ledger-blueprint.json` — hit/counter rects after art is measured
+
+Do not reference deleted legacy ledger PNG paths from commits before `9956b89`.
 
 ---
 

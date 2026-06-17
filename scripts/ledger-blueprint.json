@@ -1,0 +1,5 @@
+{
+  "canvas": { "w": 473, "h": 1024 },
+  "note": "Populate screen rects after new graphics are measured. See docs/crime-ledger-integration-prompt.md.",
+  "screens": {}
+}
