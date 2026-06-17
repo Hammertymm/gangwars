@@ -245,13 +245,14 @@
     gap:clamp(4px,1.5vw,8px);padding:0 clamp(4px,1.5vw,8px) 0 var(--icon-pad,1.8%);
     border-bottom:1px solid #1a1610;box-sizing:border-box;overflow:hidden;}
   .ledger-list-row:last-child{border-bottom:none;}
-  .ledger-row-icon,.ledger-row-icon-spacer{flex:0 0 var(--icon-w);width:var(--icon-w);height:var(--icon-h);
-    max-height:100%;border:1px solid #5a5040;border-radius:6px;display:flex;align-items:center;
-    justify-content:center;overflow:hidden;background:#080808;box-sizing:border-box;}
+  .ledger-row-icon,.ledger-row-icon-spacer{position:relative;flex:0 0 var(--icon-w);width:var(--icon-w);height:var(--icon-h);
+    max-width:var(--icon-w);max-height:var(--icon-h);min-width:0;min-height:0;
+    border:1px solid #5a5040;border-radius:6px;overflow:hidden;background:#080808;box-sizing:border-box;}
   .ledger-row-icon-spacer{border-color:#3a3428;background:transparent;}
   .ledger-row-icon.locked{border-color:#5a5040;}
   .ledger-row-icon.revealed{border-color:#c9a85a;}
-  .ledger-row-icon img{max-width:100%;max-height:100%;width:100%;height:100%;object-fit:contain;display:block;}
+  .ledger-row-icon img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;
+    pointer-events:none;}
   .ledger-row-copy{flex:1 1 auto;min-width:0;line-height:1.25;overflow:hidden;}
   .ledger-row-title{font-size:clamp(.54rem,2.25vw,.64rem);letter-spacing:.45px;color:#c9a85a;
     white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}

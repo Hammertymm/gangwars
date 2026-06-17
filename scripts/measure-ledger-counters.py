@@ -144,15 +144,31 @@ def center_row_labels(blueprint: dict, row_labels: list[dict]) -> list[dict]:
     return centered
 
 
+def home_row_inpaint_strips(blueprint: dict, measured: list[dict], strip_h: int = 32) -> list[dict]:
+    """Erase baked labels on the lower edge of each home row (divider-adjacent art text)."""
+    hits = {h["id"]: h for h in blueprint["home"]["rowHits"]}
+    strips: list[dict] = []
+    for rl in measured:
+        rh = hits[rl["id"]]
+        y = max(0, rh["y"] + rh["h"] - strip_h)
+        x = min(rl["x"], 160)
+        w = max(rl["w"], 220)
+        strips.append({"id": rl["id"], "x": x, "y": y, "w": w, "h": strip_h, "label": rl["id"]})
+    return strips
+
+
 def apply_to_blueprint(blueprint: dict) -> dict:
     home = measure_home()
-    row_labels = center_row_labels(blueprint, home["rowLabels"])
+    measured = home["rowLabels"]
+    row_labels = center_row_labels(blueprint, measured)
+    row_inpaint = home_row_inpaint_strips(blueprint, measured)
     blueprint["home"]["totalCounter"] = home["totalCounter"]
     blueprint["home"]["rowLabels"] = row_labels
     blueprint["home"]["rowCounters"] = row_labels
+    blueprint["home"]["rowInpaint"] = row_inpaint
     blueprint["home"]["inpaint"] = [
         {**home["totalCounter"], "label": "total"},
-        *[{**rl, "label": rl["id"]} for rl in row_labels],
+        *row_inpaint,
     ]
     for key in CATEGORY_SPECS:
         counter = measure_category(key)

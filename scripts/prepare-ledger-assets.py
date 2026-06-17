@@ -60,10 +60,13 @@ def inpaint_rects(img: Image.Image, rects: list[dict]) -> Image.Image:
     px = out.load()
     for r in rects:
         fill = sample_fill_color(img, r)
-        x1, y1 = r["x"], r["y"]
-        x2, y2 = x1 + r["w"], y1 + r["h"]
-        for y in range(y1, min(y2, CANVAS_H)):
-            for x in range(x1, min(x2, CANVAS_W)):
+        pad_x, pad_top, pad_bottom = 3, 3, 10
+        x1 = max(0, r["x"] - pad_x)
+        y1 = max(0, r["y"] - pad_top)
+        x2 = min(CANVAS_W, r["x"] + r["w"] + pad_x)
+        y2 = min(CANVAS_H, r["y"] + r["h"] + pad_bottom)
+        for y in range(y1, y2):
+            for x in range(x1, x2):
                 px[x, y] = fill
     return out
 
@@ -79,9 +82,12 @@ def gap_rect(counter: dict, list_panel: dict) -> dict | None:
 def sync_blueprint_inpaint(blueprint: dict) -> None:
     """Rebuild inpaint regions from measured counter rects (positions come from blueprint.json)."""
     home = blueprint["home"]
+    row_inpaint = home.get("rowInpaint") or [
+        {**rl, "label": rl["id"]} for rl in home.get("rowLabels", home.get("rowCounters", []))
+    ]
     blueprint["home"]["inpaint"] = [
         {**home["totalCounter"], "label": "total"},
-        *[{**rl, "label": rl["id"]} for rl in home.get("rowLabels", home.get("rowCounters", []))],
+        *row_inpaint,
     ]
 
     for key in ["general", "rare", "superRare", "godlike", "goldenGodlike"]:

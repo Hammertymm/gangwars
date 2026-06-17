@@ -125,6 +125,48 @@ const LEDGER_BLUEPRINT = {
         "w": 200,
         "h": 18
       }
+    ],
+    "rowInpaint": [
+      {
+        "id": "general",
+        "x": 160,
+        "y": 530,
+        "w": 220,
+        "h": 32,
+        "label": "general"
+      },
+      {
+        "id": "rare",
+        "x": 160,
+        "y": 584,
+        "w": 220,
+        "h": 32,
+        "label": "rare"
+      },
+      {
+        "id": "superRare",
+        "x": 160,
+        "y": 638,
+        "w": 220,
+        "h": 32,
+        "label": "superRare"
+      },
+      {
+        "id": "godlike",
+        "x": 160,
+        "y": 692,
+        "w": 220,
+        "h": 32,
+        "label": "godlike"
+      },
+      {
+        "id": "goldenGodlike",
+        "x": 160,
+        "y": 746,
+        "w": 220,
+        "h": 32,
+        "label": "goldenGodlike"
+      }
     ]
   },
   "general": {

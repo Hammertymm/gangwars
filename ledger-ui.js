@@ -6,7 +6,7 @@
 const LEDGER_CANVAS = { w: 473, h: 1024 };
 const LEDGER_ASSET_PREFIX = "assets/ledger/";
 const LEDGER_ICON_PREFIX = "assets/ledger/icons/";
-const LEDGER_ASSET_VERSION = "60";
+const LEDGER_ASSET_VERSION = "61";
 
 function ledgerRectStyle(r) {
   const { w: W, h: H } = LEDGER_CANVAS;
@@ -35,12 +35,12 @@ function categoryCounterText(catId, found, total) {
 }
 
 function listPanelStyleVars(bp) {
-  const lp = bp.listPanel;
+  const { w: W, h: H } = LEDGER_CANVAS;
   return [
-    `--row-h:${((bp.rowHeight / lp.h) * 100).toFixed(4)}%`,
-    `--icon-w:${((bp.iconBox.w / lp.w) * 100).toFixed(4)}%`,
-    `--icon-h:${((bp.iconBox.h / lp.h) * 100).toFixed(4)}%`,
-    `--icon-pad:${((bp.iconBox.x / lp.w) * 100).toFixed(4)}%`,
+    `--row-h:${((bp.rowHeight / H) * 100).toFixed(4)}cqh`,
+    `--icon-w:${((bp.iconBox.w / W) * 100).toFixed(4)}cqw`,
+    `--icon-h:${((bp.iconBox.h / H) * 100).toFixed(4)}cqh`,
+    `--icon-pad:${((bp.iconBox.x / W) * 100).toFixed(4)}cqw`,
   ].join(";");
 }
 
