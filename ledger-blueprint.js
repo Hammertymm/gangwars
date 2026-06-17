@@ -4,45 +4,45 @@ const LEDGER_BLUEPRINT = {
     "baseAsset": "crime-ledger-home-base.png",
     "scroll": false,
     "totalCounter": {
-      "x": 142,
-      "y": 492,
-      "w": 120,
-      "h": 14
+      "x": 141,
+      "y": 491,
+      "w": 113,
+      "h": 15
     },
     "rowCounters": [
       {
         "id": "general",
-        "x": 370,
-        "y": 528,
-        "w": 68,
+        "x": 227,
+        "y": 544,
+        "w": 79,
         "h": 14
       },
       {
         "id": "rare",
-        "x": 370,
-        "y": 582,
-        "w": 68,
+        "x": 265,
+        "y": 597,
+        "w": 45,
         "h": 14
       },
       {
         "id": "superRare",
-        "x": 370,
-        "y": 636,
-        "w": 68,
+        "x": 224,
+        "y": 651,
+        "w": 44,
         "h": 14
       },
       {
         "id": "godlike",
-        "x": 370,
-        "y": 690,
-        "w": 68,
+        "x": 248,
+        "y": 707,
+        "w": 44,
         "h": 14
       },
       {
         "id": "goldenGodlike",
-        "x": 370,
-        "y": 744,
-        "w": 68,
+        "x": 349,
+        "y": 758,
+        "w": 60,
         "h": 14
       }
     ],
@@ -94,9 +94,9 @@ const LEDGER_BLUEPRINT = {
     "baseAsset": "ledger-general-base.png",
     "scroll": true,
     "counter": {
-      "x": 111,
-      "y": 337,
-      "w": 250,
+      "x": 93,
+      "y": 344,
+      "w": 120,
       "h": 16
     },
     "listPanel": {
@@ -123,9 +123,9 @@ const LEDGER_BLUEPRINT = {
     "baseAsset": "ledger-rare-base.png",
     "scroll": false,
     "counter": {
-      "x": 111,
-      "y": 337,
-      "w": 250,
+      "x": 93,
+      "y": 335,
+      "w": 146,
       "h": 16
     },
     "listPanel": {
@@ -152,10 +152,10 @@ const LEDGER_BLUEPRINT = {
     "baseAsset": "ledger-super-rare-base.png",
     "scroll": false,
     "counter": {
-      "x": 111,
-      "y": 337,
-      "w": 250,
-      "h": 16
+      "x": 95,
+      "y": 333,
+      "w": 148,
+      "h": 24
     },
     "listPanel": {
       "x": 17,
@@ -181,10 +181,10 @@ const LEDGER_BLUEPRINT = {
     "baseAsset": "ledger-godlike-base.png",
     "scroll": false,
     "counter": {
-      "x": 111,
-      "y": 337,
-      "w": 250,
-      "h": 16
+      "x": 94,
+      "y": 333,
+      "w": 120,
+      "h": 24
     },
     "listPanel": {
       "x": 17,
@@ -210,10 +210,10 @@ const LEDGER_BLUEPRINT = {
     "baseAsset": "ledger-golden-godlike-base.png",
     "scroll": false,
     "counter": {
-      "x": 111,
-      "y": 388,
-      "w": 250,
-      "h": 16
+      "x": 92,
+      "y": 383,
+      "w": 308,
+      "h": 18
     },
     "listPanel": {
       "x": 17,

@@ -273,16 +273,17 @@ describe('ledger UI list rows', () => {
   Object.assign(globalThis, ledgerApi);
   const { buildListRows } = require('./ledger-ui.js');
 
-  it('empty category shows only hidden titles with no icons', () => {
+  it('empty category shows lock icons, hidden titles, and placeholder description', () => {
     const ledger = emptyLedger();
     const cat = LEDGER_CATEGORIES.find(c => c.id === 'rare');
     const html = buildListRows(cat, ledger, null);
     assert.equal((html.match(/UNKNOWN/g) || []).length, 10);
-    assert.ok(!html.includes('<img'));
-    assert.ok(!html.includes('Achievement not yet discovered'));
+    assert.equal((html.match(/locked\.png/g) || []).length, 10);
+    assert.equal((html.match(/Achievement not yet discovered\./g) || []).length, 10);
+    assert.ok(!html.includes('ledger-row-icon-spacer'));
   });
 
-  it('partial category shows revealed achievement title and icon', () => {
+  it('partial category shows revealed achievement title and icon; others stay hidden', () => {
     const ledger = emptyLedger();
     unlockAchievement(ledger, 'bootlegger');
     revealAchievement(ledger, 'bootlegger');
@@ -290,6 +291,7 @@ describe('ledger UI list rows', () => {
     const html = buildListRows(cat, ledger, null);
     assert.ok(html.includes('BOOTLEGGER'));
     assert.ok(html.includes('icons/bootlegger.png'));
-    assert.ok(html.includes('???'));
+    assert.equal((html.match(/\?\?\?/g) || []).length, 13);
+    assert.ok(html.includes('Achievement not yet discovered.'));
   });
 });

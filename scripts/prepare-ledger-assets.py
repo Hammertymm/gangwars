@@ -16,12 +16,6 @@ BLUEPRINT_PATH = ROOT / "scripts" / "ledger-blueprint.json"
 CANVAS_W = 473
 CANVAS_H = 1024
 
-ROW_COUNTER_W = 68
-ROW_COUNTER_H = 14
-ROW_COUNTER_MARGIN = 18
-CATEGORY_COUNTER = {"x": 111, "y": 337, "w": 250, "h": 16}
-HOME_TOTAL_COUNTER = {"x": 142, "y": 492, "w": 120, "h": 14}
-
 
 def load_blueprint() -> dict:
     return json.loads(BLUEPRINT_PATH.read_text(encoding="utf-8-sig"))
@@ -46,19 +40,6 @@ def normalize_canvas(img: Image.Image) -> Image.Image:
         canvas.paste(img.convert("RGB"), (ox, 0))
         img = canvas
     return img.convert("RGB")
-
-
-def derive_row_counters(row_hits: list[dict]) -> list[dict]:
-    counters = []
-    for rh in row_hits:
-        counters.append({
-            "id": rh["id"],
-            "x": rh["x"] + rh["w"] - ROW_COUNTER_W - ROW_COUNTER_MARGIN,
-            "y": rh["y"] + (rh["h"] - ROW_COUNTER_H) // 2,
-            "w": ROW_COUNTER_W,
-            "h": ROW_COUNTER_H,
-        })
-    return counters
 
 
 def sample_fill_color(img: Image.Image, rect: dict) -> tuple[int, int, int]:
@@ -88,19 +69,17 @@ def gap_rect(counter: dict, list_panel: dict) -> dict | None:
     return {"x": list_panel["x"], "y": gap_y, "w": list_panel["w"], "h": gap_h, "label": "gap"}
 
 
-def sync_blueprint_counters(blueprint: dict) -> None:
+def sync_blueprint_inpaint(blueprint: dict) -> None:
+    """Rebuild inpaint regions from measured counter rects (positions come from blueprint.json)."""
     home = blueprint["home"]
-    home["totalCounter"] = dict(HOME_TOTAL_COUNTER)
-    home["rowCounters"] = derive_row_counters(home["rowHits"])
     home["inpaint"] = [
         {**home["totalCounter"], "label": "total"},
-        *[ {**rc, "label": rc["id"]} for rc in home["rowCounters"] ],
+        *[{**rc, "label": rc["id"]} for rc in home["rowCounters"]],
     ]
 
-    for key in ["general", "rare", "superRare", "godlike"]:
+    for key in ["general", "rare", "superRare", "godlike", "goldenGodlike"]:
         spec = blueprint[key]
-        counter = dict(CATEGORY_COUNTER)
-        spec["counter"] = counter
+        counter = spec["counter"]
         gap = gap_rect(counter, spec["listPanel"])
         inpaint = [
             {**counter, "label": "counter"},
@@ -109,18 +88,6 @@ def sync_blueprint_counters(blueprint: dict) -> None:
         if gap:
             inpaint.insert(1, gap)
         spec["inpaint"] = inpaint
-
-    gg = blueprint["goldenGodlike"]
-    gg_counter = {"x": 111, "y": 388, "w": 250, "h": 16}
-    gg["counter"] = gg_counter
-    gap = gap_rect(gg_counter, gg["listPanel"])
-    inpaint = [
-        {**gg_counter, "label": "counter"},
-        {**gg["listPanel"], "label": "list"},
-    ]
-    if gap:
-        inpaint.insert(1, gap)
-    gg["inpaint"] = inpaint
 
 
 def process_screen(key: str, spec: dict) -> None:
@@ -179,7 +146,7 @@ def copy_references_to_docs(blueprint: dict) -> None:
 
 def main() -> None:
     blueprint = load_blueprint()
-    sync_blueprint_counters(blueprint)
+    sync_blueprint_inpaint(blueprint)
     BLUEPRINT_PATH.write_text(json.dumps(blueprint, indent=2) + "\n", encoding="utf-8")
     print(f"Updated {BLUEPRINT_PATH.relative_to(ROOT)}")
     for key in RUNTIME_SCREEN_KEYS:

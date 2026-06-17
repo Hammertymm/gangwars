@@ -39,30 +39,28 @@ function listPanelStyleVars(bp) {
   ].join(";");
 }
 
+const HIDDEN_ACHIEVEMENT_DESC = "Achievement not yet discovered.";
+
 function buildListRows(cat, ledger, focusId) {
   const isGeneral = cat.id === "general";
-  const categoryHasDiscoveries = countUnlocked(ledger, cat.id) > 0;
   return cat.achievements.map(a => {
     const unlocked = isUnlocked(ledger, a.id);
     const revealed = isRevealed(ledger, a.id);
     const focus = focusId === a.id ? " reveal-focus" : "";
-    const showContent = categoryHasDiscoveries && revealed;
     const hiddenTitle = isGeneral ? "???" : "UNKNOWN";
     let title = hiddenTitle;
-    let desc = "";
+    let desc = HIDDEN_ACHIEVEMENT_DESC;
     let mark = "";
-    let iconHtml = '<div class="ledger-row-icon-spacer" aria-hidden="true"></div>';
-    if (showContent) {
+    let iconHtml = `<div class="ledger-row-icon locked"><img src="${LEDGER_ICON_PREFIX}locked.png" alt="" decoding="async"></div>`;
+    if (revealed) {
       title = getAchievementTitle(a.id);
       desc = getAchievementDescription(a.id);
       if (unlocked) mark = "✓";
       iconHtml = `<div class="ledger-row-icon revealed"><img src="${ledgerIconPath(a.id)}" alt="" decoding="async"></div>`;
-    } else if (categoryHasDiscoveries) {
-      iconHtml = `<div class="ledger-row-icon locked"><img src="${LEDGER_ICON_PREFIX}locked.png" alt="" decoding="async"></div>`;
     }
-    const titleCls = showContent ? "" : " hidden";
-    const descCls = showContent ? "" : " placeholder";
-    const descBlock = desc ? `<div class="ledger-row-desc${descCls}">${desc}</div>` : "";
+    const titleCls = revealed ? "" : " hidden";
+    const descCls = revealed ? "" : " placeholder";
+    const descBlock = `<div class="ledger-row-desc${descCls}">${desc}</div>`;
     return `<div class="ledger-list-row${focus}" data-aid="${a.id}">
       ${iconHtml}
       <div class="ledger-row-copy">

@@ -138,12 +138,15 @@ async function assertCategoryStructure(page, cat, stateName) {
   expect(listText).not.toMatch(/FOUND/);
 
   if (stateName === 'empty') {
-    await expect(page.locator('.ledger-row-icon img')).toHaveCount(0);
+    await expect(page.locator('.ledger-row-icon.locked img')).toHaveCount(cat.rows);
     const titles = await page.locator('.ledger-row-title').allTextContents();
     expect(titles).toHaveLength(cat.rows);
     titles.forEach(t => expect(t.trim()).toBe(cat.hiddenTitle));
+    const descs = await page.locator('.ledger-row-desc.placeholder').allTextContents();
+    expect(descs).toHaveLength(cat.rows);
+    descs.forEach(d => expect(d.trim()).toBe('Achievement not yet discovered.'));
 
-    const iconBoxes = await page.locator('.ledger-row-icon, .ledger-row-icon-spacer').evaluateAll(els =>
+    const iconBoxes = await page.locator('.ledger-row-icon').evaluateAll(els =>
       els.map(el => {
         const row = el.closest('.ledger-list-row');
         const rowBox = row.getBoundingClientRect();
