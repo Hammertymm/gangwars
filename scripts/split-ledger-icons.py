@@ -75,13 +75,21 @@ def black_to_alpha(img: Image.Image) -> Image.Image:
     return rgba
 
 
-def fit_square(img: Image.Image, size: int = TARGET) -> Image.Image:
-    img = black_to_alpha(img)
-    w, h = img.size
-    scale = min(size / w, size / h)
+def trim_to_content(img: Image.Image) -> Image.Image:
+    rgba = black_to_alpha(img)
+    bbox = rgba.getbbox()
+    return rgba.crop(bbox) if bbox else rgba
+
+
+def fit_square(img: Image.Image, size: int = TARGET, margin: float = 0.06) -> Image.Image:
+    """Trim empty margins, then scale artwork to fill the export square."""
+    trimmed = trim_to_content(img)
+    w, h = trimmed.size
+    inner = size * (1 - 2 * margin)
+    scale = min(inner / w, inner / h)
     nw = max(1, round(w * scale))
     nh = max(1, round(h * scale))
-    resized = img.resize((nw, nh), Image.Resampling.LANCZOS)
+    resized = trimmed.resize((nw, nh), Image.Resampling.LANCZOS)
     out = Image.new("RGBA", (size, size), (0, 0, 0, 0))
     out.paste(resized, ((size - nw) // 2, (size - nh) // 2), resized)
     return out

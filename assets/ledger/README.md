@@ -36,6 +36,28 @@ Full reference PNGs (with baked counters for design) sit alongside each `-base` 
 
 Regenerate icons: `python scripts/split-ledger-icons.py`
 
+## Testing
+
+Crime Ledger has dedicated graphic and integration tests (separate from `npm test`):
+
+| Command | What it checks |
+|---------|----------------|
+| `npm run test:ledger` | Achievement logic + static assets (473×1024 screens, 136×136 icons, blueprint sync, SW cache, inpaint) |
+| `npm run test:ledger:graphics` | Playwright: 6 screens × 2 data states + general reveal, DOM structure, pixel regression |
+| `npm run audit:ledger` | Both of the above |
+| `npm run audit:ledger:capture` | Refresh pixel baselines after intentional art/layout changes |
+
+**First-time setup for graphics tests:**
+
+```bash
+npm install
+npx playwright install chromium
+```
+
+**Baselines:** committed under `tests/ledger-baselines/`. After changing screen art or overlay rects, run `npm run audit:ledger:capture` and review diffs.
+
+**Review captures:** `docs/review/ledger-screenshots/` (written on each graphics test run).
+
 ## Pipeline
 
 1. Drop updated screen PNGs (or replace `*-base` sources via full PNGs + blueprint `inpaint` rects).

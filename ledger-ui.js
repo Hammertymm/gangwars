@@ -1,74 +1,12 @@
 /* ============================================================================
    CRIME LEDGER UI — reference PNG base + transparent dynamic overlays
-   Blueprint: scripts/ledger-blueprint.json (473×1024 canvas)
+   Blueprint: ledger-blueprint.js (generated from scripts/ledger-blueprint.json)
    ============================================================================ */
 
 const LEDGER_CANVAS = { w: 473, h: 1024 };
 const LEDGER_ASSET_PREFIX = "assets/ledger/";
 const LEDGER_ICON_PREFIX = "assets/ledger/icons/";
 const LOCKED_PLACEHOLDER = "Achievement not yet discovered.";
-
-const LEDGER_BLUEPRINT = {
-  home: {
-    baseAsset: "crime-ledger-home-base.png",
-    totalCounter: { x: 130, y: 486, w: 213, h: 18 },
-    rowCounters: [
-      { id: "general", x: 268, y: 542, w: 92, h: 16 },
-      { id: "rare", x: 238, y: 594, w: 92, h: 16 },
-      { id: "superRare", x: 318, y: 646, w: 92, h: 16 },
-      { id: "godlike", x: 268, y: 698, w: 72, h: 16 },
-      { id: "goldenGodlike", x: 368, y: 750, w: 52, h: 16 },
-    ],
-    rowHits: [
-      { id: "general", x: 17, y: 508, w: 439, h: 54 },
-      { id: "rare", x: 17, y: 562, w: 439, h: 54 },
-      { id: "superRare", x: 17, y: 616, w: 439, h: 54 },
-      { id: "godlike", x: 17, y: 670, w: 439, h: 54 },
-      { id: "goldenGodlike", x: 17, y: 724, w: 439, h: 54 },
-    ],
-    back: { x: 20, y: 934, w: 433, h: 48 },
-  },
-  general: {
-    baseAsset: "ledger-general-base.png",
-    scroll: true,
-    counter: { x: 60, y: 338, w: 353, h: 28 },
-    listPanel: { x: 17, y: 382, w: 439, h: 528 },
-    rowHeight: 38,
-    back: { x: 20, y: 934, w: 433, h: 48 },
-  },
-  rare: {
-    baseAsset: "ledger-rare-base.png",
-    scroll: false,
-    counter: { x: 60, y: 328, w: 353, h: 28 },
-    listPanel: { x: 17, y: 382, w: 439, h: 528 },
-    rowHeight: 53,
-    back: { x: 20, y: 934, w: 433, h: 48 },
-  },
-  superRare: {
-    baseAsset: "ledger-super-rare-base.png",
-    scroll: false,
-    counter: { x: 60, y: 328, w: 353, h: 28 },
-    listPanel: { x: 17, y: 382, w: 439, h: 528 },
-    rowHeight: 53,
-    back: { x: 20, y: 934, w: 433, h: 48 },
-  },
-  godlike: {
-    baseAsset: "ledger-godlike-base.png",
-    scroll: false,
-    counter: { x: 60, y: 328, w: 353, h: 28 },
-    listPanel: { x: 17, y: 382, w: 439, h: 528 },
-    rowHeight: 106,
-    back: { x: 20, y: 934, w: 433, h: 48 },
-  },
-  goldenGodlike: {
-    baseAsset: "ledger-golden-godlike-base.png",
-    scroll: false,
-    counter: { x: 60, y: 388, w: 353, h: 28 },
-    listPanel: { x: 17, y: 432, w: 439, h: 478 },
-    rowHeight: 72,
-    back: { x: 20, y: 934, w: 433, h: 48 },
-  },
-};
 
 function ledgerRectStyle(r) {
   const { w: W, h: H } = LEDGER_CANVAS;
@@ -92,6 +30,13 @@ function categoryCounterText(catId, found, total) {
   return `${found} OF ${total} DISCOVERED`;
 }
 
+function listPanelStyleVars(bp) {
+  const rowPct = ((bp.rowHeight / bp.listPanel.h) * 100).toFixed(4);
+  const iconScale = (bp.iconBox.h / bp.rowHeight).toFixed(4);
+  const iconPadPct = ((bp.iconBox.x / bp.listPanel.w) * 100).toFixed(3);
+  return `--row-h:${rowPct}%;--icon-scale:${iconScale};--icon-pad:${iconPadPct}%`;
+}
+
 function buildListRows(cat, ledger, focusId) {
   const isGeneral = cat.id === "general";
   return cat.achievements.map(a => {
@@ -110,7 +55,7 @@ function buildListRows(cat, ledger, focusId) {
     }
     const titleCls = showContent ? "" : " hidden";
     const descCls = showContent ? "" : " placeholder";
-    return `<div class="ledger-list-row${focus}" data-aid="${a.id}" style="height:var(--row-h)">
+    return `<div class="ledger-list-row${focus}" data-aid="${a.id}">
       <div class="ledger-row-icon${showContent ? " revealed" : " locked"}">
         <img src="${iconSrc}" alt="" decoding="async">
       </div>
@@ -123,12 +68,13 @@ function buildListRows(cat, ledger, focusId) {
   }).join("");
 }
 
-function ledgerShell(baseAsset, innerHtml, backRect) {
+function ledgerShell(baseAsset, overlayHtml, hitHtml, backRect) {
   const { w, h } = LEDGER_CANVAS;
   return `<div class="play ledger-play"><div class="ledger-art-screen"><div class="ledger-art-frame">
     <img src="${ledgerAssetPath(baseAsset)}" width="${w}" height="${h}" decoding="async" alt="">
-    <div class="ledger-overlay-layer">${innerHtml}</div>
-    <button type="button" class="ledger-hit ledger-back-btn" id="ledgerBack" aria-label="Back" style="${ledgerRectStyle(backRect)}">BACK</button>
+    <div class="ledger-overlay-layer">${overlayHtml}</div>
+    ${hitHtml}
+    <button type="button" class="ledger-hit" id="ledgerBack" aria-label="Back" style="${ledgerRectStyle(backRect)}"></button>
   </div></div></div>`;
 }
 
@@ -187,7 +133,7 @@ const LedgerUI = {
       const cat = LEDGER_CATEGORIES.find(c => c.id === rh.id);
       return `<button type="button" class="ledger-hit" data-cat="${rh.id}" aria-label="${cat.title}" style="${ledgerRectStyle(rh)}"></button>`;
     }).join("");
-    app.innerHTML = ledgerShell(bp.baseAsset, counters + rowParts + hits, bp.back);
+    app.innerHTML = ledgerShell(bp.baseAsset, counters + rowParts, hits, bp.back);
     bp.rowHits.forEach(rh => {
       const btn = app.querySelector(`[data-cat="${rh.id}"]`);
       if (btn) btn.onclick = () => ctx.onOpenCategory(rh.id);
@@ -208,8 +154,8 @@ const LedgerUI = {
     const panelStyle = ledgerRectStyle(bp.listPanel);
     const inner = ledgerCounterHtml(categoryCounterText(catId, found, cat.achievements.length), bp.counter, "cat")
       + `<div class="ledger-list-panel${scrollCls}" style="${panelStyle}">`
-      + `<div class="ledger-list-inner" style="--row-h:${bp.rowHeight}px">${rows}</div></div>`;
-    app.innerHTML = ledgerShell(bp.baseAsset, inner, bp.back);
+      + `<div class="ledger-list-inner" style="${listPanelStyleVars(bp)}">${rows}</div></div>`;
+    app.innerHTML = ledgerShell(bp.baseAsset, inner, "", bp.back);
     document.getElementById("ledgerBack").onclick = ctx.onBackCategory;
     if (ctx.focusId && isUnlocked(ctx.ledger, ctx.focusId) && !isRevealed(ctx.ledger, ctx.focusId) && catId === "general") {
       const row = app.querySelector(`[data-aid="${ctx.focusId}"]`);
@@ -236,5 +182,5 @@ const LedgerUI = {
 };
 
 if (typeof module !== "undefined") {
-  module.exports = { LedgerUI, LEDGER_BLUEPRINT, LEDGER_CANVAS, ledgerRectStyle };
+  module.exports = { LedgerUI, LEDGER_CANVAS, ledgerRectStyle };
 }

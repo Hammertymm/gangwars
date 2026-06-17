@@ -67,6 +67,31 @@ def process_screen(key: str, spec: dict) -> None:
     print(f"{key}: {spec['asset']} + {spec['baseAsset']}")
 
 
+RUNTIME_SCREEN_KEYS = ["home", "general", "rare", "superRare", "godlike", "goldenGodlike"]
+RUNTIME_OMIT = {"asset", "inpaint", "rowCount"}
+
+
+def runtime_blueprint(blueprint: dict) -> dict:
+    """Strip authoring-only fields for in-browser overlay layout."""
+    out = {}
+    for key in RUNTIME_SCREEN_KEYS:
+        spec = {k: v for k, v in blueprint[key].items() if k not in RUNTIME_OMIT}
+        out[key] = spec
+    return out
+
+
+def write_ledger_blueprint_js(blueprint: dict) -> None:
+    runtime = runtime_blueprint(blueprint)
+    path = ROOT / "ledger-blueprint.js"
+    body = json.dumps(runtime, indent=2)
+    path.write_text(
+        "/* AUTO-GENERATED from scripts/ledger-blueprint.json — run prepare-ledger-assets.py */\n"
+        f"const LEDGER_BLUEPRINT = {body};\n",
+        encoding="utf-8",
+    )
+    print(f"Wrote {path.relative_to(ROOT)}")
+
+
 def copy_references_to_docs(blueprint: dict) -> None:
     DOCS.mkdir(parents=True, exist_ok=True)
     mapping = {
@@ -88,6 +113,7 @@ def main() -> None:
     for key in ["home", "general", "rare", "superRare", "godlike", "goldenGodlike"]:
         process_screen(key, blueprint[key])
     copy_references_to_docs(blueprint)
+    write_ledger_blueprint_js(blueprint)
     print("Done.")
 
 
