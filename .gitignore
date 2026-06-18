@@ -15,6 +15,7 @@ events/_test-trim.png
 assets_backup/
 assets/backup/
 docs/
+GangWars-main/
 
 # Debug / editor / deploy scratch
 .cursor/
