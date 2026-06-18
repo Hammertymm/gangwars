@@ -20,7 +20,7 @@ Each day you can:
 - **Move** to another territory — prices reset every time you travel
 - **Visit the Don** (Little Italy only) to repay debt, borrow more, or deposit cash in the bank at 6% daily interest
 
-The market is volatile. Shortages send prices through the roof. Flooded supply crashes them. Events — from police raids to celebrity appearances — can reshape the market for a day. Learn the ranges, read the city, move fast.
+The market is volatile. Shortages send prices through the roof. Flooded supply crashes them. Events — from police raids to celebrity appearances — can reshape the market for a day. Today’s price is all you get on the buy screen; when you sell, the game shows your average cost and profit % vs the current quote. Read the city, move fast.
 
 **Your score** is your net worth on day 30: cash + bank − debt. Score scales smoothly from 0 to **100**; a perfect **100** requires **$10M** net (Big Daddy J).
 
@@ -41,20 +41,20 @@ The market is volatile. Shortages send prices through the roof. Flooded supply c
 
 ## Goods
 
-Prices fluctuate daily within their ranges. Market events can push them well above or below normal.
+Ten contraband tiers — from street moonshine to diamonds. Prices change every day you travel; market events can push them far above or below what you’ve seen before. The buy/sell screens show only today’s quote (not historical low/high bands). On **sell**, you also see your average cost and profit **%** vs the current price.
 
-|Good        |Low    |High    |Family  |
-|------------|-------|--------|--------|
-|Moonshine   |$50    |$250    |Alcohol |
-|Cuban Cigars|$200   |$700    |Luxury  |
-|Bathtub Gin |$600   |$2,000  |Alcohol |
-|Forged Art  |$1,500 |$5,500  |Criminal|
-|Aged Scotch |$4,500 |$16,000 |Alcohol |
-|Counterfeits|$13,000|$35,000 |Criminal|
-|Fine Cognac |$28,000|$65,000 |Alcohol |
-|Fur Coats   |$52,000|$100,000|Luxury  |
-|Champagne   |$78,000|$115,000|Alcohol |
-|Diamonds    |$96,000|$140,000|Luxury  |
+|Good        |Family  |
+|------------|--------|
+|Moonshine   |Alcohol |
+|Cuban Cigars|Luxury  |
+|Bathtub Gin |Alcohol |
+|Forged Art  |Criminal|
+|Aged Scotch |Alcohol |
+|Counterfeits|Criminal|
+|Fine Cognac |Alcohol |
+|Fur Coats   |Luxury  |
+|Champagne   |Alcohol |
+|Diamonds    |Luxury  |
 
 -----
 

@@ -362,7 +362,6 @@
   .scr{font-size:.82rem;}
   .ticker{font-size:.72rem;color:var(--dim);letter-spacing:.5px;margin-top:8px;}
   .flavor{font-size:.74rem;color:var(--dim);margin:4px 0 1px;line-height:1.45;overflow:visible;}
-  .range{font-size:.6rem;color:var(--dim);line-height:1;display:block;margin-top:1px;}
   .profit{font-size:.78rem;}
   .profit.up{color:var(--green);}
   .profit.down{color:var(--red);}
@@ -1022,8 +1021,7 @@ if (typeof document !== "undefined") {
       const pct = mode==="sell" ? profitPct(S,id,price) : null;
       app.innerHTML = `<div class="modal"><div class="card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <h2 id="modal-title">${mode==="buy"?"BUY":"SELL"} ${d.name}</h2>
-        <p>Price <span class="price">${money(price)}</span> each ·
-          <span class="range">typical ${money(d.low)}–${money(d.high)}</span><br>
+        <p>Price <span class="price">${money(price)}</span> each<br>
           ${mode==="buy"?`can afford ${max}`:`you hold ${S.inventory[id]||0}`}</p>
         ${avg!=null?`<p class="profit ${pct>=0?'up':'down'}">Avg cost ${money(avg)} · ${pct>=0?'+':''}${pct}%</p>`:''}
         <label for="qty" class="na">Quantity</label>
