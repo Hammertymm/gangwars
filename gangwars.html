@@ -808,18 +808,36 @@ if (typeof document !== "undefined") {
       `The Feds have been busy. They seized half the {ITEM} moving through this city — it's locked in an evidence locker downtown. Prices just went through the roof.`,
       `Nobody knows how the Feds knew where to look. Somebody talked. Now there's no {ITEM} left on the street and everyone's pointing fingers at each other.`,
       `Word is the Feds have a new list and every name on it dealt in {ITEM}. The smart ones cleared out. What's left on the street is selling for a king's ransom.`,
+      `Word on the street is Big Daddy J quietly bought up every available unit of {ITEM} in three districts before dawn. Nobody knows why. Nobody asks why. The shortage is total and the price is his to set.`,
+      `BDJ put the word out last night that he won't be moving {ITEM} through his usual channels this week. When Big Daddy J steps back from a market, everyone else follows. The supply has dried up overnight.`,
+      `Father Dempsey at St Anthony's delivered a Sunday sermon specifically naming {ITEM} as "the commodity of the morally destitute." By Monday morning half his congregation had panic-bought every unit in the district as a precaution.`,
+      `The Tribune ran a front-page story this morning claiming {ITEM} supplies had collapsed. The story was wrong. Unfortunately every supplier in the city read it before any of them thought to check. The resulting panic has made the story accidentally correct.`,
+      `A {ITEM} supplier found religion on Wednesday. By Thursday he'd destroyed his entire stock in what witnesses describe as a joyful bonfire outside his warehouse on Canal Street. He is reportedly at peace. The market is not.`,
+      `A hand-lettered sign appeared overnight on the corner of Broadway and Canal: "BUY {ITEM}. SHORTAGE COMING. — A FRIEND FROM 1959." The ones who didn't ignore it are very pleased with themselves this morning.`,
     ],
     surge:[
       `Word spread fast — there's a shortage of {ITEM} and the clubs are in a panic. Prices are going wild.`,
       `A tipping point hit the market hard. {ITEM} prices are at levels nobody would have believed yesterday. Get in while it lasts.`,
       `Two suppliers got cold feet and pulled out overnight. The {ITEM} trade has been fought over and the price shows it.`,
       `Rothstein's old network collapsed overnight and took half the {ITEM} supply in this city with it. What's left has been fought over at prices nobody saw coming.`,
+      `Every retailer of {ITEM} in four districts received the same visit last night — pay up or close down. Most chose to close. The ones still open are charging whatever they like and the buyers are paying it.`,
+      `A doctor — credentials unverified, confidence immaculate — published a letter in the Tribune recommending {ITEM} as beneficial to nervous temperament and general urban fatigue. His patients are buying in bulk.`,
+      `A queue formed outside a {ITEM} supplier on Delancey Street at four in the morning. Nobody in the queue knows who started it or why. Each person joined because the queue was already there. The supplier sold out before noon.`,
+      `Word got around that Big Daddy J has been moving heavily into {ITEM} this week — buying, not selling. When BDJ accumulates, the smart money follows. Half the district is now chasing the same commodity he is.`,
+      `Big Daddy J is throwing one of his legendary gatherings this weekend. His procurement man has been buying {ITEM} across every district since Monday. What he doesn't secure, the guests will expect to find elsewhere.`,
+      `Big Daddy J said three words to three people at his club on Monday night. Nobody knows what the words were. By Tuesday morning the {ITEM} market was moving like a freight train. BDJ doesn't need to explain himself.`,
     ],
     flood:[
       `A hijacked shipment of {ITEM} got scattered across the docks. Someone's offloading it fast and cheap.`,
       `Someone's liquidating fast. A full shipment of {ITEM} just flooded the street and the price has collapsed. Move quickly.`,
       `A deal went badly wrong last night. The survivor is offloading {ITEM} at any price just to disappear. Get in before he does.`,
       `Big Bill Thompson bet the city's impounded {ITEM} stockpile on a boxing match. The wrong man won. It's all hitting the street at once and nobody in City Hall is admitting anything.`,
+      `A Bronx attorney is liquidating the estate of one Salvatore Minetti, deceased, whose will specified that his entire stock of {ITEM} be sold at any price and the proceeds donated to the church. The market is awash.`,
+      `A shipping clerk misread a decimal point and ordered ten times the required quantity of {ITEM}. His employer has been offloading the surplus since Tuesday at progressively more desperate prices.`,
+      `Big Daddy J flooded the {ITEM} market overnight — deliberately, surgically, and at significant personal cost. Word is he's sending a message to an operator who moved on his territory. BDJ doesn't argue. He adjusts the market.`,
+      `BDJ is rotating his operation — moving out of {ITEM} entirely and into something nobody's talking about yet. When he exits a market he exits completely. The price collapse is the sound of Big Daddy J closing a door.`,
+      `A woman sold an enormous quantity of {ITEM} at the exchange this morning at prices that suggested she simply needed it gone. As she left she said quietly: "It won't be worth anything after 1933 anyway. Enjoy it while it lasts."`,
+      `A man with too many pockets has been selling {ITEM} below market rate since Tuesday. When asked why, he shrugged: "I bought these in 2019 for considerably less than you'd believe. At this price I'm still ahead."`,
     ],
   };
 
@@ -1303,6 +1321,10 @@ if (typeof document !== "undefined") {
       ["SENT A MESSAGE",  `This wasn't random. Someone paid to have you roughed up and ${money(loss)} lifted. You need to think about who.`],
       ["OUTSMARTED",      `You were robbed by a man pretending to be a lamppost. In hindsight the signs were there. ${money(loss)} gone and your pride in tatters.`],
       ["CAPONE'S REGARDS",`A man in a very good suit handed you an envelope and took ${money(loss)} from your coat. He said Mr Capone sends his regards. You didn't argue.`],
+      ["THE EXAMPLE",         `Three men. Organised, quiet, professional. They took ${money(loss)} and left you breathing as a courtesy. Before they walked away the big one said: "Tell whoever sent you that the answer is still no." Nobody sent you. You decide not to mention that.`],
+      ["THE TEMPERANCE LADY", `A woman from the Women's Christian Temperance Union cornered you outside a drugstore, delivered a twenty-minute sermon on the moral ruin of alcohol, and somehow talked you out of ${money(loss)} as a "voluntary donation to the cause." You aren't entirely sure what happened.`],
+      ["THE CONFESSION",      `A priest sat down beside you on a bench, listened to everything you said, gave a considered absolution, and left with ${money(loss)} from your coat. You are fairly certain priests don't do that. You are completely certain he was not a priest.`],
+      ["THE ASSOCIATE TAX",   `A man with a BDJ pocket square and a handshake like a hydraulic press explained that operating in this district carries a ${money(loss)} associate fee payable immediately. He called it an investment. You called it unavoidable. You both had a point.`],
     ]);
     showEvent('mugging', mugV[1], "DAMN", next);
   }
@@ -1314,6 +1336,13 @@ if (typeof document !== "undefined") {
       ["DEAD DROP",             `Someone left a stash and never came back. You help yourself to <b>${n} ${d.name}</b> before anyone's the wiser.`],
       ["VALENTINE'S LEFTOVERS", `Whatever went down in that garage on Clark Street, the men who stashed <b>${n} ${d.name}</b> won't be coming back. You will.`],
       ["GENNA BROTHERS' GIFT",  `The Gennas are finished and their operation is scattered to the wind. A stash of <b>${n} ${d.name}</b> sits in a Cicero warehouse with no one left to claim it.`],
+      ["THE TRAIL IS WARM",   `Someone died for these goods and the trail is still warm. A chalk outline on the warehouse floor, a toppled hand-truck. You don't ask who he was. You take the <b>${n} ${d.name}</b> and keep moving.`],
+      ["LEFT FOR DEAD",       `A runner is slumped against a dumpster in the alley — alive, barely. He can't move and he knows it. "Take it," he says, and nods at the bag. You take the <b>${n} ${d.name}</b>. Some questions answer themselves.`],
+      ["LETTER ATTACHED",     `A crate wedged behind a dumpster, a sealed envelope nailed to the lid. The letter is addressed to no one and signed with a single initial. Inside: <b>${n} ${d.name}</b>. You keep the goods and burn the letter.`],
+      ["THE EMPTY HEARSE",    `An unattended hearse is parked outside a church with the back door open. The coffin is empty. A wooden crate beside it is not. <b>${n} ${d.name}</b>, packed in straw, undamaged. Whatever funeral was planned, it wasn't for these.`],
+      ["COMPLIMENTS OF MR J", `A boy in a pressed suit finds you at the corner. "Compliments of Big Daddy J," he says, and hands over a delivery slip for <b>${n} ${d.name}</b> at an address two streets over. It's waiting, just like the boy said.`],
+      ["THE ARRANGEMENT",     `A storage clerk slides you a key without looking up. "Mr J settled the account last month. Said someone would collect." The locker holds <b>${n} ${d.name}</b>. You never asked for a benefactor. Apparently one chose you anyway.`],
+      ["THE LOOP",            `Tucked into a crate of <b>${n} ${d.name}</b> — a note: "For whoever finds this: I've already been to '33 and you make it. Don't change anything." You take the goods. The note is harder to put down.`],
     ]);
     showEvent('find', findV[1], "NICE", next);
   }
@@ -1324,6 +1353,13 @@ if (typeof document !== "undefined") {
       `A mechanic at the yard can fit <b>+${add}</b> extra hidden crates into your vehicle for <span class="price">${money(cost)}</span>. Do it?`,
       `A Ford engineer — allegedly — offers to modify your Model T with <b>+${add}</b> hidden crates for <span class="price">${money(cost)}</span>. He claims Mr Ford himself suggested the design. This is almost certainly not true.`,
       `A grease-stained man slides a card across the bar. Says he can build <b>+${add}</b> hidden crates into your vehicle for <span class="price">${money(cost)}</span>. Doesn't ask what you're carrying. Doesn't want to know.`,
+      `A mechanic with two broken fingers and a nervous eye explains that the man who broke them suggested he find you specifically. He can add <b>+${add}</b> hidden crates for <span class="price">${money(cost)}</span>. He doesn't say who sent him. You don't ask. The work is excellent.`,
+      `A man introduces himself as the brother of a city alderman and insists this makes him a qualified vehicle engineer. He has a wrench, a confident expression, and a plan for adding <b>+${add}</b> hidden crates for <span class="price">${money(cost)}</span>. His one reference is his brother, who is currently under indictment.`,
+      `A man in a three-piece suit produces a rolled certificate claiming to hold US Patent No. 1,847,293 for "Concealed Automotive Cargo Innovation." He will license the installation of <b>+${add}</b> hidden crates for <span class="price">${money(cost)}</span>. The patent may be real. The man almost certainly isn't.`,
+      `A carpenter — apparently blind, navigating entirely by touch — offers to build <b>+${add}</b> hidden crates into your vehicle for <span class="price">${money(cost)}</span>. You watch him work for two minutes. He is better at this than anyone you have ever seen. You stop asking questions.`,
+      `Word reaches you that Big Daddy J has put a man at your disposal. He can fit <b>+${add}</b> hidden crates for <span class="price">${money(cost)}</span> in materials only. "Mr J covers the labour," the man says. "He said you'd understand why." You don't. You take the upgrade.`,
+      `A man claiming to be a logistics optimisation specialist offers to add <b>+${add}</b> hidden crates for <span class="price">${money(cost)}</span>. He keeps muttering that in eighty years this will all be done with computers. You don't know what a computer is. The extra space is real and that's enough.`,
+      `A woman hands you a folded schematic — extraordinarily precise, printed on material that isn't quite paper — showing exactly how <b>+${add}</b> hidden crates can be built into your vehicle. "The engineering holds up," she says. "We checked." She charges <span class="price">${money(cost)}</span> and refuses to answer any other questions.`,
     ]);
     showEventAsk('stash', sv, 'BUY',
       ()=>{ S.cash-=cost; S.space+=add; recordSpaceChange(S); logMsg(`+${add} stash space.`); modal=null; next(); },
@@ -1341,6 +1377,11 @@ if (typeof document !== "undefined") {
       `A contact with War Department connections is quietly moving government-issue hardware. <span class="price">${money(cost)}</span> gets you something Eliot Ness himself would respect.`,
       `The piece on the table has a history you don't want to know about. <span class="price">${money(cost)}</span>, no questions, no paperwork. In this city that's a bargain.`,
       `Ness's boys confiscated these from the Circus Café last Tuesday. By Wednesday they were back on the street. <span class="price">${money(cost)}</span> and it's yours. Don't ask how.`,
+      `A face you half-recognise leans across the bar. "You've been moving through this city unarmed. That's either very brave or very stupid and I can't tell which. <span class="price">${money(cost)}</span> fixes both problems." He puts a piece on the rail.`,
+      `A deacon from the First Baptist Church explains that the Lord moves in mysterious ways, one of which apparently involves him selling firearms from a carpet bag in a speakeasy. Clean piece, <span class="price">${money(cost)}</span>, comes with a blessing at no extra charge.`,
+      `A case arrives at your hotel addressed in Big Daddy J's hand. Inside: a clean piece, oiled and wrapped in velvet, and a note: "The streets are getting busy. <span class="price">${money(cost)}</span> for the case. Consider the advice free."`,
+      `Big Daddy J's man finds you at the bar. "Mr J says you've been running naked out there. He'd consider it a personal favour if you'd see someone." The someone is two blocks away and will deal at <span class="price">${money(cost)}</span> on BDJ's word alone.`,
+      `A man in a peculiar jacket examines the piece on the table with nostalgic reverence. "In a hundred years," he says, "people will pay twenty times this at auction just to own one." He sells it for <span class="price">${money(cost)}</span> and seems genuinely sad to let it go.`,
     ]);
     showEventAsk('gun', gv, 'BUY',
       ()=>{ S.cash-=cost; S.guns+=1; logMsg(`Bought a gun.`); modal=null; next(); },
@@ -1392,6 +1433,8 @@ if (typeof document !== "undefined") {
           ["ONE FOR THE PAPERS",                 `This one will make the Tribune tomorrow. You don't wait to read it. You take <span class="price">${money(reward)}</span> and put six blocks between yourself and the scene.`],
           ["ANOTHER VICTORY FOR ORGANISED CRIME",`Capone himself couldn't have handled it cleaner. <span class="price">${money(reward)}</span> off the floor, coat straightened, gone before the echo fades.`],
           ["IZZY PICKED THE WRONG MARK",         `The disguise was convincing — you'll give him that. But a fishmonger who moves like a middleweight is a fishmonger worth questioning. <span class="price">${money(reward)}</span> richer, one legend humbled.`],
+          ["CLEAN HANDS", `You didn't plan it this way, but here you are. <span class="price">${money(reward)}</span> off the floor, a hat that fits better than yours, and a story you will never tell anyone. You straighten your coat and walk north. The city doesn't notice.`],
+          ["NOTED",       `As the dust settles a man in a very good suit materialises from a doorway, surveys the scene, and nods once. "Mr J will hear about this," he says — approvingly. He hands you <span class="price">${money(reward)}</span>. "For the inconvenience." Big Daddy J rewards people who handle their problems cleanly.`],
         ]);
         showEvent('feds', winV[1], "GO", next); return; }
       if (chance(fedsCounterHitChance(S.guns, fightRound, S.day))){ if(hit())return; draw("You took a hit!"); } else draw("You missed — they're still on you.");
@@ -1403,6 +1446,8 @@ if (typeof document !== "undefined") {
           ["INTO THE CROWD",   "You ducked into the lunch crowd on Michigan Avenue and let the city swallow you whole. Ness's men walked right past."],
           ["THE BACK WAY",     "Three alleys, a fire escape, and a borrowed hat. By the time they reached the corner you were four blocks north having a coffee."],
           ["LOST IN THE PARADE","By sheer luck a temperance march turned onto the street at precisely the right moment. You joined the procession, took a pamphlet, and were gone before anyone noticed the irony."],
+          ["THE FUNERAL",  "You joined a funeral procession for four blocks, accepted condolences from twelve strangers, signed a guestbook under a false name, and ate a finger sandwich before the agents lost the trail entirely. You didn't know the deceased. He would have understood."],
+          ["THE LEFT TURN", `A man grabbed your sleeve as you ran and pulled you into a doorway you hadn't noticed. "Trust the left turn," he said. You took it. It worked. When you came back to thank him he was gone. On the wall: a chalk arrow pointing left and a year — 1987 — that means nothing to you.`],
         ]);
         showEvent('feds', runV[1], "PHEW", next); return; }
       if (hit()) return;
@@ -1421,6 +1466,8 @@ if (typeof document !== "undefined") {
         ["CITY RATES",         `<span class="price">${money(cost)}</span> in a folded newspaper, slid across the bar. Agent Hayes pockets it without breaking eye contact. Standard rate. Standard result.`],
         ["CIVIC DONATION",     `You explained to the officers that <span class="price">${money(cost)}</span> was a voluntary contribution to the Policemen's Benevolent Fund. They thanked you for your generosity and wished you a good evening.`],
         ["ABOVE BOARD",        `You told them it was a consulting fee for advice on avoiding criminal activity. They accepted <span class="price">${money(cost)}</span> and advised you to use the north exit. Everybody wins.`],
+        ["ALREADY HANDLED", `You reach for your wallet and the lead agent stops you. "Already handled," he says, and walks away. A folded note in your pocket in Big Daddy J's handwriting: "<span class="price">${money(cost)}</span> from your next settlement. Consider it a loan from a friend." The accounting with Big Daddy J is always precise. Always.`],
+        ["CAMERAS",         `Agent Hayes pocketed <span class="price">${money(cost)}</span> without blinking, then stared at you for a long moment. "In seventy years they're going to have cameras on every corner and none of this is going to be possible." He sounded genuinely nostalgic about something that hasn't happened yet.`],
       ]);
       showEvent('feds', brV[1], "OK", next);
     };
