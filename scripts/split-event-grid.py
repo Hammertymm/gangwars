@@ -15,12 +15,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from event_art import export_panel  # noqa: E402
 
 SOURCE = ROOT / "assets" / "event-grid-source.png"
-FALLBACK_SOURCE = Path(
-    r"C:\Users\jarro\.cursor\projects\c-Projects-gang-wars-GangWars\assets"
-    r"\c__Users_jarro_AppData_Roaming_Cursor_User_workspaceStorage_b8abd18152c996897b88164cd8a20284"
-    r"_images_image-eaef4b3e-40e1-419b-b2cc-c412fbb4b243.png"
-)
 OUT_DIR = ROOT / "events"
+COLS = 5
+ROWS = 2
 
 # row-major: top row L→R, then bottom row L→R
 EVENTS = [
@@ -36,35 +33,20 @@ EVENTS = [
     "rare_event_intel.png",
 ]
 
-V_GUTTERS = [208, 411, 609, 817]
-H_GUTTER = 339
-GUTTER_TRIM = 3
-EDGE_TRIM = 2  # drop seam pixels only
-
-
-def source_path() -> Path:
-    if SOURCE.exists():
-        return SOURCE
-    if FALLBACK_SOURCE.exists():
-        return FALLBACK_SOURCE
-    raise FileNotFoundError("event grid source image not found")
-
 
 def column_bounds(width: int) -> list[tuple[int, int]]:
-    edges = [0] + V_GUTTERS + [width]
+    col_w = width // COLS
     bounds: list[tuple[int, int]] = []
-    for i in range(5):
-        left = edges[i] + (GUTTER_TRIM if i > 0 else EDGE_TRIM)
-        right = edges[i + 1] - (GUTTER_TRIM if i < 4 else EDGE_TRIM)
-        bounds.append((left, right))
+    for i in range(COLS):
+        x0 = i * col_w
+        x1 = width if i == COLS - 1 else (i + 1) * col_w
+        bounds.append((x0, x1))
     return bounds
 
 
 def row_bounds(height: int) -> list[tuple[int, int]]:
-    return [
-        (EDGE_TRIM, H_GUTTER - GUTTER_TRIM),
-        (H_GUTTER + GUTTER_TRIM, height - EDGE_TRIM),
-    ]
+    row_h = height // ROWS
+    return [(0, row_h), (row_h, height)]
 
 
 def backup_existing() -> Path | None:
@@ -80,11 +62,10 @@ def backup_existing() -> Path | None:
 
 
 def main() -> None:
-    src = source_path()
-    if not SOURCE.exists() and src == FALLBACK_SOURCE:
-        shutil.copy2(src, SOURCE)
+    if not SOURCE.is_file():
+        raise FileNotFoundError(f"Source not found: {SOURCE}")
 
-    im = Image.open(src).convert("RGB")
+    im = Image.open(SOURCE).convert("RGB")
     cols = column_bounds(im.width)
     rows = row_bounds(im.height)
 
@@ -96,10 +77,10 @@ def main() -> None:
     for ry, (y0, y1) in enumerate(rows):
         for cx, (x0, x1) in enumerate(cols):
             panel = im.crop((x0, y0, x1, y1))
-            panel = export_panel(panel)
+            panel = export_panel(panel, pad=0)
             out = OUT_DIR / EVENTS[idx]
             panel.save(out, optimize=True)
-            print(f"  {EVENTS[idx]:24s}  {panel.size}  (grid r{ry}c{cx})")
+            print(f"  {EVENTS[idx]:24s}  {panel.size}  (crop {x1 - x0}x{y1 - y0}, r{ry}c{cx})")
             idx += 1
 
     print(f"\nSaved {idx} standard event images to {OUT_DIR.relative_to(ROOT)}/")

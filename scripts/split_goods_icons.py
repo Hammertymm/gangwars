@@ -17,7 +17,7 @@ ROOT = Path(__file__).resolve().parent.parent
 DEFAULT_SRC = ROOT / "assets" / "goods-grid-source.png"
 OUT_DIR = ROOT / "assets" / "goods"
 TARGET = 136  # 4× clamp(26px, 6.5vw, 34px) max display
-ZOOM = 1.42    # fill canvas — artwork is centred with margin in source cells
+ZOOM = 1.18    # fill canvas while leaving room for uniform in-cell padding
 BLACK_THRESHOLD = 18
 
 # (filename_stem, column, row) — top row 0, bottom row 1

@@ -39,15 +39,17 @@ def pad_on_black(img: Image.Image, border: int = 1) -> Image.Image:
     return canvas
 
 
-def export_panel(panel: Image.Image, target_h: int = POPUP_ART_HEIGHT) -> Image.Image:
-    """Trim gutter, enhance, scale to popup height, pad on black — no letterboxing."""
+def export_panel(panel: Image.Image, target_h: int = POPUP_ART_HEIGHT, pad: int = POPUP_PAD) -> Image.Image:
+    """Trim gutter, enhance, scale to popup height; optional 1px black pad (legacy)."""
     panel = trim_black(panel)
     panel = enhance_panel(panel)
     w, h = panel.size
     if h != target_h:
         scale = target_h / h
         panel = panel.resize((max(1, int(w * scale)), target_h), Image.Resampling.LANCZOS)
-    return pad_on_black(panel, border=POPUP_PAD)
+    if pad > 0:
+        return pad_on_black(panel, border=pad)
+    return panel
 
 
 def needs_normalize(path: Path) -> bool:
