@@ -11,6 +11,17 @@ __pycache__/
 events/_backup-*/
 events/_test-trim.png
 
+# Local backups and review artifacts
+assets_backup/
+assets/backup/
+docs/
+
+# Debug / editor / deploy scratch
+.cursor/
+debug-*.log
+*.zip
+UPLOAD-README.txt
+
 # OS / editor
 .DS_Store
 Thumbs.db
