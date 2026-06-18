@@ -1,0 +1,646 @@
+{
+  "backup_dir": "events\\_backup_originals",
+  "backed_up": 30,
+  "panels_extracted": 30,
+  "replaced": 30,
+  "unchanged_godlike": [
+    "godlike_celebration.png",
+    "godlike_golden.png",
+    "godlike_history.png",
+    "godlike_in_town.png",
+    "godlike_interest.png",
+    "godlike_move.png"
+  ],
+  "mapping": [
+    {
+      "composite": "standard",
+      "filename": "the_feds.png",
+      "grid": "r0c0",
+      "crop": [
+        7,
+        10,
+        204,
+        338
+      ],
+      "new_size": [
+        197,
+        328
+      ],
+      "original_size": [
+        406,
+        662
+      ],
+      "original_mode": "RGB",
+      "new_mode": "RGB"
+    },
+    {
+      "composite": "standard",
+      "filename": "ambushed_rolled.png",
+      "grid": "r0c1",
+      "crop": [
+        212,
+        10,
+        408,
+        338
+      ],
+      "new_size": [
+        196,
+        328
+      ],
+      "original_size": [
+        400,
+        662
+      ],
+      "original_mode": "RGB",
+      "new_mode": "RGB"
+    },
+    {
+      "composite": "standard",
+      "filename": "dead_drop.png",
+      "grid": "r0c2",
+      "crop": [
+        415,
+        10,
+        610,
+        338
+      ],
+      "new_size": [
+        195,
+        328
+      ],
+      "original_size": [
+        410,
+        662
+      ],
+      "original_mode": "RGB",
+      "new_mode": "RGB"
+    },
+    {
+      "composite": "standard",
+      "filename": "packing_iron.png",
+      "grid": "r0c3",
+      "crop": [
+        616,
+        10,
+        812,
+        338
+      ],
+      "new_size": [
+        196,
+        328
+      ],
+      "original_size": [
+        417,
+        662
+      ],
+      "original_mode": "RGB",
+      "new_mode": "RGB"
+    },
+    {
+      "composite": "standard",
+      "filename": "upgrade_available.png",
+      "grid": "r0c4",
+      "crop": [
+        820,
+        10,
+        1017,
+        338
+      ],
+      "new_size": [
+        197,
+        328
+      ],
+      "original_size": [
+        416,
+        662
+      ],
+      "original_mode": "RGB",
+      "new_mode": "RGB"
+    },
+    {
+      "composite": "standard",
+      "filename": "shortage.png",
+      "grid": "r1c0",
+      "crop": [
+        7,
+        345,
+        204,
+        673
+      ],
+      "new_size": [
+        197,
+        328
+      ],
+      "original_size": [
+        400,
+        662
+      ],
+      "original_mode": "RGB",
+      "new_mode": "RGB"
+    },
+    {
+      "composite": "standard",
+      "filename": "buying_frenzy.png",
+      "grid": "r1c1",
+      "crop": [
+        212,
+        345,
+        408,
+        673
+      ],
+      "new_size": [
+        196,
+        328
+      ],
+      "original_size": [
+        398,
+        662
+      ],
+      "original_mode": "RGB",
+      "new_mode": "RGB"
+    },
+    {
+      "composite": "standard",
+      "filename": "flooded_market.png",
+      "grid": "r1c2",
+      "crop": [
+        415,
+        345,
+        610,
+        673
+      ],
+      "new_size": [
+        195,
+        328
+      ],
+      "original_size": [
+        409,
+        662
+      ],
+      "original_mode": "RGB",
+      "new_mode": "RGB"
+    },
+    {
+      "composite": "standard",
+      "filename": "super_rare_event.png",
+      "grid": "r1c3",
+      "crop": [
+        616,
+        345,
+        812,
+        673
+      ],
+      "new_size": [
+        196,
+        328
+      ],
+      "original_size": [
+        415,
+        662
+      ],
+      "original_mode": "RGB",
+      "new_mode": "RGB"
+    },
+    {
+      "composite": "standard",
+      "filename": "rare_event_intel.png",
+      "grid": "r1c4",
+      "crop": [
+        820,
+        345,
+        1017,
+        673
+      ],
+      "new_size": [
+        197,
+        328
+      ],
+      "original_size": [
+        415,
+        662
+      ],
+      "original_mode": "RGB",
+      "new_mode": "RGB"
+    },
+    {
+      "composite": "super_rare",
+      "filename": "super_ruth.png",
+      "grid": "r0c0",
+      "crop": [
+        7,
+        11,
+        207,
+        338
+      ],
+      "new_size": [
+        200,
+        327
+      ],
+      "original_size": [
+        425,
+        664
+      ],
+      "original_mode": "RGB",
+      "new_mode": "RGB"
+    },
+    {
+      "composite": "super_rare",
+      "filename": "super_lindbergh.png",
+      "grid": "r0c1",
+      "crop": [
+        213,
+        11,
+        409,
+        338
+      ],
+      "new_size": [
+        196,
+        327
+      ],
+      "original_size": [
+        404,
+        664
+      ],
+      "original_mode": "RGB",
+      "new_mode": "RGB"
+    },
+    {
+      "composite": "super_rare",
+      "filename": "super_dempsey.png",
+      "grid": "r0c2",
+      "crop": [
+        416,
+        11,
+        611,
+        338
+      ],
+      "new_size": [
+        195,
+        327
+      ],
+      "original_size": [
+        404,
+        664
+      ],
+      "original_mode": "RGB",
+      "new_mode": "RGB"
+    },
+    {
+      "composite": "super_rare",
+      "filename": "super_wales.png",
+      "grid": "r0c3",
+      "crop": [
+        618,
+        11,
+        815,
+        338
+      ],
+      "new_size": [
+        197,
+        327
+      ],
+      "original_size": [
+        426,
+        664
+      ],
+      "original_mode": "RGB",
+      "new_mode": "RGB"
+    },
+    {
+      "composite": "super_rare",
+      "filename": "super_kkrevue.png",
+      "grid": "r0c4",
+      "crop": [
+        822,
+        11,
+        1018,
+        338
+      ],
+      "new_size": [
+        196,
+        327
+      ],
+      "original_size": [
+        410,
+        664
+      ],
+      "original_mode": "RGB",
+      "new_mode": "RGB"
+    },
+    {
+      "composite": "super_rare",
+      "filename": "super_mauretania.png",
+      "grid": "r1c0",
+      "crop": [
+        7,
+        346,
+        207,
+        672
+      ],
+      "new_size": [
+        200,
+        326
+      ],
+      "original_size": [
+        433,
+        664
+      ],
+      "original_mode": "RGB",
+      "new_mode": "RGB"
+    },
+    {
+      "composite": "super_rare",
+      "filename": "super_ziegfeld.png",
+      "grid": "r1c1",
+      "crop": [
+        213,
+        346,
+        409,
+        672
+      ],
+      "new_size": [
+        196,
+        326
+      ],
+      "original_size": [
+        410,
+        664
+      ],
+      "original_mode": "RGB",
+      "new_mode": "RGB"
+    },
+    {
+      "composite": "super_rare",
+      "filename": "super_wallst.png",
+      "grid": "r1c2",
+      "crop": [
+        416,
+        346,
+        611,
+        672
+      ],
+      "new_size": [
+        195,
+        326
+      ],
+      "original_size": [
+        394,
+        664
+      ],
+      "original_mode": "RGB",
+      "new_mode": "RGB"
+    },
+    {
+      "composite": "super_rare",
+      "filename": "super_walker.png",
+      "grid": "r1c3",
+      "crop": [
+        618,
+        346,
+        815,
+        672
+      ],
+      "new_size": [
+        197,
+        326
+      ],
+      "original_size": [
+        431,
+        664
+      ],
+      "original_mode": "RGB",
+      "new_mode": "RGB"
+    },
+    {
+      "composite": "super_rare",
+      "filename": "super_hollywood.png",
+      "grid": "r1c4",
+      "crop": [
+        822,
+        346,
+        1018,
+        672
+      ],
+      "new_size": [
+        196,
+        326
+      ],
+      "original_size": [
+        419,
+        664
+      ],
+      "original_mode": "RGB",
+      "new_mode": "RGB"
+    },
+    {
+      "composite": "rare",
+      "filename": "rare_capone.png",
+      "grid": "r0c0",
+      "crop": [
+        8,
+        10,
+        205,
+        336
+      ],
+      "new_size": [
+        197,
+        326
+      ],
+      "original_size": [
+        411,
+        664
+      ],
+      "original_mode": "RGB",
+      "new_mode": "RGB"
+    },
+    {
+      "composite": "rare",
+      "filename": "rare_luciano.png",
+      "grid": "r0c1",
+      "crop": [
+        214,
+        10,
+        408,
+        336
+      ],
+      "new_size": [
+        194,
+        326
+      ],
+      "original_size": [
+        398,
+        664
+      ],
+      "original_mode": "RGB",
+      "new_mode": "RGB"
+    },
+    {
+      "composite": "rare",
+      "filename": "rare_schultz.png",
+      "grid": "r0c2",
+      "crop": [
+        416,
+        10,
+        608,
+        336
+      ],
+      "new_size": [
+        192,
+        326
+      ],
+      "original_size": [
+        402,
+        664
+      ],
+      "original_mode": "RGB",
+      "new_mode": "RGB"
+    },
+    {
+      "composite": "rare",
+      "filename": "rare_madden.png",
+      "grid": "r0c3",
+      "crop": [
+        617,
+        10,
+        810,
+        336
+      ],
+      "new_size": [
+        193,
+        326
+      ],
+      "original_size": [
+        417,
+        664
+      ],
+      "original_mode": "RGB",
+      "new_mode": "RGB"
+    },
+    {
+      "composite": "rare",
+      "filename": "rare_rothstein.png",
+      "grid": "r0c4",
+      "crop": [
+        818,
+        10,
+        1016,
+        336
+      ],
+      "new_size": [
+        198,
+        326
+      ],
+      "original_size": [
+        415,
+        664
+      ],
+      "original_mode": "RGB",
+      "new_mode": "RGB"
+    },
+    {
+      "composite": "rare",
+      "filename": "rare_lansky.png",
+      "grid": "r1c0",
+      "crop": [
+        8,
+        346,
+        205,
+        657
+      ],
+      "new_size": [
+        197,
+        311
+      ],
+      "original_size": [
+        426,
+        664
+      ],
+      "original_mode": "RGB",
+      "new_mode": "RGB"
+    },
+    {
+      "composite": "rare",
+      "filename": "rare_ellington.png",
+      "grid": "r1c1",
+      "crop": [
+        214,
+        346,
+        408,
+        657
+      ],
+      "new_size": [
+        194,
+        311
+      ],
+      "original_size": [
+        415,
+        664
+      ],
+      "original_mode": "RGB",
+      "new_mode": "RGB"
+    },
+    {
+      "composite": "rare",
+      "filename": "rare_armstrong.png",
+      "grid": "r1c2",
+      "crop": [
+        416,
+        346,
+        608,
+        657
+      ],
+      "new_size": [
+        192,
+        311
+      ],
+      "original_size": [
+        416,
+        664
+      ],
+      "original_mode": "RGB",
+      "new_mode": "RGB"
+    },
+    {
+      "composite": "rare",
+      "filename": "rare_rumrow.png",
+      "grid": "r1c3",
+      "crop": [
+        617,
+        346,
+        810,
+        657
+      ],
+      "new_size": [
+        193,
+        311
+      ],
+      "original_size": [
+        432,
+        664
+      ],
+      "original_mode": "RGB",
+      "new_mode": "RGB"
+    },
+    {
+      "composite": "rare",
+      "filename": "rare_midnight.png",
+      "grid": "r1c4",
+      "crop": [
+        818,
+        346,
+        1016,
+        657
+      ],
+      "new_size": [
+        198,
+        311
+      ],
+      "original_size": [
+        433,
+        664
+      ],
+      "original_mode": "RGB",
+      "new_mode": "RGB"
+    }
+  ]
+}

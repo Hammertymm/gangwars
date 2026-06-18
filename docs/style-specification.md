@@ -1,4 +1,4 @@
-# Gang Wars — Style Specification v1.1
+# Gang Wars — Style Specification v1.2
 
 ## Purpose
 
@@ -8,6 +8,7 @@ It establishes:
 
 - UI shell colours and typography
 - Visual lanes (what style applies where)
+- GW Style — cinematic scene master prompt
 - Event tier art rules (general → golden godlike)
 - Big Daddy J (BDJ) character lock
 - Technical export standards
@@ -64,15 +65,48 @@ Sepia pixel-art assets (districts, goods, rank cards) receive `filter: brightnes
 
 # VISUAL LANES
 
-Gang Wars uses **three coordinated lanes**. All share 1920s organised-crime mythology, warm tones, and high readability — but they are not the same rendering technique.
+Gang Wars uses **four coordinated lanes**. All share 1920s organised-crime mythology, warm tones, and high readability — but they are not the same rendering technique.
 
 | Lane | Used for | Technique |
 |------|----------|-----------|
 | **A — Sepia pixel art** | District portraits, goods icons, rank cards | Crisp pixel art, tight warm palette |
 | **B — Sepia engraving** | General, rare, and super-rare **event cards** | Cross-hatched newspaper / woodcut illustration, monochrome sepia |
 | **C — Colour illustration** | Godlike and golden godlike **event cards** | Full-colour stylised illustration; BDJ scenes use rich gold, orange, purple, and controlled neon accents |
+| **D — GW Style** | New cinematic scene artwork (when specified) | Photorealistic cinematic illustration — see master prompt below |
 
 Do not mix lanes within a single asset category.
+
+---
+
+# GW STYLE (LANE D — CINEMATIC)
+
+Master prompt for new Gang Wars scene artwork. **Crop and dimensions are specified per asset at creation time** — do not embed size in this definition.
+
+## Master prompt
+
+```
+Photorealistic cinematic illustration. 1920s New York City night scene.
+Near-black background with warm amber and sepia-gold palette only — no blues,
+greens or reds. Rain-slicked cobblestone streets reflecting warm lamplight.
+Chiaroscuro lighting from a single warm amber street lamp or interior light
+source. Painterly, highly detailed, moody and atmospheric. Dark silhouettes
+with gold rim lighting. No text, no words, no signs with readable text.
+Average scene brightness very dark.
+```
+
+Append the subject, composition, and **crop/size** for each new image after this block.
+
+## Rules
+
+- **Palette lock:** near-black, amber, sepia-gold only — no blue, green, or red
+- **Lighting:** single warm source, chiaroscuro; gold rim on silhouettes
+- **Atmosphere:** rain-slick cobblestones, warm reflections, very dark average exposure
+- **No readable text** in the image
+- **BDJ:** when Big Daddy J appears, apply the [BDJ character lock](#big-daddy-j-bdj-master-character-lock) on top of this prompt
+
+## When to use
+
+Lane D is for **new** cinematic scene generation. Shipped in-game assets in Lanes A–C remain authoritative until deliberately replaced and re-exported through their existing pipelines.
 
 ---
 
@@ -284,7 +318,7 @@ Never use in any lane:
 
 - Anime, manga, chibi
 - Modern glossy mobile-game art
-- Photorealistic photography or photobashing
+- Photorealistic **photography** or photobashing (Lane D cinematic **illustration** is allowed)
 - Raw 3D renders
 - Cyberpunk or unrelated sci-fi styling
 - Pastel or neon-dominant palettes **outside** established godlike reference scenes
@@ -295,6 +329,7 @@ Lane-specific bans:
 - **Lane A:** smooth vector icons, gradient-heavy UI illustration
 - **Lane B:** full colour, smooth digital painting without cross-hatch texture
 - **Lane C:** reverting godlike scenes to monochrome sepia
+- **Lane D:** blue, green, or red in the palette; readable text or signage; bright average exposure
 
 ---
 
@@ -308,6 +343,7 @@ Before approving any Gang Wars artwork:
 - [ ] Clear focal point and storytelling
 - [ ] Consistent warm Gang Wars atmosphere
 - [ ] BDJ matches character lock (if applicable)
+- [ ] **Lane D:** amber/sepia-gold palette only, no readable text, crop/size specified for this asset
 - [ ] Event PNGs export to **664px height** via `export_panel()`
 - [ ] No prohibited styles present
 

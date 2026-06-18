@@ -9,6 +9,8 @@ __pycache__/
 
 # Event image pipeline backups (local only)
 events/_backup-*/
+events/_backup_originals/
+assets/events/_backup_originals/
 events/_test-trim.png
 
 # OS / editor
