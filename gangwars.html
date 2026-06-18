@@ -226,18 +226,23 @@
   .title-hit-scores{left:51.975%;width:43.867%;top:89.063%;height:7.227%;}
   .save-err{text-align:center;color:var(--red);font-size:.72rem;padding:1px 0;}
 
-  /* CRIME LEDGER - base scene PNG (473x1024) + normal-flow text overlays.
-     Frame height comes from the in-flow <img>, so percentage overlays resolve
-     identically on iOS Safari and Chromium. No container-type:size/aspect-ratio/cqh. */
+  /* CRIME LEDGER v63 — unified template
+     Home: blueprint overlay on base PNG (unchanged).
+     Categories: in-flow header image + HTML title/counter + 10-slot normal-flow rows.
+     No container-type:size, no aspect-ratio frame, no cqh. iOS Safari safe. */
+
+  /* ── shared chrome ─────────────────────────────────────────────────────── */
   #crt.ledger-mode{padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0);background:#000;}
   #crt.ledger-mode .masthead{display:none;}
   #crt.ledger-mode #app{flex:1 1 auto;min-height:0;}
   .ledger-play{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;
     overflow-y:auto;-webkit-overflow-scrolling:touch;background:#000;}
+
+  /* ── HOME: blueprint overlay shell ─────────────────────────────────────── */
   .ledger-art-screen{flex:1 1 auto;min-height:0;width:100%;display:flex;
     align-items:flex-start;justify-content:center;background:#000;}
   .ledger-art-frame{position:relative;container-type:inline-size;margin:0 auto;background:#000;
-    width:min(100%,calc(100vh * 473 / 1024));width:min(100%,calc(100dvh * 473 / 1024));}
+    width:min(100%,calc(100dvh * 473 / 1024));}
   .ledger-art-frame img{display:block;width:100%;height:auto;z-index:0;
     user-select:none;-webkit-user-drag:none;pointer-events:none;}
   .ledger-overlay-layer{position:absolute;inset:0;z-index:1;pointer-events:none;}
@@ -253,11 +258,38 @@
   .ledger-row-label{position:absolute;display:flex;align-items:center;justify-content:flex-start;
     pointer-events:none;white-space:nowrap;color:#9a8860;letter-spacing:.08em;
     font-size:clamp(8px,2.9cqw,13px);}
+
+  /* ── CATEGORY TEMPLATE: full-height unified page ───────────────────────── */
+  .ledger-template-page{display:flex;flex-direction:column;align-items:center;
+    min-height:100dvh;background:#0d0b07;}
+  .ledger-tpl-inner{display:flex;flex-direction:column;width:100%;
+    max-width:calc(100dvh * 473 / 1024);min-height:100dvh;background:#0d0b07;
+    container-type:inline-size;}
+  .ledger-tpl-img{display:block;width:100%;height:auto;flex-shrink:0;}
+  .ledger-tpl-header{text-align:center;padding:1.8cqw 0 0;flex-shrink:0;}
+  .ledger-tpl-title{font-size:7.2cqw;letter-spacing:.22em;color:#d4af37;
+    font-weight:700;line-height:1;}
+  .ledger-tpl-divider{display:flex;align-items:center;justify-content:center;
+    gap:2cqw;padding:.7cqw 6cqw;}
+  .ledger-tpl-divider::before,.ledger-tpl-divider::after{content:'';flex:1;height:1px;
+    background:linear-gradient(to var(--tdir,right),transparent,#7a6030);}
+  .ledger-tpl-divider::after{--tdir:left;}
+  .ledger-tpl-ornament{font-size:2.4cqw;color:#7a6030;letter-spacing:.3em;}
+  .ledger-tpl-counter{font-size:2.9cqw;letter-spacing:.15em;color:#9a8050;padding-bottom:1.2cqw;}
+  .ledger-tpl-separator{height:1px;background:#2a2010;margin:0 3.8cqw;flex-shrink:0;}
+  .ledger-tpl-list{width:100%;flex:1 0 auto;}
+  .ledger-tpl-list.scroll{overflow-y:auto;-webkit-overflow-scrolling:touch;}
+  .ledger-tpl-back{display:block;width:calc(100% - 7.6cqw);margin:2.2cqw 3.8cqw 3cqw;
+    padding:2.6cqw 0;background:transparent;border:1px solid #5a4820;border-radius:8px;
+    color:#c9a85a;font-family:inherit;font-size:3.2cqw;letter-spacing:.2em;
+    cursor:pointer;flex-shrink:0;}
+
+  /* ── shared row styles ──────────────────────────────────────────────────── */
   .ledger-list-panel{position:absolute;overflow:hidden;z-index:2;pointer-events:none;}
   .ledger-list-panel.scroll{overflow-y:auto;-webkit-overflow-scrolling:touch;pointer-events:auto;}
   .ledger-list-inner{display:flex;flex-direction:column;}
   .ledger-list-row{display:flex;align-items:center;gap:3cqw;padding:2.1cqw 1.6cqw;
-    border-bottom:1px solid rgba(201,168,90,.10);box-sizing:border-box;}
+    border-bottom:1px solid rgba(201,168,90,.10);min-height:11.6cqw;}
   .ledger-list-row:last-child{border-bottom:none;}
   .ledger-row-icon{position:relative;flex:0 0 auto;width:11cqw;height:11cqw;
     border:1px solid #5a5040;border-radius:6px;overflow:hidden;background:#0c0a06;
@@ -269,7 +301,7 @@
   .ledger-row-title{font-size:3.5cqw;letter-spacing:.05em;color:#c9a85a;
     white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
   .ledger-row-title.hidden{color:#6a5e48;}
-  .ledger-row-desc{font-size:3.0cqw;color:#7a6e58;margin-top:.4cqw;
+  .ledger-row-desc{font-size:2.8cqw;color:#7a6e58;margin-top:.4cqw;
     white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
   .ledger-row-desc.placeholder{color:#5a5040;}
   .ledger-row-mark{flex:0 0 1.4em;color:#c9a85a;font-size:4cqw;text-align:center;}
@@ -1467,7 +1499,7 @@ if (typeof document !== "undefined") {
 </script>
 <script>
   if ('serviceWorker' in navigator && !/^127\.0\.0\.1$|^localhost$/i.test(location.hostname)) {
-    navigator.serviceWorker.register('./sw.js?v=62').then(reg => {
+    navigator.serviceWorker.register('./sw.js?v=63').then(reg => {
       reg.update();
       reg.addEventListener('updatefound', () => {
         const worker = reg.installing;

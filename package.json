@@ -1,0 +1,25 @@
+{
+  "name": "gang-wars",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Gang Wars — Prohibition 1929 PWA",
+  "scripts": {
+    "test": "node --test engine.test.js ledger.test.js",
+    "test:ledger": "node --test ledger.test.js ledger.assets.test.js",
+    "test:ledger:graphics": "playwright test ledger.graphics.spec.js",
+    "audit:ledger": "node --test ledger.test.js ledger.assets.test.js && playwright test ledger.graphics.spec.js",
+    "audit:ledger:capture": "playwright test ledger.graphics.spec.js --update-snapshots",
+    "simulate": "node scripts/monte-carlo.js",
+    "sweep": "node scripts/sweep.js",
+    "audit:assets": "node scripts/audit-assets.js",
+    "audit:simulate": "node scripts/simulation-100k.js",
+    "audit:simulate:50k": "node scripts/simulation-50k.js",
+    "audit:screens": "node scripts/capture-screens.js",
+    "audit:all": "node --test engine.test.js ledger.test.js && node scripts/audit-assets.js && node scripts/simulation-100k.js"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.61.0",
+    "playwright": "^1.60.0",
+    "pngjs": "^7.0.0"
+  }
+}
