@@ -1,0 +1,10 @@
+{
+  "canvas": { "width": 472, "height": 1024 },
+  "asset": "title-screen.png",
+  "hits": {
+    "new": { "x": 13, "y": 785, "w": 223, "h": 87 },
+    "continue": { "x": 236, "y": 786, "w": 222, "h": 86 },
+    "ledger": { "x": 13, "y": 888, "w": 212, "h": 87 },
+    "scores": { "x": 238, "y": 888, "w": 220, "h": 87 }
+  }
+}

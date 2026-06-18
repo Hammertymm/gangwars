@@ -13,6 +13,9 @@ events/_backup_originals/
 assets/events/_backup_originals/
 events/_test-trim.png
 
+# Asset pipeline backups (local only)
+assets/_backup/
+
 # OS / editor
 .DS_Store
 Thumbs.db
