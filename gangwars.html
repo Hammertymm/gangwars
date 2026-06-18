@@ -804,16 +804,16 @@ if (typeof document !== "undefined") {
   /* ── Market event toast bodies (user-selected variants) ── */
   const ANOMALY_BODIES = {
     spike:[
-      `The Feds hit three stash houses overnight. {ITEM} has vanished from the streets. Name your price.`,
-      `The Feds have been busy. Half the city's {ITEM} is sitting in an evidence locker downtown. Prices just went through the roof.`,
-      `Nobody knows how the Feds knew where to look. Somebody talked. Now {ITEM} is gone and everyone's pointing fingers at each other.`,
+      `The Feds hit three stash houses overnight. You won't find {ITEM} on the streets anymore. Name your price.`,
+      `The Feds have been busy. They seized half the {ITEM} moving through this city — it's locked in an evidence locker downtown. Prices just went through the roof.`,
+      `Nobody knows how the Feds knew where to look. Somebody talked. Now there's no {ITEM} left on the street and everyone's pointing fingers at each other.`,
       `Word is the Feds have a new list and every name on it dealt in {ITEM}. The smart ones cleared out. What's left on the street is selling for a king's ransom.`,
     ],
     surge:[
       `Word spread fast — there's a shortage of {ITEM} and the clubs are in a panic. Prices are going wild.`,
-      `A tipping point hit the market hard. {ITEM} is moving at prices nobody would have believed yesterday. Get in while it lasts.`,
-      `Two suppliers got cold feet and pulled out overnight. What little {ITEM} remains is being fought over and the price shows it.`,
-      `Rothstein's old network collapsed overnight and took half the city's {ITEM} supply with it. What's left is being fought over at prices nobody saw coming.`,
+      `A tipping point hit the market hard. {ITEM} prices are at levels nobody would have believed yesterday. Get in while it lasts.`,
+      `Two suppliers got cold feet and pulled out overnight. The {ITEM} trade has been fought over and the price shows it.`,
+      `Rothstein's old network collapsed overnight and took half the {ITEM} supply in this city with it. What's left has been fought over at prices nobody saw coming.`,
     ],
     flood:[
       `A hijacked shipment of {ITEM} got scattered across the docks. Someone's offloading it fast and cheap.`,
@@ -1187,7 +1187,7 @@ if (typeof document !== "undefined") {
       if(dest===re.district){
         marketEvent=(next)=>showEvent(reImg, `<b>${re.lines[0]}</b><br><br>${re.lines[1]}`, 'INTERESTING', next);
       } else if(spikeGood){
-        marketEvent=(next)=>showEvent(reImg, `<b>${re.lines[0]}</b><br><br>${re.lines[1]} ${spikeGood.name} surging in ${re.district}.`, 'NOTED', next);
+        marketEvent=(next)=>showEvent(reImg, `<b>${re.lines[0]}</b><br><br>${re.lines[1]} ${spikeGood.name} prices are surging in ${re.district}.`, 'NOTED', next);
       }
     } else if(anomaly){
       const anomalyImg={spike:'shortage',surge:'frenzy',flood:'flood'};
@@ -1312,8 +1312,8 @@ if (typeof document !== "undefined") {
     S.inventory[d.id]=(S.inventory[d.id]||0)+n; logMsg(`Dead drop — picked up ${n} ${d.name}.`);
     const findV = pick([
       ["DEAD DROP",             `Someone left a stash and never came back. You help yourself to <b>${n} ${d.name}</b> before anyone's the wiser.`],
-      ["VALENTINE'S LEFTOVERS", `Whatever went down in that garage on Clark Street, the men who stashed these <b>${n} ${d.name}</b> won't be collecting them. You will.`],
-      ["GENNA BROTHERS' GIFT",  `The Gennas are finished and their operation is scattered to the wind. <b>${n} ${d.name}</b> left in a Cicero warehouse with no one left to claim it.`],
+      ["VALENTINE'S LEFTOVERS", `Whatever went down in that garage on Clark Street, the men who stashed <b>${n} ${d.name}</b> won't be coming back. You will.`],
+      ["GENNA BROTHERS' GIFT",  `The Gennas are finished and their operation is scattered to the wind. A stash of <b>${n} ${d.name}</b> sits in a Cicero warehouse with no one left to claim it.`],
     ]);
     showEvent('find', findV[1], "NICE", next);
   }
