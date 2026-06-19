@@ -49,7 +49,7 @@
   .play{flex:1 1 auto;display:flex;flex-direction:column;min-height:0;}
 
   /* Illustration assets — lighten ~10% for readability on dark UI */
-  .goods-icon-wrap .goods-icon,.market-play .loc-header img,.travel-head img,.travel-row img,.eos-card img{
+  .goods-icon-wrap .goods-icon,.market-play .loc-header img,.travel-head img,.travel-row img,.eos-art img{
     filter:brightness(1.1);}
 
   /* MARKET SCREEN — fixed single-screen layout (no scroll) */
@@ -378,36 +378,44 @@
   .tutorial .card-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px;}
   .save-err{text-align:center;color:var(--red);font-size:.72rem;padding:2px 0;}
 
-  /* === END-OF-GAME — locked landscape rank-art stack (see docs/ui-standards/end-screen.png) === */
-  .eos{flex:1 1 auto;display:flex;flex-direction:column;gap:5px;min-height:0;overflow:hidden;}
-  .eos-score-head{flex:0 0 auto;text-align:center;padding:0 2px;}
-  .eos-title{font-family:"Didot","Bodoni MT","Playfair Display",Georgia,serif;
-    font-size:clamp(.62rem,2.8vw,.72rem);color:var(--dim);letter-spacing:3px;margin:0 0 2px;}
-  .eos-amount-wrap{flex:0 0 auto;display:flex;align-items:center;justify-content:center;gap:6px;margin:0 0 4px;}
-  .eos-gun{flex:0 0 auto;width:clamp(28px,8vw,40px);height:auto;display:block;
-    image-rendering:pixelated;image-rendering:crisp-edges;filter:brightness(1.1);}
-  .eos-gun-r{transform:scaleX(-1);}
-  .eos-amount{flex:1 1 auto;font-size:clamp(1.05rem,5.2vw,1.55rem);color:var(--amber);font-weight:900;
-    text-align:center;letter-spacing:.5px;line-height:1.1;min-width:0;}
-  .eos-rule{height:0;border:none;border-top:1px solid var(--border);margin:0 0 4px;}
-  .eos-scores{flex:1 1 0;min-height:0;display:flex;flex-direction:column;overflow:hidden;}
-  .eos-hs-header{flex:0 0 auto;font-size:clamp(.52rem,2.4vw,.6rem);color:var(--dim);letter-spacing:2px;
-    text-align:center;margin-bottom:2px;}
-  .eos-rows{flex:1 1 0;overflow:hidden;min-height:0;display:flex;flex-direction:column;justify-content:flex-start;gap:0;}
-  .eos-row{display:flex;align-items:baseline;gap:2px;padding:1px 0;font-size:clamp(.58rem,2.6vw,.68rem);line-height:1.25;}
-  .eos-pos{flex:0 0 1.8em;text-align:right;color:var(--dim);padding-right:2px;}
-  .eos-name{flex:0 0 auto;color:var(--amber);letter-spacing:.3px;white-space:nowrap;}
-  .eos-fill{flex:1 1 auto;overflow:hidden;color:var(--dim);white-space:nowrap;padding:0 2px;}
-  .eos-fill::before{content:'·················································';}
-  .eos-val{flex:0 0 auto;color:var(--text);white-space:nowrap;}
-  .eos-tag{flex:0 0 auto;font-size:clamp(.5rem,2.2vw,.56rem);color:var(--amber);letter-spacing:.5px;padding-left:2px;}
-  .eos-row.you .eos-name,.eos-row.you .eos-val{color:var(--amber);}
-  .eos-rows .eos-row.you{background:rgba(231,200,121,.07);}
-  .eos-you-box{flex:0 0 auto;border:1px solid var(--amber);border-radius:3px;padding:3px 6px;margin-top:2px;}
-  .eos-card{flex:0 0 auto;width:100%;aspect-ratio:16/9;min-height:0;display:flex;align-items:center;justify-content:center;
-    padding:2px;border:1px solid var(--amber);border-radius:4px;background:#000;overflow:hidden;}
-  .eos-card img{width:100%;height:100%;object-fit:cover;display:block;}
-  .eos-btns{flex:0 0 auto;display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:2px;}
+  /* === END-OF-GAME — All Time Rankings + player banner + rank artwork === */
+  .eos{flex:1 1 auto;display:flex;flex-direction:column;gap:0;min-height:0;overflow:hidden;}
+  .eos-rankings{flex:0 1 auto;min-height:0;display:flex;flex-direction:column;overflow:hidden;}
+  .eos-rankings-head{flex:0 0 auto;display:flex;align-items:center;gap:clamp(4px,2vw,10px);padding:0 0 5px;}
+  .eos-rankings-head h2{flex:0 0 auto;margin:0;font-family:"Didot","Bodoni MT","Playfair Display",Georgia,serif;
+    font-size:clamp(.56rem,2.5vw,.7rem);font-weight:700;color:var(--amber);letter-spacing:clamp(2px,.8vw,3px);
+    white-space:nowrap;text-transform:uppercase;}
+  .eos-orn-line{flex:1 1 auto;height:1px;background:linear-gradient(to var(--tdir,right),transparent,var(--amber));}
+  .eos-orn-line.r{background:linear-gradient(to left,transparent,var(--amber));}
+  .eos-lb-wrap{flex:1 1 auto;min-height:0;overflow:hidden;border:1px solid var(--amber);}
+  .eos-lb{width:100%;border-collapse:collapse;table-layout:fixed;}
+  .eos-lb th,.eos-lb td{padding:clamp(1px,.6vw,3px) clamp(4px,1.8vw,8px);
+    border-bottom:1px solid rgba(231,200,121,.28);vertical-align:middle;}
+  .eos-lb th{font-family:"Didot","Bodoni MT","Playfair Display",Georgia,serif;
+    font-size:clamp(.46rem,2vw,.56rem);font-weight:700;color:var(--amber);letter-spacing:1.5px;
+    background:transparent;position:static;text-transform:uppercase;}
+  .eos-lb tr:last-child td,.eos-lb tr:last-child th{border-bottom:none;}
+  .eos-lb tbody tr.you td{background:rgba(231,200,121,.08);}
+  .eos-lb .pos{width:14%;text-align:center;color:var(--text);font-size:clamp(.5rem,2.2vw,.62rem);}
+  .eos-lb .rank-col{width:46%;}
+  .eos-lb .rank-inner{display:flex;align-items:center;gap:clamp(3px,1.2vw,6px);min-width:0;}
+  .eos-lb .rank-icon{flex:0 0 clamp(11px,3.2vw,15px);width:clamp(11px,3.2vw,15px);height:clamp(11px,3.2vw,15px);
+    color:var(--amber);display:block;}
+  .eos-lb .rank-name{font-family:"Didot","Bodoni MT","Playfair Display",Georgia,serif;
+    font-size:clamp(.48rem,2.15vw,.6rem);color:var(--amber);letter-spacing:.3px;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-transform:uppercase;}
+  .eos-lb .score{width:40%;text-align:right;color:var(--text);font-size:clamp(.5rem,2.2vw,.62rem);white-space:nowrap;}
+  .eos-divider{flex:0 0 auto;display:flex;align-items:center;gap:clamp(4px,2vw,10px);padding:clamp(3px,1.2vw,6px) 0;}
+  .eos-divider::before,.eos-divider::after{content:'';flex:1 1 auto;height:1px;background:var(--amber);}
+  .eos-divider-star{flex:0 0 auto;color:var(--amber);font-size:clamp(.42rem,1.8vw,.52rem);line-height:1;}
+  .eos-banner{flex:0 0 auto;text-align:center;padding:0 2px clamp(4px,1.5vw,8px);
+    font-family:"Didot","Bodoni MT","Playfair Display",Georgia,serif;
+    font-size:clamp(.78rem,3.8vw,1.12rem);font-weight:700;color:var(--amber);letter-spacing:clamp(.5px,.3vw,1px);
+    line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-transform:uppercase;}
+  .eos-art{flex:1 1 auto;min-height:0;width:100%;display:flex;align-items:flex-end;justify-content:center;overflow:hidden;}
+  .eos-art img{width:100%;max-height:100%;height:auto;object-fit:contain;object-position:bottom center;display:block;
+    filter:brightness(1.1);}
+  .eos-btns{flex:0 0 auto;display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:clamp(4px,1.5vw,8px);}
   .eos-btns button{font-size:clamp(.66rem,2.8vw,.74rem);padding:9px 4px;letter-spacing:.5px;}
 
   /* === EVENT POPUP — locked standard: full-bleed left art (see docs/ui-standards/popup.png) === */
@@ -695,14 +703,60 @@ if (typeof document !== "undefined") {
     }catch(e){ return null; }
   }
   function highscores(){ try{ return JSON.parse(localStorage.getItem(HS_KEY))||[]; }catch(e){ return []; } }
+  function sortHighscores(hs){
+    return hs.slice().sort((a, b) => b.worth - a.worth || String(a.date || "").localeCompare(String(b.date || "")));
+  }
   function pushScore(score, worth){
     const hs = highscores();
     const entry = {score, worth, date:new Date().toISOString().slice(0,10)};
     hs.push(entry);
-    hs.sort((a,b)=>b.worth-a.worth);
-    const pos = hs.indexOf(entry) + 1; // exact-ref find works even with duplicate values
-    localStorage.setItem(HS_KEY, JSON.stringify(hs.slice(0,10).map(({score:s,worth:w,date:d})=>({score:s,worth:w,date:d}))));
-    return pos;
+    const sorted = sortHighscores(hs);
+    const placement = sorted.findIndex(e => e === entry) + 1;
+    localStorage.setItem(HS_KEY, JSON.stringify(sorted.map(({score:s, worth:w, date:d}) => ({score:s, worth:w, date:d}))));
+    return { placement, entry };
+  }
+  function scoreEntryMatch(a, b){
+    return a && b && a.worth === b.worth && a.score === b.score && a.date === b.date;
+  }
+  function defaultLeaderboardRows(){
+    return [...RANKS].slice().reverse().map(rank => ({
+      rank,
+      worth: minWorthForRank(RANKS.indexOf(rank)),
+      isDefault: true,
+    }));
+  }
+  function buildTop11Leaderboard(hs){
+    if (!hs.length) return defaultLeaderboardRows();
+    return sortHighscores(hs).slice(0, 11).map(entry => ({
+      rank: getRank(entry.worth),
+      worth: entry.worth,
+      isDefault: false,
+      entry,
+    }));
+  }
+  const RANK_ICON_SVG = {
+    "Big Daddy J": '<path fill="currentColor" d="M4 17h16l-2-6-3 2-3-4-3 4-3-2-2 6z"/><path fill="currentColor" d="M6 17v2h12v-2"/>',
+    "Godfather": '<path fill="currentColor" d="M12 3l2.6 5.8L21 10l-4.5 4.1L18 21l-6-3.2L6 21l1.5-6.9L3 10l6.4-1.2L12 3z"/>',
+    "Underboss": '<path fill="currentColor" d="M12 4c-3 2-6 4-7 8 2-1 4-1 5 0-1-3 1-5 2-6 1 1 3 3 2 6 1-1 3-1 5 0-1-4-4-6-7-8z"/><path fill="currentColor" d="M5 14c1 2 3 4 7 4s6-2 7-4"/>',
+    "Crew Boss": '<path fill="currentColor" d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/><path fill="currentColor" d="M12 8.5l1.8 3.6 4 .6-2.9 2.8.7 4-3.6-1.9-3.6 1.9.7-4-2.9-2.8 4-.6L12 8.5z"/>',
+    "Racketeer": '<ellipse fill="currentColor" cx="12" cy="17" rx="9" ry="2"/><path fill="currentColor" d="M5 17c0-5 2-8 7-8s7 3 7 8"/><path fill="currentColor" d="M7 11c1-2 3-3 5-3s4 1 5 3"/>',
+    "Wise Guy": '<path fill="currentColor" d="M4 10h3v8H4z"/><path fill="currentColor" d="M7 10h2l1 2 2-2h2l-3 4 2 4h-2l-2-2-1 2H7l2-4-2-4z"/><path fill="currentColor" d="M17 10h3v8h-3z"/>',
+    "Rum Runner": '<path fill="currentColor" d="M3 14h18l-2 4H5l-2-4z"/><path fill="currentColor" d="M6 14l2-5h8l2 5"/><path fill="currentColor" d="M10 9V6h4v3"/>',
+    "Bootlegger": '<rect fill="currentColor" x="9" y="4" width="6" height="3" rx="1"/><path fill="currentColor" d="M8 7h8v2c0 4-1.5 7-4 9-2.5-2-4-5-4-9V7z"/>',
+    "Hustler": '<path fill="currentColor" d="M7 8c0-2 2-3.5 5-3.5S17 6 17 8c0 3-2 5-5 7-3-2-5-4-5-7z"/><path fill="currentColor" d="M10 14h4v2h-4z"/>',
+    "Pickpocket": '<path fill="currentColor" d="M8 10c0-2 1.5-3.5 4-3.5s4 1.5 4 3.5c0 2.5-1.5 4.5-4 6.5C9.5 14.5 8 12.5 8 10z"/><path fill="currentColor" d="M5 12c1 1 2 2 4 2"/>',
+    "Nobody": '<ellipse fill="currentColor" cx="12" cy="18" rx="7" ry="1.5"/><path fill="currentColor" d="M6 14c1-3 3-5 6-5s5 2 6 5"/>',
+  };
+  function rankIconSvg(rank){
+    const paths = RANK_ICON_SVG[rank] || RANK_ICON_SVG["Nobody"];
+    return `<svg class="rank-icon" viewBox="0 0 24 24" aria-hidden="true">${paths}</svg>`;
+  }
+  function mkEosLbRow(row, pos, isYou){
+    return `<tr${isYou ? ' class="you"' : ""}>
+      <td class="pos">${pos}</td>
+      <td class="rank-col"><div class="rank-inner">${rankIconSvg(row.rank)}<span class="rank-name">${row.rank}</span></div></td>
+      <td class="score">${money(row.worth)}</td>
+    </tr>`;
   }
   function saveLedger(){
     try { localStorage.setItem(LEDGER_KEY, JSON.stringify(ledger)); }
@@ -767,7 +821,7 @@ if (typeof document !== "undefined") {
     const tag = isYou ? `<span class="eos-tag">← YOU</span>` : '';
     return `<div class="eos-row${isYou ? ' you' : ''}">
       <span class="eos-pos">${i + 1}.</span>
-      <span class="eos-name">${getRank(h.score).toUpperCase()}</span>
+      <span class="eos-name">${getRank(h.worth).toUpperCase()}</span>
       <span class="eos-fill"></span>
       <span class="eos-val">${money(h.worth)}</span>${tag}</div>`;
   }
@@ -934,7 +988,7 @@ if (typeof document !== "undefined") {
   function renderScores(){
     document.getElementById("crt").classList.remove("title-mode");
     document.getElementById("crt").classList.add("game-mode");
-    const hs = highscores().slice(0, 10);
+    const hs = highscores().slice(0, 11);
     const rows = hs.length
       ? hs.map((h, i) => mkScoreRow(h, i, false)).join("")
       : `<div class="scores-empty">No finished runs yet. The streets are waiting.</div>`;
@@ -1487,7 +1541,9 @@ if (typeof document !== "undefined") {
   /* ---------- game over ---------- */
   function endGame(reason){
     S.over=true; S.overReason=reason||`Your month is over. Whatever you made, it's going to have to be enough.`;
-    S.placement = pushScore(classicScore(S), netWorth(S));
+    const result = pushScore(classicScore(S), netWorth(S));
+    S.placement = result.placement;
+    S.scoreEntry = result.entry;
     checkEndAchievements();
     save();
     saveLedger();
@@ -1495,37 +1551,39 @@ if (typeof document !== "undefined") {
     render();
   }
   function renderGameOver(){
-    const worth=netWorth(S), score=classicScore(S), rank=getRank(score);
-    const hs=highscores();
-    const placement=S.placement||1;
-    const inTop10=placement<=10 && hs.length>0;
+    const worth = netWorth(S), rank = getRank(worth);
+    let placement = S.placement;
+    if (!placement && S.scoreEntry) {
+      placement = sortHighscores(highscores()).findIndex(e => scoreEntryMatch(e, S.scoreEntry)) + 1;
+    }
+    if (!placement) placement = 1;
+    const top11 = buildTop11Leaderboard(highscores());
+    const rows = top11.map((row, i) => {
+      const isYou = !row.isDefault && scoreEntryMatch(row.entry, S.scoreEntry);
+      return mkEosLbRow(row, i + 1, isYou);
+    }).join("");
 
-    const mkRow=(h,i,isYou)=>mkScoreRow(h,i,isYou);
-
-    const rows=hs.map((h,i)=>mkRow(h,i,inTop10&&i===placement-1)).join('');
-    const playerRow=inTop10?'':
-      `<div class="eos-you-box"><div class="eos-row you">
-        <span class="eos-pos">${placement}.</span>
-        <span class="eos-name">${rank.toUpperCase()}</span>
-        <span class="eos-fill"></span>
-        <span class="eos-val">${money(worth)}</span>
-        <span class="eos-tag">← YOU</span></div></div>`;
-
-    app.innerHTML=`<div class="eos">
-      <div class="eos-score-head">
-        <div class="eos-title">FINAL SCORE</div>
-        <div class="eos-amount-wrap">
-          <img class="eos-gun" src="assets/eos-tommy-left.png" alt="" aria-hidden="true">
-          <div class="eos-amount">${money(worth)}</div>
-          <img class="eos-gun eos-gun-r" src="assets/eos-tommy-left.png" alt="" aria-hidden="true">
+    app.innerHTML = `<div class="eos">
+      <div class="eos-rankings">
+        <div class="eos-rankings-head">
+          <span class="eos-orn-line"></span>
+          <h2>All Time Rankings</h2>
+          <span class="eos-orn-line r"></span>
         </div>
-        <hr class="eos-rule">
+        <div class="eos-lb-wrap">
+          <table class="eos-lb">
+            <thead><tr>
+              <th class="pos">Pos</th>
+              <th class="rank-col">Rank</th>
+              <th class="score">Score</th>
+            </tr></thead>
+            <tbody>${rows}</tbody>
+          </table>
+        </div>
       </div>
-      <div class="eos-scores">
-        <div class="eos-hs-header">— ALL TIME HIGH SCORES —</div>
-        <div class="eos-rows">${rows}${playerRow}</div>
-      </div>
-      <div class="eos-card">
+      <div class="eos-divider"><span class="eos-divider-star" aria-hidden="true">✦</span></div>
+      <div class="eos-banner">(${placement}) ${rank} ${money(worth)}</div>
+      <div class="eos-art">
         <img src="cards/${rankCard(rank)}.png" alt="${rank}">
       </div>
       <div class="eos-btns">
@@ -1533,8 +1591,8 @@ if (typeof document !== "undefined") {
         <button id="menu">MAIN MENU</button>
       </div>
     </div>`;
-    document.getElementById("again").onclick=()=>{ localStorage.removeItem(SAVE_KEY); startNewGame(); render(); };
-    document.getElementById("menu").onclick=()=>{ S=null; render(); };
+    document.getElementById("again").onclick = ()=>{ localStorage.removeItem(SAVE_KEY); startNewGame(); render(); };
+    document.getElementById("menu").onclick = ()=>{ S=null; render(); };
   }
 
 

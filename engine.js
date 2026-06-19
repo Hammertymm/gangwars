@@ -167,17 +167,30 @@ function rollMarket(location){
 function spaceUsed(inv){ return Object.values(inv).reduce((a,b)=>a+b,0); }
 function spaceLeft(s){ return s.space - spaceUsed(s.inventory); }
 function netWorth(s){ return s.cash + s.bank - s.debt; }
-const PERFECT_SCORE_NET_WORTH = 45000000;
+const PERFECT_SCORE_NET_WORTH = 50000000;
 function classicScore(s){
   const nw = Math.max(0, netWorth(s));
-  return Math.max(0, Math.min(100, Math.round(100 * Math.sqrt(nw / PERFECT_SCORE_NET_WORTH))));
+  return Math.max(0, Math.min(100, Math.round(100 * nw / PERFECT_SCORE_NET_WORTH)));
 }
 
 const RANKS = [
   'Nobody','Pickpocket','Hustler','Rum Runner','Bootlegger',
   'Racketeer','Wise Guy','Crew Boss','Underboss','Godfather','Big Daddy J',
 ];
-function getRank(score){ return RANKS[Math.min(10, Math.floor(Math.max(0, score) / 10))]; }
+const RANK_MIN_WORTH = [
+  0, 5000000, 10000000, 15000000, 20000000, 25000000,
+  30000000, 35000000, 40000000, 45000000, 50000000,
+];
+function getRank(worth){
+  const nw = Math.max(0, worth);
+  for (let i = RANKS.length - 1; i >= 0; i--) {
+    if (nw >= RANK_MIN_WORTH[i]) return RANKS[i];
+  }
+  return RANKS[0];
+}
+function minWorthForRank(rankIndex){
+  return RANK_MIN_WORTH[Math.min(10, Math.max(0, rankIndex))];
+}
 
 /** Feds fight kill chance — capped so gun stacking cannot trivialize encounters. */
 function fightKillChance(guns){
@@ -442,7 +455,7 @@ if (typeof module !== "undefined") {
     CONFIG, GOODS, GOOD, LOCATIONS, HOME, LOCATION_FLAVOR, TERRITORY_MODIFIERS,
     FAM_ALCOHOL, FAM_LUXURY, FAM_CRIMINAL, RARE_EVENTS, SUPER_RARE_EVENTS, GODLIKE_EVENTS, GOLDEN_GODLIKE,
     GODLIKE_CHANCE, GOLDEN_GODLIKE_CHANCE, RARE_EVENT_CHANCE, SUPER_RARE_EVENT_CHANCE, DEFAULT_EVENT_RATES,
-    rollMarket, applyTerritoryPrice, marketPriceBounds, spaceUsed, spaceLeft, netWorth, classicScore, PERFECT_SCORE_NET_WORTH, getRank, RANKS,
+    rollMarket, applyTerritoryPrice, marketPriceBounds, spaceUsed, spaceLeft, netWorth, classicScore, PERFECT_SCORE_NET_WORTH, getRank, minWorthForRank, RANK_MIN_WORTH, RANKS,
     applyDailyInterest, buy, sell, bankRepay, bankBorrow, bankDeposit, bankWithdraw,
     avgCost, profitPct, bankDepositLimit, grantDebtInterestFreeze, newGame, migrateSave, resolveTravelMarket,
     fightKillChance, fedsCounterHitChance, fedsApplyFightKill, gunEventCost,
