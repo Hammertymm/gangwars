@@ -77,10 +77,10 @@ Historical figures — Capone, Luciano, Rothstein, Armstrong and others — trig
 A major city event drives all prices in one district to 3× normal for a single day. Babe Ruth. Lindbergh. The Prince of Wales.
 
 **Godlike (~1 in 200 runs):**
-??????????
+Its a Mystery 👻
 
 **Golden Godlike (~1 in 1,000 runs):**
-??????????
+Its also a Mystery 👻
 
 -----
 
