@@ -90,9 +90,8 @@ function ledgerShell(baseAsset, overlayHtml, hitHtml, backRect) {
 }
 
 /* ── CATEGORY PAGE — unified template shell ─────────────────────────────── */
-function categoryShell(catId, cat, counterText, rows, canScroll) {
+function categoryShell(catId, cat, counterText, rows) {
   const img = ledgerAssetPath(LEDGER_HEADER_IMAGE[catId]);
-  const scrollCls = canScroll ? " scroll" : "";
   return `<div class="play ledger-play ledger-template-page">
     <div class="ledger-tpl-inner">
       <img class="ledger-tpl-img" src="${img}" alt="" decoding="async">
@@ -103,7 +102,7 @@ function categoryShell(catId, cat, counterText, rows, canScroll) {
         <div class="ledger-tpl-divider"><span class="ledger-tpl-ornament">&#x2B29;&#x25C6;&#x2B29;</span></div>
       </div>
       <div class="ledger-tpl-separator"></div>
-      <div class="ledger-tpl-list${scrollCls}">${rows}</div>
+      <div class="ledger-tpl-list">${rows}</div>
       <button type="button" class="ledger-tpl-back" id="ledgerBack">BACK</button>
     </div>
   </div>`;
@@ -174,9 +173,8 @@ const LedgerUI = {
     if (!cat) { ctx.onBackHome(); return; }
     const found       = countUnlocked(ctx.ledger, catId);
     const counterText = categoryCounterText(catId, found, cat.achievements.length);
-    const canScroll   = catId === "general";
     const rows        = buildListRows(cat, ctx.ledger, ctx.focusId);
-    app.innerHTML     = categoryShell(catId, cat, counterText, rows, canScroll);
+    app.innerHTML     = categoryShell(catId, cat, counterText, rows);
     document.getElementById("ledgerBack").onclick = ctx.onBackCategory;
     if (ctx.focusId && isUnlocked(ctx.ledger, ctx.focusId) && !isRevealed(ctx.ledger, ctx.focusId)) {
       const row = app.querySelector(`[data-aid="${ctx.focusId}"]`);
@@ -188,7 +186,8 @@ const LedgerUI = {
       }
     } else if (ctx.focusId) {
       const row = app.querySelector(`[data-aid="${ctx.focusId}"]`);
-      if (row) row.scrollIntoView({ block: "nearest" });
+      const list = app.querySelector(".ledger-tpl-list");
+      if (row && list) row.scrollIntoView({ block: "nearest" });
     }
   },
 

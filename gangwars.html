@@ -272,11 +272,12 @@
     pointer-events:none;white-space:nowrap;color:#9a8860;letter-spacing:.08em;
     font-size:clamp(8px,2.9cqw,13px);}
 
-  /* ── CATEGORY TEMPLATE: full-height unified page ───────────────────────── */
+  /* ── CATEGORY TEMPLATE: header + scrollable list + pinned back ─────────── */
+  .ledger-play.ledger-template-page{overflow:hidden;}
   .ledger-template-page{display:flex;flex-direction:column;align-items:center;
-    min-height:100dvh;background:#0d0b07;}
+    flex:1 1 auto;min-height:0;width:100%;background:#0d0b07;}
   .ledger-tpl-inner{display:flex;flex-direction:column;width:100%;
-    max-width:calc(100dvh * 473 / 1024);min-height:100dvh;background:#0d0b07;
+    max-width:calc(100dvh * 473 / 1024);flex:1 1 auto;min-height:0;background:#0d0b07;
     container-type:inline-size;}
   .ledger-tpl-img{display:block;width:100%;height:auto;flex-shrink:0;}
   .ledger-tpl-header{text-align:center;padding:1.8cqw 0 0;flex-shrink:0;}
@@ -290,8 +291,7 @@
   .ledger-tpl-ornament{font-size:2.4cqw;color:#7a6030;letter-spacing:.3em;}
   .ledger-tpl-counter{font-size:2.9cqw;letter-spacing:.15em;color:#9a8050;padding-bottom:1.2cqw;}
   .ledger-tpl-separator{height:1px;background:#2a2010;margin:0 3.8cqw;flex-shrink:0;}
-  .ledger-tpl-list{width:100%;flex:1 0 auto;}
-  .ledger-tpl-list.scroll{overflow-y:auto;-webkit-overflow-scrolling:touch;}
+  .ledger-tpl-list{width:100%;flex:1 1 auto;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;}
   .ledger-tpl-back{display:block;width:calc(100% - 7.6cqw);margin:2.2cqw 3.8cqw 3cqw;
     padding:2.6cqw 0;background:transparent;border:1px solid #5a4820;border-radius:8px;
     color:#c9a85a;font-family:inherit;font-size:3.2cqw;letter-spacing:.2em;
@@ -494,10 +494,13 @@ if (typeof document !== "undefined") {
     updateMuteButtons();
   }
   function updateMuteButtons(){
-    const muted = A() && A().isMuted();
-    const label = muted ? "Unmute sound" : "Mute sound";
-    const icon = muted ? "\u{1F507}" : "\u{1F50A}";
+    const enabled = A() && A().isEnabled();
     document.querySelectorAll("[data-audio-mute]").forEach(btn => {
+      btn.hidden = !enabled;
+      if (!enabled) return;
+      const muted = A().isMuted();
+      const label = muted ? "Unmute sound" : "Mute sound";
+      const icon = muted ? "\u{1F507}" : "\u{1F50A}";
       btn.textContent = icon;
       btn.setAttribute("aria-label", label);
     });
@@ -507,8 +510,9 @@ if (typeof document !== "undefined") {
     el.dataset.audioMute = "1";
     el.onclick = (e) => {
       e.stopPropagation();
+      if (!A() || !A().isEnabled()) return;
       audioUnlock();
-      if (A()) A().setMuted(!A().isMuted());
+      A().setMuted(!A().isMuted());
       updateMuteButtons();
     };
     updateMuteButtons();
@@ -517,6 +521,7 @@ if (typeof document !== "undefined") {
   app.addEventListener("click", (e) => {
     const btn = e.target.closest("button");
     if (!btn || btn.disabled || btn.dataset.audioMute) return;
+    if (!A() || !A().isEnabled()) return;
     audioUnlock();
     audioPlay("sfx.ui.buttonTap");
   }, true);

@@ -4,6 +4,8 @@
 
 const AUDIO_SETTINGS_KEY = 'gw:audio';
 const AUDIO_BASE = 'assets/audio/';
+/** Master switch — set true when sound assets are tuned and ready. */
+const AUDIO_ENABLED = false;
 const MAX_SFX = 4;
 const MUSIC_FADE_MS = 300;
 const DEFAULT_DUCK = 0.45;
@@ -256,6 +258,7 @@ function init() {
 }
 
 function unlock() {
+  if (!AUDIO_ENABLED) return;
   init();
   if (audioUnlocked) return;
   audioUnlocked = true;
@@ -271,6 +274,7 @@ function unlock() {
 }
 
 function play(id, opts) {
+  if (!AUDIO_ENABLED) return;
   init();
   if (!isBrowser() || !audioUnlocked) return;
   const entry = catalogEntry(id);
@@ -292,6 +296,7 @@ function play(id, opts) {
 }
 
 function playMusic(id, opts) {
+  if (!AUDIO_ENABLED) return;
   init();
   if (!isBrowser() || !audioUnlocked) return;
   const entry = catalogEntry(id);
@@ -385,12 +390,17 @@ function getSettings() {
   return { ...settings };
 }
 
+function isEnabled() {
+  return AUDIO_ENABLED;
+}
+
 function isMuted() {
   init();
   return settings.muted;
 }
 
 function preload(id) {
+  if (!AUDIO_ENABLED) return;
   init();
   if (!isBrowser()) return;
   const entry = catalogEntry(id);
@@ -404,6 +414,7 @@ function onScene(sceneId) {
   init();
   if (currentScene === sceneId) return;
   currentScene = sceneId;
+  if (!AUDIO_ENABLED) return;
   const musicId = SCENE_MUSIC[sceneId];
   if (musicId) playMusic(musicId);
   else stopMusic(MUSIC_FADE_MS);
@@ -413,7 +424,7 @@ function onScene(sceneId) {
  * @param {{ tier?: string, anomalyType?: string, eventId?: string }} ctx
  */
 function eventStinger(ctx) {
-  if (!ctx) return;
+  if (!AUDIO_ENABLED || !ctx) return;
   if (ctx.tier === 'golden') return play('sfx.events.stinger.golden');
   if (ctx.tier === 'godlike') return play('sfx.events.stinger.godlike');
   if (ctx.tier === 'superRare') return play('sfx.events.stinger.superRare');
@@ -450,6 +461,7 @@ const GangWarsAudio = {
   setVolume,
   getSettings,
   isMuted,
+  isEnabled,
   preload,
   onScene,
   eventStinger,
