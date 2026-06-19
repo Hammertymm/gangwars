@@ -282,7 +282,7 @@
     max-width:calc(100dvh * 473 / 1024);flex:1 1 auto;min-height:0;background:#0d0b07;
     container-type:inline-size;}
   .ledger-tpl-img{display:block;width:100%;height:auto;flex-shrink:0;}
-  .ledger-tpl-header{text-align:center;padding:1.8cqw 0 0;flex-shrink:0;}
+  .ledger-tpl-header{text-align:center;padding:0;flex-shrink:0;}
   .ledger-tpl-title{font-size:7.2cqw;letter-spacing:.22em;color:#d4af37;
     font-weight:700;line-height:1;}
   .ledger-tpl-divider{display:flex;align-items:center;justify-content:center;
@@ -1737,7 +1737,7 @@ if (typeof document !== "undefined") {
 </script>
 <script>
   if ('serviceWorker' in navigator && !/^127\.0\.0\.1$|^localhost$/i.test(location.hostname)) {
-    navigator.serviceWorker.register('./sw.js?v=69').then(reg => {
+    navigator.serviceWorker.register('./sw.js?v=70').then(reg => {
       reg.update();
       reg.addEventListener('updatefound', () => {
         const worker = reg.installing;
