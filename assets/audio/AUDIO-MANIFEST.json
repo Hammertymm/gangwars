@@ -1,0 +1,206 @@
+[
+  {
+    "path": "assets/audio/music/dock-ambient.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/music/end-neutral.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/music/end-triumph.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/music/feds-tension.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/music/golden-shower.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/music/kitty-kat-club.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/music/ledger-ambient.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/music/run-ambient.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/music/title-speakeasy-jazz.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/sfx/achievement/card-reveal.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/sfx/achievement/category-complete.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/sfx/achievement/crime-lord.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/sfx/achievement/found.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/sfx/combat/death-sting.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/sfx/combat/empty-click.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/sfx/combat/footsteps-flee.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/sfx/combat/gunshot.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/sfx/combat/punch-oof-01.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/sfx/combat/punch-oof-02.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/sfx/combat/siren.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/sfx/combat/tommy-burst.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/sfx/economy/big-sale.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/sfx/economy/bills-shuffle.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/sfx/economy/cash-register.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/sfx/economy/coins-buy.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/sfx/economy/debt-paid.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/sfx/economy/error-deny.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/sfx/economy/loan-taken.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/sfx/economy/vault-close.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/sfx/end/rank-reveal.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/sfx/end/run-complete.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/sfx/events/bribe-paid.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/sfx/events/dead-drop.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/sfx/events/gun-offer.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/sfx/events/modal-close.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/sfx/events/modal-open.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/sfx/events/mugging.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/sfx/events/stash-upgrade.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/sfx/events/stinger-flood.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/sfx/events/stinger-godlike.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/sfx/events/stinger-golden.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/sfx/events/stinger-rare.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/sfx/events/stinger-spike.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/sfx/events/stinger-super-rare.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/sfx/events/stinger-surge.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/sfx/ledger/page-turn.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/sfx/travel/arrival.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/sfx/travel/day-tick.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/sfx/travel/engine-start.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/sfx/travel/tires-screech.ogg",
+    "placeholder": true
+  },
+  {
+    "path": "assets/audio/sfx/ui/button-tap.ogg",
+    "placeholder": true
+  }
+]

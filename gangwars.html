@@ -228,6 +228,15 @@
   .title-hit-cont{left:50.847cqw;top:79.688cqh;width:45.339cqw;height:8.301cqh;}
   .title-hit-ledger{left:3.814cqw;top:89.062cqh;width:42.797cqw;height:8.594cqh;}
   .title-hit-scores{left:51.271cqw;top:89.062cqh;width:44.703cqw;height:8.594cqh;}
+  .title-hit-mute{left:88cqw;top:2.5cqh;width:9cqw;height:6cqh;}
+  .audio-mute-btn{font-family:inherit;background:transparent;color:var(--amber);border:1px solid var(--amber);
+    padding:2px 7px;font-size:clamp(.62rem,2.8vw,.72rem);letter-spacing:0;cursor:pointer;border-radius:4px;
+    line-height:1.2;min-height:0;}
+  .audio-mute-btn:active{background:var(--amber);color:#1a1206;}
+  .audio-mute-btn:focus-visible{outline:2px solid var(--amber);outline-offset:2px;}
+  #crt.game-mode .masthead{position:relative;padding-right:36px;}
+  #crt.game-mode .masthead .audio-mute-btn{position:absolute;right:0;top:50%;transform:translateY(-50%);
+    padding:1px 5px;font-size:.62rem;}
   .save-err{text-align:center;color:var(--red);font-size:.72rem;padding:1px 0;}
 
   /* CRIME LEDGER v63 — unified template
@@ -450,6 +459,7 @@
 <div id="portrait-root">
 <div id="crt">
   <div class="masthead">
+    <button type="button" class="audio-mute-btn" id="audio-mute" data-audio-mute aria-label="Toggle sound">&#128266;</button>
     <h1 class="serif">GANG WARS</h1>
   </div>
   <div id="app"></div>
@@ -460,6 +470,7 @@
 <script src="ledger.js"></script>
 <script src="ledger-blueprint.js"></script>
 <script src="ledger-ui.js"></script>
+<script src="audio.js"></script>
 <script>
 if (typeof document !== "undefined") {
 (function lockPortrait(){
@@ -475,6 +486,42 @@ if (typeof document !== "undefined") {
 (function(){
   const app = document.getElementById("app");
   const SAVE_KEY = "gw:save", HS_KEY = "gw:highscores", LEDGER_KEY = "gw:ledger";
+  const A = () => window.GangWarsAudio;
+  function audioUnlock(){ if (A()) A().unlock(); }
+  function audioPlay(id, opts){ if (A()) A().play(id, opts); }
+  function syncSceneAudio(scene){
+    if (A()) A().onScene(scene);
+    updateMuteButtons();
+  }
+  function updateMuteButtons(){
+    const muted = A() && A().isMuted();
+    const label = muted ? "Unmute sound" : "Mute sound";
+    const icon = muted ? "\u{1F507}" : "\u{1F50A}";
+    document.querySelectorAll("[data-audio-mute]").forEach(btn => {
+      btn.textContent = icon;
+      btn.setAttribute("aria-label", label);
+    });
+  }
+  function bindMuteButton(el){
+    if (!el) return;
+    el.dataset.audioMute = "1";
+    el.onclick = (e) => {
+      e.stopPropagation();
+      audioUnlock();
+      if (A()) A().setMuted(!A().isMuted());
+      updateMuteButtons();
+    };
+    updateMuteButtons();
+  }
+  document.addEventListener("click", () => audioUnlock(), { once: true, passive: true });
+  app.addEventListener("click", (e) => {
+    const btn = e.target.closest("button");
+    if (!btn || btn.disabled || btn.dataset.audioMute) return;
+    audioUnlock();
+    audioPlay("sfx.ui.buttonTap");
+  }, true);
+  if (A()) A().init();
+  bindMuteButton(document.getElementById("audio-mute"));
   let S = null, modal = null;
   let ledgerView = null, ledgerViewCat = null, ledgerFocusId = null, ledgerReturn = null;
   let pendingUnlockQueue = [], pendingCompleteQueue = [];
@@ -574,6 +621,7 @@ if (typeof document !== "undefined") {
     return false;
   }
   function showAchievementFoundPopup(){
+    audioPlay("sfx.achievement.found");
     modal = function(){
       modal._achFlow = true;
       app.innerHTML = `<div class="modal"><div class="card ach-found-card" role="dialog" aria-modal="true">
@@ -763,6 +811,8 @@ if (typeof document !== "undefined") {
     catch(e) { /* storage full */ }
   }
   function startNewGame(){
+    audioPlay("sfx.events.modalClose");
+    if (A()) A().stopMusic();
     S = newGame(eventRollChances(ledger));
     migrateRunStats(S);
     save();
@@ -948,14 +998,16 @@ if (typeof document !== "undefined") {
     const crt = document.getElementById("crt");
     if (ledgerView && !modal){
       renderLedgerRoute();
+      syncSceneAudio("ledger");
       return;
     }
     crt.classList.remove("ledger-mode");
     if (modal){ crt.classList.remove("title-mode"); crt.classList.add("game-mode"); modal(); return; }
-    if (!S){ crt.classList.add("title-mode"); crt.classList.remove("game-mode"); renderTitle(); return; }
+    if (!S){ crt.classList.add("title-mode"); crt.classList.remove("game-mode"); renderTitle(); syncSceneAudio("title"); return; }
     crt.classList.remove("title-mode"); crt.classList.add("game-mode");
-    if (S.over){ renderGameOver(); return; }
+    if (S.over){ renderGameOver(); syncSceneAudio("end"); return; }
     renderMarket();
+    syncSceneAudio("market");
   }
 
   function renderTitle(){
@@ -965,6 +1017,7 @@ if (typeof document !== "undefined") {
         <div class="title-art">
           <img src="${TITLE_SCREEN}" width="472" height="1024" decoding="async" fetchpriority="high"
             alt="Gang Wars — Prohibition 1929">
+          <button type="button" class="title-hit title-hit-mute audio-mute-btn" id="title-audio-mute" data-audio-mute aria-label="Toggle sound">&#128266;</button>
           <button type="button" class="title-hit title-hit-new" id="new" aria-label="New Game"></button>
           <button type="button" class="title-hit title-hit-cont" id="cont" aria-label="Continue" ${saved?"":"disabled"}></button>
           <button type="button" class="title-hit title-hit-ledger" id="ledger" aria-label="Crime Ledger"></button>
@@ -972,6 +1025,9 @@ if (typeof document !== "undefined") {
         </div>
       </div>
     </div>`;
+    bindMuteButton(document.getElementById("title-audio-mute"));
+    bindMuteButton(document.getElementById("audio-mute"));
+    if (A()) A().preload("music.title");
     document.getElementById("new").onclick = ()=>{ startNewGame(); render(); maybeTutorial(); };
     document.getElementById("cont").onclick = ()=>{
       const v=load();
@@ -988,6 +1044,7 @@ if (typeof document !== "undefined") {
   function renderScores(){
     document.getElementById("crt").classList.remove("title-mode");
     document.getElementById("crt").classList.add("game-mode");
+    syncSceneAudio("scores");
     const hs = highscores().slice(0, 11);
     const rows = hs.length
       ? hs.map((h, i) => mkScoreRow(h, i, false)).join("")
@@ -1102,7 +1159,8 @@ if (typeof document !== "undefined") {
       document.getElementById("cancel").onclick=dismissModal;
       conf.onclick=()=>{
         const err = mode==="buy"?buy(S,id,qty):sell(S,id,qty);
-        if(err){ document.getElementById("terr").textContent=err; return; }
+        if(err){ document.getElementById("terr").textContent=err; audioPlay("sfx.economy.errorDeny"); return; }
+        audioPlay(mode==="buy"?"sfx.economy.coinsBuy":"sfx.economy.cashRegister");
         if (mode === "buy") recordBuy(S, id, qty);
         else {
           const avg = avgCost(S, id);
@@ -1168,9 +1226,11 @@ if (typeof document !== "undefined") {
         bindModalCard(app.querySelector(".card"));
         document.getElementById("back").onclick=()=>{ action=null; render(); };
         document.getElementById("ok").onclick=()=>{
-          if(qty<=0){ document.getElementById("berr").textContent="Enter an amount."; return; }
+          if(qty<=0){ document.getElementById("berr").textContent="Enter an amount."; audioPlay("sfx.economy.errorDeny"); return; }
           const err = a.fn(qty);
-          if(err){ document.getElementById("berr").textContent=err; return; }
+          if(err){ document.getElementById("berr").textContent=err; audioPlay("sfx.economy.errorDeny"); return; }
+          const bankSounds = { repay: "sfx.economy.debtPaid", borrow: "sfx.economy.loanTaken", deposit: "sfx.economy.bills", withdraw: "sfx.economy.bills" };
+          audioPlay(bankSounds[action]);
           if (action === 'borrow') recordBorrow(S);
           afterMarketAction(a.msg(qty));
           checkRunAchievements();
@@ -1218,7 +1278,11 @@ if (typeof document !== "undefined") {
     render();
   }
   function travelTo(dest){
+    audioPlay("sfx.travel.engineStart");
+    audioPlay("sfx.travel.dayTick");
     modal=null; S.location=dest; S.day+=1;
+    audioPlay("sfx.travel.arrival");
+    audioPlay("sfx.travel.screech");
     const eventsBefore = countEventAchievementsUnlocked(ledger);
     recordDistrictVisit(S, dest);
     recordSpaceChange(S);
@@ -1233,36 +1297,36 @@ if (typeof document !== "undefined") {
     if(golden && S.day===golden.day){
       unlockFromEvent('golden');
       const goldenImg=golden.img||'bigdaddy';
-      marketEvent=(next)=>showEvent(goldenImg, `<b>${golden.lines[0]}</b><br><br>${golden.lines[1]} Every price in the city is climbing.`, 'GOLDEN', next);
+      marketEvent=(next)=>{ if(A()) A().eventStinger({ tier: 'golden' }); showEvent(goldenImg, `<b>${golden.lines[0]}</b><br><br>${golden.lines[1]} Every price in the city is climbing.`, 'GOLDEN', next); };
     } else if(gk && S.day===gk.day){
       unlockFromEvent(gk.id);
       const gkImg=gk.img||'bigdaddy';
       if(dest===gk.district){
-        marketEvent=(next)=>showEvent(gkImg, `<b>${gk.lines[0]}</b><br><br>${gk.lines[1]}`, 'BIG DADDY J', next);
+        marketEvent=(next)=>{ if(A()) A().eventStinger({ tier: 'godlike' }); showEvent(gkImg, `<b>${gk.lines[0]}</b><br><br>${gk.lines[1]}`, 'BIG DADDY J', next); };
       } else {
-        marketEvent=(next)=>showEvent(gkImg, `<b>BIG DADDY J IS ACROSS TOWN</b><br><br>He's making moves in ${gk.district}. Every price there is climbing.`, 'NOTED', next);
+        marketEvent=(next)=>{ if(A()) A().eventStinger({ tier: 'godlike' }); showEvent(gkImg, `<b>BIG DADDY J IS ACROSS TOWN</b><br><br>He's making moves in ${gk.district}. Every price there is climbing.`, 'NOTED', next); };
       }
     } else if(sr && S.day===sr.day){
       unlockFromEvent(sr.id);
       const srImg=sr.img||'celeb';
       if(dest===sr.district){
-        marketEvent=(next)=>showEvent(srImg, `<b>${sr.lines[0]}</b><br><br>${sr.lines[1]} Every price in the district is climbing.`, "LET'S GO", next);
+        marketEvent=(next)=>{ if(A()) A().eventStinger({ tier: 'superRare' }); showEvent(srImg, `<b>${sr.lines[0]}</b><br><br>${sr.lines[1]} Every price in the district is climbing.`, "LET'S GO", next); };
       } else {
-        marketEvent=(next)=>showEvent(srImg, `<b>${sr.lines[0]}</b><br><br>${sr.lines[1]} Head to ${sr.district} for the action.`, 'NOTED', next);
+        marketEvent=(next)=>{ if(A()) A().eventStinger({ tier: 'superRare' }); showEvent(srImg, `<b>${sr.lines[0]}</b><br><br>${sr.lines[1]} Head to ${sr.district} for the action.`, 'NOTED', next); };
       }
     } else if(re && S.day===re.day){
       unlockFromEvent(re.id);
       const spikeGood=GOOD[re.commodity];
       const reImg=re.img||'intel';
       if(dest===re.district){
-        marketEvent=(next)=>showEvent(reImg, `<b>${re.lines[0]}</b><br><br>${re.lines[1]}`, 'INTERESTING', next);
+        marketEvent=(next)=>{ if(A()) A().eventStinger({ tier: 'rare' }); showEvent(reImg, `<b>${re.lines[0]}</b><br><br>${re.lines[1]}`, 'INTERESTING', next); };
       } else if(spikeGood){
-        marketEvent=(next)=>showEvent(reImg, `<b>${re.lines[0]}</b><br><br>${re.lines[1]} ${spikeGood.name} prices are surging in ${re.district}.`, 'NOTED', next);
+        marketEvent=(next)=>{ if(A()) A().eventStinger({ tier: 'rare' }); showEvent(reImg, `<b>${re.lines[0]}</b><br><br>${re.lines[1]} ${spikeGood.name} prices are surging in ${re.district}.`, 'NOTED', next); };
       }
     } else if(anomaly){
       const anomalyImg={spike:'shortage',surge:'frenzy',flood:'flood'};
       const body=pick(ANOMALY_BODIES[anomaly.type]).replace(/{ITEM}/g, anomaly.itemName);
-      marketEvent=(next)=>showEvent(anomalyImg[anomaly.type], body, 'NOTED', next);
+      marketEvent=(next)=>{ if(A()) A().eventStinger({ anomalyType: anomaly.type }); showEvent(anomalyImg[anomaly.type], body, 'NOTED', next); };
     }
 
     runTravelEvents(()=>{
@@ -1315,6 +1379,7 @@ if (typeof document !== "undefined") {
   /* Single-button event popup with split image/text layout */
   function showEvent(imgKey, body, btn, cb){
     modal=function(){
+      audioPlay("sfx.events.modalOpen");
       app.innerHTML=`<div class="modal"><div class="ev-popup" role="dialog" aria-modal="true">
         <div class="ev-left" style="background-image:url('${eventImgSrc(imgKey)}')" role="img" aria-label="Event illustration"></div>
         <div class="ev-right">
@@ -1322,7 +1387,7 @@ if (typeof document !== "undefined") {
           <div class="ev-acts"><button class="amber full" id="ok">${btn||'OK'}</button></div>
         </div>
       </div></div>`;
-      const advance = ()=>{ modal=null; modalEscape=null; cb(); };
+      const advance = ()=>{ audioPlay("sfx.events.modalClose"); modal=null; modalEscape=null; cb(); };
       document.getElementById("ok").onclick=advance;
       modalEscape = advance;
     };
@@ -1332,6 +1397,7 @@ if (typeof document !== "undefined") {
   /* Two-button choice popup (BUY/PASS style) */
   function showEventAsk(imgKey, body, yesLabel, onYes, noLabel, onNo){
     modal=function(){
+      audioPlay("sfx.events.modalOpen");
       app.innerHTML=`<div class="modal"><div class="ev-popup" role="dialog" aria-modal="true">
         <div class="ev-left" style="background-image:url('${eventImgSrc(imgKey)}')" role="img" aria-label="Event illustration"></div>
         <div class="ev-right">
@@ -1342,8 +1408,8 @@ if (typeof document !== "undefined") {
           </div>
         </div>
       </div></div>`;
-      const yes = ()=>{ modal=null; modalEscape=null; onYes(); };
-      const pass = ()=>{ modal=null; modalEscape=null; onNo(); };
+      const yes = ()=>{ audioPlay("sfx.events.modalClose"); modal=null; modalEscape=null; onYes(); };
+      const pass = ()=>{ audioPlay("sfx.events.modalClose"); modal=null; modalEscape=null; onNo(); };
       document.getElementById("yes").onclick=yes;
       document.getElementById("no").onclick=pass;
       modalEscape = pass;
@@ -1446,10 +1512,17 @@ if (typeof document !== "undefined") {
     if (S.day > 20) maxCops += 1;
     let cops = randInt(1, maxCops);
     let fightRound = 0;
+    let fedsAudioStarted = false;
     const bribeScale = S.day > 20 ? 1.5 : 1;
+    const fedsResolved = ()=>{ if (A()) { A().duckMusic(false); A().stopTensionMusic(); } };
     const draw=(msg)=>{
       modal=function(){
         const canFight=S.guns>0;
+        if (!fedsAudioStarted) {
+          audioPlay("sfx.combat.siren");
+          if (A()) { A().duckMusic(true); A().playMusic("music.fedsTension"); }
+          fedsAudioStarted = true;
+        }
         app.innerHTML=`<div class="modal"><div class="ev-popup" role="dialog" aria-modal="true">
           <div class="ev-left" style="background-image:url('${EV_IMG.feds}')" role="img" aria-label="The Feds"></div>
           <div class="ev-right">
@@ -1459,7 +1532,7 @@ if (typeof document !== "undefined") {
               ${msg?`<br><br><span style="color:var(--red)">${msg}</span>`:''}
             </div></div>
             <div class="ev-acts">
-              <button class="red full" id="fight" ${canFight?'':'disabled'}>FIGHT</button>
+              <button class="red full" id="fight"${canFight?'':' style="opacity:.32"'}>FIGHT</button>
               <button class="full" id="run">RUN</button>
               <button class="amber full" id="bribe">PAYOFF</button>
               ${!canFight?'<span class="ev-warn">No gun — can\'t fight back.</span>':''}
@@ -1468,18 +1541,22 @@ if (typeof document !== "undefined") {
         </div></div>`;
         document.getElementById("run").onclick=doRun;
         document.getElementById("bribe").onclick=doBribe;
-        const f=document.getElementById("fight"); if(canFight) f.onclick=doFight;
+        const f=document.getElementById("fight");
+        f.onclick=()=>{ if (canFight) doFight(); else audioPlay("sfx.combat.emptyClick"); };
         modalEscape = null;
       };
       render();
     };
-    const hit=()=>{ S.health-=1; if(S.health<=0){ endGame("The city has a short memory. By morning nobody will remember your name."); return true; } return false; };
+    const hit=()=>{ audioPlay("sfx.combat.punchOof", { variant: "random" }); S.health-=1; if(S.health<=0){ audioPlay("sfx.combat.deathSting"); endGame("The city has a short memory. By morning nobody will remember your name."); return true; } return false; };
     const doFight=()=>{
       fightRound++;
+      const copsBefore = cops;
       cops = fedsApplyFightKill(S, cops, fightRound);
       if (cops<=0){ const reward=randInt(3750,10000); S.cash+=reward;
         grantDebtInterestFreeze(S, 1);
         logMsg(`Beat the Feds, grabbed ${money(reward)}.`); modal=null;
+        audioPlay("sfx.combat.tommyBurst");
+        fedsResolved();
         const winV=pick([
           ["LAST MAN STANDING", `The smoke clears. The Feds don't get up. You do. The city has a long memory for days like this.`],
           ["ONE FOR THE PAPERS", `By evening the headlines had improved your reputation and damaged the truth. You can live with both.`],
@@ -1493,10 +1570,14 @@ if (typeof document !== "undefined") {
           ["CITY BUSINESS", `The street empties, the smoke settles, and Manhattan carries on as though nothing happened.`],
         ]);
         showEvent('feds', winV[1], "GO", next); return; }
-      if (chance(fedsCounterHitChance(S.guns, fightRound, S.day))){ if(hit())return; draw("You took a hit!"); } else draw("You missed — they're still on you.");
+      if (cops < copsBefore) audioPlay("sfx.combat.gunshot");
+      if (chance(fedsCounterHitChance(S.guns, fightRound, S.day))){ if(hit())return; draw("You took a hit!"); }
+      else { audioPlay("sfx.combat.emptyClick"); draw("You missed — they're still on you."); }
     };
     const doRun=()=>{
       if (chance(0.62)){ logMsg("Vanished into the streets."); modal=null;
+        audioPlay("sfx.travel.screech");
+        fedsResolved();
         const runV=pick([
           ["GONE", `You turn one corner, then another. By the time the whistles catch up, you're already somebody else's problem.`],
           ["INTO THE CROWD", `Lunch hour arrives at exactly the right moment. A hundred hats later, even you couldn't pick yourself out.`],
@@ -1521,6 +1602,8 @@ if (typeof document !== "undefined") {
       const cost=Math.min(S.cash, Math.round(randInt(2000,8000)*cops*bribeScale));
       if (cost<=0||cost>S.cash){ draw("Nothing to pay them with."); return; }
       S.cash-=cost; logMsg(`Counted out ${money(cost)} into an open palm.`); modal=null;
+      audioPlay("sfx.events.bribePaid");
+      fedsResolved();
       const brV=pick([
         ["NOBODY SAW ANYTHING", `The money changes hands. Memories become remarkably unreliable. The street returns to normal.`],
         ["CITY RATES", `The officer counts the cash twice, thanks you for your cooperation, and wishes you a pleasant afternoon.`],
@@ -1540,6 +1623,8 @@ if (typeof document !== "undefined") {
 
   /* ---------- game over ---------- */
   function endGame(reason){
+    if (A()) { A().stopMusic(); A().duckMusic(false); }
+    audioPlay("sfx.end.rankReveal");
     S.over=true; S.overReason=reason||`Your month is over. Whatever you made, it's going to have to be enough.`;
     const result = pushScore(classicScore(S), netWorth(S));
     S.placement = result.placement;
@@ -1618,7 +1703,7 @@ if (typeof document !== "undefined") {
 </script>
 <script>
   if ('serviceWorker' in navigator && !/^127\.0\.0\.1$|^localhost$/i.test(location.hostname)) {
-    navigator.serviceWorker.register('./sw.js?v=63').then(reg => {
+    navigator.serviceWorker.register('./sw.js?v=64').then(reg => {
       reg.update();
       reg.addEventListener('updatefound', () => {
         const worker = reg.installing;

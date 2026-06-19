@@ -1,13 +1,14 @@
 /* Gang Wars — service worker
    Cache-first for app shell; network-first for icons so home-screen art updates. */
 
-const CACHE = 'gangwars-v63';
+const CACHE = 'gangwars-v64';
 const ASSETS = [
   './gangwars.html',
   './engine.js',
   './ledger.js',
   './ledger-blueprint.js',
   './ledger-ui.js',
+  './audio.js',
   './manifest.json',
   './title-screen.png',
   './assets/little-italy.png',
@@ -130,11 +131,63 @@ const ASSETS = [
   './assets/ledger/icons/celebration.png',
   './assets/ledger/icons/history.png',
   './assets/ledger/icons/golden.png',
+  './assets/audio/AUDIO-MANIFEST.json',
+  './assets/audio/music/dock-ambient.ogg',
+  './assets/audio/music/end-neutral.ogg',
+  './assets/audio/music/end-triumph.ogg',
+  './assets/audio/music/feds-tension.ogg',
+  './assets/audio/music/golden-shower.ogg',
+  './assets/audio/music/kitty-kat-club.ogg',
+  './assets/audio/music/ledger-ambient.ogg',
+  './assets/audio/music/run-ambient.ogg',
+  './assets/audio/music/title-speakeasy-jazz.ogg',
+  './assets/audio/sfx/achievement/card-reveal.ogg',
+  './assets/audio/sfx/achievement/category-complete.ogg',
+  './assets/audio/sfx/achievement/crime-lord.ogg',
+  './assets/audio/sfx/achievement/found.ogg',
+  './assets/audio/sfx/combat/death-sting.ogg',
+  './assets/audio/sfx/combat/empty-click.ogg',
+  './assets/audio/sfx/combat/footsteps-flee.ogg',
+  './assets/audio/sfx/combat/gunshot.ogg',
+  './assets/audio/sfx/combat/punch-oof-01.ogg',
+  './assets/audio/sfx/combat/punch-oof-02.ogg',
+  './assets/audio/sfx/combat/siren.ogg',
+  './assets/audio/sfx/combat/tommy-burst.ogg',
+  './assets/audio/sfx/economy/big-sale.ogg',
+  './assets/audio/sfx/economy/bills-shuffle.ogg',
+  './assets/audio/sfx/economy/cash-register.ogg',
+  './assets/audio/sfx/economy/coins-buy.ogg',
+  './assets/audio/sfx/economy/debt-paid.ogg',
+  './assets/audio/sfx/economy/error-deny.ogg',
+  './assets/audio/sfx/economy/loan-taken.ogg',
+  './assets/audio/sfx/economy/vault-close.ogg',
+  './assets/audio/sfx/end/rank-reveal.ogg',
+  './assets/audio/sfx/end/run-complete.ogg',
+  './assets/audio/sfx/events/bribe-paid.ogg',
+  './assets/audio/sfx/events/dead-drop.ogg',
+  './assets/audio/sfx/events/gun-offer.ogg',
+  './assets/audio/sfx/events/modal-close.ogg',
+  './assets/audio/sfx/events/modal-open.ogg',
+  './assets/audio/sfx/events/mugging.ogg',
+  './assets/audio/sfx/events/stash-upgrade.ogg',
+  './assets/audio/sfx/events/stinger-flood.ogg',
+  './assets/audio/sfx/events/stinger-godlike.ogg',
+  './assets/audio/sfx/events/stinger-golden.ogg',
+  './assets/audio/sfx/events/stinger-rare.ogg',
+  './assets/audio/sfx/events/stinger-spike.ogg',
+  './assets/audio/sfx/events/stinger-super-rare.ogg',
+  './assets/audio/sfx/events/stinger-surge.ogg',
+  './assets/audio/sfx/ledger/page-turn.ogg',
+  './assets/audio/sfx/travel/arrival.ogg',
+  './assets/audio/sfx/travel/day-tick.ogg',
+  './assets/audio/sfx/travel/engine-start.ogg',
+  './assets/audio/sfx/travel/tires-screech.ogg',
+  './assets/audio/sfx/ui/button-tap.ogg',
 ];
 
 const ICON_PATTERN = /(?:apple-touch-icon|icon-(?:180|192|512))\.png$/;
 /** App shell — network-first so ledger/UI fixes reach installed PWAs without a stale trap. */
-const SHELL_PATTERN = /\/(gangwars\.html|engine\.js|ledger\.js|ledger-blueprint\.js|ledger-ui\.js|sw\.js)$/;
+const SHELL_PATTERN = /\/(gangwars\.html|engine\.js|ledger\.js|ledger-blueprint\.js|ledger-ui\.js|audio\.js|sw\.js)$/;
 /** Ledger art — network-first so regenerated -base PNGs are not trapped in cache-first. */
 const LEDGER_PATTERN = /\/assets\/ledger\//;
 

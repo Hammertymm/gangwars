@@ -151,6 +151,8 @@ Once installed, the game works fully offline.
 |`engine.js`       |Pure game logic — prices, travel, bank, save migration|
 |`ledger.js`       |Crime Ledger achievement definitions and unlock logic|
 |`ledger-ui.js`    |Crime Ledger screen rendering (base PNG + overlays)  |
+|`audio.js`        |Audio catalog, music/SFX playback, mute settings     |
+|`assets/audio/`   |Music and sound effect `.ogg` files                  |
 |`ledger-blueprint.js`|Runtime overlay layout for Crime Ledger home screen |
 |`assets/ledger/`  |Crime Ledger screen art, header images, and icons    |
 |`title-screen.png`|Title screen artwork                               |
@@ -170,7 +172,8 @@ Once installed, the game works fully offline.
 - **No accounts** — no login, no data collection, no tracking
 - **Engine/UI split** — game logic in `engine.js` and `ledger.js`; UI in `gangwars.html` and `ledger-ui.js`
 - **Offline** — service worker caches all files on first load; works with no connection thereafter
-- **Save state** — current run (`gw:save`), high scores (`gw:highscores`), and Crime Ledger (`gw:ledger`) persist in browser local storage
+- **Save state** — current run (`gw:save`), high scores (`gw:highscores`), Crime Ledger (`gw:ledger`), and audio prefs (`gw:audio`) persist in browser local storage
+- **Audio** — [`audio.js`](audio.js) drives music and SFX; assets live in [`assets/audio/`](assets/audio/). Placeholder files are generated via `python scripts/generate-audio-placeholders.py` — drop in real `.ogg` files by path to replace them. Full ID map: [`docs/audio-catalog.md`](docs/audio-catalog.md). Mute toggle on title screen and in-run masthead.
 
 -----
 
