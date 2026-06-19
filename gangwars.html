@@ -11,7 +11,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=3" />
 <link rel="apple-touch-icon" sizes="192x192" href="icon-192.png?v=3" />
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=3" />
-<link rel="preload" as="image" href="title-screen.png?v=5" fetchpriority="high" />
+<link rel="preload" as="image" href="title-screen.png?v=6" fetchpriority="high" />
 <title>GANG WARS</title>
 <style>
   :root{
@@ -207,11 +207,14 @@
   .hud{flex:0 0 auto;border:1px solid var(--border);border-radius:8px;padding:8px 10px;
     background:var(--panel);font-size:.82rem;line-height:1.4;}
   .hud b{color:var(--amber);} .hud .red{color:var(--red);}
+  html.title-route,html.title-route body{margin:0;padding:0;overflow:hidden;width:100%;height:100%;background:#000;}
+  html.title-route body{display:block;}
   #crt.title-mode .masthead{display:none;}
-  #crt.title-mode{max-width:none;width:100%;background:#000;padding:0;}
-  #crt.title-mode #app{flex:1 1 auto;min-height:0;height:100%;overflow:hidden;display:flex;flex-direction:column;}
-  .title-play{flex:1 1 auto;min-height:0;width:100%;height:100%;display:flex;flex-direction:column;overflow:hidden;}
-  .title-screen{position:relative;flex:1 1 auto;min-height:0;width:100%;height:100%;overflow:hidden;background:#000;}
+  #crt.title-mode{position:fixed;inset:0;width:100%;max-width:none;height:100%;max-height:none;
+    min-height:0;padding:0;margin:0;background:#000;overflow:hidden;}
+  #crt.title-mode #app{position:absolute;inset:0;width:100%;height:100%;overflow:hidden;}
+  .title-play{position:absolute;inset:0;width:100%;height:100%;}
+  .title-screen{position:absolute;inset:0;width:100%;height:100%;overflow:hidden;background:#000;}
   .title-cover{position:absolute;container-type:size;}
   .title-cover img{width:100%;height:100%;display:block;user-select:none;-webkit-user-drag:none;
     pointer-events:none;image-rendering:-webkit-optimize-contrast;}
@@ -220,7 +223,7 @@
   .title-hit:active:not(:disabled){background:rgba(231,200,121,.12);}
   .title-hit:focus-visible{outline:2px solid var(--amber);outline-offset:-2px;}
   .title-hit:disabled{cursor:default;pointer-events:none;opacity:0;}
-  /* Title hit rects on 473×1024 canvas; cqw/cqh = title-cover box */
+  /* Title hit rects on 472×1024 canvas; cqw/cqh = title-cover box */
   .title-hit-new{left:4.025cqw;top:81.738cqh;width:42.161cqw;height:6.836cqh;}
   .title-hit-cont{left:52.966cqw;top:81.738cqh;width:43.432cqw;height:6.836cqh;}
   .title-hit-ledger{left:5.297cqw;top:90.820cqh;width:40.042cqw;height:7.227cqh;}
@@ -531,21 +534,22 @@ if (typeof document !== "undefined") {
   let pendingUnlockQueue = [], pendingCompleteQueue = [];
   let ledger = migrateLedger((() => { try { return JSON.parse(localStorage.getItem(LEDGER_KEY)); } catch(e) { return null; } })());
   const money = n => "$"+Math.round(n).toLocaleString("en-US");
-  const TITLE_SCREEN = "title-screen.png?v=5";
-  const TITLE_CANVAS = { w: 473, h: 1024 };
+  const TITLE_SCREEN = "title-screen.png?v=6";
+  const TITLE_CANVAS = { w: 472, h: 1024 };
   function layoutTitleScreen(){
-    const screen = document.querySelector(".title-screen");
     const cover = document.querySelector(".title-cover");
-    if (!screen || !cover) return;
+    if (!cover) return;
     const { w: W, h: H } = TITLE_CANVAS;
-    const cw = screen.clientWidth, ch = screen.clientHeight;
-    if (!cw || !ch) return;
-    const scale = Math.max(cw / W, ch / H);
+    const vv = window.visualViewport;
+    const vw = vv ? vv.width : window.innerWidth;
+    const vh = vv ? vv.height : window.innerHeight;
+    if (!vw || !vh) return;
+    const scale = Math.max(vw / W, vh / H);
     const sw = W * scale, sh = H * scale;
     cover.style.width = sw + "px";
     cover.style.height = sh + "px";
-    cover.style.left = ((cw - sw) / 2) + "px";
-    cover.style.top = ((ch - sh) / 2) + "px";
+    cover.style.left = ((vw - sw) / 2 + (vv?.offsetLeft || 0)) + "px";
+    cover.style.top = ((vh - sh) / 2 + (vv?.offsetTop || 0)) + "px";
   }
   function openLedgerCategory(catId){
     if (!LEDGER_CATEGORIES.find(c => c.id === catId)) return;
@@ -1016,13 +1020,15 @@ if (typeof document !== "undefined") {
   function render(){
     const crt = document.getElementById("crt");
     if (ledgerView && !modal){
+      document.documentElement.classList.remove("title-route");
       renderLedgerRoute();
       syncSceneAudio("ledger");
       return;
     }
     crt.classList.remove("ledger-mode");
-    if (modal){ crt.classList.remove("title-mode"); crt.classList.add("game-mode"); modal(); return; }
-    if (!S){ crt.classList.add("title-mode"); crt.classList.remove("game-mode"); renderTitle(); syncSceneAudio("title"); return; }
+    if (modal){ document.documentElement.classList.remove("title-route"); crt.classList.remove("title-mode"); crt.classList.add("game-mode"); modal(); return; }
+    if (!S){ document.documentElement.classList.add("title-route"); crt.classList.add("title-mode"); crt.classList.remove("game-mode"); renderTitle(); syncSceneAudio("title"); return; }
+    document.documentElement.classList.remove("title-route");
     crt.classList.remove("title-mode"); crt.classList.add("game-mode");
     if (S.over){ renderGameOver(); syncSceneAudio("end"); return; }
     renderMarket();
@@ -1034,7 +1040,7 @@ if (typeof document !== "undefined") {
     app.innerHTML = `<div class="play title-play">
       <div class="title-screen">
         <div class="title-cover">
-          <img src="${TITLE_SCREEN}" width="473" height="1024" decoding="async" fetchpriority="high"
+          <img src="${TITLE_SCREEN}" width="472" height="1024" decoding="async" fetchpriority="high"
             alt="Gang Wars — Prohibition 1929">
           <button type="button" class="title-hit title-hit-new" id="new" aria-label="New Game"></button>
           <button type="button" class="title-hit title-hit-cont" id="cont" aria-label="Continue" ${saved?"":"disabled"}></button>
@@ -1050,6 +1056,8 @@ if (typeof document !== "undefined") {
       window._titleLayoutBound = true;
       window.addEventListener("resize", layoutTitleScreen);
       window.addEventListener("orientationchange", layoutTitleScreen);
+      window.visualViewport?.addEventListener("resize", layoutTitleScreen);
+      window.visualViewport?.addEventListener("scroll", layoutTitleScreen);
     }
     bindMuteButton(document.getElementById("audio-mute"));
     if (A()) A().preload("music.title");
@@ -1067,6 +1075,7 @@ if (typeof document !== "undefined") {
   }
 
   function renderScores(){
+    document.documentElement.classList.remove("title-route");
     document.getElementById("crt").classList.remove("title-mode");
     document.getElementById("crt").classList.add("game-mode");
     syncSceneAudio("scores");
@@ -1728,7 +1737,7 @@ if (typeof document !== "undefined") {
 </script>
 <script>
   if ('serviceWorker' in navigator && !/^127\.0\.0\.1$|^localhost$/i.test(location.hostname)) {
-    navigator.serviceWorker.register('./sw.js?v=67').then(reg => {
+    navigator.serviceWorker.register('./sw.js?v=68').then(reg => {
       reg.update();
       reg.addEventListener('updatefound', () => {
         const worker = reg.installing;
