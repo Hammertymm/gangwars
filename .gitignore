@@ -15,6 +15,27 @@ events/_test-trim.png
 
 # Asset pipeline backups (local only)
 assets/_backup/
+assets/backup/
+assets_backup/
+
+# Dev docs, scripts, and test artifacts (local only)
+docs/
+scripts/
+tests/
+package.json
+package-lock.json
+playwright.config.js
+*.test.js
+*.spec.js
+.github/
+
+# Debug / editor / deploy scratch
+.cursor/
+debug-*.log
+*.zip
+UPLOAD-README.txt
+GangWars-main/
+New-ending-art/
 
 # OS / editor
 .DS_Store

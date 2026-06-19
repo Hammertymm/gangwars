@@ -149,16 +149,10 @@ Once installed, the game works fully offline.
 |------------------|-----------------------------------------------------|
 |`gangwars.html`   |Game UI, styles, routing, and event copy             |
 |`engine.js`       |Pure game logic — prices, travel, bank, save migration|
-|`engine.test.js`  |Node unit tests for the engine                       |
 |`ledger.js`       |Crime Ledger achievement definitions and unlock logic|
 |`ledger-ui.js`    |Crime Ledger screen rendering (base PNG + overlays)  |
-|`ledger.test.js`  |Node unit tests for the ledger                       |
-|`ledger.assets.test.js`|Crime Ledger asset, blueprint, and SW integration tests |
-|`ledger.graphics.spec.js`|Playwright graphic tests for all 6 ledger screens |
-|`ledger-blueprint.js`|Runtime overlay layout (auto-generated from blueprint JSON) |
-|`tests/ledger-baselines/`|Pixel regression baselines for ledger graphics tests |
-|`assets/ledger/`  |Crime Ledger screen art, `-base` variants, and icons |
-|`scripts/ledger-blueprint.json`|Hit/counter rects for ledger UI overlays   |
+|`ledger-blueprint.js`|Runtime overlay layout for Crime Ledger home screen |
+|`assets/ledger/`  |Crime Ledger screen art, header images, and icons    |
 |`title-screen.png`|Title screen artwork                               |
 |`manifest.json`   |PWA manifest — name, icons, display settings         |
 |`sw.js`           |Service worker — caches the game for offline play    |
@@ -174,8 +168,7 @@ Once installed, the game works fully offline.
 - **No dependencies** — vanilla JavaScript, no frameworks, no build step
 - **No backend** — all game state lives in `localStorage`; nothing is sent anywhere
 - **No accounts** — no login, no data collection, no tracking
-- **Engine/UI split** — testable logic in `engine.js` and `ledger.js`; UI in `gangwars.html` and `ledger-ui.js`
-- **Crime Ledger tests** — `npm run test:ledger` (logic + assets); `npm run test:ledger:graphics` (Playwright, requires `npx playwright install chromium`); `npm run audit:ledger` runs both
+- **Engine/UI split** — game logic in `engine.js` and `ledger.js`; UI in `gangwars.html` and `ledger-ui.js`
 - **Offline** — service worker caches all files on first load; works with no connection thereafter
 - **Save state** — current run (`gw:save`), high scores (`gw:highscores`), and Crime Ledger (`gw:ledger`) persist in browser local storage
 
