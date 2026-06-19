@@ -1427,12 +1427,16 @@ if (typeof document !== "undefined") {
         grantDebtInterestFreeze(S, 1);
         logMsg(`Beat the Feds, grabbed ${money(reward)}.`); modal=null;
         const winV=pick([
-          ["LAST MAN STANDING",                  `Last man standing. You grab <span class="price">${money(reward)}</span> off the bodies and disappear into the night.`],
-          ["ONE FOR THE PAPERS",                 `This one will make the Tribune tomorrow. You don't wait to read it. You take <span class="price">${money(reward)}</span> and put six blocks between yourself and the scene.`],
-          ["ANOTHER VICTORY FOR ORGANISED CRIME",`Capone himself couldn't have handled it cleaner. <span class="price">${money(reward)}</span> off the floor, coat straightened, gone before the echo fades.`],
-          ["IZZY PICKED THE WRONG MARK",         `The disguise was convincing — you'll give him that. But a fishmonger who moves like a middleweight is a fishmonger worth questioning. <span class="price">${money(reward)}</span> richer, one legend humbled.`],
-          ["CLEAN HANDS", `You didn't plan it this way, but here you are. <span class="price">${money(reward)}</span> off the floor, a hat that fits better than yours, and a story you will never tell anyone. You straighten your coat and walk north. The city doesn't notice.`],
-          ["NOTED",       `As the dust settles a man in a very good suit materialises from a doorway, surveys the scene, and nods once. "Mr J will hear about this," he says — approvingly. He hands you <span class="price">${money(reward)}</span>. "For the inconvenience." Big Daddy J rewards people who handle their problems cleanly.`],
+          ["LAST MAN STANDING", `The smoke clears. The Feds don't get up. You do. The city has a long memory for days like this.`],
+          ["ONE FOR THE PAPERS", `By evening the headlines had improved your reputation and damaged the truth. You can live with both.`],
+          ["THE HOUSE WINS", `Another raid fails. Another detective writes a longer report. Business resumes before the ink is dry.`],
+          ["WRONG TARGET", `They expected an easy arrest. They found you instead. Someone back at headquarters has difficult paperwork ahead.`],
+          ["NOTHING TO REPORT", `Witnesses suddenly remembered urgent appointments. The official report will be remarkably uncomplicated.`],
+          ["NOTED", `A boy in a pressed suit tips his hat. "Big Daddy heard." He says nothing else. He doesn't need to.`],
+          ["WITNESSES FORGET", `Nobody saw enough to testify. Those who did suddenly remembered other appointments.`],
+          ["BETTER LUCK TOMORROW", `Agent Hayes tips his hat before limping off. Even he knows when today's argument is over.`],
+          ["EXPENSIVE LESSON", `Somebody underestimated you. The city won't make that mistake twice.`],
+          ["CITY BUSINESS", `The street empties, the smoke settles, and Manhattan carries on as though nothing happened.`],
         ]);
         showEvent('feds', winV[1], "GO", next); return; }
       if (chance(fedsCounterHitChance(S.guns, fightRound, S.day))){ if(hit())return; draw("You took a hit!"); } else draw("You missed — they're still on you.");
@@ -1440,12 +1444,16 @@ if (typeof document !== "undefined") {
     const doRun=()=>{
       if (chance(0.62)){ logMsg("Vanished into the streets."); modal=null;
         const runV=pick([
-          ["GONE",             "You know these streets better than they do. Gone before they could blink."],
-          ["INTO THE CROWD",   "You ducked into the lunch crowd on Michigan Avenue and let the city swallow you whole. Ness's men walked right past."],
-          ["THE BACK WAY",     "Three alleys, a fire escape, and a borrowed hat. By the time they reached the corner you were four blocks north having a coffee."],
-          ["LOST IN THE PARADE","By sheer luck a temperance march turned onto the street at precisely the right moment. You joined the procession, took a pamphlet, and were gone before anyone noticed the irony."],
-          ["THE FUNERAL",  "You joined a funeral procession for four blocks, accepted condolences from twelve strangers, signed a guestbook under a false name, and ate a finger sandwich before the agents lost the trail entirely. You didn't know the deceased. He would have understood."],
-          ["THE LEFT TURN", `A man grabbed your sleeve as you ran and pulled you into a doorway you hadn't noticed. "Trust the left turn," he said. You took it. It worked. When you came back to thank him he was gone. On the wall: a chalk arrow pointing left and a year — 1987 — that means nothing to you.`],
+          ["GONE", `You turn one corner, then another. By the time the whistles catch up, you're already somebody else's problem.`],
+          ["INTO THE CROWD", `Lunch hour arrives at exactly the right moment. A hundred hats later, even you couldn't pick yourself out.`],
+          ["THE BACK WAY", `The city keeps secrets. Today one of them kept you.`],
+          ["LOST IN THE PARADE", `A brass band rounds the corner. By the final chorus you're applauding with everyone else.`],
+          ["THE FUNERAL", `You borrow a solemn face and join the mourners. Nobody questions grief.`],
+          ["THE LEFT TURN", `They chase the obvious route. You stopped being obvious years ago.`],
+          ["WRONG PLATFORM", `You step onto a train just as the doors close. The Feds arrive in time to watch it leave.`],
+          ["BORROWED HAT", `You swap hats with a stranger. Five seconds later the Feds arrest a very confused insurance salesman.`],
+          ["ANOTHER FACE", `You straighten your tie, slow your pace, and become just another citizen with somewhere to be.`],
+          ["THE NEWS CYCLE", `Tomorrow's paper will report a dramatic pursuit. It won't mention where you stopped for lunch.`],
         ]);
         showEvent('feds', runV[1], "PHEW", next); return; }
       if (hit()) return;
@@ -1460,12 +1468,16 @@ if (typeof document !== "undefined") {
       if (cost<=0||cost>S.cash){ draw("Nothing to pay them with."); return; }
       S.cash-=cost; logMsg(`Counted out ${money(cost)} into an open palm.`); modal=null;
       const brV=pick([
-        ["NOBODY SAW ANYTHING",`You count out <span class="price">${money(cost)}</span> into an open palm. Nobody saw anything. Nobody ever does.`],
-        ["CITY RATES",         `<span class="price">${money(cost)}</span> in a folded newspaper, slid across the bar. Agent Hayes pockets it without breaking eye contact. Standard rate. Standard result.`],
-        ["CIVIC DONATION",     `You explained to the officers that <span class="price">${money(cost)}</span> was a voluntary contribution to the Policemen's Benevolent Fund. They thanked you for your generosity and wished you a good evening.`],
-        ["ABOVE BOARD",        `You told them it was a consulting fee for advice on avoiding criminal activity. They accepted <span class="price">${money(cost)}</span> and advised you to use the north exit. Everybody wins.`],
-        ["ALREADY HANDLED", `You reach for your wallet and the lead agent stops you. "Already handled," he says, and walks away. A folded note in your pocket in Big Daddy J's handwriting: "<span class="price">${money(cost)}</span> from your next settlement. Consider it a loan from a friend." The accounting with Big Daddy J is always precise. Always.`],
-        ["CAMERAS",         `Agent Hayes pocketed <span class="price">${money(cost)}</span> without blinking, then stared at you for a long moment. "In seventy years they're going to have cameras on every corner and none of this is going to be possible." He sounded genuinely nostalgic about something that hasn't happened yet.`],
+        ["NOBODY SAW ANYTHING", `The money changes hands. Memories become remarkably unreliable. The street returns to normal.`],
+        ["CITY RATES", `The officer counts the cash twice, thanks you for your cooperation, and wishes you a pleasant afternoon.`],
+        ["CIVIC DONATION", `Your contribution to public safety has been gratefully acknowledged.`],
+        ["ABOVE BOARD", `Several receipts change hands. None explain what actually happened.`],
+        ["ALREADY HANDLED", `Before you reach for your wallet the officer nods. "Big Daddy already handled it."`],
+        ["ADMINISTRATIVE ERROR", `Your name disappears from the paperwork before the ink has time to dry.`],
+        ["EXPEDITED PROCESSING", `The paperwork moves with astonishing efficiency once accompanied by folding money.`],
+        ["THE USUAL ARRANGEMENT", `Neither of you mentions the money. That's how you know you're both professionals.`],
+        ["THE RECEIPT", `"Would you like a receipt?" he asks. You both enjoy the joke more than expected.`],
+        ["INTERNAL AFFAIRS", `"Best not mention this to Internal Affairs," he says. "They're happiest when they're surprised."`],
       ]);
       showEvent('feds', brV[1], "OK", next);
     };
