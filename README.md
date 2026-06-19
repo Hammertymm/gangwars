@@ -2,8 +2,6 @@
 
 **🎮 Play now: [hammertymm.github.io/GangWars](https://hammertymm.github.io/GangWars/)**
 
-A browser-based trading game set in 1920s Prohibition-era New York. Inspired by John E. Dell's classic 1984 DOS trading game — same mechanics, same pressure, different era.
-
 Buy low. Sell high. Pay the Don before the clock runs out.
 
 Runs as a Progressive Web App — installs on your phone, plays fully offline, no app store required.
