@@ -12,6 +12,9 @@
 <link rel="apple-touch-icon" sizes="192x192" href="icon-192.png?v=3" />
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=3" />
 <link rel="preload" as="image" href="title-screen.png" fetchpriority="high" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&display=swap" rel="stylesheet" />
 <title>GANG WARS</title>
 <style>
   :root{
@@ -208,19 +211,45 @@
     background:var(--panel);font-size:.82rem;line-height:1.4;}
   .hud b{color:var(--amber);} .hud .red{color:var(--red);}
   #crt.title-mode .masthead{display:none;}
-  #crt.title-mode{background:#0a0a0a;padding:env(safe-area-inset-top, 0px) 0 env(safe-area-inset-bottom, 0px) 0;}
+  #crt.title-mode{background:#0c0c0c;padding:env(safe-area-inset-top, 0px) 0 env(safe-area-inset-bottom, 0px) 0;}
   #crt.title-mode #app{flex:1 1 auto;min-height:0;overflow:hidden;display:flex;flex-direction:column;}
   .title-play{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;overflow:hidden;}
   .title-screen{flex:1 1 auto;min-height:0;width:100%;display:flex;align-items:center;
-    justify-content:center;overflow:hidden;background:#0a0a0a;container-type:size;}
+    justify-content:center;overflow:hidden;background:#0c0c0c;container-type:size;}
   .title-art{position:relative;container-type:size;
     width:min(100cqw,calc(100cqh * 472 / 1024));
     height:min(100cqh,calc(100cqw * 1024 / 472));
     max-width:100cqw;max-height:100cqh;}
   .title-art img{position:absolute;inset:0;width:100%;height:100%;display:block;user-select:none;-webkit-user-drag:none;
-    pointer-events:none;image-rendering:-webkit-optimize-contrast;}
+    pointer-events:none;image-rendering:-webkit-optimize-contrast;filter:brightness(1.1);}
+  .title-copy-layer{position:absolute;inset:0;z-index:1;pointer-events:none;
+    font-family:"Cormorant Garamond","Libre Baskerville",Georgia,"Times New Roman",serif;
+    color:#ead6a0;text-shadow:0 1px 2px rgba(0,0,0,.55);}
+  .title-copy-mask{position:absolute;background:#181108;z-index:0;}
+  .title-copy-block{position:absolute;z-index:1;display:flex;flex-direction:column;justify-content:center;gap:.28em;}
+  .title-copy-lead{margin:0;font-size:5.4cqw;font-weight:700;line-height:1.05;letter-spacing:.06em;}
+  .title-copy-sub{margin:0;font-size:4.1cqw;font-weight:600;line-height:1.1;letter-spacing:.04em;color:#dcc58a;}
+  .title-copy-call{margin:0;font-size:4.7cqw;font-weight:700;line-height:1.05;letter-spacing:.08em;}
+  .title-copy-rule{height:1px;margin:.12em 0;background:linear-gradient(to right,transparent,#7a6030 18%,#c9a85a 50%,#7a6030 82%,transparent);opacity:.85;}
+  .title-copy-stats{margin:.08em 0 0;padding:0;list-style:none;font-size:3.45cqw;font-weight:600;line-height:1.28;letter-spacing:.03em;color:#dcc58a;}
+  .title-copy-discovered{margin:.35em 0 0;font-size:2.75cqw;font-weight:600;letter-spacing:.08em;text-align:right;color:#9c8d73;}
+  .title-copy-midlead{margin:0;font-size:4.9cqw;font-weight:700;line-height:1.05;letter-spacing:.06em;}
+  .title-copy-midbody{margin:0;font-size:3.65cqw;font-weight:600;line-height:1.28;letter-spacing:.02em;color:#dcc58a;}
+  .title-copy-mask-hero{left:50.2cqw;top:17.6cqh;width:46.4cqw;height:20.8cqh;}
+  .title-copy-hero{left:50.8cqw;top:17.9cqh;width:45.2cqw;height:20.2cqh;padding:0 .6cqw;box-sizing:border-box;}
+  .title-copy-mask-mid{left:50.2cqw;top:42.2cqh;width:46.4cqw;height:10.2cqh;}
+  .title-copy-mid{left:50.8cqw;top:42.5cqh;width:45.2cqw;height:9.6cqh;padding:0 .6cqw;box-sizing:border-box;}
+  .title-btn-label{position:absolute;z-index:1;display:flex;align-items:center;justify-content:center;
+    font-family:"Cormorant Garamond","Libre Baskerville",Georgia,"Times New Roman",serif;
+    font-size:3.35cqw;font-weight:700;line-height:1;letter-spacing:.14em;color:#ead6a0;
+    text-shadow:0 1px 2px rgba(0,0,0,.55);pointer-events:none;}
+  .title-btn-label-new{left:3.814cqw;top:79.688cqh;width:45.339cqw;height:8.301cqh;padding-left:5cqw;box-sizing:border-box;justify-content:flex-start;}
+  .title-btn-label-cont{left:50.847cqw;top:79.688cqh;width:45.339cqw;height:8.301cqh;padding-left:5cqw;box-sizing:border-box;justify-content:flex-start;}
+  .title-btn-label-ledger{left:3.814cqw;top:89.062cqh;width:42.797cqw;height:8.594cqh;padding-left:5cqw;box-sizing:border-box;justify-content:flex-start;}
+  .title-btn-label-scores{left:51.271cqw;top:89.062cqh;width:44.703cqw;height:8.594cqh;padding-left:5cqw;box-sizing:border-box;justify-content:flex-start;}
+  .title-btn-label.off{opacity:0;}
   .title-hit{position:absolute;box-sizing:border-box;border:0;background:transparent;cursor:pointer;padding:0!important;margin:0;
-    border-radius:0;min-height:0;min-width:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation;}
+    border-radius:0;min-height:0;min-width:0;-webkit-tap-highlight-color:transparent;touch-action:manipulation;z-index:2;}
   .title-hit:focus-visible{outline:2px solid var(--amber);outline-offset:-2px;}
   .title-hit:disabled{cursor:default;pointer-events:none;opacity:0;}
   /* GW Style title — hit rects on 472×1024 canvas (scripts/title-blueprint.json); cqw/cqh = title-art box */
@@ -554,6 +583,35 @@ if (typeof document !== "undefined") {
   }
   function ledgerProgressText(){
     return `${countDiscovered(ledger)} / ${LEDGER_TOTAL} DISCOVERED`;
+  }
+  function titleCopyHtml(saved){
+    const debtPct = Math.round(CONFIG.loanInterest * 100);
+    return `<div class="title-copy-layer" aria-hidden="true">
+      <div class="title-copy-mask title-copy-mask-hero"></div>
+      <div class="title-copy-block title-copy-hero">
+        <p class="title-copy-lead">THE DON WANTS HIS MONEY.</p>
+        <p class="title-copy-sub">THE FEDS WANT YOUR NECK.</p>
+        <div class="title-copy-rule"></div>
+        <p class="title-copy-call">GET TO WORK.</p>
+        <div class="title-copy-rule"></div>
+        <ul class="title-copy-stats">
+          <li>Start ${money(CONFIG.startCash)}</li>
+          <li>Owe the Don ${money(CONFIG.startDebt)} at ${debtPct}%/day</li>
+          <li>${CONFIG.startSpace} crates of stash</li>
+        </ul>
+        <p class="title-copy-discovered">${ledgerProgressText()}</p>
+      </div>
+      <div class="title-copy-mask title-copy-mask-mid"></div>
+      <div class="title-copy-block title-copy-mid">
+        <p class="title-copy-midlead">DAYS TO SURVIVE: ${CONFIG.days}</p>
+        <div class="title-copy-rule"></div>
+        <p class="title-copy-midbody">Pay off debt before the Don collects.</p>
+      </div>
+      <span class="title-btn-label title-btn-label-new">NEW GAME</span>
+      <span class="title-btn-label title-btn-label-cont${saved ? "" : " off"}">CONTINUE</span>
+      <span class="title-btn-label title-btn-label-ledger">LEDGER</span>
+      <span class="title-btn-label title-btn-label-scores">HIGH SCORES</span>
+    </div>`;
   }
   function openLedgerFromTitle(){
     ledgerReturn = { type: "title", savedModal: null, savedModalEscape: null };
@@ -1022,6 +1080,7 @@ if (typeof document !== "undefined") {
         <div class="title-art">
           <img src="${TITLE_SCREEN}" width="472" height="1024" decoding="async" fetchpriority="high"
             alt="Gang Wars — Prohibition 1929">
+          ${titleCopyHtml(!!saved)}
           <button type="button" class="title-hit title-hit-mute audio-mute-btn" id="title-audio-mute" data-audio-mute aria-label="Toggle sound">&#128266;</button>
           <button type="button" class="title-hit title-hit-new" id="new" aria-label="New Game"></button>
           <button type="button" class="title-hit title-hit-cont" id="cont" aria-label="Continue" ${saved?"":"disabled"}></button>
