@@ -4,13 +4,13 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <meta name="theme-color" content="#15110b" />
-<link rel="manifest" href="manifest.json" />
+<link rel="manifest" href="manifest.json?v=3" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta name="apple-mobile-web-app-title" content="Gang Wars" />
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
-<link rel="apple-touch-icon" sizes="192x192" href="icon-192.png" />
-<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=3" />
+<link rel="apple-touch-icon" sizes="192x192" href="icon-192.png?v=3" />
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=3" />
 <link rel="preload" as="image" href="title-screen.png" fetchpriority="high" />
 <title>GANG WARS</title>
 <style>
@@ -1708,7 +1708,7 @@ if (typeof document !== "undefined") {
 </script>
 <script>
   if ('serviceWorker' in navigator && !/^127\.0\.0\.1$|^localhost$/i.test(location.hostname)) {
-    navigator.serviceWorker.register('./sw.js?v=65').then(reg => {
+    navigator.serviceWorker.register('./sw.js?v=67').then(reg => {
       reg.update();
       reg.addEventListener('updatefound', () => {
         const worker = reg.installing;

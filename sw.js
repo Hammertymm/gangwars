@@ -1,7 +1,7 @@
 /* Gang Wars — service worker
    Cache-first for app shell; network-first for icons so home-screen art updates. */
 
-const CACHE = 'gangwars-v66';
+const CACHE = 'gangwars-v67';
 const ASSETS = [
   './gangwars.html',
   './engine.js',
@@ -29,9 +29,6 @@ const ASSETS = [
   './assets/goods/furcoats.png',
   './assets/goods/champagne.png',
   './assets/goods/diamonds.png',
-  './apple-touch-icon.png',
-  './icon-192.png',
-  './icon-512.png',
   './cards/nobody.png',
   './cards/pickpocket.png',
   './cards/hustler.png',
@@ -185,7 +182,7 @@ const ASSETS = [
   './assets/audio/sfx/ui/button-tap.ogg',
 ];
 
-const ICON_PATTERN = /(?:apple-touch-icon|icon-(?:180|192|512))\.png$/;
+const ICON_PATTERN = /(?:apple-touch-icon|icon-(?:180|192|512))\.png(?:\?.*)?$/;
 /** App shell — network-first so ledger/UI fixes reach installed PWAs without a stale trap. */
 const SHELL_PATTERN = /\/(gangwars\.html|engine\.js|ledger\.js|ledger-blueprint\.js|ledger-ui\.js|audio\.js|sw\.js)$/;
 /** Ledger art — network-first so regenerated -base PNGs are not trapped in cache-first. */
