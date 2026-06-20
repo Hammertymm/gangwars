@@ -55,7 +55,7 @@
   /* MARKET SCREEN — two-column card layout, single-screen (no scroll) — v76 */
   .market-play{gap:6px;overflow:hidden;}
   /* district card */
-  .market-play .loc-header{position:relative;flex:0 0 13%;min-height:80px;max-height:112px;
+  .market-play .loc-header{position:relative;flex:0 0 12%;min-height:74px;max-height:100px;
     display:flex;gap:10px;align-items:stretch;padding:7px 9px 7px 7px;
     background:linear-gradient(180deg,#221b11,#15110b);border:1px solid var(--border);border-radius:8px;}
   .market-play .loc-img{position:relative;flex:0 0 auto;height:100%;aspect-ratio:1;
@@ -93,9 +93,9 @@
     border:1px solid var(--btnborder);background:var(--bg);}
   /* two-column card grid */
   .market-rows{flex:1 1 0;min-height:0;overflow:hidden;
-    display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:minmax(0,1fr);gap:6px;}
+    display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(5,minmax(0,1fr));gap:6px;}
   .market-row{min-height:0;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;
-    gap:4px;padding:7px;border:1px solid var(--border);border-radius:7px;
+    gap:4px;padding:6px 8px;border:1px solid var(--border);border-radius:7px;
     background:linear-gradient(180deg,#221b11,#16110a);}
   .market-row.dead{opacity:.42;}
   .card-head{flex:1 1 auto;min-height:0;display:flex;align-items:center;gap:8px;overflow:hidden;}
@@ -132,8 +132,8 @@
     font-size:clamp(.6rem,2.7vw,.72rem);}
   .market-row .hold-cell.have{color:var(--green);}
   .market-play .market-actions{flex:0 0 auto;display:flex;gap:5px;}
-  .market-play .market-actions button{flex:1 1 0;min-height:44px;height:44px;padding:0 6px;margin:0;
-    font-size:clamp(.74rem,3.2vw,.9rem);font-weight:700;letter-spacing:1px;line-height:1;border-radius:5px;}
+  .market-play .market-actions button{flex:1 1 0;height:40px;min-height:40px;max-height:40px;padding:0 6px;margin:0;
+    font-size:clamp(.72rem,3vw,.86rem);font-weight:700;letter-spacing:1px;line-height:1;border-radius:5px;}
   .market-play .market-actions .buybtn{background:linear-gradient(180deg,#5b4a25,#2f2412);
     border:1px solid var(--amber);color:var(--amber);}
   .market-play .market-actions .buybtn:active{background:var(--amber);color:#1a1206;}
@@ -218,7 +218,7 @@
     padding-top:7px;border-top:1px solid var(--rowline);
     font-size:clamp(.6rem,2.7vw,.72rem);color:var(--dim);letter-spacing:.3px;white-space:nowrap;}
   .bot-label{font-size:clamp(.54rem, 2.3vw, .62rem);color:var(--dim);letter-spacing:.3px;line-height:1.1;}
-  .market-play .bot-val{font-size:clamp(1.2rem, 5.6vw, 1.62rem);line-height:1.12;color:var(--amber);}
+  .market-play .bot-val{font-size:clamp(1.1rem, 5.2vw, 1.5rem);line-height:1.12;color:var(--amber);}
   .bot-val{font-size:1.08rem;line-height:1.2;color:var(--amber);}
   .bot-val.red{color:var(--red);}
   .debt-warn{flex:0 0 auto;margin:0 0 4px;padding:0 2px;font-size:clamp(.52rem, 2.2vw, .62rem);
@@ -228,7 +228,7 @@
   .bar{height:4px;background:var(--bartrack);border-radius:3px;margin:3px 0 6px;overflow:hidden;}
   .bar > i{display:block;height:100%;background:var(--green);}
   .market-play .actions{flex:0 0 auto;margin-top:auto;display:grid;grid-template-columns:1fr 1fr;gap:8px;}
-  .market-play .actions button{min-height:50px;padding:0 6px;font-size:clamp(.78rem, 3.4vw, .94rem);letter-spacing:.6px;font-weight:700;}
+  .market-play .actions button{min-height:46px;padding:0 6px;font-size:clamp(.76rem, 3.3vw, .9rem);letter-spacing:.6px;font-weight:700;}
   .actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
   .actions button{padding:10px 8px;font-size:.8rem;letter-spacing:.5px;}
 
@@ -1770,7 +1770,7 @@ if (typeof document !== "undefined") {
 </script>
 <script>
   if ('serviceWorker' in navigator && !/^127\.0\.0\.1$|^localhost$/i.test(location.hostname)) {
-    navigator.serviceWorker.register('./sw.js?v=77').then(reg => {
+    navigator.serviceWorker.register('./sw.js?v=78').then(reg => {
       reg.update();
       reg.addEventListener('updatefound', () => {
         const worker = reg.installing;
