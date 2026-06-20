@@ -49,7 +49,7 @@
   .play{flex:1 1 auto;display:flex;flex-direction:column;min-height:0;}
 
   /* Illustration assets — lighten ~10% for readability on dark UI */
-  .goods-icon-wrap .goods-icon,.market-play .loc-img img,.travel-head img,.travel-row img,.eos-art img{
+  .goods-icon-wrap .goods-icon,.market-play .loc-img img,.travel-head-art img,.travel-row img,.eos-art img{
     filter:brightness(1.1);}
 
   /* MARKET SCREEN — two-column card layout, single-screen (no scroll) — v76 */
@@ -155,10 +155,11 @@
     border:3px double var(--amber);border-radius:8px;background:var(--bg);}
   .travel-head{flex:0 0 16%;min-height:88px;max-height:118px;display:flex;gap:10px;align-items:center;
     padding:4px 10px 4px 6px;border-bottom:1px solid var(--amber);background:var(--panel);}
-  .travel-head img{flex:0 0 auto;height:100%;width:auto;max-width:44%;min-width:0;
-    display:block;object-fit:contain;object-position:left center;
-    image-rendering:pixelated;image-rendering:-webkit-optimize-contrast;image-rendering:crisp-edges;
-    border:none;border-radius:0;background:transparent;}
+  .travel-head-art{flex:0 0 auto;height:100%;max-width:44%;min-width:0;box-sizing:border-box;
+    background:#000;display:block;overflow:hidden;}
+  .travel-head-art img{display:block;height:100%;width:auto;max-width:100%;
+    object-fit:contain;object-position:center;
+    image-rendering:auto;border:none;border-radius:0;background:#000;}
   .travel-head-body{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;justify-content:center;gap:4px;}
   .travel-head-title{font-family:inherit;
     font-size:clamp(1.2rem, 6vw, 1.6rem);font-weight:700;color:var(--amber);letter-spacing:1.5px;
@@ -1316,7 +1317,7 @@ if (typeof document !== "undefined") {
       app.innerHTML = `<div class="play travel-play">
         <div class="travel-screen" role="dialog" aria-modal="true" aria-labelledby="travel-title">
         <div class="travel-head">
-          <img src="assets/travel-car.png" alt="On the move">
+          <div class="travel-head-art"><img src="assets/travel-car.png" alt="On the move"></div>
           <div class="travel-head-body">
             <div class="travel-head-title" id="travel-title">ON THE MOVE</div>
             <div class="travel-head-sub">Pick your next territory. Moving costs you day.</div>
@@ -1770,7 +1771,7 @@ if (typeof document !== "undefined") {
 </script>
 <script>
   if ('serviceWorker' in navigator && !/^127\.0\.0\.1$|^localhost$/i.test(location.hostname)) {
-    navigator.serviceWorker.register('./sw.js?v=86').then(reg => {
+    navigator.serviceWorker.register('./sw.js?v=87').then(reg => {
       reg.update();
       reg.addEventListener('updatefound', () => {
         const worker = reg.installing;
