@@ -36,6 +36,13 @@ debug-*.log
 UPLOAD-README.txt
 GangWars-main/
 New-ending-art/
+New-standard-events-final/
+_audio_fetch/
+_market_screens/
+_title_hit_*
+_tmp_*
+_capture_market_screens.py
+assets/audio/New-sound-quarrantine/
 
 # OS / editor
 .DS_Store

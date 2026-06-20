@@ -102,8 +102,6 @@ Unlocks during a run show an **Achievement Found** popup, then either a title re
 
 Complete all 40 to earn **Crime Lord** status.
 
-Visual reference screens: [`docs/ui-standards/ledger-*.png`](docs/ui-standards/). Integration spec: [`docs/crime-ledger-integration-prompt.md`](docs/crime-ledger-integration-prompt.md).
-
 -----
 
 ## The Feds
@@ -171,7 +169,7 @@ Once installed, the game works fully offline.
 - **Engine/UI split** — game logic in `engine.js` and `ledger.js`; UI in `gangwars.html` and `ledger-ui.js`
 - **Offline** — service worker caches all files on first load; works with no connection thereafter
 - **Save state** — current run (`gw:save`), high scores (`gw:highscores`), Crime Ledger (`gw:ledger`), and audio prefs (`gw:audio`) persist in browser local storage
-- **Audio** — [`audio.js`](audio.js) drives music and SFX; assets live in [`assets/audio/`](assets/audio/). Placeholder files are generated via `python scripts/generate-audio-placeholders.py` — drop in real `.ogg` files by path to replace them. Full ID map: [`docs/audio-catalog.md`](docs/audio-catalog.md). Mute toggle on title screen and in-run masthead.
+- **Audio** — [`audio.js`](audio.js) drives music and SFX; assets live in [`assets/audio/`](assets/audio/). Mute toggle on title screen and in-run masthead.
 
 -----
 
