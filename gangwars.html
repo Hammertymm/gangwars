@@ -11,7 +11,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=3" />
 <link rel="apple-touch-icon" sizes="192x192" href="icon-192.png?v=3" />
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=3" />
-<link rel="preload" as="image" href="title-screen.png?v=10" fetchpriority="high" />
+<link rel="preload" as="image" href="title-screen.png?v=11" fetchpriority="high" />
 <title>GANG WARS</title>
 <style>
   :root{
@@ -254,11 +254,11 @@
   .title-hit:active:not(:disabled){background:transparent;}
   .title-hit:focus-visible{outline:2px solid var(--amber);outline-offset:-2px;}
   .title-hit:disabled{cursor:default;pointer-events:none;opacity:0;}
-  /* Title hit rects on 474×1042 canvas; cqw/cqh = title-cover box (inset inside gold borders) */
-  .title-hit-new{left:2.743cqw;top:80.230cqh;width:45.781cqw;height:7.869cqh;}
-  .title-hit-cont{left:52.954cqw;top:80.230cqh;width:44.515cqw;height:7.869cqh;}
-  .title-hit-ledger{left:2.743cqw;top:88.580cqh;width:45.781cqw;height:7.102cqh;}
-  .title-hit-scores{left:52.954cqw;top:88.580cqh;width:44.726cqw;height:7.102cqh;}
+  /* Title hit rects on 473×1024 canvas; cqw/cqh = title-cover box */
+  .title-hit-new{left:2.114cqw;top:77.637cqh;width:47.569cqw;height:11.426cqh;}
+  .title-hit-cont{left:50.317cqw;top:77.637cqh;width:47.569cqw;height:11.426cqh;}
+  .title-hit-ledger{left:2.326cqw;top:86.914cqh;width:47.357cqw;height:7.812cqh;}
+  .title-hit-scores{left:50.317cqw;top:86.914cqh;width:47.569cqw;height:7.812cqh;}
   .audio-mute-btn{font-family:inherit;background:transparent;color:var(--amber);border:1px solid var(--amber);
     padding:2px 7px;font-size:clamp(.62rem,2.8vw,.72rem);letter-spacing:0;cursor:pointer;border-radius:4px;
     line-height:1.2;min-height:0;}
@@ -565,8 +565,8 @@ if (typeof document !== "undefined") {
   let pendingUnlockQueue = [], pendingCompleteQueue = [];
   let ledger = migrateLedger((() => { try { return JSON.parse(localStorage.getItem(LEDGER_KEY)); } catch(e) { return null; } })());
   const money = n => "$"+Math.round(n).toLocaleString("en-US");
-  const TITLE_SCREEN = "title-screen.png?v=10";
-  const TITLE_CANVAS = { w: 474, h: 1042 };
+  const TITLE_SCREEN = "title-screen.png?v=11";
+  const TITLE_CANVAS = { w: 473, h: 1024 };
   function layoutTitleScreen(){
     const cover = document.querySelector(".title-cover");
     if (!cover) return;
@@ -1071,11 +1071,11 @@ if (typeof document !== "undefined") {
     app.innerHTML = `<div class="play title-play">
       <div class="title-screen">
         <div class="title-cover">
-          <img src="${TITLE_SCREEN}" width="474" height="1042" decoding="async" fetchpriority="high"
+          <img src="${TITLE_SCREEN}" width="473" height="1024" decoding="async" fetchpriority="high"
             alt="Gang Wars — Prohibition 1929">
-          <button type="button" class="title-hit title-hit-new" id="new" aria-label="Start"></button>
+          <button type="button" class="title-hit title-hit-new" id="new" aria-label="New Game"></button>
           <button type="button" class="title-hit title-hit-cont" id="cont" aria-label="Continue" ${saved?"":"disabled"}></button>
-          <button type="button" class="title-hit title-hit-ledger" id="ledger" aria-label="Crime Ledger"></button>
+          <button type="button" class="title-hit title-hit-ledger" id="ledger" aria-label="Ledger"></button>
           <button type="button" class="title-hit title-hit-scores" id="scores" aria-label="High Scores"></button>
         </div>
       </div>
@@ -1771,7 +1771,7 @@ if (typeof document !== "undefined") {
 </script>
 <script>
   if ('serviceWorker' in navigator && !/^127\.0\.0\.1$|^localhost$/i.test(location.hostname)) {
-    navigator.serviceWorker.register('./sw.js?v=87').then(reg => {
+    navigator.serviceWorker.register('./sw.js?v=88').then(reg => {
       reg.update();
       reg.addEventListener('updatefound', () => {
         const worker = reg.installing;
