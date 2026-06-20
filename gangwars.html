@@ -132,7 +132,7 @@
   .market-row .hold-cell{flex:0 0 auto;text-align:right;color:var(--dim);white-space:nowrap;
     font-size:clamp(.58rem,2.5vw,.68rem);}
   .market-row .hold-cell.have{color:var(--green);}
-  .market-play .market-actions{flex:0 0 auto;display:flex;gap:5px;}
+  .market-play .market-actions{flex:0 0 auto;display:flex;gap:5px;margin-top:5px;}
   .market-play .market-actions button{flex:1 1 0;height:18px;min-height:18px;max-height:18px;padding:0 6px;margin:0;
     font-size:clamp(.6rem,2.4vw,.7rem);font-weight:700;letter-spacing:1px;line-height:1;border-radius:4px;}
   .market-play .market-actions .buybtn{background:linear-gradient(180deg,#5b4a25,#2f2412);
@@ -1768,7 +1768,7 @@ if (typeof document !== "undefined") {
 </script>
 <script>
   if ('serviceWorker' in navigator && !/^127\.0\.0\.1$|^localhost$/i.test(location.hostname)) {
-    navigator.serviceWorker.register('./sw.js?v=82').then(reg => {
+    navigator.serviceWorker.register('./sw.js?v=83').then(reg => {
       reg.update();
       reg.addEventListener('updatefound', () => {
         const worker = reg.installing;
