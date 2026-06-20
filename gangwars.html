@@ -49,54 +49,65 @@
   .play{flex:1 1 auto;display:flex;flex-direction:column;min-height:0;}
 
   /* Illustration assets — lighten ~10% for readability on dark UI */
-  .goods-icon-wrap .goods-icon,.market-play .loc-header img,.travel-head img,.travel-row img,.eos-art img{
+  .goods-icon-wrap .goods-icon,.market-play .loc-img img,.travel-head img,.travel-row img,.eos-art img{
     filter:brightness(1.1);}
 
-  /* MARKET SCREEN — fixed single-screen layout (no scroll) */
-  .market-play{gap:5px;overflow:hidden;}
-  .market-play .loc-header{flex:0 0 16%;min-height:76px;max-height:112px;
-    display:flex;gap:6px;align-items:stretch;padding:4px 8px 4px 4px;
-    background:var(--panel);border:1px solid var(--border);border-radius:8px;}
-  .market-play .loc-header img{flex:0 0 auto;width:auto;height:100%;
-    min-width:clamp(76px, 24vw, 120px);max-width:42%;aspect-ratio:1;
-    display:block;object-fit:cover;object-position:center;
-    image-rendering:pixelated;image-rendering:crisp-edges;border-radius:4px;
-    border:1px solid var(--btnborder);}
-  .market-play .loc-header-body{flex:1 1 auto;min-width:0;overflow:hidden;}
+  /* MARKET SCREEN — two-column card layout, single-screen (no scroll) — v76 */
+  .market-play{gap:6px;overflow:hidden;}
+  /* district card */
+  .market-play .loc-header{position:relative;flex:0 0 13%;min-height:80px;max-height:112px;
+    display:flex;gap:10px;align-items:stretch;padding:7px 9px 7px 7px;
+    background:linear-gradient(180deg,#221b11,#15110b);border:1px solid var(--border);border-radius:8px;}
+  .market-play .loc-img{position:relative;flex:0 0 auto;height:100%;aspect-ratio:1;
+    min-width:clamp(78px, 26vw, 132px);max-width:46%;overflow:hidden;
+    border-radius:6px;border:1px solid var(--btnborder);}
+  .market-play .loc-img img{width:100%;height:100%;display:block;object-fit:cover;object-position:center;
+    image-rendering:pixelated;image-rendering:crisp-edges;}
+  .market-play .loc-img.no-district{background:linear-gradient(160deg,#2a2014,#15110b);}
+  .market-play .loc-img.no-district::after{content:attr(data-name);position:absolute;inset:0;
+    display:flex;align-items:center;justify-content:center;padding:6px;text-align:center;
+    font-family:"Didot","Bodoni MT","Playfair Display",Georgia,serif;
+    font-size:clamp(.6rem,2.6vw,.8rem);color:var(--dim);line-height:1.2;}
+  .market-play .loc-header-body{flex:1 1 auto;min-width:0;overflow:hidden;
+    display:flex;flex-direction:column;justify-content:center;}
   .market-play .loc-header-title{font-family:"Didot","Bodoni MT","Playfair Display",Georgia,serif;
-    font-size:clamp(.94rem, 4.8vw, 1.18rem);font-weight:700;color:var(--amber);letter-spacing:1px;
-    line-height:1.1;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-  .market-play .loc-header-day{font-size:clamp(.62rem, 2.8vw, .74rem);color:var(--dim);margin:1px 0 2px;}
-  .market-play .loc-header-desc{font-size:clamp(.58rem, 2.5vw, .68rem);color:var(--dim);line-height:1.28;
+    font-size:clamp(1rem, 4.9vw, 1.4rem);font-weight:700;color:var(--amber);letter-spacing:1px;
+    line-height:1.08;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .market-play .loc-header-day{font-size:clamp(.64rem, 2.9vw, .78rem);color:var(--dim);margin:3px 0;}
+  .market-play .loc-header-desc{font-size:clamp(.6rem, 2.6vw, .7rem);color:var(--dim);line-height:1.3;
     display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
 
+  /* mid region (transparent — cards float) */
   .market-mid{flex:1 1 0;min-height:0;overflow:hidden;display:flex;flex-direction:column;
-    background:var(--bg);border:1px solid var(--border);border-radius:8px;}
-  .market-head{flex:0 0 auto;padding:5px 10px 3px;border-bottom:1px solid var(--border);}
-  .market-golden-banner{flex:0 0 auto;margin:0;padding:5px 10px 4px;
+    background:transparent;border:none;border-radius:0;}
+  .market-head{flex:0 0 auto;padding:2px 2px 6px;display:flex;align-items:center;gap:10px;}
+  .market-golden-banner{flex:0 0 auto;margin:0 0 5px;padding:5px 10px 4px;border-radius:5px;
     font-size:clamp(.58rem, 2.5vw, .68rem);letter-spacing:1.2px;text-transform:uppercase;
     text-align:center;color:#1a1206;background:linear-gradient(90deg, #b8860b, var(--amber), #b8860b);
-    border-bottom:1px solid var(--amber);animation:golden-pulse 2s ease-in-out infinite;}
+    animation:golden-pulse 2s ease-in-out infinite;}
   @keyframes golden-pulse{0%,100%{filter:brightness(1);}50%{filter:brightness(1.15);}}
-  .market-head-title{font-family:"Didot","Bodoni MT","Playfair Display",Georgia,serif;
-    font-size:clamp(.76rem, 3.4vw, .88rem);color:var(--amber);letter-spacing:1px;text-transform:uppercase;}
-  .market-cols{flex:0 0 auto;display:grid;grid-template-columns:1fr minmax(4.2rem,5.4rem) 1.8rem minmax(5rem,6.8rem);gap:3px;
-    padding:2px 8px 3px;font-size:clamp(.52rem, 2.3vw, .6rem);color:var(--dim);letter-spacing:.5px;
-    border-bottom:1px solid var(--rowline);}
-  .market-cols span:nth-child(2){text-align:right;}
-  .market-cols span:nth-child(3){text-align:right;}
-  .market-rows{flex:1 1 0;min-height:0;overflow:hidden;display:flex;flex-direction:column;}
-  .market-row{flex:1 1 0;min-height:0;display:grid;grid-template-columns:1fr minmax(4.2rem,5.4rem) 1.8rem minmax(5rem,6.8rem);gap:3px;
-    align-items:stretch;padding:1px 8px;border-bottom:1px solid var(--rowline);font-size:clamp(.62rem, 2.8vw, .74rem);
-    overflow:hidden;}
-  .market-row:last-child{border-bottom:none;}
+  .market-head-title{flex:0 0 auto;font-family:"Didot","Bodoni MT","Playfair Display",Georgia,serif;
+    font-size:clamp(1rem, 4.9vw, 1.4rem);color:var(--amber);letter-spacing:1px;text-transform:uppercase;}
+  .market-head-rule{flex:1 1 auto;height:1px;background:var(--border);}
+  .market-head-gem{flex:0 0 auto;width:9px;height:9px;transform:rotate(45deg);
+    border:1px solid var(--btnborder);background:var(--bg);}
+  /* two-column card grid */
+  .market-rows{flex:1 1 0;min-height:0;overflow:hidden;
+    display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:minmax(0,1fr);gap:6px;}
+  .market-row{min-height:0;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;
+    gap:4px;padding:7px;border:1px solid var(--border);border-radius:7px;
+    background:linear-gradient(180deg,#221b11,#16110a);}
   .market-row.dead{opacity:.42;}
-  .market-row .price-cell,.market-row .hold-cell,.market-play .market-row .market-actions{align-self:center;}
-  .goods-cell{display:flex;align-items:center;gap:5px;min-width:0;overflow:hidden;align-self:stretch;}
-  .goods-icon-wrap{flex:0 0 auto;width:clamp(27px,8.3vw,43px);height:clamp(27px,8.3vw,43px);
-    border:1px solid var(--btnborder);border-radius:4px;background:rgba(0,0,0,.35);
+  .card-head{flex:1 1 auto;min-height:0;display:flex;align-items:center;gap:8px;overflow:hidden;}
+  .goods-icon-wrap{position:relative;flex:0 0 auto;
+    width:clamp(30px,8vw,40px);height:clamp(30px,8vw,40px);
+    border:1px solid var(--btnborder);border-radius:50%;background:rgba(0,0,0,.35);
     padding:5px;box-sizing:border-box;overflow:hidden;
     display:grid;grid-template:1fr/1fr;align-items:center;justify-items:center;}
+  .goods-icon-wrap.no-icon::after{content:attr(data-initial);position:absolute;inset:0;
+    display:flex;align-items:center;justify-content:center;
+    font-family:"Didot","Bodoni MT","Playfair Display",Georgia,serif;
+    font-size:clamp(15px,4.6vw,20px);color:var(--amber);line-height:1;}
   .goods-icon{width:100%;height:100%;display:block;object-fit:contain;
     transform-origin:50% 50%;max-width:none;max-height:none;
     border:none;border-radius:0;background:transparent;padding:0;}
@@ -111,17 +122,32 @@
   .goods-icon-wrap[data-good="furcoats"] .goods-icon{transform:scale(2.48) translate(2.1%,26%);}
   .goods-icon-wrap[data-good="champagne"] .goods-icon{transform:scale(2.36) translate(3%,31%);}
   .goods-icon-wrap[data-good="diamonds"] .goods-icon{transform:scale(2.62) translate(5.9%,34.5%);}
-  .goods-name{flex:1 1 auto;min-width:0;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-  .price-cell{text-align:right;color:var(--amber);white-space:nowrap;}
-  .price-cell.na{color:var(--dim);}
-  .hold-cell{text-align:right;color:var(--dim);white-space:nowrap;}
-  .hold-cell.have{color:var(--green);}
-  .market-play .market-actions{display:flex;justify-content:flex-end;align-items:center;gap:3px;
-    white-space:nowrap;height:100%;max-height:100%;overflow:hidden;}
-  .market-play .market-actions button{padding:2px 7px;font-size:clamp(.5rem, 2.1vw, .58rem);margin:0;border-radius:3px;
-    min-height:0;min-width:0;height:clamp(20px, 92%, 30px);line-height:1.1;flex:0 0 auto;}
-  .market-mid .actlog{flex:0 0 auto;font-size:clamp(.56rem, 2.4vw, .64rem);color:var(--dim);
-    padding:4px 10px 5px;line-height:1.25;border-top:1px solid var(--border);}
+  .card-meta{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;justify-content:center;gap:1px;}
+  .goods-name{min-width:0;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+    font-size:clamp(.8rem,3.6vw,.98rem);line-height:1.15;}
+  .market-row .price-cell{text-align:left;color:var(--amber);font-weight:700;white-space:nowrap;
+    font-size:clamp(.92rem,4.3vw,1.12rem);line-height:1.15;}
+  .market-row .price-cell.na{color:var(--dim);}
+  .market-row .hold-cell{flex:0 0 auto;align-self:center;text-align:right;color:var(--dim);white-space:nowrap;
+    font-size:clamp(.6rem,2.7vw,.72rem);}
+  .market-row .hold-cell.have{color:var(--green);}
+  .market-play .market-actions{flex:0 0 auto;display:flex;gap:5px;}
+  .market-play .market-actions button{flex:1 1 0;min-height:44px;height:44px;padding:0 6px;margin:0;
+    font-size:clamp(.74rem,3.2vw,.9rem);font-weight:700;letter-spacing:1px;line-height:1;border-radius:5px;}
+  .market-play .market-actions .buybtn{background:linear-gradient(180deg,#5b4a25,#2f2412);
+    border:1px solid var(--amber);color:var(--amber);}
+  .market-play .market-actions .buybtn:active{background:var(--amber);color:#1a1206;}
+  .market-play .market-actions .sellbtn{background:transparent;border:1px solid var(--green);color:var(--green);}
+  .market-play .market-actions .sellbtn:active{background:var(--green);color:#1a1206;}
+  .market-row.dead .market-actions .buybtn{background:#19140c;border-color:var(--border);color:var(--dim);}
+  .market-mid .actlog{flex:0 0 auto;font-size:clamp(.58rem, 2.5vw, .66rem);color:var(--dim);
+    padding:6px 2px 1px;line-height:1.25;}
+  /* art-deco corner brackets on district + stats panels */
+  .market-play .loc-header::after,.market-play .bot-bar::after{content:"";position:absolute;inset:5px;
+    pointer-events:none;
+    background:linear-gradient(var(--btnborder),var(--btnborder)) top left,linear-gradient(var(--btnborder),var(--btnborder)) top left,linear-gradient(var(--btnborder),var(--btnborder)) top right,linear-gradient(var(--btnborder),var(--btnborder)) top right,linear-gradient(var(--btnborder),var(--btnborder)) bottom left,linear-gradient(var(--btnborder),var(--btnborder)) bottom left,linear-gradient(var(--btnborder),var(--btnborder)) bottom right,linear-gradient(var(--btnborder),var(--btnborder)) bottom right;
+    background-repeat:no-repeat;
+    background-size:16px 1px,1px 16px,16px 1px,1px 16px,16px 1px,1px 16px,16px 1px,1px 16px;}
 
   /* TRAVEL — locked standard: full car header, stacked districts, zero dead space (see docs/ui-standards/travel.png) */
   .travel-play{overflow:hidden;}
@@ -179,16 +205,20 @@
   .price{color:var(--amber);} .have{color:var(--green);} .na{color:var(--dim);}
 
   /* BOTTOM BAR — cash/debt/bank/guns + action buttons, always visible */
-  .market-play .bot-bar{flex:0 0 21%;min-height:118px;max-height:168px;
-    background:var(--panel);border:1px solid var(--border);border-radius:8px;
-    padding:6px 10px 7px;display:flex;flex-direction:column;overflow:hidden;}
+  .market-play .bot-bar{position:relative;flex:0 0 18%;min-height:122px;max-height:172px;
+    background:linear-gradient(180deg,#221b11,#15110b);border:1px solid var(--border);border-radius:8px;
+    padding:9px 12px 10px;display:flex;flex-direction:column;overflow:hidden;}
   .bot-bar{flex:0 0 auto;background:var(--panel);border:1px solid var(--border);
     border-radius:8px;padding:7px 10px 8px;}
   .bot-stats{display:grid;grid-template-columns:1fr 1fr;gap:1px 10px;margin-bottom:4px;flex:1 1 auto;min-height:0;}
   .bot-stat{display:flex;flex-direction:column;justify-content:center;}
   .bot-stat.right{align-items:flex-end;text-align:right;}
+  .market-play .bot-stats{flex:0 0 auto;margin-bottom:0;}
+  .bot-sub{flex:0 0 auto;display:flex;justify-content:space-between;gap:10px;margin-top:7px;
+    padding-top:7px;border-top:1px solid var(--rowline);
+    font-size:clamp(.6rem,2.7vw,.72rem);color:var(--dim);letter-spacing:.3px;white-space:nowrap;}
   .bot-label{font-size:clamp(.54rem, 2.3vw, .62rem);color:var(--dim);letter-spacing:.3px;line-height:1.1;}
-  .market-play .bot-val{font-size:clamp(.88rem, 4.2vw, 1.08rem);line-height:1.15;color:var(--amber);}
+  .market-play .bot-val{font-size:clamp(1.2rem, 5.6vw, 1.62rem);line-height:1.12;color:var(--amber);}
   .bot-val{font-size:1.08rem;line-height:1.2;color:var(--amber);}
   .bot-val.red{color:var(--red);}
   .debt-warn{flex:0 0 auto;margin:0 0 4px;padding:0 2px;font-size:clamp(.52rem, 2.2vw, .62rem);
@@ -197,8 +227,8 @@
   .bot-val.dim{font-size:.9rem;color:var(--text);}
   .bar{height:4px;background:var(--bartrack);border-radius:3px;margin:3px 0 6px;overflow:hidden;}
   .bar > i{display:block;height:100%;background:var(--green);}
-  .market-play .actions{flex:0 0 auto;display:grid;grid-template-columns:1fr 1fr;gap:6px;}
-  .market-play .actions button{padding:clamp(7px, 2.2vw, 10px) 6px;font-size:clamp(.68rem, 3vw, .78rem);letter-spacing:.5px;}
+  .market-play .actions{flex:0 0 auto;margin-top:auto;display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+  .market-play .actions button{min-height:50px;padding:0 6px;font-size:clamp(.78rem, 3.4vw, .94rem);letter-spacing:.6px;font-weight:700;}
   .actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
   .actions button{padding:10px 8px;font-size:.8rem;letter-spacing:.5px;}
 
@@ -1091,27 +1121,31 @@ if (typeof document !== "undefined") {
     document.getElementById("back").onclick = render;
   }
 
+  /* v76 — MARKET: two-column card grid, 44px tap targets, icon/district fallbacks (was single-column list) */
   function renderMarket(){
     const used = spaceUsed(S.inventory);
     const rows = GOODS.map(d=>{
       const p = S.prices[d.id]; const have = S.inventory[d.id]||0;
       const dead = p==null;
       return `<div class="market-row${dead?' dead':''}">
-        <div class="goods-cell">
-          <span class="goods-icon-wrap" data-good="${d.id}"><img class="goods-icon" src="${GOODS_IMG[d.id]}" alt=""></span><span class="goods-name">${d.name}</span>
+        <div class="card-head">
+          <span class="goods-icon-wrap" data-good="${d.id}" data-initial="${(d.name||'?').charAt(0)}"><img class="goods-icon" src="${GOODS_IMG[d.id]||''}" alt="${d.name}" onerror="this.onerror=null;this.style.display='none';this.closest('.goods-icon-wrap').classList.add('no-icon');"></span>
+          <div class="card-meta">
+            <span class="goods-name">${d.name}</span>
+            <span class="price-cell${dead?' na':''}">${dead?'—':money(p)}</span>
+          </div>
+          <span class="hold-cell${have?' have':''}">Hold ${have||'—'}</span>
         </div>
-        <span class="price-cell${dead?' na':''}">${dead?'—':money(p)}</span>
-        <span class="hold-cell${have?' have':''}">${have||'—'}</span>
         <div class="market-actions">
-          ${have?`<button class="amber" data-sell="${d.id}">SELL</button>`:''}
-          <button data-buy="${d.id}" ${dead?'disabled':''}>BUY</button>
+          ${have?`<button class="sellbtn" data-sell="${d.id}">SELL</button>`:''}
+          <button class="buybtn" data-buy="${d.id}" ${dead?'disabled':''}>BUY</button>
         </div>
       </div>`;
     }).join("");
     const goldenActive = S.events?.goldenGodlike && S.day === S.events.goldenGodlike.day;
     app.innerHTML = `<div class="play market-play">
       <div class="loc-header">
-        <img src="${DISTRICT_IMG[S.location]||DISTRICT_IMG[HOME]}" alt="${S.location}">
+        <div class="loc-img" data-name="${S.location}"><img src="${DISTRICT_IMG[S.location]||DISTRICT_IMG[HOME]||''}" alt="${S.location}" onerror="this.onerror=null;this.style.display='none';this.closest('.loc-img').classList.add('no-district');"></div>
         <div class="loc-header-body">
           <div class="loc-header-title">${S.location}</div>
           <div class="loc-header-day">Day ${S.day} / ${CONFIG.days}</div>
@@ -1122,9 +1156,8 @@ if (typeof document !== "undefined") {
         ${goldenActive?'<div class="market-golden-banner" role="status">✦ Golden Shower — every price in the city ×10 ✦</div>':''}
         <div class="market-head">
           <span class="market-head-title">MARKET</span>
-        </div>
-        <div class="market-cols">
-          <span>Goods</span><span>Price</span><span>Hold</span><span></span>
+          <span class="market-head-rule"></span>
+          <span class="market-head-gem"></span>
         </div>
         <div class="market-rows">${rows}</div>
         <div class="actlog" aria-live="polite">▶ ${S.log[0]||'The streets are quiet.. for now.'}${S.log[1]?`<br><span style='opacity:.6'>▶ ${S.log[1]}</span>`:''}</div>
@@ -1133,10 +1166,10 @@ if (typeof document !== "undefined") {
         <div class="bot-stats">
           <div class="bot-stat"><span class="bot-label">CASH</span><span class="bot-val">${money(S.cash)}</span></div>
           <div class="bot-stat right"><span class="bot-label">DON DEBT</span><span class="bot-val red">${money(S.debt)}</span></div>
-          <div class="bot-stat"><span class="bot-label">BANK</span><span class="bot-val dim">${money(S.bank)}</span></div>
-          <div class="bot-stat right"><span class="bot-label">GUNS</span><span class="bot-val dim">${S.guns}</span></div>
-          <div class="bot-stat"><span class="bot-label">STASH</span><span class="bot-val dim">${used}/${S.space}</span></div>
-          <div class="bot-stat right"><span class="bot-label">HP</span><span class="bot-val dim">${S.health}/${CONFIG.startHealth}</span></div>
+        </div>
+        <div class="bot-sub">
+          <span>BANK ${money(S.bank)}&nbsp;&nbsp;&nbsp;GUNS ${S.guns}</span>
+          <span>STASH ${used}/${S.space}&nbsp;&nbsp;&nbsp;HP ${S.health}/${CONFIG.startHealth}</span>
         </div>
         ${S.debt>=CONFIG.maxTotalDebt*0.9?'<p class="debt-warn" role="status">The Don is losing patience, get in over $100k and its curtains</p>':''}
         <p class="save-err" id="save-err" role="alert"></p>
@@ -1737,7 +1770,7 @@ if (typeof document !== "undefined") {
 </script>
 <script>
   if ('serviceWorker' in navigator && !/^127\.0\.0\.1$|^localhost$/i.test(location.hostname)) {
-    navigator.serviceWorker.register('./sw.js?v=76').then(reg => {
+    navigator.serviceWorker.register('./sw.js?v=77').then(reg => {
       reg.update();
       reg.addEventListener('updatefound', () => {
         const worker = reg.installing;
