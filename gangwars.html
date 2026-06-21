@@ -653,10 +653,14 @@ if (typeof document !== "undefined") {
     const top10 = buildTop10Leaderboard(highscores());
     const rows = top10.map((row, i) => mkScoresLbRow(row, i + 1)).join("");
     app.innerHTML = `<div class="play scores-play">
-      <div class="scores-head">
-        <span class="eos-orn-line"></span>
-        <span class="scores-title">ALL TIME HIGH SCORES</span>
-        <span class="eos-orn-line r"></span>
+      <div class="scores-hero">
+        <img src="./assets/city-hall.png" alt="" class="scores-hero-img">
+        <div class="scores-hero-overlay"></div>
+        <div class="scores-hero-title">
+          <span class="eos-orn-line"></span>
+          <span class="scores-hero-text">ALL TIME HIGH SCORES</span>
+          <span class="eos-orn-line r"></span>
+        </div>
       </div>
       <div class="scores-lb-wrap">${rows}</div>
       <div class="scores-foot"><button class="full" id="back">BACK</button></div>
@@ -1324,7 +1328,7 @@ if (typeof document !== "undefined") {
 </script>
 <script>
   if ('serviceWorker' in navigator && !/^127\.0\.0\.1$|^localhost$/i.test(location.hostname)) {
-    navigator.serviceWorker.register('./sw.js?v=91').then(reg => {
+    navigator.serviceWorker.register('./sw.js?v=92').then(reg => {
       reg.update();
       reg.addEventListener('updatefound', () => {
         const worker = reg.installing;
