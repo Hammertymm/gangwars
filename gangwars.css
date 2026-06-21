@@ -411,18 +411,17 @@
   /* ── leaderboard rows ── */
   .scores-lb-wrap{flex:1 1 auto;min-height:0;overflow:hidden;display:flex;flex-direction:column;
     border:1px solid var(--amber);border-radius:4px;background:var(--panel);}
-  .slb-row{flex:1 1 0;display:flex;align-items:center;gap:clamp(6px,2vw,10px);
-    padding:0 clamp(8px,2.2vw,12px);border-bottom:1px solid var(--border);min-height:0;}
+  .slb-row{flex:1 1 0;display:flex;align-items:center;gap:8px;
+    padding:0 10px;border-bottom:1px solid var(--border);min-height:0;overflow:hidden;}
   .slb-row:last-child{border-bottom:none;}
-  .slb-pos{flex:0 0 auto;width:20px;text-align:right;color:var(--dim);
-    font-size:clamp(.58rem,2.5vw,.72rem);}
-  .slb-portrait{flex:0 0 auto;aspect-ratio:1;height:calc(100% - 8px);max-height:62px;
-    object-fit:cover;border-radius:3px;border:1px solid var(--border);display:block;
+  .slb-pos{flex:0 0 auto;width:20px;text-align:right;color:var(--dim);font-size:.68rem;}
+  .slb-portrait{flex:0 0 auto;align-self:stretch;aspect-ratio:1;width:auto;
+    margin:3px 0;object-fit:cover;border-radius:3px;border:1px solid var(--border);display:block;
     filter:brightness(1.05);}
   .slb-rank{flex:1 1 auto;font-family:"Didot","Bodoni MT","Playfair Display",Georgia,serif;
-    font-size:clamp(.58rem,2.5vw,.72rem);color:var(--amber);letter-spacing:.6px;
+    font-size:.68rem;color:var(--amber);letter-spacing:.6px;
     text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-  .slb-score{flex:0 0 auto;color:var(--text);font-size:clamp(.58rem,2.5vw,.72rem);white-space:nowrap;}
+  .slb-score{flex:0 0 auto;color:var(--text);font-size:.68rem;white-space:nowrap;}
   .scores-foot{flex:0 0 auto;padding-top:2px;}
   .tutorial .card{border-color:var(--green);max-width:420px;width:100%;}
   .tutorial .card-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px;}
