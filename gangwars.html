@@ -21,7 +21,7 @@
 <div id="crt">
   <div class="masthead">
     <button type="button" class="audio-mute-btn" id="audio-mute" data-audio-mute aria-label="Toggle sound">&#128266;</button>
-    <h1 class="serif">GANG WARS</h1>
+    <h1 class="serif" aria-label="Gang Wars"><img src="./banner.png" alt="Gang Wars" class="masthead-banner"></h1>
   </div>
   <div id="app"></div>
   <div id="game-live" role="status" aria-live="polite" aria-atomic="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;padding:0;margin:0;"></div>
@@ -1332,7 +1332,7 @@ if (typeof document !== "undefined") {
 </script>
 <script>
   if ('serviceWorker' in navigator && !/^127\.0\.0\.1$|^localhost$/i.test(location.hostname)) {
-    navigator.serviceWorker.register('./sw.js?v=99').then(reg => {
+    navigator.serviceWorker.register('./sw.js?v=100').then(reg => {
       reg.update();
       reg.addEventListener('updatefound', () => {
         const worker = reg.installing;
