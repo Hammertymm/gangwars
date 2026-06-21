@@ -211,7 +211,7 @@
   .bot-val.dim{font-size:.9rem;color:var(--text);}
   .bar{height:4px;background:var(--bartrack);border-radius:3px;margin:3px 0 6px;overflow:hidden;}
   .bar > i{display:block;height:100%;background:var(--green);}
-  .market-play .actions{flex:0 0 auto;margin-top:auto;display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+  .market-play .actions{flex:0 0 auto;margin-top:auto;margin-bottom:10px;display:grid;grid-template-columns:1fr 1fr;gap:8px;}
   .market-play .actions button{min-height:36px;padding:0 6px;font-size:clamp(.7rem, 3vw, .82rem);letter-spacing:.6px;font-weight:700;}
   .actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
   .actions button{padding:10px 8px;font-size:.8rem;letter-spacing:.5px;}
