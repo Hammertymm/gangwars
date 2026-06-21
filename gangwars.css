@@ -23,7 +23,7 @@
     min-height:0;height:100vh;height:100svh;height:100dvh;max-height:100dvh;overflow:hidden;
     padding:calc(env(safe-area-inset-top, 0px) + 10px) 10px calc(env(safe-area-inset-bottom, 0px) + 12px) 10px;background:var(--bg);}
   .masthead{flex:0 0 auto;text-align:center;padding:0;margin:0 0 3px;position:relative;}
-  #crt.game-mode{padding:calc(env(safe-area-inset-top, 0px) + 1px) 8px 10px 8px;}
+  #crt.game-mode{padding:calc(env(safe-area-inset-top, 0px) + 1px) 8px 0 8px;}
   #crt.game-mode .masthead{padding:0;margin:0 0 8px;}
   h1{margin:0;line-height:1;font-size:0;}
   .masthead-banner{display:block;width:100%;height:auto;filter:brightness(1.05);}
@@ -189,9 +189,9 @@
   .price{color:var(--amber);} .have{color:var(--green);} .na{color:var(--dim);}
 
   /* BOTTOM BAR — cash/debt/bank/guns + action buttons, always visible */
-  .market-play .bot-bar{position:relative;flex:0 0 auto;min-height:0;max-height:none;
+  .market-play .bot-bar{position:relative;flex:0 0 120px;height:120px;min-height:120px;max-height:120px;
     background:linear-gradient(180deg,#221b11,#15110b);border:1px solid var(--border);border-radius:8px;
-    padding:9px 12px 10px;margin-top:auto;display:flex;flex-direction:column;overflow:hidden;}
+    padding:7px 12px 8px;margin-top:4px;display:flex;flex-direction:column;overflow:hidden;}
   .bot-bar{flex:0 0 auto;background:var(--panel);border:1px solid var(--border);
     border-radius:8px;padding:7px 10px 8px;}
   .bot-stats{display:grid;grid-template-columns:1fr 1fr;gap:1px 10px;margin-bottom:4px;flex:1 1 auto;min-height:0;}
@@ -211,7 +211,7 @@
   .bot-val.dim{font-size:.9rem;color:var(--text);}
   .bar{height:4px;background:var(--bartrack);border-radius:3px;margin:3px 0 6px;overflow:hidden;}
   .bar > i{display:block;height:100%;background:var(--green);}
-  .market-play .actions{flex:0 0 auto;margin-top:6px;display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+  .market-play .actions{flex:0 0 auto;margin-top:auto;display:grid;grid-template-columns:1fr 1fr;gap:8px;}
   .market-play .actions button{min-height:46px;padding:0 6px;font-size:clamp(.76rem, 3.3vw, .9rem);letter-spacing:.6px;font-weight:700;}
   .actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
   .actions button{padding:10px 8px;font-size:.8rem;letter-spacing:.5px;}
