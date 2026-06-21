@@ -261,7 +261,7 @@
      No container-type:size, no aspect-ratio frame, no cqh. iOS Safari safe. */
 
   /* ── shared chrome ─────────────────────────────────────────────────────── */
-  #crt.ledger-mode{padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0);background:#000;}
+  #crt.ledger-mode{padding:0;background:#000;}
   #crt.ledger-mode .masthead{display:none;}
   #crt.ledger-mode #app{flex:1 1 auto;min-height:0;}
   .ledger-play{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;
