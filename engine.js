@@ -174,12 +174,12 @@ function classicScore(s){
 }
 
 const RANKS = [
-  'Nobody','Pickpocket','Hustler','Rum Runner','Bootlegger',
-  'Racketeer','Wise Guy','Crew Boss','Underboss','Godfather','Big Daddy J',
+  'Street Runner','Associate','Wise Guy','Racketeer','Capo',
+  'Underboss','Consigliere','Boss','Godfather','Big Daddy J',
 ];
 const RANK_MIN_WORTH = [
-  0, 5000000, 10000000, 15000000, 20000000, 25000000,
-  30000000, 35000000, 40000000, 45000000, 50000000,
+  0, 5000000, 10000000, 15000000, 20000000,
+  25000000, 30000000, 35000000, 40000000, 45000000,
 ];
 function getRank(worth){
   const nw = Math.max(0, worth);

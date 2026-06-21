@@ -396,11 +396,22 @@
   .tutorial{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.82);display:flex;align-items:center;justify-content:center;
     padding:calc(env(safe-area-inset-top, 0px) + 16px) 16px calc(env(safe-area-inset-bottom, 0px) + 16px) 16px;}
   .scores-play{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;overflow:hidden;gap:8px;}
-  .scores-head{flex:0 0 auto;text-align:center;font-size:clamp(.76rem, 3.4vw, .88rem);color:var(--amber);
-    letter-spacing:2px;padding:6px 0;border-bottom:1px solid var(--border);}
-  .scores-list{flex:1 1 auto;min-height:0;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-start;gap:1px;
-    border:1px solid var(--border);border-radius:8px;padding:6px 8px;background:var(--panel);}
-  .scores-empty{flex:1 1 auto;display:flex;align-items:center;justify-content:center;color:var(--dim);font-size:.82rem;text-align:center;padding:16px;}
+  .scores-head{flex:0 0 auto;display:flex;align-items:center;gap:clamp(4px,2vw,10px);padding:4px 0 6px;}
+  .scores-title{flex:0 0 auto;font-family:"Didot","Bodoni MT","Playfair Display",Georgia,serif;
+    font-size:clamp(.6rem,2.8vw,.76rem);font-weight:700;color:var(--amber);
+    letter-spacing:clamp(2px,.8vw,3px);white-space:nowrap;text-transform:uppercase;}
+  .scores-lb-wrap{flex:1 1 auto;min-height:0;overflow:hidden;display:flex;flex-direction:column;
+    border:1px solid var(--amber);border-radius:4px;background:var(--panel);}
+  .slb-row{display:flex;align-items:baseline;gap:clamp(4px,1.5vw,8px);
+    padding:clamp(7px,2.2vw,12px) clamp(10px,2.8vw,16px);border-bottom:1px solid var(--border);}
+  .slb-row:last-child{border-bottom:none;}
+  .slb-pos{flex:0 0 auto;width:20px;text-align:right;color:var(--dim);
+    font-size:clamp(.6rem,2.6vw,.76rem);}
+  .slb-rank{flex:0 0 auto;font-family:"Didot","Bodoni MT","Playfair Display",Georgia,serif;
+    font-size:clamp(.6rem,2.6vw,.76rem);color:var(--amber);letter-spacing:.5px;text-transform:uppercase;}
+  .slb-dots{flex:1 1 auto;border-bottom:1px dotted rgba(231,200,121,.35);
+    margin:0 4px;position:relative;top:-3px;min-width:0;}
+  .slb-score{flex:0 0 auto;color:var(--text);font-size:clamp(.6rem,2.6vw,.76rem);white-space:nowrap;}
   .scores-foot{flex:0 0 auto;}
   .tutorial .card{border-color:var(--green);max-width:420px;width:100%;}
   .tutorial .card-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px;}
