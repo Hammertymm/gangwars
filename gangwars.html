@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&display=swap" />
-<link rel="stylesheet" href="gangwars.css?v=14">
+<link rel="stylesheet" href="gangwars.css?v=15">
 
 </head>
 <body>
@@ -1010,18 +1010,35 @@ if (typeof document !== "undefined") {
     if (typeof imgKeyOrPath === 'string' && imgKeyOrPath.includes('/')) return versionEventImage(imgKeyOrPath);
     return versionEventImage(EV_IMG[imgKeyOrPath] || EV_IMG.intel);
   }
+  function fitEventPopupToImage(src){
+    const popup = app.querySelector(".ev-popup");
+    const left = popup && popup.querySelector(".ev-left");
+    if (!popup || !left || !src) return;
+    const fit = (naturalWidth, naturalHeight)=>{
+      if (!naturalWidth || !naturalHeight) return;
+      const leftWidth = left.getBoundingClientRect().width || popup.getBoundingClientRect().width / 2;
+      const maxHeight = Math.floor(window.innerHeight * 0.88);
+      const imageHeight = Math.round(leftWidth * naturalHeight / naturalWidth);
+      popup.style.height = `${Math.min(imageHeight, maxHeight)}px`;
+    };
+    const img = new Image();
+    img.onload = ()=>fit(img.naturalWidth, img.naturalHeight);
+    img.src = src;
+  }
 
   /* Single-button event popup with split image/text layout */
   function showEvent(imgKey, body, btn, cb){
     modal=function(){
       audioPlay("sfx.events.modalOpen");
+      const imgSrc = eventImgSrc(imgKey);
       app.innerHTML=`<div class="modal"><div class="ev-popup" role="dialog" aria-modal="true">
-        <div class="ev-left" style="background-image:url('${eventImgSrc(imgKey)}')" role="img" aria-label="Event illustration"></div>
+        <div class="ev-left" style="background-image:url('${imgSrc}')" role="img" aria-label="Event illustration"></div>
         <div class="ev-right">
           <div class="ev-body"><div>${body}</div></div>
           <div class="ev-acts"><button class="amber full" id="ok">${btn||'OK'}</button></div>
         </div>
       </div></div>`;
+      fitEventPopupToImage(imgSrc);
       const advance = ()=>{ audioPlay("sfx.events.modalClose"); modal=null; modalEscape=null; cb(); };
       document.getElementById("ok").onclick=advance;
       modalEscape = advance;
@@ -1033,8 +1050,9 @@ if (typeof document !== "undefined") {
   function showEventAsk(imgKey, body, yesLabel, onYes, noLabel, onNo){
     modal=function(){
       audioPlay("sfx.events.modalOpen");
+      const imgSrc = eventImgSrc(imgKey);
       app.innerHTML=`<div class="modal"><div class="ev-popup" role="dialog" aria-modal="true">
-        <div class="ev-left" style="background-image:url('${eventImgSrc(imgKey)}')" role="img" aria-label="Event illustration"></div>
+        <div class="ev-left" style="background-image:url('${imgSrc}')" role="img" aria-label="Event illustration"></div>
         <div class="ev-right">
           <div class="ev-body"><div>${body}</div></div>
           <div class="ev-acts">
@@ -1043,6 +1061,7 @@ if (typeof document !== "undefined") {
           </div>
         </div>
       </div></div>`;
+      fitEventPopupToImage(imgSrc);
       const yes = ()=>{ audioPlay("sfx.events.modalClose"); modal=null; modalEscape=null; onYes(); };
       const pass = ()=>{ audioPlay("sfx.events.modalClose"); modal=null; modalEscape=null; onNo(); };
       document.getElementById("yes").onclick=yes;
@@ -1158,8 +1177,9 @@ if (typeof document !== "undefined") {
           if (A()) { A().duckMusic(true); A().playMusic("music.fedsTension"); }
           fedsAudioStarted = true;
         }
+        const imgSrc = eventImgSrc('feds');
         app.innerHTML=`<div class="modal"><div class="ev-popup" role="dialog" aria-modal="true">
-          <div class="ev-left" style="background-image:url('${eventImgSrc('feds')}')" role="img" aria-label="The Feds"></div>
+          <div class="ev-left" style="background-image:url('${imgSrc}')" role="img" aria-label="The Feds"></div>
           <div class="ev-right">
             <div class="ev-body"><div>
               Agent Hayes spotted you — <b>${cops}</b> ${cops>1?'agents':'agent'} closing in.<br><br>
@@ -1174,6 +1194,7 @@ if (typeof document !== "undefined") {
             </div>
           </div>
         </div></div>`;
+        fitEventPopupToImage(imgSrc);
         document.getElementById("run").onclick=doRun;
         document.getElementById("bribe").onclick=doBribe;
         const f=document.getElementById("fight");
