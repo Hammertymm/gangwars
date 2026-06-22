@@ -97,10 +97,11 @@ const GOLDEN_GODLIKE = {
   lines:['GOLDEN SHOWER!!!','EVERYWHERE!!!'],
 };
 
-const GODLIKE_CHANCE = 0.005;
-const GOLDEN_GODLIKE_CHANCE = GODLIKE_CHANCE / 5;
-const RARE_EVENT_CHANCE = 0.045;
-const SUPER_RARE_EVENT_CHANCE = 0.01;
+// Golden Godlike rolls first; this conditional value yields an effective 1-in-50 Godlike run rate.
+const GODLIKE_CHANCE = 0.02 / (1 - 0.01);
+const GOLDEN_GODLIKE_CHANCE = 0.01;
+const RARE_EVENT_CHANCE = 0.10;
+const SUPER_RARE_EVENT_CHANCE = 0.05;
 
 const DEFAULT_EVENT_RATES = {
   rare: RARE_EVENT_CHANCE,

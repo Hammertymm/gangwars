@@ -1,3 +1,16 @@
+GANG WARS v141 - increased rare event frequency
+================================================
+Replace: engine.js, ledger.js, README.md, sw.js
+(cache -> gangwars-v141)
+
+- Rare event roll chance increased to 1 in 10 runs.
+- Super Rare event roll chance increased to 1 in 20 runs.
+- Godlike event roll chance increased to 1 in 50 runs.
+- Golden Godlike event roll chance increased to 1 in 100 runs.
+- Event pity caps increased to 40%, 16%, 4%, and 1% for Rare, Super Rare,
+  Godlike, and Golden Godlike respectively.
+- README event odds and hidden-ledger terminology updated to match the game.
+
 GANG WARS v140 - unified Crime Ledger category styling
 =======================================================
 Replace: ledger-ui.js, gangwars.css, sw.js

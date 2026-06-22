@@ -70,16 +70,16 @@ Each time you travel, the city may have something waiting:
 - **A piece for sale** — a contact offers you a gun (useful when the Feds show up)
 - **The Feds** — Agent Hayes and his men. Fight, run, or pay them off
 
-**Rare events (~1 in 25 runs):**
+**Rare events (~1 in 10 runs):**
 Historical figures — Capone, Luciano, Rothstein, Armstrong and others — trigger a forced price surge on their associated commodity in a specific district. You have to already be there to benefit.
 
-**Super Rare (~1 in 100 runs):**
+**Super Rare (~1 in 20 runs):**
 A major city event drives all prices in one district to 3× normal for a single day. Babe Ruth. Lindbergh. The Prince of Wales.
 
-**Godlike (~1 in 200 runs):**
+**Godlike (~1 in 50 runs):**
 Its a Mystery 👻
 
-**Golden Godlike (~1 in 1,000 runs):**
+**Golden Godlike (~1 in 100 runs):**
 Its also a Mystery 👻
 
 -----
@@ -95,8 +95,8 @@ Open **LEDGER** from the title screen to browse five categories:
 | General | 14 | Made Man, First Million, Survivor |
 | Rare | 10 | Historical figures trigger district price spikes |
 | Super Rare | 10 | City-wide headline events (Lindbergh, Ruth, Ziegfeld…) |
-| Godlike | 5 | ?????????? |
-| Golden Godlike | 1 | ?????????? |
+| Godlike | 5 | Unknown |
+| Golden Godlike | 1 | Unknown |
 
 Unlocks during a run show an **Achievement Found** popup, then either a title reveal (general) or full event card (rare+), and finally the entry in the ledger list with icon, title, and description.
 

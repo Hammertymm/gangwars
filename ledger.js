@@ -90,13 +90,14 @@ const EVENT_ACHIEVEMENT_IDS = LEDGER_CATEGORIES
   .filter(cat => cat.id !== 'general')
   .flatMap(cat => cat.achievements.map(a => a.id));
 
-const EVENT_PITY_BASE_RARE = 0.045;
+const EVENT_PITY_BASE_RARE = 0.10;
 const EVENT_PITY_COMPOUND = 1.04;
 const EVENT_PITY_TRAVELS_PER_STEP = 1;
-const EVENT_PITY_RARE_CAP = 0.20;
-const EVENT_PITY_SUPER_CAP = 0.08;
-const EVENT_PITY_GODLIKE_CAP = 0.02;
-const EVENT_PITY_GOLDEN_CAP = EVENT_PITY_GODLIKE_CAP / 5;
+const EVENT_PITY_RARE_CAP = 0.40;
+const EVENT_PITY_SUPER_CAP = 0.16;
+const EVENT_PITY_GOLDEN_CAP = 0.01;
+// Golden Godlike rolls first, so this conditional cap yields an effective 4% Godlike cap.
+const EVENT_PITY_GODLIKE_CAP = 0.04 / (1 - EVENT_PITY_GOLDEN_CAP);
 
 function engineApi(){
   if (typeof netWorth === 'function' && typeof GOODS !== 'undefined' && typeof CONFIG !== 'undefined') {
@@ -357,9 +358,9 @@ function eventRollChances(ledger){
   const engine = engineApi();
   const base = {
     rare: engine.RARE_EVENT_CHANCE ?? EVENT_PITY_BASE_RARE,
-    superRare: engine.SUPER_RARE_EVENT_CHANCE ?? 0.01,
-    godlike: engine.GODLIKE_CHANCE ?? 0.005,
-    golden: engine.GOLDEN_GODLIKE_CHANCE ?? 0.001,
+    superRare: engine.SUPER_RARE_EVENT_CHANCE ?? 0.05,
+    godlike: engine.GODLIKE_CHANCE ?? (0.02 / (1 - 0.01)),
+    golden: engine.GOLDEN_GODLIKE_CHANCE ?? 0.01,
   };
   if (!ledger || !isEventLedgerSlow(ledger)) return base;
   const steps = Math.floor((ledger.travelsSinceEventUnlock || 0) / EVENT_PITY_TRAVELS_PER_STEP);
