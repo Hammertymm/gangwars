@@ -1,9 +1,30 @@
-GANG WARS v86 — smaller cash figures, darker BUY bg, stat box drops down
-=========================================================================
-Replace: gangwars.html, sw.js  (cache -> gangwars-v86)
+GANG WARS v140 - unified Crime Ledger category styling
+=======================================================
+Replace: ledger-ui.js, gangwars.css, sw.js
+(cache -> gangwars-v140)
 
-- CASH / DON DEBT figures reduced 20% so last item row is no longer obscured.
-- BUY button background near-black (#1e1809 -> #141005); only the gold border
-  and text remain lit. Active/tap state unchanged.
-- Stats box top border drops into the dead space below GUNS/HP row
-  (margin-top:auto pushes it to the bottom of the flex container).
+- RARE, SUPER RARE, GODLIKE, and GOLDEN GODLIKE category pages now use the
+  same counter wording and hidden-entry treatment as GENERAL.
+- Undiscovered achievement titles now show "Unknown" consistently across all
+  Crime Ledger category pages.
+- Ledger UI metadata updated to v64 and the service worker cache bumped so
+  installed PWAs pick up the ledger changes.
+
+GANG WARS v139 - market polish, event art, installed-PWA refresh
+================================================================
+Replace: gangwars.html, gangwars.css, sw.js, and updated art assets
+(cache -> gangwars-v139)
+
+- Market cards use the new large-icon layout with cleaner price/stock rows and
+  touch-friendly BUY / SELL actions.
+- MARKET header simplified to just the title; decorative rule/gem treatment
+  removed for a cleaner read.
+- CASH and DON DEBT stats are inline, larger, and restyled for better mobile
+  readability without crowding the final market row.
+- Item price sizing, location title spacing, and responsive art panel scaling
+  were tuned across recent layout passes.
+- Stock display now shows a minimal "-" when empty instead of the old hold label.
+- Event popups keep their image-sized framing, with main event art compressed
+  to reduce installed app weight.
+- Service worker cache is now gangwars-v139 so installed PWAs pick up the latest
+  shell, CSS, and asset updates.

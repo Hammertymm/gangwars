@@ -265,7 +265,7 @@
   #crt.game-mode .masthead{position:relative;}
   .save-err{text-align:center;color:var(--red);font-size:.72rem;padding:1px 0;}
 
-  /* CRIME LEDGER v63 — unified template
+  /* CRIME LEDGER v64 — unified template
      Home: blueprint overlay on base PNG (unchanged).
      Categories: in-flow header image + HTML title/counter + 10-slot normal-flow rows.
      No container-type:size, no aspect-ratio frame, no cqh. iOS Safari safe. */

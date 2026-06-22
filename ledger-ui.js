@@ -1,5 +1,5 @@
 /* ============================================================================
-   CRIME LEDGER UI — v63 unified template
+   CRIME LEDGER UI — v64 unified template
    Home: blueprint overlay on base PNG (unchanged).
    Categories: in-flow header image + HTML title/counter + 10-slot normal-flow rows.
    No blueprint coords for category layout. No cqh. iOS Safari safe.
@@ -40,8 +40,7 @@ function ledgerRowLabelHtml(title, count, total, rect) {
 }
 
 function categoryCounterText(catId, found, total) {
-  if (catId === "general") return `${found} / ${total} FOUND`;
-  return `${found} OF ${total} DISCOVERED`;
+  return `${found} / ${total} FOUND`;
 }
 
 function listPanelStyleVars(bp) { return ""; }
@@ -49,12 +48,11 @@ function listPanelStyleVars(bp) { return ""; }
 const HIDDEN_ACHIEVEMENT_DESC = "Achievement not yet discovered.";
 
 function buildListRows(cat, ledger, focusId) {
-  const isGeneral = cat.id === "general";
   return cat.achievements.map(a => {
     const unlocked = isUnlocked(ledger, a.id);
     const revealed  = isRevealed(ledger, a.id);
     const focus     = focusId === a.id ? " reveal-focus" : "";
-    const hiddenTitle = isGeneral ? "???" : "UNKNOWN";
+    const hiddenTitle = "Unknown";
     let title    = hiddenTitle;
     let desc     = HIDDEN_ACHIEVEMENT_DESC;
     let mark     = "";
@@ -121,7 +119,7 @@ function runRevealAnimation(rowEl, achievementId, onDone) {
   const duration = Math.min(1000, Math.max(500, chars * 35));
   const stepMs   = duration / steps;
   let i = 0;
-  titleEl.textContent = "???";
+  titleEl.textContent = "Unknown";
   titleEl.classList.add("hidden");
   if (descEl) { descEl.textContent = ""; descEl.classList.add("placeholder"); }
   rowEl.classList.add("reveal-focus");
