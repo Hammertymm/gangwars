@@ -198,12 +198,17 @@ if (typeof document !== "undefined") {
     app.dataset.ledgerFocus = ledgerFocusId || "";
     LedgerUI.render(app, ledgerUiCtx());
   }
+  const EVENT_IMG_VERSION = "events-v2";
+  function versionEventImage(path){
+    if (typeof path !== "string" || !path.startsWith("events/") || path.includes("?")) return path;
+    return `${path}?v=${EVENT_IMG_VERSION}`;
+  }
   function getAchievementCardImage(id){
     const cat = getCategoryForAchievement(id);
-    if (cat === "rare") return `events/rare_${id}.png`;
-    if (cat === "superRare") return `events/super_${id}.png`;
-    if (cat === "godlike") return `events/godlike_${id}.png`;
-    if (cat === "goldenGodlike") return "events/godlike_golden.png";
+    if (cat === "rare") return versionEventImage(`events/rare_${id}.png`);
+    if (cat === "superRare") return versionEventImage(`events/super_${id}.png`);
+    if (cat === "godlike") return versionEventImage(`events/godlike_${id}.png`);
+    if (cat === "goldenGodlike") return versionEventImage("events/godlike_golden.png");
     return null;
   }
   /** Achievement unlock presentation (Achievement Found → reveal / card → ledger list). */
@@ -1002,8 +1007,8 @@ if (typeof document !== "undefined") {
   };
 
   function eventImgSrc(imgKeyOrPath){
-    if (typeof imgKeyOrPath === 'string' && imgKeyOrPath.includes('/')) return imgKeyOrPath;
-    return EV_IMG[imgKeyOrPath] || EV_IMG.intel;
+    if (typeof imgKeyOrPath === 'string' && imgKeyOrPath.includes('/')) return versionEventImage(imgKeyOrPath);
+    return versionEventImage(EV_IMG[imgKeyOrPath] || EV_IMG.intel);
   }
 
   /* Single-button event popup with split image/text layout */
@@ -1154,7 +1159,7 @@ if (typeof document !== "undefined") {
           fedsAudioStarted = true;
         }
         app.innerHTML=`<div class="modal"><div class="ev-popup" role="dialog" aria-modal="true">
-          <div class="ev-left" style="background-image:url('${EV_IMG.feds}')" role="img" aria-label="The Feds"></div>
+          <div class="ev-left" style="background-image:url('${eventImgSrc('feds')}')" role="img" aria-label="The Feds"></div>
           <div class="ev-right">
             <div class="ev-body"><div>
               Agent Hayes spotted you — <b>${cops}</b> ${cops>1?'agents':'agent'} closing in.<br><br>

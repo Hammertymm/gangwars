@@ -1,7 +1,7 @@
 /* Gang Wars — service worker
    Cache-first for app shell; network-first for icons so home-screen art updates. */
 
-const CACHE = 'gangwars-v129';
+const CACHE = 'gangwars-v130';
 const ASSETS = [
   './gangwars.html',
   './gangwars.css',
@@ -200,6 +200,8 @@ const SHELL_PATTERN = /\/(gangwars\.html|gangwars\.css|engine\.js|ledger\.js|led
 const LEDGER_PATTERN = /\/assets\/ledger\//;
 /** Goods art — network-first so replaced market icons show immediately after deploy. */
 const GOODS_PATTERN = /\/assets\/goods\/[^/]+\.png$/;
+/** Event art — network-first so regenerated event cards are not trapped in cache-first. */
+const EVENT_PATTERN = /\/events\/[^/]+\.png$/;
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)));
@@ -235,7 +237,7 @@ self.addEventListener('fetch', e => {
     );
     return;
   }
-  if (SHELL_PATTERN.test(path) || LEDGER_PATTERN.test(path) || GOODS_PATTERN.test(path)) {
+  if (SHELL_PATTERN.test(path) || LEDGER_PATTERN.test(path) || GOODS_PATTERN.test(path) || EVENT_PATTERN.test(path)) {
     e.respondWith(
       fetch(e.request)
         .then(res => {
