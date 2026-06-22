@@ -115,7 +115,7 @@
     font-size:clamp(1.05rem,4.65vw,1.5rem);line-height:1;}
   .market-row .price-cell.na{color:var(--dim);}
   .market-row .stock-cell{flex:0 0 auto;text-align:right;color:var(--dim);white-space:nowrap;
-    font-family:var(--font-deco);font-size:clamp(.6rem,2.4vw,.8rem);}
+    font-family:var(--font-deco);font-size:clamp(1.2rem,4.8vw,1.6rem);}
   .market-row .stock-cell.have{color:var(--green);}
   .market-play .market-actions{flex:140 1 0;min-height:0;display:flex;gap:4px;align-items:center;}
   .market-play .market-actions button{flex:1 1 0;height:100%;min-height:0;padding:0 2px;margin:0;
@@ -478,6 +478,7 @@
 
   /* === EVENT POPUP — locked standard: full-bleed left art (see docs/ui-standards/popup.png) === */
   .modal .ev-popup{width:100%;}
+  .ev-popup.ev-measuring{visibility:hidden;}
   .ev-popup{display:grid;grid-template-columns:1fr 1fr;align-items:stretch;width:100%;
     max-width:min(520px, 100%);height:min(436px, 88dvh);max-height:88dvh;
     border:1px solid var(--amber);border-radius:12px;overflow:hidden;

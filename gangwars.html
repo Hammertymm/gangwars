@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" />
-<link rel="stylesheet" href="gangwars.css?v=20">
+<link rel="stylesheet" href="gangwars.css?v=21">
 
 </head>
 <body>
@@ -699,7 +699,7 @@ if (typeof document !== "undefined") {
         <span class="goods-icon-wrap" data-good="${d.id}" data-initial="${(d.name||'?').charAt(0)}"><img class="goods-icon" src="${GOODS_IMG[d.id]||''}" alt="${d.name}" onerror="this.onerror=null;this.style.display='none';this.closest('.goods-icon-wrap').classList.add('no-icon');"></span>
         <div class="card-content">
           <div class="card-name-row"><span class="goods-name">${d.name}</span></div>
-          <div class="card-price-row"><span class="price-cell${dead?' na':''}">${dead?'—':money(p)}</span><span class="stock-cell${have?' have':''}">${have||0}</span></div>
+          <div class="card-price-row"><span class="price-cell${dead?' na':''}">${dead?'—':money(p)}</span><span class="stock-cell${have?' have':''}">${have||'-'}</span></div>
           <div class="market-actions">
             <button class="sellbtn" data-sell="${d.id}" ${have?'':'disabled'} style="${have?'':'opacity:.28;'}">SELL</button>
             <button class="buybtn" data-buy="${d.id}" ${dead?'disabled':''}>BUY</button>
@@ -1013,17 +1013,26 @@ if (typeof document !== "undefined") {
   function fitEventPopupToImage(src){
     const popup = app.querySelector(".ev-popup");
     const left = popup && popup.querySelector(".ev-left");
-    if (!popup || !left || !src) return;
+    if (!popup || !left || !src){ if (popup) popup.classList.add("ev-ready"); return; }
+    // Hide the popup until it's sized to the image so the oversized default
+    // frame never flashes and then collapses (no resize flicker).
+    popup.classList.add("ev-measuring");
+    const reveal = ()=>{ popup.classList.remove("ev-measuring"); popup.classList.add("ev-ready"); };
     const fit = (naturalWidth, naturalHeight)=>{
-      if (!naturalWidth || !naturalHeight) return;
-      const leftWidth = left.getBoundingClientRect().width || popup.getBoundingClientRect().width / 2;
-      const maxHeight = Math.floor(window.innerHeight * 0.88);
-      const imageHeight = Math.round(leftWidth * naturalHeight / naturalWidth);
-      popup.style.height = `${Math.min(imageHeight, maxHeight)}px`;
+      if (naturalWidth && naturalHeight){
+        const leftWidth = left.getBoundingClientRect().width || popup.getBoundingClientRect().width / 2;
+        const maxHeight = Math.floor(window.innerHeight * 0.88);
+        const imageHeight = Math.round(leftWidth * naturalHeight / naturalWidth);
+        popup.style.height = `${Math.min(imageHeight, maxHeight)}px`;
+      }
+      reveal();
     };
     const img = new Image();
     img.onload = ()=>fit(img.naturalWidth, img.naturalHeight);
+    img.onerror = reveal;
     img.src = src;
+    // Cached images are already complete — size synchronously, before paint.
+    if (img.complete && img.naturalWidth) fit(img.naturalWidth, img.naturalHeight);
   }
 
   /* Single-button event popup with split image/text layout */
@@ -1380,9 +1389,10 @@ if (typeof document !== "undefined") {
         });
       });
     });
-    navigator.serviceWorker.addEventListener('controllerchange', () => {
-      window.location.reload();
-    });
+    // NOTE: deliberately do NOT reload on controllerchange. A forced reload
+    // when a new SW activates interrupts active play (in-memory state isn't
+    // restored on load, so it drops back to the title). The updated assets
+    // apply on the next natural page load instead.
   }
 </script>
 </body>
