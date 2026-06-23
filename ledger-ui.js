@@ -102,7 +102,7 @@ function homeShell(rows, found, total) {
    reuses the leaderboard container/rows and is the only scrolling region. */
 function categoryShell(catId, cat, rows) {
   const img = ledgerAssetPath(LEDGER_HEADER_IMAGE[catId]);
-  return `<div class="play scores-play ledger-scores">
+  return `<div class="play scores-play ledger-scores" data-ledger-cat="${catId}">
     <div class="scores-hero">
       <img src="${img}" alt="" class="scores-hero-img">
       <div class="scores-hero-overlay"></div>
@@ -165,7 +165,6 @@ const LedgerUI = {
       const done  = total && n >= total ? " complete" : "";
       const img   = ledgerAssetPath(LEDGER_HEADER_IMAGE[cat.id]);
       return `<button type="button" class="slb-row ledger-home-row${done}" data-cat="${cat.id}" aria-label="${cat.title}, ${n} of ${total} found">
-        <span class="slb-pos">${idx + 1}.</span>
         <div class="ledger-home-thumb"><img src="${img}" alt="" decoding="async" onerror="this.onerror=null;this.style.display='none'"></div>
         <div class="ledger-home-copy">
           <div class="ledger-home-title">${cat.title}</div>

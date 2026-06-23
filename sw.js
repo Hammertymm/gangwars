@@ -1,7 +1,7 @@
 /* Gang Wars — service worker
    Cache-first for app shell; network-first for icons so home-screen art updates. */
 
-const CACHE = 'gangwars-v144';
+const CACHE = 'gangwars-v147';
 const ASSETS = [
   './gangwars.html',
   './gangwars.css',

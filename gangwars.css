@@ -28,7 +28,7 @@
     padding:calc(env(safe-area-inset-top, 0px) + 10px) 10px calc(env(safe-area-inset-bottom, 0px) + 12px) 10px;background:var(--bg);}
   .masthead{flex:0 0 auto;text-align:center;padding:0;margin:0 0 3px;position:relative;}
   #crt.game-mode{padding:calc(env(safe-area-inset-top, 0px) + 1px) 8px 0 8px;}
-  #crt.game-mode .masthead{padding:0;margin:0 0 8px;}
+  #crt.game-mode .masthead{padding:0;margin:0;}
   h1{margin:0;line-height:1;font-size:0;}
   .masthead-banner{display:block;width:100%;height:auto;filter:brightness(1.05);}
   #app{flex:1 1 auto;display:flex;flex-direction:column;min-height:0;overflow:hidden;}
@@ -43,15 +43,15 @@
   .market-play{gap:3px;overflow:hidden;}
   /* district card */
   .market-play .loc-header{position:relative;flex:0 0 clamp(82px,10.7vh,104px);min-height:82px;max-height:104px;
-    display:flex;gap:clamp(7px,2.2vw,12px);align-items:stretch;padding:6px 9px;
+    display:flex;gap:clamp(4px,1.4vw,7px);align-items:stretch;padding:0;
     background:linear-gradient(180deg,#211b11,#15110b);border:1px solid var(--btnborder);border-radius:8px;}
   .market-play .loc-header::before,.market-play .bot-bar::before{content:"";position:absolute;inset:5px;
     pointer-events:none;border:1px solid rgba(201,162,74,.36);border-radius:5px;}
   .market-row::before{content:"";position:absolute;inset:4px;
     pointer-events:none;border:1px solid rgba(201,162,74,.32);border-radius:5px;}
-  .market-play .loc-img{position:relative;left:-5px;flex:0 0 44%;height:100%;min-width:0;max-width:44%;overflow:hidden;
-    border-radius:5px;border:1px solid rgba(201,162,74,.42);padding:0;}
-  .market-play .loc-img img{width:100%;height:100%;display:block;object-fit:cover;object-position:center;
+  .market-play .loc-img{position:relative;flex:0 0 47%;height:100%;min-width:0;max-width:47%;overflow:hidden;
+    border-radius:7px 0 0 7px;border:1px solid rgba(201,162,74,.42);padding:0;}
+  .market-play .loc-img img{width:100%;height:100%;display:block;object-fit:cover;object-position:center 54%;
     image-rendering:pixelated;image-rendering:crisp-edges;}
   .market-play .loc-img.no-district{background:linear-gradient(160deg,#2a2014,#15110b);}
   .market-play .loc-img.no-district::after{content:attr(data-name);position:absolute;inset:0;
@@ -59,9 +59,9 @@
     font-family:var(--font-deco);
     font-size:clamp(.6rem,2.6vw,.8rem);color:var(--dim);line-height:1.2;}
   .market-play .loc-header-body{flex:1 1 auto;min-width:0;overflow:hidden;
-    display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;padding-top:0;}
+    display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;padding:6px 7px 6px 0;}
   .market-play .loc-header-title{font-family:var(--font-display);
-    font-size:clamp(1.032rem, 5.34vw, 1.608rem);font-weight:700;color:var(--amber);letter-spacing:1px;
+    font-size:clamp(1rem, 4.7vw, 1.44rem);font-weight:700;color:var(--amber);letter-spacing:1px;
     line-height:1;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
   .market-play .loc-header-day{position:relative;width:88%;font-family:var(--font-deco);
     font-size:clamp(.56rem, 2.45vw, .74rem);font-weight:700;color:var(--amber);line-height:1;margin:2px 0 9px;text-transform:uppercase;}
@@ -259,22 +259,23 @@
 
   /* ── HOME: category list (reuses the High Scores shell) ─────────────────── */
   .ledger-home-hero-img{object-position:center 28%;}
-  .ledger-home-row{appearance:none;-webkit-appearance:none;width:100%;background:transparent;
+  .ledger-home-row{position:relative;isolation:isolate;appearance:none;-webkit-appearance:none;width:100%;background:#0c0a06;
     color:inherit;font:inherit;text-align:left;cursor:pointer;
     -webkit-tap-highlight-color:transparent;}
+  .ledger-home-row::before{content:"";position:absolute;inset:0;z-index:-1;
+    background:linear-gradient(90deg,rgba(12,10,6,.42),rgba(12,10,6,.72) 38%,rgba(12,10,6,.9) 100%);
+    pointer-events:none;}
   .ledger-home-row:focus-visible{outline:2px solid var(--amber);outline-offset:-2px;}
   .ledger-home-row:active{background:rgba(231,200,121,.08);}
-  .ledger-home-thumb{flex:0 0 88px;width:88px;height:55px;box-sizing:border-box;
-    border:1px solid var(--border);border-radius:3px;overflow:hidden;background:#0c0a06;display:flex;}
-  .ledger-home-row.complete .ledger-home-thumb{border-color:#c9a85a;}
-  .ledger-home-thumb img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(1.05);}
-  .ledger-home-copy{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:6px;}
-  .ledger-home-title{font-family:var(--font-display);font-size:1rem;letter-spacing:.6px;
+  .ledger-home-thumb{position:absolute;inset:0;z-index:-2;overflow:hidden;background:#0c0a06;display:block;}
+  .ledger-home-thumb img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:brightness(1.05);}
+  .ledger-home-copy{position:relative;z-index:1;flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:6px;}
+  .ledger-home-title{font-family:var(--font-display);font-size:2rem;letter-spacing:.6px;
     color:var(--amber);text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
   .ledger-home-bar{height:4px;border-radius:2px;background:rgba(255,255,255,.08);overflow:hidden;}
   .ledger-home-bar span{display:block;height:100%;background:var(--amber);border-radius:2px;}
-  .ledger-home-count{flex:0 0 auto;color:var(--text);font-size:.92rem;white-space:nowrap;}
-  .ledger-home-chev{flex:0 0 auto;color:var(--dim);font-size:1.4rem;line-height:1;margin-left:2px;}
+  .ledger-home-count{position:relative;z-index:1;flex:0 0 auto;color:var(--text);font-size:1.84rem;white-space:nowrap;}
+  .ledger-home-chev{position:relative;z-index:1;flex:0 0 auto;color:var(--dim);font-size:1.4rem;line-height:1;margin-left:2px;}
   .ledger-home-foot{display:flex;flex-direction:column;gap:4px;}
   .ledger-home-total{text-align:center;color:#9a8860;letter-spacing:.14em;
     font-size:.74rem;text-transform:uppercase;}
@@ -428,6 +429,8 @@
      list is the only scrolling region, rows fixed at one-tenth height so short
      categories leave the remaining space empty (no stretch). */
   .scores-lb-wrap.ach-list{overflow-y:auto;-webkit-overflow-scrolling:touch;}
+  .ledger-scores[data-ledger-cat="godlike"] .scores-lb-wrap.ach-list,
+  .ledger-scores[data-ledger-cat="goldenGodlike"] .scores-lb-wrap.ach-list{justify-content:center;}
   .slb-row.ach-row{flex:0 0 10%;}
   .ach-row .ledger-row-icon{flex:0 0 55px;width:55px;height:55px;box-sizing:border-box;
     border:1px solid var(--border);border-radius:3px;overflow:hidden;background:#0c0a06;display:flex;}
