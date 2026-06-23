@@ -32,7 +32,6 @@
 
 <script src="engine.js"></script>
 <script src="ledger.js"></script>
-<script src="ledger-blueprint.js"></script>
 <script src="ledger-ui.js"></script>
 <script src="audio.js"></script>
 <script>
@@ -191,31 +190,25 @@ if (typeof document !== "undefined") {
   }
   function renderLedgerRoute(){
     const crt = document.getElementById("crt");
-    // Category pages reuse the High Scores layout (Gang Wars banner shown);
-    // the home blueprint keeps its full-bleed art mode.
-    if (ledgerView === "category") {
-      crt.classList.remove("title-mode", "ledger-mode");
-      crt.classList.add("game-mode");
-    } else {
-      crt.classList.remove("title-mode", "game-mode");
-      crt.classList.add("ledger-mode");
-    }
+    // Home and category pages both reuse the High Scores layout (Gang Wars banner shown).
+    crt.classList.remove("title-mode", "ledger-mode");
+    crt.classList.add("game-mode");
     app.dataset.ledgerView = ledgerView || "";
     app.dataset.ledgerCategory = ledgerViewCat || "";
     app.dataset.ledgerFocus = ledgerFocusId || "";
     LedgerUI.render(app, ledgerUiCtx());
   }
-  const EVENT_IMG_VERSION = "events-v3";
+  const EVENT_IMG_VERSION = "events-v4";
   function versionEventImage(path){
     if (typeof path !== "string" || !path.startsWith("events/") || path.includes("?")) return path;
     return `${path}?v=${EVENT_IMG_VERSION}`;
   }
   function getAchievementCardImage(id){
     const cat = getCategoryForAchievement(id);
-    if (cat === "rare") return versionEventImage(`events/rare_${id}.png`);
-    if (cat === "superRare") return versionEventImage(`events/super_${id}.png`);
-    if (cat === "godlike") return versionEventImage(`events/godlike_${id}.png`);
-    if (cat === "goldenGodlike") return versionEventImage("events/godlike_golden.png");
+    if (cat === "rare") return versionEventImage(`events/rare_${id}.jpg`);
+    if (cat === "superRare") return versionEventImage(`events/super_${id}.jpg`);
+    if (cat === "godlike") return versionEventImage(`events/godlike_${id}.jpg`);
+    if (cat === "goldenGodlike") return versionEventImage("events/godlike_golden.jpg");
     return null;
   }
   /** Achievement unlock presentation (Achievement Found → reveal / card → ledger list). */
@@ -321,24 +314,15 @@ if (typeof document !== "undefined") {
     render();
   }
   const DISTRICT_IMG = {
-    "Little Italy":       "assets/little-italy.png",
-    "Dock #13":           "assets/dock-13.png",
-    "Kitty Kat Club":     "assets/kitty-kat-club.png",
-    "Uptown":             "assets/uptown.png",
-    "Warehouse District": "assets/warehouse-district.png",
-    "City Hall":          "assets/city-hall.png",
+    "Little Italy":       "assets/little-italy.jpg",
+    "Dock #13":           "assets/dock-13.jpg",
+    "Kitty Kat Club":     "assets/kitty-kat-club.jpg",
+    "Uptown":             "assets/uptown.jpg",
+    "Warehouse District": "assets/warehouse-district.jpg",
+    "City Hall":          "assets/city-hall.jpg",
   };
-  const GOODS_IMG_VERSION = "160x250-v2";
+  const GOODS_IMG_VERSION = "160x250-v3";
   const GOODS_IMG = Object.fromEntries(GOODS.map(d => [d.id, `assets/goods/${d.id}.png?v=${GOODS_IMG_VERSION}`]));
-  const TRAVEL_FLAVOR = {
-    "Little Italy":       "The heart of old-world power. Respect matters more than money here.",
-    "Dock #13":           "Smugglers' Paradise. High-risk trading and black-market goods rule these foggy docks.",
-    "Kitty Kat Club":     "Jazz, gin & secrets. Information is as valuable as cash in this speakeasy district.",
-    "Uptown":             "Where the money lives. Bigger profits, bigger customers, and bigger targets.",
-    "Warehouse District": "Industry and opportunity. Bulk goods and underground operations move big money here.",
-    "City Hall":          "The seat of power. Bribes, favors, and connections open every door.",
-  };
-
 
 
   function save(){
@@ -385,7 +369,7 @@ if (typeof document !== "undefined") {
   }
   function rankPortrait(rank){
     const r = rank.toLowerCase().replace(/ /g,'-');
-    return `cards/${r}-portrait.png`;
+    return `cards/${r}-portrait.jpg`;
   }
   function mkScoresLbRow(row, pos, isYou){
     return `<div class="slb-row${isYou ? ' you' : ''}">
@@ -645,7 +629,7 @@ if (typeof document !== "undefined") {
     const rows = top10.map((row, i) => mkScoresLbRow(row, i + 1)).join("");
     app.innerHTML = `<div class="play scores-play">
       <div class="scores-hero">
-        <img src="./assets/city-hall.png" alt="" class="scores-hero-img">
+        <img src="./assets/city-hall.jpg" alt="" class="scores-hero-img">
         <div class="scores-hero-overlay"></div>
         <div class="scores-hero-title">
           <span class="eos-orn-line"></span>
@@ -853,30 +837,29 @@ if (typeof document !== "undefined") {
   /* ---------- move + day events ---------- */
   function renderTravel(){
     modal = function(){
-      app.innerHTML = `<div class="play travel-play">
-        <div class="travel-screen" role="dialog" aria-modal="true" aria-labelledby="travel-title">
-        <div class="travel-head">
-          <div class="travel-head-art"><img src="assets/travel-car.png" alt="On the move"></div>
-          <div class="travel-head-body">
-            <div class="travel-head-title" id="travel-title">ON THE MOVE</div>
-            <div class="travel-head-sub">Pick your next territory. Moving costs you day.</div>
+      app.innerHTML = `<div class="play scores-play travel-play" role="dialog" aria-modal="true" aria-labelledby="travel-title">
+        <div class="scores-hero">
+          <img src="assets/travel-car.jpg" alt="" class="scores-hero-img travel-hero-img">
+          <div class="scores-hero-overlay"></div>
+          <div class="scores-hero-title">
+            <span class="eos-orn-line"></span>
+            <span class="scores-hero-text" id="travel-title">ON THE MOVE</span>
+            <span class="eos-orn-line r"></span>
           </div>
         </div>
-        <div class="travel-list">
+        <div class="scores-lb-wrap travel-list">
         ${LOCATIONS.map(l=>{
           const here = l === S.location;
-          return `<button type="button" class="travel-row${here?' here':''}" data-go="${l}" ${here?'disabled aria-disabled="true"':''} aria-label="${here?'Current location: ':'Travel to '}${l}">
-            <img src="${DISTRICT_IMG[l]}" alt="${l}">
-            <span class="travel-row-body">
-              <span class="travel-row-name">${l}</span>
-              <span class="travel-row-desc">${TRAVEL_FLAVOR[l]||""}</span>
-            </span>
+          return `<button type="button" class="slb-row travel-row${here?' here':''}" data-go="${l}" ${here?'disabled aria-disabled="true"':''} aria-label="${here?'Current location: ':'Travel to '}${l}">
+            <span class="travel-thumb"><img src="${DISTRICT_IMG[l]}" alt="" decoding="async" onerror="this.onerror=null;this.style.display='none'"></span>
+            <span class="travel-row-name">${l}</span>
+            ${here?'<span class="travel-here-badge">HERE</span>':'<span class="travel-chev" aria-hidden="true">›</span>'}
           </button>`;
         }).join("")}
         </div>
-        <div class="travel-foot">
+        <div class="scores-foot travel-foot">
+          <div class="travel-cost-note">Moving costs you a day</div>
           <button type="button" class="full" id="cancel">GO BACK</button>
-        </div>
         </div>
       </div>`;
       app.querySelectorAll("[data-go]:not([disabled])").forEach(b=> b.onclick=()=> travelTo(b.dataset.go));
@@ -976,9 +959,9 @@ if (typeof document !== "undefined") {
     shortage: 'events/shortage.jpg',
     frenzy:   'events/buying_frenzy.jpg',
     flood:    'events/flooded_market.jpg',
-    celeb:    'events/super_rare_event.png',
-    intel:    'events/rare_event_intel.png',
-    bigdaddy: 'cards/big-daddy-j.png',
+    celeb:    'events/super_rare_event.jpg',
+    intel:    'events/rare_event_intel.jpg',
+    bigdaddy: 'cards/big-daddy-j.jpg',
   };
 
   function eventImgSrc(imgKeyOrPath){
@@ -1317,7 +1300,7 @@ if (typeof document !== "undefined") {
 
     app.innerHTML = `<div class="play scores-play eos-play">
       <div class="scores-hero">
-        <img src="./assets/city-hall.png" alt="" class="scores-hero-img">
+        <img src="./assets/city-hall.jpg" alt="" class="scores-hero-img">
         <div class="scores-hero-overlay"></div>
         <div class="scores-hero-title eos-hero-title">
           <span class="eos-hero-label">FINAL SCORE</span>

@@ -8,14 +8,14 @@
 const LEDGER_CANVAS        = { w: 473, h: 1024 };
 const LEDGER_ASSET_PREFIX  = "assets/ledger/";
 const LEDGER_ICON_PREFIX   = "assets/ledger/icons/";
-const LEDGER_ASSET_VERSION = "66";
+const LEDGER_ASSET_VERSION = "67";
 
 const LEDGER_HEADER_IMAGE = {
-  general:       "ledger-header-general.png",
-  rare:          "ledger-header-rare.png",
-  superRare:     "ledger-header-super-rare.png",
-  godlike:       "ledger-header-godlike.png",
-  goldenGodlike: "ledger-header-golden-godlike.png",
+  general:       "ledger-header-general.jpg",
+  rare:          "ledger-header-rare.jpg",
+  superRare:     "ledger-header-super-rare.jpg",
+  godlike:       "ledger-header-godlike.jpg",
+  goldenGodlike: "ledger-header-golden-godlike.jpg",
 };
 
 function ledgerRectStyle(r) {
@@ -29,14 +29,6 @@ function ledgerAssetPath(name) {
 
 function ledgerIconPath(id) {
   return LEDGER_ICON_PREFIX + id + ".png";
-}
-
-function ledgerCounterHtml(text, rect, cls) {
-  return `<div class="ledger-counter${cls ? " "+cls : ""}" style="${ledgerRectStyle(rect)}">${text}</div>`;
-}
-
-function ledgerRowLabelHtml(title, count, total, rect) {
-  return `<div class="ledger-row-label" style="${ledgerRectStyle(rect)}">${count} / ${total}</div>`;
 }
 
 function categoryCounterText(catId, found, total) {
@@ -82,15 +74,27 @@ function buildListRows(cat, ledger, focusId) {
   }).join("");
 }
 
-/* ── HOME PAGE shell — blueprint overlay, unchanged ─────────────────────── */
-function ledgerShell(baseAsset, overlayHtml, hitHtml, backRect) {
-  const { w, h } = LEDGER_CANVAS;
-  return `<div class="play ledger-play"><div class="ledger-art-screen"><div class="ledger-art-frame">
-    <img src="${ledgerAssetPath(baseAsset)}" width="${w}" height="${h}" decoding="async" alt="">
-    <div class="ledger-overlay-layer">${overlayHtml}</div>
-    ${hitHtml}
-    <button type="button" class="ledger-hit" id="ledgerBack" aria-label="Back" style="${ledgerRectStyle(backRect)}"></button>
-  </div></div></div>`;
+/* ── HOME PAGE shell — reuses the High Scores screen layout ─────────────────
+   Hero banner + a leaderboard-style row per category (thumbnail, title,
+   progress bar, found/total count). Replaces the baked-art + hotspot shell. */
+function homeShell(rows, found, total) {
+  const heroImg = ledgerAssetPath("crime-ledger-home-base.jpg");
+  return `<div class="play scores-play ledger-home">
+    <div class="scores-hero">
+      <img src="${heroImg}" alt="" class="scores-hero-img ledger-home-hero-img">
+      <div class="scores-hero-overlay"></div>
+      <div class="scores-hero-title">
+        <span class="eos-orn-line"></span>
+        <span class="scores-hero-text">CRIME LEDGER</span>
+        <span class="eos-orn-line r"></span>
+      </div>
+    </div>
+    <div class="scores-lb-wrap ledger-home-list">${rows}</div>
+    <div class="scores-foot ledger-home-foot">
+      <div class="ledger-home-total">${found} / ${total} FOUND</div>
+      <button type="button" class="full" id="ledgerBack">BACK</button>
+    </div>
+  </div>`;
 }
 
 /* ── CATEGORY PAGE — reuses the High Scores screen layout ───────────────────
@@ -153,22 +157,28 @@ function runRevealAnimation(rowEl, achievementId, onDone) {
 /* ── PUBLIC API ─────────────────────────────────────────────────────────── */
 const LedgerUI = {
   renderHome(app, ctx) {
-    const bp    = LEDGER_BLUEPRINT.home;
     const found = countDiscovered(ctx.ledger);
-    const counters = ledgerCounterHtml(`${found} / ${LEDGER_TOTAL} FOUND`, bp.totalCounter, "total");
-    const rowParts = (bp.rowLabels || bp.rowCounters).map(rl => {
-      const cat = LEDGER_CATEGORIES.find(c => c.id === rl.id);
-      const n   = countUnlocked(ctx.ledger, rl.id);
-      return ledgerRowLabelHtml(cat.title, n, cat.achievements.length, rl);
+    const rows = LEDGER_CATEGORIES.map((cat, idx) => {
+      const n     = countUnlocked(ctx.ledger, cat.id);
+      const total = cat.achievements.length;
+      const pct   = total ? Math.round((n / total) * 100) : 0;
+      const done  = total && n >= total ? " complete" : "";
+      const img   = ledgerAssetPath(LEDGER_HEADER_IMAGE[cat.id]);
+      return `<button type="button" class="slb-row ledger-home-row${done}" data-cat="${cat.id}" aria-label="${cat.title}, ${n} of ${total} found">
+        <span class="slb-pos">${idx + 1}.</span>
+        <div class="ledger-home-thumb"><img src="${img}" alt="" decoding="async" onerror="this.onerror=null;this.style.display='none'"></div>
+        <div class="ledger-home-copy">
+          <div class="ledger-home-title">${cat.title}</div>
+          <div class="ledger-home-bar"><span style="width:${pct}%"></span></div>
+        </div>
+        <span class="ledger-home-count">${n} / ${total}</span>
+        <span class="ledger-home-chev" aria-hidden="true">›</span>
+      </button>`;
     }).join("");
-    const hits = bp.rowHits.map(rh => {
-      const cat = LEDGER_CATEGORIES.find(c => c.id === rh.id);
-      return `<button type="button" class="ledger-hit" data-cat="${rh.id}" aria-label="${cat.title}" style="${ledgerRectStyle(rh)}"></button>`;
-    }).join("");
-    app.innerHTML = ledgerShell(bp.baseAsset, counters + rowParts, hits, bp.back);
-    bp.rowHits.forEach(rh => {
-      const btn = app.querySelector(`[data-cat="${rh.id}"]`);
-      if (btn) btn.onclick = () => ctx.onOpenCategory(rh.id);
+    app.innerHTML = homeShell(rows, found, LEDGER_TOTAL);
+    LEDGER_CATEGORIES.forEach(cat => {
+      const btn = app.querySelector(`[data-cat="${cat.id}"]`);
+      if (btn) btn.onclick = () => ctx.onOpenCategory(cat.id);
     });
     document.getElementById("ledgerBack").onclick = ctx.onBackHome;
   },

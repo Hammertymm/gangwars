@@ -1,0 +1,14 @@
+| Title | Filename | Popup description |
+|---|---|---|
+| **THE AVIATOR** | `events/super_lindbergh.png` | Lindbergh lands at Dock #13. Crowds surge, cameras pop, and every waterfront price takes flight. |
+| **THE LINER** | `events/super_mauretania.png` | Mauretania docks to roaring crowds. Trunks, crates, and contraband move fast at Dock #13. |
+| **THE MARQUEE** | `events/super_ziegfeld.png` | Ziegfeld fever hits the Kitty Kat Club. Bright lights, rich fools, and prices with chorus-line legs. |
+| **THE TALKIES** | `events/super_hollywood.png` | Hollywood comes to the Kitty Kat Club. Cameras roll, champagne flows, and prices learn to talk. |
+| **THE GENTLEMAN** | `events/super_wales.png` | The Prince of Wales charms Uptown. High society opens its purse and forgets to close it. |
+| **THE MARKET** | `events/super_wallst.png` | Wall Street is roaring Uptown. Ticker tape flies, fortunes swell, and prices lose their manners. |
+| **THE SLUGGER** | `events/super_ruth.png` | Babe Ruth fever grips City Hall. The crowd wants a hero, and every seller wants a bigger cut. |
+| **THE MAYOR** | `events/super_walker.png` | Mayor Walker works the City Hall crowd. Smiles up front, envelopes out back, prices everywhere. |
+| **THE FEAST** | `events/super_feast.png` | Little Italy takes to the streets. Lanterns glow, saints watch, and every back room does brisk business. |
+| **THE CHAIRMAN** | `events/super_chairman.png` | A young boss takes the head table in Little Italy. Quiet words, thick envelopes, expensive consequences. |
+| **THE GARAGE** | `events/super_garage.png` | Something ugly happened in the warehouse garage. Now every crate has a story and a higher price. |
+| **THE PICKET LINE** | `events/super_picket_line.png` | The Warehouse District stops moving. The workers fold their arms, and the prices stand at attention. |
