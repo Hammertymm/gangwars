@@ -80,7 +80,7 @@
     text-align:center;color:#1a1206;background:linear-gradient(90deg, #b8860b, var(--amber), #b8860b);
     animation:golden-pulse 2s ease-in-out infinite;}
   @keyframes golden-pulse{0%,100%{filter:brightness(1);}50%{filter:brightness(1.15);}}
-  .market-head-title{flex:0 0 auto;font-family:var(--font-display);
+  .market-head-title{flex:0 0 auto;font-family:var(--font-display);line-height:1;
     font-size:clamp(1.08rem, 5.1vw, 1.464rem);color:var(--amber);letter-spacing:1px;text-transform:uppercase;}
   .market-head-rule{flex:1 1 auto;height:1px;background:var(--border);}
   .market-head-gem{flex:0 0 auto;width:9px;height:9px;transform:rotate(45deg);
@@ -192,7 +192,7 @@
   .price{color:var(--amber);} .have{color:var(--green);} .na{color:var(--dim);}
 
   /* BOTTOM BAR — cash/debt/bank/guns + action buttons, always visible */
-  .market-play .bot-bar{position:relative;flex:0 0 102px;height:102px;min-height:102px;max-height:102px;
+  .market-play .bot-bar{position:relative;flex:0 0 113px;height:113px;min-height:113px;max-height:113px;
     background:linear-gradient(180deg,#201a11,#141009);border:1px solid var(--btnborder);border-radius:8px;
     padding:10px 12px 7px;margin-top:2px;display:flex;flex-direction:column;overflow:hidden;}
   .bot-bar{flex:0 0 auto;background:var(--panel);border:1px solid var(--border);
@@ -205,9 +205,9 @@
   .market-play .bot-stat.right{justify-content:flex-end;}
   .market-play .bot-stat .bot-label{flex:0 0 auto;font-size:clamp(.7rem,3vw,.9rem);}
   .market-play .bot-stat .bot-val{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-  .bot-sub{flex:0 0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:1px;
-    padding-top:2px;border-top:1px solid rgba(201,162,74,.22);
-    font-size:clamp(.58rem,2.5vw,.68rem);color:var(--dim);letter-spacing:.2px;white-space:nowrap;}
+  .bot-sub{flex:0 0 auto;display:flex;justify-content:space-between;align-items:baseline;margin-top:5px;
+    padding-top:6px;border-top:1px solid rgba(201,162,74,.22);
+    font-size:clamp(.7rem,3vw,.9rem);color:var(--dim);letter-spacing:.2px;white-space:nowrap;}
   .bot-label{font-family:var(--font-deco);
     font-size:clamp(.54rem, 2.3vw, .62rem);color:var(--dim);letter-spacing:.3px;line-height:1.1;text-transform:uppercase;}
   .market-play .bot-val{font-size:clamp(1.05rem,4.65vw,1.5rem);line-height:1.12;color:var(--text);}
