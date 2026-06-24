@@ -987,14 +987,13 @@ if (typeof document !== "undefined") {
       }
     } else if(re && S.day===re.day){
       unlockFromEvent(re.id);
-      const spikeGood=GOOD[re.commodity];
       const reImg=re.img||'intel';
+      const reTitle = re.title || (re.lines && re.lines[0]) || '';
+      const reDesc  = re.desc  || (re.lines && re.lines[1]) || '';
       if(dest===re.district){
-        stageEventCard(re.id, reImg, re.lines[0], re.lines[1], 'rare');
-      } else if(spikeGood){
-        stageEventCard(re.id, reImg, re.lines[0], `${re.lines[1]} ${spikeGood.name} prices are surging in ${re.district}.`, 'rare');
+        stageEventCard(re.id, reImg, reTitle, reDesc, 'rare');
       } else {
-        stageEventCard(re.id, reImg, re.lines[0], re.lines[1], 'rare');
+        stageEventCard(re.id, reImg, reTitle, `${reDesc} Head to ${re.district} for the action.`, 'rare');
       }
     } else if(anomaly){
       const anomalyImg={spike:'shortage',surge:'frenzy',flood:'flood'};

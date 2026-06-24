@@ -72,7 +72,7 @@ Each time you travel, the city may have something waiting:
 
 **Rare events (~1 in 10 runs):**
 
-Historical figures — Capone, Luciano, Rothstein, Armstrong and others — trigger a forced price surge on their associated commodity in a specific district. You have to already be there to bef[...]
+Twelve district events - two per district - trigger 3x prices on every available commodity in their location for one day. You have to already be there to benefit.
 
 **Super Rare (~1 in 20 runs):**
 A major city event drives all prices in its connected district to 5× normal for a single day. Babe Ruth. Lindbergh. The Prince of Wales. Two events per district, twelve in all.
@@ -87,21 +87,21 @@ Its also a Mystery 👻
 
 ## Crime Ledger
 
-Account-wide **40-entry achievement collection** — progress persists across runs in `localStorage` (`gw:ledger`).
+Account-wide **42-entry achievement collection** - progress persists across runs in `localStorage` (`gw:ledger`).
 
 Open **LEDGER** from the title screen to browse five categories:
 
 | Category | Entries | Examples |
 |----------|--------:|----------|
 | General | 20 | Prohibition Accomplished, Buy Hard, Shopaholic |
-| Rare | 10 | Historical figures trigger district price spikes |
+| Rare | 12 | District events trigger 3x prices across their location |
 | Super Rare | 12 | Headline events; 5x every price in the connected district (Lindbergh, Ruth, Ziegfeld…) |
 | Godlike | 5 | Unknown |
 | Golden Godlike | 1 | Unknown |
 
 Unlocks during a run show an **Achievement Found** popup, then either a title reveal (general) or full event card (rare+), and finally the entry in the ledger list with icon, title, and descripti[...]
 
-Complete all 40 to earn **Crime Lord** status.
+Complete all 42 to earn **Crime Lord** status.
 
 -----
 
@@ -179,7 +179,7 @@ Gang Wars is a faithful Prohibition-era reskin of the classic 1984 pocket tradin
 
 Price ranges are scaled ×5 from the original documented values across 10 distinct trading tiers, giving the same risk/reward structure at a scale that feels right on modern screens.
 
-The event system layers historical atmosphere over the mechanical core: 10 rare events tied to real Prohibition-era figures, 12 super-rare events drawn from 1929 headlines (two per district), and[...]
+The event system layers historical atmosphere over the mechanical core: 12 rare district events, 12 super-rare events drawn from 1929 headlines (two per district), and a handful of near-mythic Big Daddy J sightings.
 
 -----
 

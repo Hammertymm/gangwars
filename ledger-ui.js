@@ -26,6 +26,21 @@ const LEDGER_LOCK_ICON = {
   goldenGodlike: "locked-golden-godlike.png",
 };
 
+const LEDGER_ICON_OVERRIDE = {
+  pasta_la_vista: "ledger-group-rare.png",
+  gnocchi_horror_show: "ledger-group-rare.png",
+  ship_happens: "ledger-group-rare.png",
+  titanic_markup: "ledger-group-rare.png",
+  jazz_stinger: "ledger-group-rare.png",
+  great_gats_got: "ledger-group-rare.png",
+  dow_jonesing: "ledger-group-rare.png",
+  margin_of_terror: "ledger-group-rare.png",
+  bribe_and_prejudice: "ledger-group-rare.png",
+  license_to_ill: "ledger-group-rare.png",
+  pallet_wounds: "ledger-group-rare.png",
+  crate_expectations: "ledger-group-rare.png",
+};
+
 function ledgerRectStyle(r) {
   const { w: W, h: H } = LEDGER_CANVAS;
   return `left:${(r.x/W)*100}%;top:${(r.y/H)*100}%;width:${(r.w/W)*100}%;height:${(r.h/H)*100}%`;
@@ -36,6 +51,7 @@ function ledgerAssetPath(name) {
 }
 
 function ledgerIconPath(id) {
+  if (LEDGER_ICON_OVERRIDE[id]) return ledgerAssetPath(LEDGER_ICON_OVERRIDE[id]);
   return LEDGER_ICON_PREFIX + id + ".png";
 }
 

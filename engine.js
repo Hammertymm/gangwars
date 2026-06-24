@@ -57,17 +57,21 @@ const FAM_ALCOHOL  = new Set(['bathgin','moonshine','scotch','cognac','champagne
 const FAM_LUXURY   = new Set(['cigars','furcoats','diamonds']);
 const FAM_CRIMINAL = new Set(['art','counterfeits']);
 
+// 12 Rare events - 2 per location. Visiting the event district on its day
+// multiplies every available price there by 3 (see resolveTravelMarket).
 const RARE_EVENTS = [
-  {id:'luciano',   commodity:'cigars',       district:'Little Italy',       img:'events/rare_luciano.jpg',   lines:['LUCKY LUCIANO CALLS A MEETING','RUMORS OF A NEW ORDER SPREAD']},
-  {id:'rumrow',    commodity:'moonshine',    district:'Dock #13',             img:'events/rare_rumrow.jpg',    lines:['THE SILENT FLEET RETURNS TO HARBOR','RUM ROW SAID TO BE BUSIER THAN EVER']},
-  {id:'midnight',  commodity:'moonshine',    district:'Dock #13',             img:'events/rare_midnight.jpg',  lines:['THE MIDNIGHT RUN REACHES THE CITY','RUM RUNNERS EVADE PATROL BOATS']},
-  {id:'ellington', commodity:'diamonds',     district:'Kitty Kat Club',       img:'events/rare_ellington.jpg', lines:['DUKE ELLINGTON HEADLINES TONIGHT','KITTY KAT CLUB EXPECTS RECORD CROWDS']},
-  {id:'armstrong', commodity:'champagne',    district:'Kitty Kat Club',       img:'events/rare_armstrong.jpg', lines:['LOUIS ARMSTRONG PLAYS TONIGHT','THE DISTRICT SWINGS INTO THE SMALL HOURS']},
-  {id:'schultz',   commodity:'furcoats',     district:'Uptown',               img:'events/rare_schultz.jpg',   lines:['DUTCH SCHULTZ EYES NEW TERRITORY','ESTABLISHED INTERESTS GROW UNEASY']},
-  {id:'lansky',    commodity:'diamonds',     district:'Uptown',               img:'events/rare_lansky.jpg',    lines:['MEYER LANSKY ENTERS THE PICTURE','MONEY CHANGES HANDS RAPIDLY']},
-  {id:'capone',    commodity:'counterfeits', district:'Warehouse', img:'events/rare_capone.jpg',    lines:['AL CAPONE SEEN MEETING ASSOCIATES','RIVALS KEEP A LOW PROFILE TONIGHT']},
-  {id:'rothstein', commodity:'art',          district:'City Hall',            img:'events/rare_rothstein.jpg', lines:['ARNOLD ROTHSTEIN TAKES AN INTEREST','SPECULATION SWEEPS THE DISTRICT']},
-  {id:'madden',    commodity:'champagne',    district:'City Hall',            img:'events/rare_madden.jpg',    lines:['OWNEY MADDEN BACKS ANOTHER BIG NIGHT','THE FIX IS IN AT CITY HALL']},
+  {id:'pasta_la_vista',      district:'Little Italy',   img:'events/rare_pasta_la_vista.jpg',      title:'PASTA LA VISTA',       desc:'A rival crew vanishes after supper. Little Italy charges danger money before the sauce cools.'},
+  {id:'gnocchi_horror_show', district:'Little Italy',   img:'events/rare_gnocchi_horror_show.jpg', title:'GNOCCHI HORROR SHOW',  desc:'A bad batch, a worse alibi, and a line around the block. Little Italy prices bounce like dough.'},
+  {id:'ship_happens',        district:'Dock #13',       img:'events/rare_ship_happens.jpg',        title:'SHIP HAPPENS',         desc:'Three boats, two manifests, and one sweaty foreman. Every Dock #13 price climbs aboard.'},
+  {id:'titanic_markup',      district:'Dock #13',       img:'events/rare_titanic_markup.jpg',      title:'TITANIC MARKUP',       desc:'Titanic headlines haunt the piers. Lifeboat talk starts, and Dock #13 prices refuse to sink.'},
+  {id:'jazz_stinger',        district:'Kitty Kat Club', img:'events/rare_jazz_stinger.jpg',        title:'THE JAZZ STINGER',     desc:'Talkies make jazz famous overnight. The Kitty Kat Club hears opportunity and triples the noise.'},
+  {id:'great_gats_got',      district:'Kitty Kat Club', img:'events/rare_great_gats_got.jpg',      title:'THE GREAT GATS GOT',   desc:'Gatsby fever hits the club. Everyone is beautiful, doomed, and somehow charging triple.'},
+  {id:'dow_jonesing',        district:'Uptown',         img:'events/rare_dow_jonesing.jpg',        title:'DOW JONESING',         desc:'Everyone Uptown has a stock tip and a terrible hat. Prices triple on confidence alone.'},
+  {id:'margin_of_terror',    district:'Uptown',         img:'events/rare_margin_of_terror.jpg',    title:'MARGIN OF TERROR',     desc:'Brokers smell a wobble in the market. Uptown sellers triple prices before the rich remember fear.'},
+  {id:'bribe_and_prejudice', district:'City Hall',      img:'events/rare_bribe_and_prejudice.jpg', title:'BRIBE AND PREJUDICE',  desc:'A reform hearing becomes a bidding war. City Hall prices triple before anyone finds the minutes.'},
+  {id:'license_to_ill',      district:'City Hall',      img:'events/rare_license_to_ill.jpg',      title:'LICENSE TO ILL',       desc:'A clerk invents seventeen new permits before lunch. City Hall charges triple to misplace each one.'},
+  {id:'pallet_wounds',       district:'Warehouse',      img:'events/rare_pallet_wounds.jpg',       title:'PALLET WOUNDS',        desc:"A crate drops, a man doesn't get up, and nobody asks questions. Warehouse prices triple by shift change."},
+  {id:'crate_expectations',  district:'Warehouse',      img:'events/rare_crate_expectations.jpg',  title:'CRATE EXPECTATIONS',   desc:'A shipment arrives addressed to Obviously Stolen. The Warehouse signs anyway and triples the fee.'},
 ];
 
 // 12 Super Rare events — 2 per location. Visiting the event district on its
@@ -455,11 +459,7 @@ function resolveTravelMarket(state, dest){
     Object.keys(prices).forEach(id=>{ if (prices[id]) prices[id] = Math.round(prices[id] * 10); });
   }
   if (re && state.day === re.day && dest === re.district){
-    const spikeGood = GOOD[re.commodity];
-    if (spikeGood){
-      prices[re.commodity] = Math.round(randInt(spikeGood.low, spikeGood.high) * 4);
-      anomaly = {type:'spike', itemId: re.commodity, itemName: spikeGood.name};
-    }
+    Object.keys(prices).forEach(id=>{ if (prices[id]) prices[id] = Math.round(prices[id] * 3); });
   }
 
   return { prices, anomaly, sr, gk, golden, re };
