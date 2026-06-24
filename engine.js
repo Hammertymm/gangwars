@@ -18,7 +18,7 @@ const CONFIG = {
   maxGuns: 2,
 };
 
-const LOCATIONS = ["Little Italy","Dock #13","Kitty Kat Club","Uptown","Warehouse District","City Hall"];
+const LOCATIONS = ["Little Italy","Dock #13","Kitty Kat Club","Uptown","Warehouse","City Hall"];
 const HOME = "Little Italy";
 
 const LOCATION_FLAVOR = {
@@ -26,7 +26,7 @@ const LOCATION_FLAVOR = {
   "Dock #13":            "Rum-runners unload under cover of darkness while customs agents look the other way.",
   "Kitty Kat Club":      "Jazz, dames, liquor and trouble. Business is always booming.",
   "Uptown":              "The rich pay top dollar for things they shouldn't have.",
-  "Warehouse District":  "If it's stolen, hidden, or fenced, it passes through here.",
+  "Warehouse":           "If it's stolen, hidden, or fenced, it passes through here.",
   "City Hall":           "The law is for sale. The price changes daily.",
 };
 
@@ -35,7 +35,7 @@ const TERRITORY_MODIFIERS = {
   "Dock #13":           { variance: 1.28 },
   "Kitty Kat Club":     { alcoholBonus: 0.05 },
   "Uptown":             { luxuryBonus: 0.26 },
-  "Warehouse District": { criminalBonus: 0.10 },
+  "Warehouse":          { criminalBonus: 0.10 },
   "City Hall":          { bias: -0.01 },
 };
 
@@ -65,7 +65,7 @@ const RARE_EVENTS = [
   {id:'armstrong', commodity:'champagne',    district:'Kitty Kat Club',       img:'events/rare_armstrong.jpg', lines:['LOUIS ARMSTRONG PLAYS TONIGHT','THE DISTRICT SWINGS INTO THE SMALL HOURS']},
   {id:'schultz',   commodity:'furcoats',     district:'Uptown',               img:'events/rare_schultz.jpg',   lines:['DUTCH SCHULTZ EYES NEW TERRITORY','ESTABLISHED INTERESTS GROW UNEASY']},
   {id:'lansky',    commodity:'diamonds',     district:'Uptown',               img:'events/rare_lansky.jpg',    lines:['MEYER LANSKY ENTERS THE PICTURE','MONEY CHANGES HANDS RAPIDLY']},
-  {id:'capone',    commodity:'counterfeits', district:'Warehouse District', img:'events/rare_capone.jpg',    lines:['AL CAPONE SEEN MEETING ASSOCIATES','RIVALS KEEP A LOW PROFILE TONIGHT']},
+  {id:'capone',    commodity:'counterfeits', district:'Warehouse', img:'events/rare_capone.jpg',    lines:['AL CAPONE SEEN MEETING ASSOCIATES','RIVALS KEEP A LOW PROFILE TONIGHT']},
   {id:'rothstein', commodity:'art',          district:'City Hall',            img:'events/rare_rothstein.jpg', lines:['ARNOLD ROTHSTEIN TAKES AN INTEREST','SPECULATION SWEEPS THE DISTRICT']},
   {id:'madden',    commodity:'champagne',    district:'City Hall',            img:'events/rare_madden.jpg',    lines:['OWNEY MADDEN BACKS ANOTHER BIG NIGHT','THE FIX IS IN AT CITY HALL']},
 ];
@@ -73,18 +73,18 @@ const RARE_EVENTS = [
 // 12 Super Rare events — 2 per location. Visiting the event district on its
 // day multiplies every available price there by 5 (see resolveTravelMarket).
 const SUPER_RARE_EVENTS = [
-  {id:'lindbergh',   district:'Dock #13',           img:'events/super_lindbergh.jpg',   title:'THE AVIATOR',     desc:'Lindbergh lands at Dock #13. Crowds surge, cameras pop, and every waterfront price takes flight.'},
-  {id:'mauretania',  district:'Dock #13',           img:'events/super_mauretania.jpg',  title:'THE LINER',       desc:'Mauretania docks to roaring crowds. Trunks, crates, and contraband move fast at Dock #13.'},
-  {id:'ziegfeld',    district:'Kitty Kat Club',     img:'events/super_ziegfeld.jpg',    title:'THE MARQUEE',     desc:'Ziegfeld fever hits the Kitty Kat Club. Bright lights, rich fools, and prices with chorus-line legs.'},
-  {id:'hollywood',   district:'Kitty Kat Club',     img:'events/super_hollywood.jpg',   title:'THE TALKIES',     desc:'Hollywood comes to the Kitty Kat Club. Cameras roll, champagne flows, and prices learn to talk.'},
-  {id:'wales',       district:'Uptown',             img:'events/super_wales.jpg',       title:'THE GENTLEMAN',   desc:'The Prince of Wales charms Uptown. High society opens its purse and forgets to close it.'},
-  {id:'wallst',      district:'Uptown',             img:'events/super_wallst.jpg',      title:'THE MARKET',      desc:'Wall Street is roaring Uptown. Ticker tape flies, fortunes swell, and prices lose their manners.'},
-  {id:'ruth',        district:'City Hall',          img:'events/super_ruth.jpg',        title:'THE SLUGGER',     desc:'Babe Ruth fever grips City Hall. The crowd wants a hero, and every seller wants a bigger cut.'},
-  {id:'walker',      district:'City Hall',          img:'events/super_walker.jpg',      title:'THE MAYOR',       desc:'Mayor Walker works the City Hall crowd. Smiles up front, envelopes out back, prices everywhere.'},
-  {id:'feast',       district:'Little Italy',       img:'events/super_feast.jpg',       title:'THE FEAST',       desc:'Little Italy takes to the streets. Lanterns glow, saints watch, and every back room does brisk business.'},
-  {id:'chairman',    district:'Little Italy',       img:'events/super_chairman.jpg',    title:'THE CHAIRMAN',    desc:'A young boss takes the head table in Little Italy. Quiet words, thick envelopes, expensive consequences.'},
-  {id:'garage',      district:'Warehouse District', img:'events/super_garage.jpg',      title:'THE GARAGE',      desc:'Something ugly happened in the warehouse garage. Now every crate has a story and a higher price.'},
-  {id:'picket_line', district:'Warehouse District', img:'events/super_picket_line.jpg', title:'THE PICKET LINE', desc:'The Warehouse District stops moving. The workers fold their arms, and the prices stand at attention.'},
+  {id:'lindbergh',   district:'Dock #13',           img:'events/super_lindbergh.jpg',   title:'THE AVIATOR',     desc:'Lindbergh lands at Dock #13. Crowds surge, cameras pop, and every waterfront [...]'},
+  {id:'mauretania',  district:'Dock #13',           img:'events/super_mauretania.jpg',  title:'THE LINER',       desc:'Mauretania docks to roaring crowds. Trunks, crates, and contraband move fast [...]'},
+  {id:'ziegfeld',    district:'Kitty Kat Club',     img:'events/super_ziegfeld.jpg',    title:'THE MARQUEE',     desc:'Ziegfeld fever hits the Kitty Kat Club. Bright lights, rich fools, and prices[...]'},
+  {id:'hollywood',   district:'Kitty Kat Club',     img:'events/super_hollywood.jpg',   title:'THE TALKIES',     desc:'Hollywood comes to the Kitty Kat Club. Cameras roll, champagne flows, and pri[...]'},
+  {id:'wales',       district:'Uptown',             img:'events/super_wales.jpg',       title:'THE GENTLEMAN',   desc:'The Prince of Wales charms Uptown. High society opens its purse and forgets t[...]'},
+  {id:'wallst',      district:'Uptown',             img:'events/super_wallst.jpg',      title:'THE MARKET',      desc:'Wall Street is roaring Uptown. Ticker tape flies, fortunes swell, and prices [...]'},
+  {id:'ruth',        district:'City Hall',          img:'events/super_ruth.jpg',        title:'THE SLUGGER',     desc:'Babe Ruth fever grips City Hall. The crowd wants a hero, and every seller wan[...]'},
+  {id:'walker',      district:'City Hall',          img:'events/super_walker.jpg',      title:'THE MAYOR',       desc:'Mayor Walker works the City Hall crowd. Smiles up front, envelopes out back, [...]'},
+  {id:'feast',       district:'Little Italy',       img:'events/super_feast.jpg',       title:'THE FEAST',       desc:'Little Italy takes to the streets. Lanterns glow, saints watch, and every bac[...]'},
+  {id:'chairman',    district:'Little Italy',       img:'events/super_chairman.jpg',    title:'THE CHAIRMAN',    desc:'A young boss takes the head table in Little Italy. Quiet words, thick envelop[...]'},
+  {id:'garage',      district:'Warehouse',          img:'events/super_garage.jpg',      title:'THE GARAGE',      desc:'Something ugly happened in the warehouse garage. Now every crate has a story [...]'},
+  {id:'picket_line', district:'Warehouse',          img:'events/super_picket_line.jpg', title:'THE PICKET LINE', desc:'The Warehouse stops moving. The workers fold their arms, and the prices stand [...]'},
 ];
 
 const GODLIKE_EVENTS = [
