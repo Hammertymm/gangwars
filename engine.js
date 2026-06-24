@@ -390,6 +390,7 @@ function newGame(rates){
       boughtDuringFlood: {},
       upsAndDowns: false,
       maxDebtReached: 0,
+      leftHome: false,
     },
   };
 }

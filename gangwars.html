@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" />
-<link rel="stylesheet" href="gangwars.css?v=32">
+<link rel="stylesheet" href="gangwars.css?v=33">
 
 </head>
 <body>
@@ -96,9 +96,9 @@ if (typeof document !== "undefined") {
   let S = null, modal = null;
   let ledgerView = null, ledgerViewCat = null, ledgerFocusId = null, ledgerReturn = null;
   let pendingUnlockQueue = [], pendingCompleteQueue = [], pendingTipQueue = [];
+  const pendingEventCards = {};
   let ledger = migrateLedger((() => { try { return JSON.parse(localStorage.getItem(LEDGER_KEY)); } catch(e) { return null; } })());
   let tipsState = loadTips();
-  if (localStorage.getItem("gw:tutorialDone") && !localStorage.getItem(TIPS_STORAGE_KEY)) saveTips(tipsState);
   const money = n => "$"+Math.round(n).toLocaleString("en-US");
   const TITLE_SCREEN = "title-screen.png?v=12";
   const TITLE_CANVAS = { w: 853, h: 1844 };
@@ -230,15 +230,35 @@ if (typeof document !== "undefined") {
   function hideTipOverlay(){
     document.getElementById("tutorial-overlay")?.remove();
   }
+  function tipMount(){
+    return document.getElementById("portrait-root") || document.body;
+  }
+  function emitMarketTips(){
+    if (!S || S.over) return;
+    if (S.day === 1) emitTipEvent("game:firstMarket", { day: S.day });
+    migrateRunStats(S);
+    if (S.location === HOME && S.runStats.leftHome) {
+      emitTipEvent("location:donReturn", { location: S.location, returnVisit: true });
+    }
+  }
+  function schedulePostFlow(){
+    requestAnimationFrame(()=>{
+      if (modal) return;
+      tryShowPostFlow();
+    });
+  }
   function showTipModal(tipId){
     const tip = getTipById(tipId);
     if (!tip){ if (tryShowTipFlow()) return; render(); return; }
     const body = resolveTipBody(tip, CONFIG, money);
     let el = document.getElementById("tutorial-overlay");
+    const mount = tipMount();
     if (!el){
       el = document.createElement("div");
       el.id = "tutorial-overlay";
-      document.body.appendChild(el);
+      mount.appendChild(el);
+    } else if (el.parentNode !== mount) {
+      mount.appendChild(el);
     }
     el.className = "tutorial";
     el.setAttribute("role", "dialog");
@@ -274,6 +294,7 @@ if (typeof document !== "undefined") {
     modal = ()=>{};
     modal._tipFlow = true;
     modalEscape = skipAll;
+    requestAnimationFrame(()=> el.querySelector("#tnext")?.focus());
   }
   function tryShowTipFlow(){
     if (modal && !modal._tipFlow) return false;
@@ -308,7 +329,7 @@ if (typeof document !== "undefined") {
         captureLedgerReturn();
         const catId = getCategoryForAchievement(id);
         if (catId === "general") openLedgerReveal(id);
-        else showAchievementCardReveal(id);
+        else showEventAchievementReveal(id);
       };
       modalEscape = ()=>{
         modal._achFlow = false;
@@ -355,6 +376,21 @@ if (typeof document !== "undefined") {
       };
     };
     render();
+  }
+  function showEventAchievementReveal(achievementId){
+    const staged = pendingEventCards[achievementId];
+    if (!staged) { showAchievementCardReveal(achievementId); return; }
+    delete pendingEventCards[achievementId];
+    const { imgKey, title, desc, tier } = staged;
+    if (A()) A().eventStinger({ tier: tier || 'rare' });
+    showTierEvent(imgKey, title, desc, ()=>{
+      revealAchievement(ledger, achievementId);
+      saveLedger();
+      modal = null;
+      modalEscape = null;
+      openLedgerReveal(achievementId);
+    });
+    if (modal) modal._achFlow = true;
   }
   function showAchievementCardReveal(achievementId){
     const img = getAchievementCardImage(achievementId);
@@ -594,6 +630,8 @@ if (typeof document !== "undefined") {
     if (S.over){ renderGameOver(); syncSceneAudio("end"); return; }
     renderMarket();
     syncSceneAudio("market");
+    emitMarketTips();
+    schedulePostFlow();
   }
 
   function renderTitle(){
@@ -676,13 +714,25 @@ if (typeof document !== "undefined") {
       </div>`;
     }).join("");
     const goldenActive = S.events?.goldenGodlike && S.day === S.events.goldenGodlike.day;
+    const dayFlip = String(S.day).padStart(2, "0").split("").map(d =>
+      `<div class="flip-digit"><span>${d}</span></div>`
+    ).join("");
     app.innerHTML = `<div class="play market-play">
       <div class="loc-header">
-        <div class="loc-img" data-name="${S.location}"><img src="${DISTRICT_IMG[S.location]||DISTRICT_IMG[HOME]||''}" alt="${S.location}" onerror="this.onerror=null;this.style.display='none';this.closest('.loc-img').classList.add('no-district');"></div>
-        <div class="loc-header-body">
+        <div class="loc-copy">
           <div class="loc-header-title">${S.location}</div>
-          <div class="loc-header-day">Day ${S.day} / ${CONFIG.days}</div>
-          <div class="loc-header-desc">${LOCATION_FLAVOR[S.location]||""}</div>
+          <p class="loc-header-desc">${LOCATION_FLAVOR[S.location]||""}</p>
+        </div>
+        <div class="loc-day">
+          <div class="day-counter" aria-label="Day ${S.day} of ${CONFIG.days}">
+            <div class="day-counter-label">Day</div>
+            <div class="day-counter-frame">
+              <div class="day-counter-inset">
+                <div class="day-flip" aria-hidden="true">${dayFlip}</div>
+              </div>
+            </div>
+            <div class="day-counter-sub">of ${CONFIG.days}</div>
+          </div>
         </div>
       </div>
       <div class="market-mid">
@@ -715,9 +765,6 @@ if (typeof document !== "undefined") {
     app.querySelectorAll("[data-sell]").forEach(b=> b.onclick=()=>openTrade(b.dataset.sell,"sell"));
     document.getElementById("travel").onclick = renderTravel;
     const bk=document.getElementById("bankbtn"); if(bk && S.location===HOME) bk.onclick = openBank;
-    if (S.day === 1) emitTipEvent("game:firstMarket", { day: S.day });
-    if (S.location === HOME) emitTipEvent("location:donAvailable", { location: S.location });
-    if (!modal) tryShowPostFlow();
     save();
   }
 
@@ -785,7 +832,8 @@ if (typeof document !== "undefined") {
 
   /* ---------- the Don & the bank (in-DOM inputs) ---------- */
   function openBank(){
-    emitTipEvent("bank:opened", { location: S.location });
+    emitTipEvent("bank:opened", { location: S.location, returnVisit: !!S.runStats?.leftHome });
+    if (tryShowPostFlow()) return;
     let action = null;
     modal = function(){
       const A = {
@@ -883,10 +931,16 @@ if (typeof document !== "undefined") {
     };
     render();
   }
+  function stageEventCard(id, imgKey, title, desc, tier){
+    pendingEventCards[id] = { imgKey, title, desc, tier: tier || 'rare' };
+  }
   function travelTo(dest){
     audioPlay("sfx.travel.engineStart");
     audioPlay("sfx.travel.dayTick");
+    const from = S.location;
     modal=null; S.location=dest; S.day+=1;
+    migrateRunStats(S);
+    if (from === HOME && dest !== HOME) S.runStats.leftHome = true;
     emitTipEvent("travel:dayAdvanced", { day: S.day });
     audioPlay("sfx.travel.arrival");
     audioPlay("sfx.travel.screech");
@@ -905,14 +959,14 @@ if (typeof document !== "undefined") {
     if(golden && S.day===golden.day){
       unlockFromEvent('golden');
       const goldenImg=golden.img||'bigdaddy';
-      marketEvent=(next)=>{ if(A()) A().eventStinger({ tier: 'golden' }); showTierEvent(goldenImg, golden.lines[0], `${golden.lines[1]} Every price in the city is climbing.`, next); };
+      stageEventCard('golden', goldenImg, golden.lines[0], `${golden.lines[1]} Every price in the city is climbing.`, 'golden');
     } else if(gk && S.day===gk.day){
       unlockFromEvent(gk.id);
       const gkImg=gk.img||'bigdaddy';
       if(dest===gk.district){
-        marketEvent=(next)=>{ if(A()) A().eventStinger({ tier: 'godlike' }); showTierEvent(gkImg, gk.lines[0], gk.lines[1], next); };
+        stageEventCard(gk.id, gkImg, gk.lines[0], gk.lines[1], 'godlike');
       } else {
-        marketEvent=(next)=>{ if(A()) A().eventStinger({ tier: 'godlike' }); showTierEvent(gkImg, 'BIG DADDY J IS ACROSS TOWN', `He's making moves in ${gk.district}. Every price there is climbing.`, next); };
+        stageEventCard(gk.id, gkImg, 'BIG DADDY J IS ACROSS TOWN', `He's making moves in ${gk.district}. Every price there is climbing.`, 'godlike');
       }
     } else if(sr && S.day===sr.day){
       unlockFromEvent(sr.id);
@@ -920,18 +974,20 @@ if (typeof document !== "undefined") {
       const srTitle = sr.title || (sr.lines && sr.lines[0]) || '';
       const srDesc  = sr.desc  || (sr.lines && sr.lines[1]) || '';
       if(dest===sr.district){
-        marketEvent=(next)=>{ if(A()) A().eventStinger({ tier: 'superRare' }); showTierEvent(srImg, srTitle, srDesc, next); };
+        stageEventCard(sr.id, srImg, srTitle, srDesc, 'superRare');
       } else {
-        marketEvent=(next)=>{ if(A()) A().eventStinger({ tier: 'superRare' }); showTierEvent(srImg, srTitle, `${srDesc} Head to ${sr.district} for the action.`, next); };
+        stageEventCard(sr.id, srImg, srTitle, `${srDesc} Head to ${sr.district} for the action.`, 'superRare');
       }
     } else if(re && S.day===re.day){
       unlockFromEvent(re.id);
       const spikeGood=GOOD[re.commodity];
       const reImg=re.img||'intel';
       if(dest===re.district){
-        marketEvent=(next)=>{ if(A()) A().eventStinger({ tier: 'rare' }); showTierEvent(reImg, re.lines[0], re.lines[1], next); };
+        stageEventCard(re.id, reImg, re.lines[0], re.lines[1], 'rare');
       } else if(spikeGood){
-        marketEvent=(next)=>{ if(A()) A().eventStinger({ tier: 'rare' }); showTierEvent(reImg, re.lines[0], `${re.lines[1]} ${spikeGood.name} prices are surging in ${re.district}.`, next); };
+        stageEventCard(re.id, reImg, re.lines[0], `${re.lines[1]} ${spikeGood.name} prices are surging in ${re.district}.`, 'rare');
+      } else {
+        stageEventCard(re.id, reImg, re.lines[0], re.lines[1], 'rare');
       }
     } else if(anomaly){
       const anomalyImg={spike:'shortage',surge:'frenzy',flood:'flood'};

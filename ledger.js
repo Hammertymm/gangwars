@@ -26,7 +26,7 @@ const LEDGER_CATEGORIES = [
       { id: 'cognac_barbarian',     title: 'COGNAC THE BARBARIAN',         description: 'Earn $20M profit from Fine Cognac in one run.' },
       { id: 'witness_reinvestment', title: 'WITNESS REINVESTMENT PROGRAM', description: 'Deposit $25M into the bank across all runs.' },
       { id: 'scotch_and_awe',       title: 'SCOTCH AND AWE',               description: 'Earn $15M profit from Aged Scotch in one run.' },
-      { id: 'silence_of_loans',     title: 'THE SILENCE OF THE LOANS',     description: 'Finish a run after being over $90K in debt.' },
+      { id: 'silence_of_loans',     title: 'THE SILENCE OF THE LOANS',     description: 'Survive all 30 days after climbing over $90K in debt.' },
       { id: 'shopaholic',           title: 'SHOPAHOLIC',                   description: 'Buy 1,000 total units across all runs.' },
     ],
   },
@@ -140,6 +140,7 @@ function defaultRunStats(startSpace){
     boughtDuringFlood: {},
     upsAndDowns: false,
     maxDebtReached: 0,
+    leftHome: false,
   };
 }
 
@@ -164,6 +165,7 @@ function migrateRunStats(state){
   if (!rs.boughtDuringFlood) rs.boughtDuringFlood = {};
   if (rs.upsAndDowns == null) rs.upsAndDowns = false;
   if (rs.maxDebtReached == null) rs.maxDebtReached = 0;
+  if (rs.leftHome == null) rs.leftHome = false;
   return state;
 }
 
@@ -381,7 +383,7 @@ function checkEndRunAchievements(state, ledger){
   maybe('made_man');                                         // complete a full run
   if (rs.didBorrow && state.debt === 0) maybe('loan_survivor');
   if (state.health === 1) maybe('one_hp_wonder');
-  if ((rs.maxDebtReached || 0) > 90000) maybe('silence_of_loans');
+  if (state.day > engineApi().CONFIG.days && (rs.maxDebtReached || 0) > 90000) maybe('silence_of_loans');
 
   return unlocks;
 }

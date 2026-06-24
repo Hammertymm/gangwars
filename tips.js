@@ -2,7 +2,9 @@
    ONBOARDING TIPS — account-wide contextual tips. No DOM (testable).
    ============================================================================ */
 
-const TIPS_STORAGE_KEY = 'gw:tips';
+const TIPS_STORAGE_KEY = 'gw:tips.v2';
+const LEGACY_TIPS_STORAGE_KEY = 'gw:tips';
+const LEGACY_TUTORIAL_KEY = 'gw:tutorialDone';
 
 const TIP_DEFINITIONS = [
   {
@@ -21,9 +23,10 @@ const TIP_DEFINITIONS = [
   },
   {
     id: 'bank',
-    triggers: ['location:donAvailable', 'bank:opened'],
+    triggers: ['location:donReturn', 'bank:opened'],
     title: 'THE FAMILY VAULT',
     bodyTemplate: 'bank',
+    when(ctx) { return ctx && ctx.returnVisit; },
   },
   {
     id: 'guns',
@@ -64,17 +67,16 @@ function allTipIds() {
 }
 
 function emptyTips() {
-  return { seen: {}, skippedAll: false };
+  return { version: 2, seen: {}, skippedAll: false };
 }
 
-function migrateTips(raw, legacyTutorialDone) {
-  const state = raw && typeof raw === 'object'
-    ? { seen: { ...(raw.seen || {}) }, skippedAll: !!raw.skippedAll }
-    : emptyTips();
-  if (legacyTutorialDone) {
-    allTipIds().forEach(id => { state.seen[id] = true; });
-  }
-  return state;
+function migrateTips(raw) {
+  if (!raw || typeof raw !== 'object') return emptyTips();
+  return {
+    version: 2,
+    seen: { ...(raw.seen || {}) },
+    skippedAll: !!raw.skippedAll,
+  };
 }
 
 function hasSeenTip(id, state) {
@@ -131,10 +133,10 @@ function loadTips(storage) {
   const store = storage || (typeof localStorage !== 'undefined' ? localStorage : null);
   if (!store) return emptyTips();
   let raw = null;
-  let legacy = null;
   try { raw = JSON.parse(store.getItem(TIPS_STORAGE_KEY)); } catch (e) { raw = null; }
-  try { legacy = store.getItem('gw:tutorialDone'); } catch (e) { legacy = null; }
-  return migrateTips(raw, legacy);
+  if (raw) return migrateTips(raw);
+  // Ignore gw:tips v1 (often auto-filled with all-seen via old tutorialDone migration).
+  return emptyTips();
 }
 
 function saveTips(state, storage) {
@@ -146,6 +148,8 @@ function saveTips(state, storage) {
 if (typeof module !== 'undefined') {
   module.exports = {
     TIPS_STORAGE_KEY,
+    LEGACY_TIPS_STORAGE_KEY,
+    LEGACY_TUTORIAL_KEY,
     TIP_DEFINITIONS,
     allTipIds,
     emptyTips,
