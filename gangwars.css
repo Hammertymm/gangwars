@@ -211,8 +211,8 @@
   .bar{height:4px;background:var(--bartrack);border-radius:3px;margin:3px 0 6px;overflow:hidden;}
   .bar > i{display:block;height:100%;background:var(--green);}
   .market-play .save-err{flex:0 0 auto;margin:0;padding:0;line-height:1.2;}
-  .market-play .actions{flex:0 0 auto;margin-top:5px;margin-bottom:13px;display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-  .market-play .actions button{min-height:30px;padding:8px 6px;font-size:clamp(.64rem, 2.75vw, .76rem);letter-spacing:.6px;font-weight:700;
+  .market-play .actions{flex:0 0 auto;margin-top:5px;margin-bottom:3px;display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .market-play .actions button{min-height:40px;padding:8px 6px;font-size:clamp(.64rem, 2.75vw, .76rem);letter-spacing:.6px;font-weight:700;
     display:flex;align-items:center;justify-content:center;text-align:center;
     background:linear-gradient(180deg,#211a0f,#151009);border-color:var(--amber);border-radius:8px;
     box-shadow:inset 0 0 0 1px rgba(201,162,74,.16);}
@@ -488,7 +488,7 @@
     font-size:clamp(1.3rem,6.4vw,1.95rem);letter-spacing:1.5px;text-transform:uppercase;line-height:1.12;}
   .ev-tier-desc{margin-top:20px;font-size:clamp(.8rem,3.4vw,.95rem);line-height:1.42;color:var(--text);}
   .ev-tier-art{flex:1 1 auto;min-height:0;display:flex;align-items:center;justify-content:center;overflow:hidden;}
-  .ev-tier-art img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;
+  .ev-tier-art img{max-width:100%;max-height:100%;width:100%;height:100%;object-fit:contain;
     border:1px solid var(--amber);border-radius:10px;display:block;filter:brightness(1.08);}
   .ev-tier-acts{flex:0 0 auto;}
   .ev-tier-acts button{font-size:.86rem;padding:13px 8px;letter-spacing:1px;}
