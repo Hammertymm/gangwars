@@ -1,7 +1,7 @@
 /* Gang Wars — service worker
    Cache-first for app shell; network-first for icons so home-screen art updates. */
 
-const CACHE = 'gangwars-v151';
+const CACHE = 'gangwars-v154';
 const ASSETS = [
   './gangwars.html',
   './gangwars.css',
@@ -18,7 +18,6 @@ const ASSETS = [
   './assets/uptown.jpg',
   './assets/warehouse-district.jpg',
   './assets/city-hall.jpg',
-  './assets/travel-car.jpg',
   './assets/goods/moonshine.png',
   './assets/goods/cigars.png',
   './assets/goods/bathgin.png',
@@ -78,18 +77,17 @@ const ASSETS = [
   './events/godlike_celebration.jpg',
   './events/godlike_history.jpg',
   './events/godlike_golden.jpg',
-  './assets/ledger/crime-ledger-home-base.jpg',
-  './assets/ledger/ledger-header-general.jpg',
-  './assets/ledger/ledger-header-rare.jpg',
-  './assets/ledger/ledger-header-super-rare.jpg',
-  './assets/ledger/ledger-header-godlike.jpg',
-  './assets/ledger/ledger-header-golden-godlike.jpg',
   './assets/ledger/ledger-group-general.png',
   './assets/ledger/ledger-group-rare.png',
   './assets/ledger/ledger-group-super-rare.png',
   './assets/ledger/ledger-group-godlike.png',
   './assets/ledger/ledger-group-golden-godlike.png',
   './assets/ledger/icons/locked.png',
+  './assets/ledger/icons/locked-general.png',
+  './assets/ledger/icons/locked-rare.png',
+  './assets/ledger/icons/locked-super-rare.png',
+  './assets/ledger/icons/locked-godlike.png',
+  './assets/ledger/icons/locked-golden-godlike.png',
   './assets/ledger/icons/made_man.png',
   './assets/ledger/icons/debt_survivor.png',
   './assets/ledger/icons/first_million.png',

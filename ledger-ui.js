@@ -1,7 +1,7 @@
 /* ============================================================================
    CRIME LEDGER UI — v64 unified template
-   Home: blueprint overlay on base PNG (unchanged).
-   Categories: in-flow header image + HTML title/counter + 10-slot normal-flow rows.
+   Home: black title strip + category rows with group icons.
+   Categories: black title strip + HTML title/counter + 10-slot normal-flow rows.
    No blueprint coords for category layout. No cqh. iOS Safari safe.
    ============================================================================ */
 
@@ -10,20 +10,20 @@ const LEDGER_ASSET_PREFIX  = "assets/ledger/";
 const LEDGER_ICON_PREFIX   = "assets/ledger/icons/";
 const LEDGER_ASSET_VERSION = "67";
 
-const LEDGER_HEADER_IMAGE = {
-  general:       "ledger-header-general.jpg",
-  rare:          "ledger-header-rare.jpg",
-  superRare:     "ledger-header-super-rare.jpg",
-  godlike:       "ledger-header-godlike.jpg",
-  goldenGodlike: "ledger-header-golden-godlike.jpg",
-};
-
 const LEDGER_GROUP_ICON = {
   general:       "ledger-group-general.png",
   rare:          "ledger-group-rare.png",
   superRare:     "ledger-group-super-rare.png",
   godlike:       "ledger-group-godlike.png",
   goldenGodlike: "ledger-group-golden-godlike.png",
+};
+
+const LEDGER_LOCK_ICON = {
+  general:       "locked-general.png",
+  rare:          "locked-rare.png",
+  superRare:     "locked-super-rare.png",
+  godlike:       "locked-godlike.png",
+  goldenGodlike: "locked-golden-godlike.png",
 };
 
 function ledgerRectStyle(r) {
@@ -37,6 +37,10 @@ function ledgerAssetPath(name) {
 
 function ledgerIconPath(id) {
   return LEDGER_ICON_PREFIX + id + ".png";
+}
+
+function ledgerLockIconPath(catId) {
+  return LEDGER_ICON_PREFIX + (LEDGER_LOCK_ICON[catId] || "locked.png");
 }
 
 function categoryCounterText(catId, found, total) {
@@ -58,7 +62,7 @@ function buildListRows(cat, ledger, focusId) {
     let title    = "UNKNOWN";
     let desc     = HIDDEN_ACHIEVEMENT_DESC;
     let mark     = "";
-    let iconSrc  = `${LEDGER_ICON_PREFIX}locked.png`;
+    let iconSrc  = ledgerLockIconPath(cat.id);
     let iconState = "locked";
     if (revealed) {
       title    = getAchievementTitle(a.id);
@@ -83,14 +87,11 @@ function buildListRows(cat, ledger, focusId) {
 }
 
 /* ── HOME PAGE shell — reuses the High Scores screen layout ─────────────────
-   Hero banner + a leaderboard-style row per category (thumbnail, title,
+   Black title strip + a leaderboard-style row per category (icon, title,
    progress bar, found/total count). Replaces the baked-art + hotspot shell. */
 function homeShell(rows, found, total) {
-  const heroImg = ledgerAssetPath("crime-ledger-home-base.jpg");
   return `<div class="play scores-play ledger-home">
     <div class="scores-hero">
-      <img src="${heroImg}" alt="" class="scores-hero-img ledger-home-hero-img">
-      <div class="scores-hero-overlay"></div>
       <div class="scores-hero-title">
         <span class="eos-orn-line"></span>
         <span class="scores-hero-text">CRIME LEDGER</span>
@@ -106,14 +107,11 @@ function homeShell(rows, found, total) {
 }
 
 /* ── CATEGORY PAGE — reuses the High Scores screen layout ───────────────────
-   Header art is letterboxed behind the category title; the achievement list
+   Black title strip above the category title; the achievement list
    reuses the leaderboard container/rows and is the only scrolling region. */
 function categoryShell(catId, cat, rows) {
-  const img = ledgerAssetPath(LEDGER_HEADER_IMAGE[catId]);
   return `<div class="play scores-play ledger-scores" data-ledger-cat="${catId}">
     <div class="scores-hero">
-      <img src="${img}" alt="" class="scores-hero-img">
-      <div class="scores-hero-overlay"></div>
       <div class="scores-hero-title">
         <span class="eos-orn-line"></span>
         <span class="scores-hero-text">${cat.title}</span>
