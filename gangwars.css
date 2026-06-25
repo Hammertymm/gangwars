@@ -540,16 +540,16 @@
   /* === TIER EVENT POPUP — title + description above a large illustration, NEXT below === */
   .modal.modal-event{background:#0a0805;}
   .modal .ev-tier{width:100%;}
-  .ev-tier{display:flex;flex-direction:column;align-items:stretch;
-    width:100%;max-width:min(480px,100%);height:88dvh;max-height:88dvh;gap:11px;}
-  .ev-tier-head{flex:0 0 auto;text-align:center;padding:0 4px;}
+  .ev-tier{display:flex;flex-direction:column;align-items:center;
+    width:100%;max-width:min(480px,100%);max-height:88dvh;gap:11px;}
+  .ev-tier-head{flex:0 0 auto;width:100%;text-align:center;padding:0 4px;}
   .ev-tier-title{font-family:var(--font-display);font-weight:700;color:var(--amber);
     font-size:clamp(1.3rem,6.4vw,1.95rem);letter-spacing:1.5px;text-transform:uppercase;line-height:1.12;}
   .ev-tier-desc{margin-top:20px;font-size:clamp(.8rem,3.4vw,.95rem);line-height:1.42;color:var(--text);}
-  .ev-tier-art{flex:1 1 auto;min-height:0;display:flex;align-items:center;justify-content:center;overflow:hidden;}
-  .ev-tier-art img{max-width:100%;max-height:100%;width:100%;height:100%;object-fit:contain;
+  .ev-tier-art{flex:0 0 auto;max-width:100%;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .ev-tier-art img{width:100%;height:100%;object-fit:contain;
     border:1px solid var(--amber);border-radius:10px;display:block;filter:brightness(1.08);}
-  .ev-tier-acts{flex:0 0 auto;}
+  .ev-tier-acts{flex:0 0 auto;width:100%;}
   .ev-tier-acts button{font-size:.86rem;padding:13px 8px;letter-spacing:1px;}
 
   /* Desktop browser — phone-aspect column; size with cqw not full viewport width */

@@ -71,6 +71,33 @@
       render();
     }
 
+    function fitTierEventToImage(src){
+      const tier = app.querySelector(".ev-tier");
+      const art = tier && tier.querySelector(".ev-tier-art");
+      const img = art && art.querySelector("img");
+      if (!tier || !art || !img || !src) return;
+      const fit = ()=>{
+        const nw = img.naturalWidth, nh = img.naturalHeight;
+        if (!nw || !nh) return;
+        const tierWidth = tier.getBoundingClientRect().width || Math.min(480, window.innerWidth - 16);
+        const head = tier.querySelector(".ev-tier-head");
+        const acts = tier.querySelector(".ev-tier-acts");
+        const headH = head ? head.getBoundingClientRect().height : 0;
+        const actsH = acts ? acts.getBoundingClientRect().height : 0;
+        const gap = 11;
+        const maxHeight = Math.max(120, window.innerHeight * 0.88 - headH - actsH - gap * 2 - 20);
+        const maxWidth = Math.floor(tierWidth);
+        const scale = Math.min(maxWidth / nw, maxHeight / nh, 1);
+        const w = Math.max(1, Math.round(nw * scale));
+        const h = Math.max(1, Math.round(nh * scale));
+        art.style.width = `${w}px`;
+        art.style.height = `${h}px`;
+      };
+      img.onload = fit;
+      img.onerror = ()=>{};
+      if (img.complete && img.naturalWidth) fit();
+    }
+
     function showTierEvent(imgKey, title, desc, cb){
       setModal(function(){
         audioPlay("sfx.events.modalOpen");
@@ -83,6 +110,7 @@
           <div class="ev-tier-art"><img src="${imgSrc}" alt="" decoding="async"></div>
           <div class="ev-tier-acts"><button class="amber full" id="ok">NEXT</button></div>
         </div></div>`;
+        fitTierEventToImage(imgSrc);
         const advance = ()=>{ audioPlay("sfx.events.modalClose"); clearModal(); cb(); };
         document.getElementById("ok").onclick=advance;
         setModalEscape(advance);
@@ -129,6 +157,7 @@
     return {
       eventImgSrc,
       fitEventPopupToImage,
+      fitTierEventToImage,
       showEvent,
       showTierEvent,
       showEventAsk,
