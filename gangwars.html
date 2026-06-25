@@ -116,6 +116,26 @@ if (typeof document !== "undefined") {
   let tipsState = loadTips();
   const money = n => "$"+Math.round(n).toLocaleString("en-US");
   const ScoresUI = window.GangWarsScoresUI;
+  function trackPlausible(event, props){
+    if (typeof window.plausible !== "function") return;
+    if (props && Object.keys(props).length) window.plausible(event, { props });
+    else window.plausible(event);
+  }
+  function worthBand(worth){
+    const w = Math.max(0, worth);
+    if (w < 1000000) return "0-1M";
+    if (w < 5000000) return "1-5M";
+    if (w < 10000000) return "5-10M";
+    if (w < 25000000) return "10-25M";
+    return "25M+";
+  }
+  function runOutcome(reason){
+    const r = reason || "";
+    if (r.includes("short memory") || r.includes("remember your name")) return "feds";
+    if (r.includes("marker") || r.includes("more than he allows")) return "debt_cap";
+    if (r.includes("patience") || r.includes("linger")) return "stall";
+    return "survived";
+  }
   const TITLE_SCREEN = "title-screen.jpg?v=13";
   const TITLE_CANVAS = { w: 853, h: 1844 };
   function layoutTitleScreen(){
@@ -162,6 +182,7 @@ if (typeof document !== "undefined") {
     return `${countDiscovered(ledger)}/${LEDGER_TOTAL}`;
   }
   function openLedgerFromTitle(){
+    trackPlausible("Ledger Opened", { source: "title" });
     ledgerReturn = { type: "title", savedModal: null, savedModalEscape: null };
     ledgerView = "home";
     ledgerViewCat = null;
@@ -169,6 +190,7 @@ if (typeof document !== "undefined") {
     render();
   }
   function openLedgerReveal(achievementId){
+    trackPlausible("Ledger Opened", { source: ledgerReturn?.type === "game" ? "run" : "achievement" });
     ledgerView = "category";
     ledgerViewCat = getCategoryForAchievement(achievementId);
     ledgerFocusId = achievementId;
@@ -331,6 +353,7 @@ if (typeof document !== "undefined") {
   }
   function showAchievementFoundPopup(){
     audioPlay("sfx.achievement.found");
+    trackPlausible("Achievement Found");
     achModalPrevFocus = document.activeElement;
     modal = function(){
       modal._achFlow = true;
@@ -792,14 +815,15 @@ if (typeof document !== "undefined") {
     }
     bindMuteButton(document.getElementById("audio-mute"));
     if (A()) A().preload("music.title");
-    document.getElementById("new").onclick = ()=>{ startNewGame(); render(); };
+    document.getElementById("new").onclick = ()=>{ trackPlausible("Game Started"); startNewGame(); render(); };
     document.getElementById("cont").onclick = ()=>{
       const v=load();
       if(v){
+        trackPlausible("Continue Game");
         S=v; migrateRunStats(S); checkRunAchievements(); render();
       }
     };
-    document.getElementById("scores").onclick = renderScores;
+    document.getElementById("scores").onclick = ()=>{ trackPlausible("High Scores Opened"); renderScores(); };
     document.getElementById("ledger").onclick = openLedgerFromTitle;
   }
 
@@ -961,7 +985,13 @@ if (typeof document !== "undefined") {
     if (A()) { A().stopMusic(); A().duckMusic(false); }
     audioPlay("sfx.end.rankReveal");
     S.over=true; S.overReason=reason||`Your month is over. Whatever you made, it's going to have to be enough.`;
-    const result = pushScore(classicScore(S), netWorth(S));
+    const worth = netWorth(S);
+    trackPlausible("Run Completed", {
+      rank: getRank(worth),
+      worth_band: worthBand(worth),
+      outcome: runOutcome(reason),
+    });
+    const result = pushScore(classicScore(S), worth);
     S.placement = result.placement;
     S.scoreEntry = result.entry;
     checkEndAchievements();
@@ -1003,7 +1033,7 @@ if (typeof document !== "undefined") {
         <button id="menu">MAIN MENU</button>
       </div>
     </div>`;
-    document.getElementById("again").onclick = ()=>{ localStorage.removeItem(SAVE_KEY); startNewGame(); render(); };
+    document.getElementById("again").onclick = ()=>{ trackPlausible("Play Again"); localStorage.removeItem(SAVE_KEY); startNewGame(); render(); };
     document.getElementById("menu").onclick = ()=>{ S=null; render(); };
   }
 
