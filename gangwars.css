@@ -559,25 +559,25 @@
       container-type:inline-size;
       flex:0 0 auto;
       align-self:center;}
-    .market-play .loc-header{flex:0 0 clamp(82px,10.7vh,104px);height:clamp(82px,10.7vh,104px);min-height:82px;max-height:104px;}
-    .market-play .loc-header-title{font-size:clamp(1.05rem,4.8cqw,1.44rem);}
-    .market-play .loc-header-desc{font-size:clamp(.744rem,3.12cqw,.912rem);}
-    .market-golden-banner{font-size:clamp(.58rem,2.5cqw,.68rem);}
-    .market-head-title{font-size:clamp(1.08rem,5.1cqw,1.464rem);}
-    .goods-icon-wrap.no-icon::after{font-size:clamp(18px,5cqw,28px);}
-    .goods-name{font-size:clamp(.7rem,3cqw,.9rem);}
-    .market-row .price-cell{font-size:clamp(.95rem,4.65cqw,1.2rem);}
-    .market-row .stock-cell{font-size:clamp(1rem,4.8cqw,1.35rem);}
-    .market-play .market-actions button{font-size:clamp(.6rem,2.5cqw,.66rem);}
-    .market-play .flip-digit span{font-size:clamp(1.35rem,6.5cqw,1.75rem);}
-    .market-play .bot-stat .bot-label{font-size:clamp(.7rem,3cqw,.9rem);}
-    .market-play .bot-val{font-size:clamp(1.05rem,4.65cqw,1.5rem);}
-    .market-play .actions button{font-size:clamp(.64rem,2.75cqw,.76rem);}
+    .market-play .loc-header{flex:0 0 82px;height:82px;min-height:82px;max-height:82px;}
+    .market-play .loc-header-title{font-size:1.05rem;}
+    .market-play .loc-header-desc{font-size:.744rem;line-height:1.25;-webkit-line-clamp:2;}
+    .market-golden-banner{font-size:.58rem;}
+    .market-head-title{font-size:1.08rem;}
+    .goods-icon-wrap.no-icon::after{font-size:20px;}
+    .goods-name{font-size:.7rem;}
+    .market-row .price-cell{font-size:.88rem;}
+    .market-row .stock-cell{font-size:.95rem;}
+    .market-play .market-actions button{font-size:.6rem;}
+    .market-play .flip-digit span{font-size:1.35rem;}
+    .market-play .bot-stat .bot-label{font-size:.7rem;}
+    .market-play .bot-val{font-size:1.05rem;}
+    .market-play .actions button{font-size:.64rem;}
     .market-play .bot-bar{flex:0 0 123px;height:123px;min-height:123px;max-height:123px;padding:10px 12px 7px;overflow:visible;}
     .market-play .bot-stats{gap:4px 10px;}
     .market-play .bot-stat{flex-direction:column;align-items:flex-start;gap:2px;}
     .market-play .bot-stat.right{align-items:flex-end;}
-    .market-play .bot-stat .bot-val{font-size:clamp(.95rem,3.6cqw,1.25rem);}
+    .market-play .bot-stat .bot-val{font-size:.95rem;}
     .market-play .bot-sub{display:grid;grid-template-columns:1fr 1fr;gap:3px 10px;white-space:normal;font-size:.72rem;}
     .modal.modal-event .ev-tier{width:auto;max-width:min(340px,92vw);gap:8px;}
     .modal.modal-event .ev-tier-title{font-size:1.1rem;letter-spacing:1px;line-height:1.15;}
@@ -586,7 +586,10 @@
     .modal.modal-event .ev-tier-acts button.full{width:min(200px,100%);margin:0 auto;padding:10px 16px;font-size:.8rem;min-height:0;}}
 
   /* === PORTRAIT ONLY — portrait layout fixed; rotate viewport on touch landscape === */
-  #portrait-root{width:100%;height:100%;min-height:0;display:flex;justify-content:center;align-items:stretch;}
+  #portrait-root{width:100%;height:100%;min-height:0;display:flex;justify-content:center;}
+  @media (pointer:coarse){
+    #portrait-root{align-items:stretch;}
+  }
   @media (orientation:landscape) and (pointer:coarse){
     html,body{overflow:hidden;}
     #portrait-root{position:fixed;top:0;left:0;width:100vh;height:100vw;
