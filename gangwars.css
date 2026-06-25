@@ -552,39 +552,30 @@
   .ev-tier-acts{flex:0 0 auto;width:100%;}
   .ev-tier-acts button{font-size:.86rem;padding:13px 8px;letter-spacing:1px;}
 
-  /* Desktop browser — phone-aspect column; size with cqw not full viewport width */
+  /* Desktop browser — phone-width column; mobile rules unchanged */
   @media (pointer:fine) and (min-width:560px){
     #portrait-root{align-items:center;}
     #crt.game-mode,#crt.ledger-mode{
-      container-type:inline-size;
-      width:min(540px,100vw);
-      height:min(100dvh,calc(min(540px,100vw) * 1844 / 853));
-      max-width:540px;
+      width:min(390px,100vw);
+      height:min(100dvh,calc(min(390px,100vw) * 1844 / 853));
+      max-width:390px;
+      max-height:100dvh;
       flex:0 0 auto;
       align-self:center;}
-    .market-play .loc-header{flex:0 0 92px;height:92px;min-height:92px;max-height:92px;}
-    .market-play .loc-header-title{font-size:clamp(1.05rem,4.8cqw,1.44rem);}
-    .market-play .loc-header-desc{font-size:clamp(.744rem,3.12cqw,.912rem);}
-    .market-golden-banner{font-size:clamp(.58rem,2.5cqw,.68rem);}
-    .market-head-title{font-size:clamp(1.08rem,5.1cqw,1.464rem);}
-    .goods-icon-wrap.no-icon::after{font-size:clamp(18px,5cqw,28px);}
-    .goods-name{font-size:clamp(.7rem,3cqw,.9rem);}
-    .market-row .price-cell{font-size:clamp(1.05rem,4.65cqw,1.5rem);}
-    .market-row .stock-cell{font-size:clamp(1.2rem,4.8cqw,1.6rem);}
-    .market-play .market-actions button{font-size:clamp(.6rem,2.5cqw,.66rem);}
-    .market-play .bot-stat .bot-label{font-size:clamp(.7rem,3cqw,.9rem);}
-    .market-play .bot-val{font-size:clamp(1.05rem,4.65cqw,1.5rem);}
-    .market-play .bot-val.dim{font-size:clamp(.72rem,3.2cqw,.88rem);}
-    .market-play .actions button{font-size:clamp(.64rem,2.75cqw,.76rem);}
-    .market-play .flip-digit span{font-size:clamp(1.35rem,6.5cqw,1.75rem);}
-    .market-play .bot-bar{flex:0 0 148px;height:148px;min-height:148px;max-height:148px;padding:10px 14px 8px;overflow:visible;}
-    .market-play .bot-stats{gap:6px 16px;}
-    .market-play .bot-stat{flex-direction:column;align-items:flex-start;gap:2px;min-width:0;}
+    .market-play .loc-header{flex:0 0 86px;height:86px;min-height:86px;max-height:86px;}
+    .market-row .price-cell{font-size:clamp(.88rem,2.6vw,1.12rem);}
+    .market-row .stock-cell{font-size:clamp(.95rem,2.8vw,1.2rem);}
+    .market-play .bot-bar{flex:0 0 130px;height:130px;min-height:130px;max-height:130px;padding:10px 12px 8px;overflow:visible;}
+    .market-play .bot-stats{gap:4px 10px;}
+    .market-play .bot-stat{flex-direction:column;align-items:flex-start;gap:2px;}
     .market-play .bot-stat.right{align-items:flex-end;}
-    .market-play .bot-stat .bot-val{font-size:clamp(.95rem,3.6cqw,1.28rem);}
-    .market-play .bot-sub{
-      display:grid;grid-template-columns:1fr 1fr;gap:3px 14px;
-      justify-content:stretch;white-space:normal;font-size:clamp(.68rem,2.6cqw,.82rem);}}
+    .market-play .bot-stat .bot-val{font-size:clamp(.9rem,3.2vw,1.2rem);}
+    .market-play .bot-sub{display:grid;grid-template-columns:1fr 1fr;gap:3px 10px;white-space:normal;font-size:.72rem;}
+    .modal.modal-event .ev-tier{width:auto;max-width:min(340px,92vw);gap:8px;}
+    .modal.modal-event .ev-tier-title{font-size:1.1rem;letter-spacing:1px;line-height:1.15;}
+    .modal.modal-event .ev-tier-desc{margin-top:8px;font-size:.76rem;line-height:1.35;}
+    .modal.modal-event .ev-tier-acts{width:auto;align-self:stretch;padding:0 10px;}
+    .modal.modal-event .ev-tier-acts button.full{width:min(200px,100%);margin:0 auto;padding:10px 16px;font-size:.8rem;min-height:0;}}
 
   /* === PORTRAIT ONLY — portrait layout fixed; rotate viewport on touch landscape === */
   #portrait-root{width:100%;height:100%;min-height:0;display:flex;justify-content:center;align-items:stretch;}
