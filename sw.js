@@ -1,7 +1,7 @@
 /* Gang Wars — service worker
    Cache-first for app shell; network-first for icons so home-screen art updates. */
 
-const CACHE = 'gangwars-v173';
+const CACHE = 'gangwars-v174';
 const ASSETS = [
   './gangwars.html',
   './gangwars.css',
@@ -239,7 +239,11 @@ const GOODS_PATTERN = /\/assets\/goods\/[^/]+\.png$/;
 const EVENT_PATTERN = /\/events\/[^/]+\.(?:jpg|png)$/;
 
 self.addEventListener('install', e => {
-  e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)));
+  e.waitUntil(
+    caches.open(CACHE).then(c =>
+      Promise.allSettled(ASSETS.map(url => c.add(url)))
+    )
+  );
   self.skipWaiting();
 });
 
