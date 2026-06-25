@@ -8,7 +8,7 @@
 const LEDGER_CANVAS        = { w: 473, h: 1024 };
 const LEDGER_ASSET_PREFIX  = "assets/ledger/";
 const LEDGER_ICON_PREFIX   = "assets/ledger/icons/";
-const LEDGER_ASSET_VERSION = "68";
+const LEDGER_ASSET_VERSION = "69";
 
 const LEDGER_GROUP_ICON = {
   general:       "ledger-group-general.png",

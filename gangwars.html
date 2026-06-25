@@ -11,7 +11,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=3" />
 <link rel="apple-touch-icon" sizes="192x192" href="icon-192.png?v=3" />
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png?v=3" />
-<link rel="preload" as="image" href="title-screen.png?v=12" fetchpriority="high" />
+<link rel="preload" as="image" href="title-screen.jpg?v=13" fetchpriority="high" />
 <title>GANG WARS</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -23,7 +23,7 @@
 <div id="portrait-root">
 <div id="crt">
   <div class="masthead">
-<h1 class="serif" aria-label="Gang Wars"><img src="./banner.png" alt="Gang Wars" class="masthead-banner"></h1>
+<h1 class="serif" aria-label="Gang Wars"><img src="./banner.jpg" alt="Gang Wars" class="masthead-banner"></h1>
   </div>
   <div id="app"></div>
   <div id="game-live" role="status" aria-live="polite" aria-atomic="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;padding:0;margin:0;"></div>
@@ -109,7 +109,7 @@ if (typeof document !== "undefined") {
   let tipsState = loadTips();
   const money = n => "$"+Math.round(n).toLocaleString("en-US");
   const ScoresUI = window.GangWarsScoresUI;
-  const TITLE_SCREEN = "title-screen.png?v=12";
+  const TITLE_SCREEN = "title-screen.jpg?v=13";
   const TITLE_CANVAS = { w: 853, h: 1844 };
   function layoutTitleScreen(){
     const cover = document.querySelector(".title-cover");
@@ -216,7 +216,7 @@ if (typeof document !== "undefined") {
     app.dataset.ledgerFocus = ledgerFocusId || "";
     LedgerUI.render(app, ledgerUiCtx());
   }
-  const EVENT_IMG_VERSION = "events-v5";
+  const EVENT_IMG_VERSION = "events-v6";
   function versionEventImage(path){
     if (typeof path !== "string" || !path.startsWith("events/") || path.includes("?")) return path;
     return `${path}?v=${EVENT_IMG_VERSION}`;
@@ -1032,7 +1032,7 @@ if (typeof document !== "undefined") {
 </script>
 <script>
   if ('serviceWorker' in navigator && !/^127\.0\.0\.1$|^localhost$/i.test(location.hostname)) {
-    navigator.serviceWorker.register('./sw.js?v=134').then(reg => {
+    navigator.serviceWorker.register('./sw.js?v=135').then(reg => {
       reg.update();
       reg.addEventListener('updatefound', () => {
         const worker = reg.installing;
