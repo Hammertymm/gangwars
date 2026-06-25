@@ -216,7 +216,7 @@ if (typeof document !== "undefined") {
     app.dataset.ledgerFocus = ledgerFocusId || "";
     LedgerUI.render(app, ledgerUiCtx());
   }
-  const EVENT_IMG_VERSION = "events-v4";
+  const EVENT_IMG_VERSION = "events-v5";
   function versionEventImage(path){
     if (typeof path !== "string" || !path.startsWith("events/") || path.includes("?")) return path;
     return `${path}?v=${EVENT_IMG_VERSION}`;

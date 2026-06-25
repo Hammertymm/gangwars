@@ -92,11 +92,11 @@ const SUPER_RARE_EVENTS = [
 ];
 
 const GODLIKE_EVENTS = [
-  {id:'in_town',     img:'events/godlike_in_town.jpg',     lines:['BIG DADDY J IS IN TOWN','EVERYBODY WANTS A PIECE OF THE ACTION']},
-  {id:'interest',    img:'events/godlike_interest.jpg',    lines:['BIG DADDY J TAKES AN INTEREST','MONEY CHANGES HANDS RAPIDLY']},
-  {id:'move',        img:'events/godlike_move.jpg',        lines:['BIG DADDY J MAKES A MOVE','THE DISTRICT WILL BE TALKING ABOUT IT FOR YEARS']},
-  {id:'celebration', img:'events/godlike_celebration.jpg', lines:['BIG DADDY J THROWS A CELEBRATION','NO EXPENSE IS BEING SPARED']},
-  {id:'history',     img:'events/godlike_history.jpg',     lines:['BIG DADDY J MAKES HISTORY','THE CITY WILL REMEMBER THIS DAY']},
+  {id:'red_wedding',              img:'events/godlike_red_wedding.jpg',              lines:["BIG DADDY J'S RED WEDDING",'BDJ RAISES A CHAMPAGNE GLASS WHILE HIS CREW SETTLE THEIR DIFFERENCES ACROSS A BLOOD-SOAKED BANQUET HALL.']},
+  {id:'declares_himself_mayor',   img:'events/godlike_declares_himself_mayor.jpg',   lines:['BIG DADDY J DECLARES HIMSELF MAYOR','BDJ DELIVERS A VICTORY SPEECH FROM CITY HALL WHILE THE REAL MAYOR IS CARRIED AWAY INSIDE A CARPET.']},
+  {id:'boss_of_bosses',           img:'events/godlike_boss_of_bosses.jpg',           lines:['THE BOSS OF BOSSES','BDJ RECEIVES TRIBUTE FROM CAPOS, UNION LEADERS, BOOKMAKERS AND CORRUPT OFFICIALS INSIDE A GUARDED SOCIAL CLUB.']},
+  {id:'opens_the_vault',          img:'events/godlike_opens_the_vault.jpg',          lines:['BIG DADDY J OPENS THE VAULT','BDJ WATCHES AS A BANK VAULT YAWNS OPEN AND HIS MEN HAUL OUT CASH, BONDS AND ENOUGH SECRETS TO OWN THE TOWN.']},
+  {id:'takes_the_city',           img:'events/godlike_takes_the_city.jpg',           lines:['BIG DADDY J TAKES THE CITY','BDJ STUDIES A MAP WHILE HIS CREWS SEIZE THE DOCKS, CLUBS, WAREHOUSES AND CITY HALL IN A SINGLE RUTHLESS NIGHT.']},
 ];
 
 const GOLDEN_GODLIKE = {

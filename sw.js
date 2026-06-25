@@ -1,7 +1,7 @@
 /* Gang Wars — service worker
    Cache-first for app shell; network-first for icons so home-screen art updates. */
 
-const CACHE = 'gangwars-v170';
+const CACHE = 'gangwars-v172';
 const ASSETS = [
   './gangwars.html',
   './gangwars.css',
@@ -92,11 +92,11 @@ const ASSETS = [
   './events/super_chairman.jpg',
   './events/super_garage.jpg',
   './events/super_picket_line.jpg',
-  './events/godlike_in_town.jpg',
-  './events/godlike_interest.jpg',
-  './events/godlike_move.jpg',
-  './events/godlike_celebration.jpg',
-  './events/godlike_history.jpg',
+  './events/godlike_red_wedding.jpg',
+  './events/godlike_declares_himself_mayor.jpg',
+  './events/godlike_boss_of_bosses.jpg',
+  './events/godlike_opens_the_vault.jpg',
+  './events/godlike_takes_the_city.jpg',
   './events/godlike_golden.jpg',
   './assets/ledger/ledger-group-general.png',
   './assets/ledger/ledger-group-rare.png',
@@ -168,11 +168,11 @@ const ASSETS = [
   './assets/ledger/icons/wallst.png',
   './assets/ledger/icons/ruth.png',
   './assets/ledger/icons/walker.png',
-  './assets/ledger/icons/in_town.png',
-  './assets/ledger/icons/interest.png',
-  './assets/ledger/icons/move.png',
-  './assets/ledger/icons/celebration.png',
-  './assets/ledger/icons/history.png',
+  './assets/ledger/icons/red_wedding.png',
+  './assets/ledger/icons/declares_himself_mayor.png',
+  './assets/ledger/icons/boss_of_bosses.png',
+  './assets/ledger/icons/opens_the_vault.png',
+  './assets/ledger/icons/takes_the_city.png',
   './assets/ledger/icons/golden.png',
   './assets/audio/AUDIO-MANIFEST.json',
   './assets/audio/music/dock-ambient.ogg',

@@ -73,11 +73,11 @@ const LEDGER_CATEGORIES = [
     title: 'GODLIKE',
     completeTitle: 'BIG DADDY J KNOWS YOUR NAME',
     achievements: [
-      { id: 'in_town', title: 'THE ARRIVAL', description: 'Big Daddy J is in town.' },
-      { id: 'interest', title: 'THE MASTERMIND', description: 'Big Daddy J takes an interest.' },
-      { id: 'move', title: 'THE STRATEGIST', description: 'Big Daddy J makes a move.' },
-      { id: 'celebration', title: 'THE TOAST', description: 'Big Daddy J throws a celebration.' },
-      { id: 'history', title: 'THE LEGEND', description: 'Big Daddy J makes history.' },
+      { id: 'red_wedding', title: 'RED WEDDING', description: "Big Daddy J raises a champagne glass while his crew settle scores across a blood-soaked banquet hall." },
+      { id: 'declares_himself_mayor', title: 'THE MAYOR', description: 'Big Daddy J declares himself mayor while the real one is carried away inside a carpet.' },
+      { id: 'boss_of_bosses', title: 'THE BOSS OF BOSSES', description: 'Big Daddy J receives tribute from capos, union men, bookmakers and crooked officials.' },
+      { id: 'opens_the_vault', title: 'THE VAULT', description: 'Big Daddy J opens a bank vault and his men haul out cash, bonds and enough secrets to own the town.' },
+      { id: 'takes_the_city', title: 'THE TAKEOVER', description: 'Big Daddy J seizes the docks, clubs, warehouses and City Hall in a single ruthless night.' },
     ],
   },
   {
