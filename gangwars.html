@@ -119,8 +119,6 @@ if (typeof document !== "undefined") {
   let ledgerView = null, ledgerViewCat = null, ledgerFocusId = null, ledgerReturn = null;
   let pendingUnlockQueue = [], pendingCompleteQueue = [], pendingTipQueue = [];
   const pendingEventCards = {};
-  /** REVERT BEFORE RELEASE — tier event image QA; fires all four popups every MOVE. */
-  const TEST_TIER_EVENTS_EVERY_MOVE = true;
   let ledger = migrateLedger((() => { try { return JSON.parse(localStorage.getItem(LEDGER_KEY)); } catch(e) { return null; } })());
   let tipsState = loadTips();
   const money = n => "$"+Math.round(n).toLocaleString("en-US");
@@ -932,39 +930,13 @@ if (typeof document !== "undefined") {
     const capMsg = applyDailyInterest(S);
     if (capMsg){ endGame(capMsg); return; }
     if (S.day > CONFIG.days){ endGame(); return; }
-    if (TEST_TIER_EVENTS_EVERY_MOVE) {
-      const re = pick(RARE_EVENTS);
-      const sr = pick(SUPER_RARE_EVENTS);
-      const gk = pick(GODLIKE_EVENTS);
-      S.events.rare = { ...re, day: S.day };
-      S.events.superRare = { ...sr, day: S.day };
-      S.events.godlike = { ...gk, day: S.day, district: dest };
-      S.events.goldenGodlike = { ...GOLDEN_GODLIKE, day: S.day };
-    }
     const { prices, anomaly, sr, gk, golden, re } = resolveTravelMarket(S, dest);
     S.prices = prices;
     S.anomaly = anomaly || null;
     if (LOCATION_FLAVOR[dest]) { logMsg(`Arrived in ${dest}. ${LOCATION_FLAVOR[dest]}`); announce(`Day ${S.day}. Arrived in ${dest}.`); }
 
     let marketEvent=null;
-    if (TEST_TIER_EVENTS_EVERY_MOVE) {
-      const tierQueue = [
-        { imgKey: golden.img, title: golden.lines[0], desc: `${golden.lines[1]} Every price in the city is climbing.`, tier: 'golden' },
-        { imgKey: gk.img, title: gk.lines[0], desc: gk.lines[1], tier: 'godlike' },
-        { imgKey: sr.img || 'celeb', title: sr.title || (sr.lines && sr.lines[0]) || '', desc: sr.desc || (sr.lines && sr.lines[1]) || '', tier: 'superRare' },
-        { imgKey: re.img || 'intel', title: re.title || (re.lines && re.lines[0]) || '', desc: re.desc || (re.lines && re.lines[1]) || '', tier: 'rare' },
-      ];
-      marketEvent = (next) => {
-        let i = 0;
-        const step = () => {
-          if (i >= tierQueue.length) { next(); return; }
-          const e = tierQueue[i++];
-          if (A()) A().eventStinger({ tier: e.tier });
-          showTierEvent(e.imgKey, e.title, e.desc, step);
-        };
-        step();
-      };
-    } else if(golden && S.day===golden.day){
+    if(golden && S.day===golden.day){
       unlockFromEvent('golden');
       const goldenImg=golden.img||'bigdaddy';
       stageEventCard('golden', goldenImg, golden.lines[0], `${golden.lines[1]} Every price in the city is climbing.`, 'golden');
@@ -1016,19 +988,17 @@ if (typeof document !== "undefined") {
   function runTravelEvents(done, firstEvent){
     const queue=[];
     if(firstEvent) queue.push(firstEvent);
-    if (!TEST_TIER_EVENTS_EVERY_MOVE) {
-      const candidates=[];
-      if (chance(1/12)) candidates.push(StandardEvents.eventMugging);
-      if (chance(1/12)) candidates.push(StandardEvents.eventFind);
-      if (chance(1/7))  candidates.push(StandardEvents.eventStash);
-      if (chance(1/7))  candidates.push(StandardEvents.eventGun);
-      if (chance(1/7))  candidates.push(FedsEvent.eventFeds);
-      for (let i = candidates.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [candidates[i], candidates[j]] = [candidates[j], candidates[i]];
-      }
-      queue.push(...candidates.slice(0, CONFIG.maxTravelEvents));
+    const candidates=[];
+    if (chance(1/12)) candidates.push(StandardEvents.eventMugging);
+    if (chance(1/12)) candidates.push(StandardEvents.eventFind);
+    if (chance(1/7))  candidates.push(StandardEvents.eventStash);
+    if (chance(1/7))  candidates.push(StandardEvents.eventGun);
+    if (chance(1/7))  candidates.push(FedsEvent.eventFeds);
+    for (let i = candidates.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [candidates[i], candidates[j]] = [candidates[j], candidates[i]];
     }
+    queue.push(...candidates.slice(0, CONFIG.maxTravelEvents));
     let i=0; const next=()=>{ if(S.over)return; if(i>=queue.length){ save(); done(); return; } queue[i++](next); };
     next();
   }
