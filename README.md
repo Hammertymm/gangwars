@@ -1,6 +1,6 @@
 # Gang Wars — Prohibition 1929
 
-**🎮 Play now: [hammertymm.github.io/GangWars](https://hammertymm.github.io/GangWars/)**
+**🎮 Play now: [hammertymm.github.io/gangwars](https://hammertymm.github.io/gangwars/)**
 
 Buy low. Sell high. Pay the Don before the clock runs out.
 
