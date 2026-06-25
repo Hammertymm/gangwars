@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" />
-<link rel="stylesheet" href="gangwars.css?v=45">
+<link rel="stylesheet" href="gangwars.css?v=47">
 
 <!-- Privacy-friendly analytics by Plausible -->
 <script async src="https://plausible.io/js/pa-vDLGM9babFFQ5szxirltK.js"></script>
@@ -36,6 +36,7 @@
   <div id="game-live" role="status" aria-live="polite" aria-atomic="true" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;padding:0;margin:0;"></div>
 </div>
 </div>
+<div id="modal-root" aria-hidden="true"></div>
 
 <script src="engine.js"></script>
 <script src="ledger.js"></script>
@@ -63,6 +64,12 @@ if (typeof document !== "undefined") {
 })();
 (function(){
   const app = document.getElementById("app");
+  const modalRoot = document.getElementById("modal-root");
+  function wipeModalRoot(){
+    if (!modalRoot) return;
+    modalRoot.innerHTML = "";
+    modalRoot.setAttribute("aria-hidden", "true");
+  }
   const SAVE_KEY = "gw:save", HS_KEY = "gw:highscores", LEDGER_KEY = "gw:ledger";
   const A = () => window.GangWarsAudio;
   function audioUnlock(){ if (A()) A().unlock(); }
@@ -143,6 +150,15 @@ if (typeof document !== "undefined") {
   function layoutTitleScreen(){
     const cover = document.querySelector(".title-cover");
     if (!cover) return;
+    const desktop = window.matchMedia("(pointer:fine) and (min-width:560px)").matches;
+    if (desktop) {
+      cover.style.width = "";
+      cover.style.height = "";
+      cover.style.left = "";
+      cover.style.top = "";
+      cover.style.transform = "";
+      return;
+    }
     const { w: W, h: H } = TITLE_CANVAS;
     const vv = window.visualViewport;
     const vw = vv ? vv.width : window.innerWidth;
@@ -154,29 +170,18 @@ if (typeof document !== "undefined") {
     cover.style.height = sh + "px";
     cover.style.left = ((vw - sw) / 2 + (vv?.offsetLeft || 0)) + "px";
     cover.style.top = ((vh - sh) / 2 + (vv?.offsetTop || 0)) + "px";
+    cover.style.transform = "";
   }
   function layoutGameScreen(){
     const crt = document.getElementById("crt");
     if (!crt) return;
     const desktop = window.matchMedia("(pointer:fine) and (min-width:560px)").matches;
     const active = crt.classList.contains("game-mode") || crt.classList.contains("ledger-mode");
-    if (!desktop || !active) {
-      crt.style.width = "";
-      crt.style.height = "";
-      crt.style.maxWidth = "";
-      crt.style.maxHeight = "";
-      return;
-    }
-    const { w: W, h: H } = TITLE_CANVAS;
-    const vv = window.visualViewport;
-    const vw = vv ? vv.width : window.innerWidth;
-    const vh = vv ? vv.height : window.innerHeight;
-    if (!vw || !vh) return;
-    const scale = Math.min(vw / W, vh / H);
-    crt.style.width = (W * scale) + "px";
-    crt.style.height = (H * scale) + "px";
-    crt.style.maxWidth = "none";
-    crt.style.maxHeight = "none";
+    crt.style.width = "";
+    crt.style.height = "";
+    crt.style.maxWidth = "";
+    crt.style.maxHeight = "";
+    if (!desktop || !active) return;
   }
   function layoutScreens(){
     layoutTitleScreen();
@@ -387,7 +392,7 @@ if (typeof document !== "undefined") {
     achModalPrevFocus = document.activeElement;
     modal = function(){
       modal._achFlow = true;
-      app.innerHTML = `<div class="modal achievement-modal-overlay">
+      modalRoot.innerHTML = `<div class="modal achievement-modal-overlay">
         <section class="achievement-modal" role="dialog" aria-modal="true" aria-labelledby="achievement-modal-title">
           <div class="achievement-modal__divider" aria-hidden="true">
             <span class="achievement-modal__divider-lines"></span>
@@ -404,6 +409,7 @@ if (typeof document !== "undefined") {
           </div>
         </section>
       </div>`;
+      modalRoot.setAttribute("aria-hidden", "false");
       const btn = document.getElementById("achView");
       achModalFocusTrap = (e)=>{
         if (e.key !== "Tab") return;
@@ -447,7 +453,7 @@ if (typeof document !== "undefined") {
       : `${cat.achievements.length} / ${cat.achievements.length} FOUND`;
     modal = function(){
       modal._achFlow = true;
-      app.innerHTML = `<div class="modal"><div class="card ledger-complete${isMaster ? " master" : ""}" role="dialog" aria-modal="true">
+      modalRoot.innerHTML = `<div class="modal"><div class="card ledger-complete${isMaster ? " master" : ""}" role="dialog" aria-modal="true">
         <div class="ach-found-rule">════════════════════</div>
         <h2>${title}</h2>
         <p>${isMaster ? sub : `${cat.achievements.length} / ${cat.achievements.length} FOUND`}</p>
@@ -455,6 +461,7 @@ if (typeof document !== "undefined") {
         <div class="ach-found-rule">════════════════════</div>
         <button class="full amber" id="ok" style="margin-top:12px">CONTINUE</button>
       </div></div>`;
+      modalRoot.setAttribute("aria-hidden", "false");
       document.getElementById("ok").onclick = ()=>{
         if (isMaster) {
           ledger.masterCompleteShown = true;
@@ -496,10 +503,11 @@ if (typeof document !== "undefined") {
     const golden = cat === "goldenGodlike";
     modal = function(){
       modal._achFlow = true;
-      app.innerHTML = `<div class="ach-card-reveal${golden ? " golden" : ""}" id="achCardReveal" role="dialog" aria-modal="true">
+      modalRoot.innerHTML = `<div class="ach-card-reveal${golden ? " golden" : ""}" id="achCardReveal" role="dialog" aria-modal="true">
         <img src="${img}" alt="${getAchievementTitle(achievementId)}" decoding="async">
         <button type="button" class="ach-card-next" id="achCardNext">NEXT</button>
       </div>`;
+      modalRoot.setAttribute("aria-hidden", "false");
       const advance = ()=>{
         revealAchievement(ledger, achievementId);
         saveLedger();
@@ -613,20 +621,25 @@ if (typeof document !== "undefined") {
       achModalFocusTrap = null;
     }
   }
-  function dismissModal(){
+  function clearModal(){
     modal = null;
     modalEscape = null;
+    wipeModalRoot();
+  }
+  function dismissModal(){
+    clearModal();
     render();
   }
   let modalEscape = null;
   const EventUI = window.GangWarsEventUI.create({
     app,
+    modalRoot,
     render,
     audioPlay,
     bindModalCard,
     versionEventImage,
     setModal(fn){ modal = fn; },
-    clearModal(){ modal = null; modalEscape = null; },
+    clearModal,
     setModalEscape(fn){ modalEscape = fn; },
   });
   const TravelUI = window.GangWarsTravelUI.create({
@@ -636,6 +649,7 @@ if (typeof document !== "undefined") {
   });
   const BankUI = window.GangWarsBankUI.create({
     app,
+    modalRoot,
     render,
     setModal(fn){ modal = fn; },
     dismissModal,
@@ -663,9 +677,10 @@ if (typeof document !== "undefined") {
   });
   const MarketUI = window.GangWarsMarketUI.create({
     app,
+    modalRoot,
     render,
     setModal(fn){ modal = fn; },
-    clearModal(){ modal = null; modalEscape = null; },
+    clearModal,
     bindModalCard,
     dismissModal,
     getState(){ return S; },
@@ -710,10 +725,11 @@ if (typeof document !== "undefined") {
     emitTipEvent,
     recordSpaceChange,
     logMsg,
-    clearModal(){ modal = null; modalEscape = null; },
+    clearModal,
   });
   const FedsEvent = window.GangWarsFedsEvent.create({
     app,
+    modalRoot,
     render,
     getState(){ return S; },
     getAudio: A,
@@ -735,7 +751,7 @@ if (typeof document !== "undefined") {
     grantDebtInterestFreeze,
     recordFedFightWin,
     setModal(fn){ modal = fn; },
-    clearModal(){ modal = null; modalEscape = null; },
+    clearModal,
     setModalEscape(fn){ modalEscape = fn; },
   });
   document.addEventListener("keydown", e=>{
@@ -797,16 +813,26 @@ if (typeof document !== "undefined") {
   function render(){
     const crt = document.getElementById("crt");
     if (ledgerView && !modal){
+      wipeModalRoot();
       document.documentElement.classList.remove("title-route");
       renderLedgerRoute();
       syncSceneAudio("ledger");
       return;
     }
     crt.classList.remove("ledger-mode");
-    if (modal){ document.documentElement.classList.remove("title-route"); crt.classList.remove("title-mode"); crt.classList.add("game-mode"); modal();
+    if (modal){ document.documentElement.classList.remove("title-route"); crt.classList.remove("title-mode"); crt.classList.add("game-mode");
+      if (S && !S.over && !ledgerView) renderMarket();
+      modal();
       layoutGameScreen();
-      requestAnimationFrame(()=>{ const d=app.querySelector('[role="dialog"]'); if(!d) return; const f=d.querySelector('button:not([disabled]),input:not([disabled])'); if(f) f.focus(); });
+      requestAnimationFrame(()=>{
+        const mount = modalRoot?.childElementCount ? modalRoot : app;
+        const d = mount.querySelector('[role="dialog"]');
+        if(!d) return;
+        const f = d.querySelector('button:not([disabled]),input:not([disabled])');
+        if(f) f.focus();
+      });
       return; }
+    wipeModalRoot();
     if (!S){ document.documentElement.classList.add("title-route"); crt.classList.add("title-mode"); crt.classList.remove("game-mode"); renderTitle(); syncSceneAudio("title"); return; }
     document.documentElement.classList.remove("title-route");
     crt.classList.remove("title-mode"); crt.classList.add("game-mode");

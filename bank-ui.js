@@ -2,6 +2,8 @@
 (function(root){
   function create(ctx){
     const app = ctx.app;
+    const modalRoot = ctx.modalRoot;
+    const modalEl = () => modalRoot || app;
     const render = ctx.render;
     const setModal = ctx.setModal;
     const dismissModal = ctx.dismissModal;
@@ -24,7 +26,7 @@
           withdraw: {label:"Withdraw",    max:S.bank,                  fn:v=>ctx.bankWithdraw(S,v), msg:v=>`Withdrew ${money(v)}.`},
         };
         if(!action){
-          app.innerHTML = `<div class="modal"><div class="card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+          modalEl().innerHTML = `<div class="modal"><div class="card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
             <h2 id="modal-title">THE FAMILY VAULT</h2>
             <p>Your debt to the Don stands at <b class="red">${money(S.debt)}</b> &mdash; and it's climbing ${Math.round(ctx.CONFIG.loanInterest*100)}%/day.</p>
             <p>Bank <b>${money(S.bank)}</b> <span class="na">(+${Math.round(ctx.effectiveBankInterest(S)*100)}%/day)</span> &middot; Cash <b>${money(S.cash)}</b></p>
@@ -37,12 +39,12 @@
             </div>
             <button class="full" id="close" style="margin-top:10px">DONE</button>
           </div></div>`;
-          app.querySelectorAll("[data-a]").forEach(b=> b.onclick=()=>{ action=b.dataset.a; render(); });
-          bindModalCard(app.querySelector(".card"));
+          modalEl().querySelectorAll("[data-a]").forEach(b=> b.onclick=()=>{ action=b.dataset.a; render(); });
+          bindModalCard(modalEl().querySelector(".card"));
           document.getElementById("close").onclick=dismissModal;
         } else {
           const a=actions[action]; let qty=a.max>0?a.max:0;
-          app.innerHTML = `<div class="modal"><div class="card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+          modalEl().innerHTML = `<div class="modal"><div class="card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
             <h2 id="modal-title">${a.label.toUpperCase()}</h2>
             <p>Max <span class="price">${money(a.max)}</span> &middot; Cash ${money(S.cash)}</p>
             <label for="amt" class="na">Amount</label>
@@ -57,9 +59,9 @@
           const input=document.getElementById("amt");
           const setQ=v=>{ qty=Math.max(0,Math.min(a.max,Math.floor(v||0))); input.value=qty; document.getElementById("berr").textContent=""; };
           input.oninput=()=>setQ(+input.value);
-          app.querySelectorAll("[data-q]").forEach(b=> b.onclick=()=>{ const q=b.dataset.q;
+          modalEl().querySelectorAll("[data-q]").forEach(b=> b.onclick=()=>{ const q=b.dataset.q;
             setQ(q==="max"?a.max:q==="half"?Math.floor(a.max/2):qty+(+q)); });
-          bindModalCard(app.querySelector(".card"));
+          bindModalCard(modalEl().querySelector(".card"));
           document.getElementById("back").onclick=()=>{ action=null; render(); };
           document.getElementById("ok").onclick=()=>{
             if(qty<=0){ document.getElementById("berr").textContent="Enter an amount."; audioPlay("sfx.economy.errorDeny"); return; }

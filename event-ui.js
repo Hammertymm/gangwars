@@ -17,6 +17,8 @@
 
   function create(ctx){
     const app = ctx.app;
+    const modalRoot = ctx.modalRoot;
+    const modalEl = () => modalRoot || app;
     const render = ctx.render;
     const audioPlay = ctx.audioPlay;
     const bindModalCard = ctx.bindModalCard;
@@ -31,7 +33,7 @@
     }
 
     function fitEventPopupToImage(src){
-      const popup = app.querySelector(".ev-popup");
+      const popup = modalEl().querySelector(".ev-popup");
       const left = popup && popup.querySelector(".ev-left");
       if (!popup || !left || !src){ if (popup) popup.classList.add("ev-ready"); return; }
       popup.classList.add("ev-measuring");
@@ -56,7 +58,7 @@
       setModal(function(){
         audioPlay("sfx.events.modalOpen");
         const imgSrc = eventImgSrc(imgKey);
-        app.innerHTML=`<div class="modal"><div class="ev-popup" role="dialog" aria-modal="true">
+        modalEl().innerHTML=`<div class="modal"><div class="ev-popup" role="dialog" aria-modal="true">
           <div class="ev-left" style="background-image:url('${imgSrc}')" role="img" aria-label="Event illustration"></div>
           <div class="ev-right">
             <div class="ev-body"><div>${body}</div></div>
@@ -72,20 +74,23 @@
     }
 
     function fitTierEventToImage(src){
-      const tier = app.querySelector(".ev-tier");
+      const tier = modalEl().querySelector(".ev-tier");
       const art = tier && tier.querySelector(".ev-tier-art");
       const img = art && art.querySelector("img");
       if (!tier || !art || !img || !src) return;
-      const fit = ()=>{
+      const measure = ()=>{
         const nw = img.naturalWidth, nh = img.naturalHeight;
         if (!nw || !nh) return;
+        const vv = window.visualViewport;
+        const vh = vv ? vv.height : window.innerHeight;
         const tierWidth = tier.getBoundingClientRect().width || Math.min(480, window.innerWidth - 16);
         const head = tier.querySelector(".ev-tier-head");
         const acts = tier.querySelector(".ev-tier-acts");
         const headH = head ? head.getBoundingClientRect().height : 0;
         const actsH = acts ? acts.getBoundingClientRect().height : 0;
         const gap = 11;
-        const maxHeight = Math.max(120, window.innerHeight * 0.88 - headH - actsH - gap * 2 - 20);
+        const safePad = 24;
+        const maxHeight = Math.max(80, vh * 0.86 - headH - actsH - gap * 2 - safePad);
         const maxWidth = Math.floor(tierWidth);
         const scale = Math.min(maxWidth / nw, maxHeight / nh, 1);
         const w = Math.max(1, Math.round(nw * scale));
@@ -93,6 +98,7 @@
         art.style.width = `${w}px`;
         art.style.height = `${h}px`;
       };
+      const fit = ()=>requestAnimationFrame(()=>requestAnimationFrame(measure));
       img.onload = fit;
       img.onerror = ()=>{};
       if (img.complete && img.naturalWidth) fit();
@@ -102,7 +108,7 @@
       setModal(function(){
         audioPlay("sfx.events.modalOpen");
         const imgSrc = eventImgSrc(imgKey);
-        app.innerHTML=`<div class="modal modal-event"><div class="ev-tier" role="dialog" aria-modal="true" aria-label="${title}">
+        modalEl().innerHTML=`<div class="modal modal-event"><div class="ev-tier" role="dialog" aria-modal="true" aria-label="${title}">
           <div class="ev-tier-head">
             <div class="ev-tier-title">${title}</div>
             <div class="ev-tier-desc">${desc}</div>
@@ -122,7 +128,7 @@
       setModal(function(){
         audioPlay("sfx.events.modalOpen");
         const imgSrc = eventImgSrc(imgKey);
-        app.innerHTML=`<div class="modal"><div class="ev-popup" role="dialog" aria-modal="true">
+        modalEl().innerHTML=`<div class="modal"><div class="ev-popup" role="dialog" aria-modal="true">
           <div class="ev-left" style="background-image:url('${imgSrc}')" role="img" aria-label="Event illustration"></div>
           <div class="ev-right">
             <div class="ev-body"><div>${body}</div></div>
@@ -144,11 +150,11 @@
 
     function toast(title, body, btn, cb){
       setModal(function(){
-        app.innerHTML=`<div class="modal"><div class="card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        modalEl().innerHTML=`<div class="modal"><div class="card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
           <h2 id="modal-title">${title}</h2><p>${body}</p>
           <button class="full amber" id="ok">${btn||"OK"}</button>
         </div></div>`;
-        bindModalCard(app.querySelector(".card"));
+        bindModalCard(modalEl().querySelector(".card"));
         document.getElementById("ok").onclick=()=>{ clearModal(); cb(); };
       });
       render();

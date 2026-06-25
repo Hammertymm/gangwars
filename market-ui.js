@@ -4,6 +4,8 @@
 
   function create(ctx){
     const app = ctx.app;
+    const modalRoot = ctx.modalRoot;
+    const modalEl = () => modalRoot || app;
     const render = ctx.render;
     const setModal = ctx.setModal;
     const getState = ctx.getState;
@@ -99,7 +101,7 @@
         if (qty > max) qty = max;
         const avg = mode === "sell" ? ctx.avgCost(S, id) : null;
         const pct = mode === "sell" ? ctx.profitPct(S, id, price) : null;
-        app.innerHTML = `<div class="modal"><div class="card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        modalEl().innerHTML = `<div class="modal"><div class="card" role="dialog" aria-modal="true" aria-labelledby="modal-title">
           <h2 id="modal-title">${mode==="buy"?"BUY":"SELL"} ${d.name}</h2>
           <p>Price <span class="price">${money(price)}</span> each<br>
             ${mode==="buy"?`can afford ${max}`:`you hold ${S.inventory[id]||0}`}</p>
@@ -127,11 +129,11 @@
           confirm.textContent = `${mode==="buy"?"BUY":"SELL"} ${qty}`;
         };
         input.oninput = ()=>setQ(+input.value);
-        app.querySelectorAll("[data-q]").forEach(b=> b.onclick=()=>{
+        modalEl().querySelectorAll("[data-q]").forEach(b=> b.onclick=()=>{
           const q = b.dataset.q;
           setQ(q === "max" ? maxFor() : q === "half" ? Math.floor(maxFor() / 2) : qty + (+q));
         });
-        ctx.bindModalCard(app.querySelector(".card"));
+        ctx.bindModalCard(modalEl().querySelector(".card"));
         document.getElementById("cancel").onclick = ctx.dismissModal;
         confirm.onclick = ()=>{
           const err = mode === "buy" ? ctx.buy(S, id, qty) : ctx.sell(S, id, qty);

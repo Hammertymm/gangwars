@@ -4,6 +4,8 @@
     const getState = ctx.getState;
     const getAudio = ctx.getAudio;
     const app = ctx.app;
+    const modalRoot = ctx.modalRoot;
+    const modalEl = () => modalRoot || app;
     const render = ctx.render;
     const money = ctx.money;
     const randInt = ctx.randInt;
@@ -42,7 +44,7 @@
             fedsAudioStarted = true;
           }
           const imgSrc = ctx.eventImgSrc('feds');
-          app.innerHTML=`<div class="modal"><div class="ev-popup" role="dialog" aria-modal="true">
+          modalEl().innerHTML=`<div class="modal"><div class="ev-popup" role="dialog" aria-modal="true">
             <div class="ev-left" style="background-image:url('${imgSrc}')" role="img" aria-label="The Feds"></div>
             <div class="ev-right">
               <div class="ev-body"><div>

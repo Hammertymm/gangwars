@@ -13,6 +13,9 @@
     /* 1920s type system: Playfair Display for titles/names, Josefin Sans for body/data */
     --font-display:"Playfair Display",Georgia,"Times New Roman",serif;
     --font-deco:"Josefin Sans","Century Gothic",Futura,"Twentieth Century",ui-sans-serif,system-ui,sans-serif;
+    /* Native title-screen.jpg canvas — shared contain-fit frame on desktop */
+    --phone-canvas-w:853;
+    --phone-canvas-h:1844;
   }
 
   *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
@@ -361,11 +364,12 @@
   .modal.achievement-modal-overlay{
     background:rgba(0,0,0,.76);z-index:200;
     padding:max(20px,env(safe-area-inset-top)) 20px max(20px,env(safe-area-inset-bottom));
-    animation:ach-modal-overlay-in 220ms ease-out;}
+    animation:ach-modal-overlay-in 220ms ease-out;
+    box-sizing:border-box;}
   .achievement-modal{
     --ach-gold:#caa85e;--ach-ivory:#efe5d2;--ach-gold-text:#d5b66a;
-    width:78vw;max-width:490px;min-width:min(300px,100%);
-    padding:34px 28px;margin:0;
+    width:min(78vw,490px);max-width:490px;min-width:min(300px,100%);
+    padding:34px 28px;margin:0 auto;
     background:
       radial-gradient(circle at 50% 40%,rgba(83,62,28,.16),rgba(23,19,13,.96) 58%,rgba(12,10,7,.98) 100%);
     border:1.5px solid var(--ach-gold);border-radius:18px;
@@ -431,6 +435,11 @@
   .btns{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;margin-bottom:10px;}
   .btns3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px;}
   .grid2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px;}
+
+  #modal-root{position:fixed;inset:0;z-index:150;pointer-events:none;}
+  #modal-root:not(:empty){pointer-events:auto;}
+  #modal-root:empty{display:none;}
+  #modal-root .ach-card-reveal{z-index:151;}
 
   .modal{position:fixed;inset:0;background:rgba(0,0,0,.74);display:flex;align-items:center;
     justify-content:center;padding:10px 8px;z-index:100;}
@@ -538,10 +547,11 @@
   .ev-warn{font-size:.72rem;color:var(--dim);text-align:center;margin-top:4px;}
 
   /* === TIER EVENT POPUP — title + description above a large illustration, NEXT below === */
-  .modal.modal-event{background:#0a0805;}
+  .modal.modal-event{background:#0a0805;box-sizing:border-box;
+    padding:max(10px,env(safe-area-inset-top)) 10px max(10px,env(safe-area-inset-bottom));}
   .modal .ev-tier{width:100%;}
   .ev-tier{display:flex;flex-direction:column;align-items:center;
-    width:100%;max-width:min(480px,100%);max-height:88dvh;gap:11px;}
+    width:100%;max-width:min(480px,100%);max-height:min(92dvh,100%);gap:11px;box-sizing:border-box;}
   .ev-tier-head{flex:0 0 auto;width:100%;text-align:center;padding:0 4px;}
   .ev-tier-title{font-family:var(--font-display);font-weight:700;color:var(--amber);
     font-size:clamp(1.3rem,6.4vw,1.95rem);letter-spacing:1.5px;text-transform:uppercase;line-height:1.12;}
@@ -549,16 +559,27 @@
   .ev-tier-art{flex:0 0 auto;max-width:100%;display:flex;align-items:center;justify-content:center;overflow:hidden;}
   .ev-tier-art img{width:100%;height:100%;object-fit:contain;
     border:1px solid var(--amber);border-radius:10px;display:block;filter:brightness(1.08);}
-  .ev-tier-acts{flex:0 0 auto;width:100%;}
+  .ev-tier-acts{flex:0 0 auto;width:100%;display:flex;justify-content:center;}
   .ev-tier-acts button{font-size:.86rem;padding:13px 8px;letter-spacing:1px;}
 
-  /* Desktop browser — same 853×1844 contain fit as welcome screen (layoutGameScreen) */
+  /* Desktop browser — same 853×1844 contain fit as welcome screen */
   @media (pointer:fine) and (min-width:560px){
-    #portrait-root{align-items:center;justify-content:center;}
+    #portrait-root{width:100%;height:100dvh;min-height:0;align-items:center;justify-content:center;}
     #crt.game-mode,#crt.ledger-mode{
       container-type:inline-size;
       flex:0 0 auto;
-      align-self:center;}
+      align-self:center;
+      width:min(100vw,100dvh * var(--phone-canvas-w) / var(--phone-canvas-h));
+      height:min(100dvh,100vw * var(--phone-canvas-h) / var(--phone-canvas-w));
+      max-width:none;
+      max-height:none;
+      padding:0;}
+    #crt.title-mode .title-cover{
+      width:min(100vw,100dvh * var(--phone-canvas-w) / var(--phone-canvas-h));
+      height:min(100dvh,100vw * var(--phone-canvas-h) / var(--phone-canvas-w));
+      left:50%;
+      top:50%;
+      transform:translate(-50%,-50%);}
     .market-play .loc-header{flex:0 0 82px;height:82px;min-height:82px;max-height:82px;}
     .market-play .loc-header-title{font-size:1.05rem;}
     .market-play .loc-header-desc{font-size:.744rem;line-height:1.25;-webkit-line-clamp:2;}
@@ -582,8 +603,8 @@
     .modal.modal-event .ev-tier{width:auto;max-width:min(340px,92vw);gap:8px;}
     .modal.modal-event .ev-tier-title{font-size:1.1rem;letter-spacing:1px;line-height:1.15;}
     .modal.modal-event .ev-tier-desc{margin-top:8px;font-size:.76rem;line-height:1.35;}
-    .modal.modal-event .ev-tier-acts{width:auto;align-self:stretch;padding:0 10px;}
-    .modal.modal-event .ev-tier-acts button.full{width:min(200px,100%);margin:0 auto;padding:10px 16px;font-size:.8rem;min-height:0;}}
+    .modal.modal-event .ev-tier-acts{width:100%;align-self:stretch;padding:0 10px;justify-content:center;}
+    .modal.modal-event .ev-tier-acts button.full{width:min(200px,100%);margin:0;padding:10px 16px;font-size:.8rem;min-height:0;}}
 
   /* === PORTRAIT ONLY — portrait layout fixed; rotate viewport on touch landscape === */
   #portrait-root{width:100%;height:100%;min-height:0;display:flex;justify-content:center;}
