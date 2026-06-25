@@ -545,7 +545,7 @@
   .ev-tier-head{flex:0 0 auto;width:100%;text-align:center;padding:0 4px;}
   .ev-tier-title{font-family:var(--font-display);font-weight:700;color:var(--amber);
     font-size:clamp(1.3rem,6.4vw,1.95rem);letter-spacing:1.5px;text-transform:uppercase;line-height:1.12;}
-  .ev-tier-desc{margin-top:20px;font-size:clamp(.8rem,3.4vw,.95rem);line-height:1.42;color:var(--text);}
+  .ev-tier-desc{margin-top:12px;padding:0 8px;font-size:clamp(.8rem,3.4vw,.95rem);line-height:1.42;color:var(--text);}
   .ev-tier-art{flex:0 0 auto;max-width:100%;display:flex;align-items:center;justify-content:center;overflow:hidden;}
   .ev-tier-art img{width:100%;height:100%;object-fit:contain;
     border:1px solid var(--amber);border-radius:10px;display:block;filter:brightness(1.08);}
