@@ -146,12 +146,12 @@ if (typeof document !== "undefined") {
     const vw = vv ? vv.width : window.innerWidth;
     const vh = vv ? vv.height : window.innerHeight;
     if (!vw || !vh) return;
-    const scale = Math.max(vw / W, vh / H);
+    const scale = Math.min(vw / W, vh / H);
     const sw = W * scale, sh = H * scale;
     cover.style.width = sw + "px";
     cover.style.height = sh + "px";
     cover.style.left = ((vw - sw) / 2 + (vv?.offsetLeft || 0)) + "px";
-    cover.style.top = Math.max(0, (vh - sh) / 2 + (vv?.offsetTop || 0)) - 5 + "px";
+    cover.style.top = ((vh - sh) / 2 + (vv?.offsetTop || 0)) + "px";
   }
   function openLedgerCategory(catId){
     if (!LEDGER_CATEGORIES.find(c => c.id === catId)) return;
